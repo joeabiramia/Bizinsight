@@ -1,0 +1,13 @@
+﻿OrderID,Product,UnitPrice,Quantity,TotalSales,Salesman,Region,CustomerType,Date
+1001,Laptop,9000,2,"$2,400 ",John,North,Corporate,3/1/2026
+1002,Mouse,25,10,$250 ,Mary,South,Retail,3/1/2026
+1003,Keyboard,45,5,$225 ,Ali,East,Retail,3/2/2026
+1004,Monitor,300,3,$900 ,Sara,West,Corporate,3/2/2026
+1005,Laptop,9000,1,"$1,200 ",John,North,Retail,3/3/2026
+1006,Headphones,80,6,$480 ,Mary,South,Corporate,3/3/2026
+1007,Mouse,25,20,$500 ,Ali,East,Retail,3/4/2026
+1008,Monitor,300,2,$600 ,Sara,West,Corporate,3/4/2026
+1009,Keyboard,45,8,$360 ,John,North,Retail,3/5/2026
+1010,Laptop,9000,1,"$1,200 ",Mary,South,Corporate,3/5/2026
+1011,Headphones,80,4,$320 ,Ali,East,Retail,3/6/2026
+1012,Mouse,25,15,$375 ,Sara,West,Retail,3/6/2026

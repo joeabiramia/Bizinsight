@@ -1,0 +1,19 @@
+[
+  {
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "email": "joeabiramia27@gmail.com",
+    "name": "Joe Abi Ramia",
+    "password_hash": "16b9f4d907ea86a41269232c8f0b8703:e377478d89f8a0ee2081772032d8640412f57752be665232f4c8c58007c5af62",
+    "created_at": "2026-05-11T13:00:54.608110",
+    "onboarding_complete": true,
+    "onboarding_data": {
+      "business_type": "retail",
+      "company_size": "solo",
+      "goal": "revenue",
+      "data_types": [
+        "sales"
+      ],
+      "user_role": "owner"
+    }
+  }
+]

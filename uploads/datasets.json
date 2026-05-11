@@ -1,0 +1,16 @@
+[
+  {
+    "file_id": "336a64c0-2fe1-4a51-93b1-8b8ff1427552",
+    "filename": "DataSet.csv",
+    "path": "uploads/336a64c0-2fe1-4a51-93b1-8b8ff1427552_DataSet.csv",
+    "created_at": "2026-04-30T11:16:48.941342",
+    "updated_at": "2026-04-30T11:16:48.941342"
+  },
+  {
+    "file_id": "e15f552d-224b-40f8-8be7-c9150bb878e0",
+    "filename": "Book1.csv",
+    "path": "uploads/e15f552d-224b-40f8-8be7-c9150bb878e0_Book1.csv",
+    "created_at": "2026-04-30T11:17:01.175848",
+    "updated_at": "2026-04-30T11:17:01.175848"
+  }
+]
