@@ -12,5 +12,95 @@
     "path": "uploads/e15f552d-224b-40f8-8be7-c9150bb878e0_Book1.csv",
     "created_at": "2026-04-30T11:17:01.175848",
     "updated_at": "2026-04-30T11:17:01.175848"
+  },
+  {
+    "file_id": "ce94bb91-f48f-45cc-aedf-c49451112516",
+    "filename": "ecommerce_orders_complex_1210_rows.csv",
+    "path": "uploads/ce94bb91-f48f-45cc-aedf-c49451112516_ecommerce_orders_complex_1210_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:05:59.255680",
+    "updated_at": "2026-05-11T14:05:59.255680"
+  },
+  {
+    "file_id": "eb4c786d-321c-4456-b1b1-d7fca4335735",
+    "filename": "retail_sales_complex_1000_rows.csv",
+    "path": "uploads/eb4c786d-321c-4456-b1b1-d7fca4335735_retail_sales_complex_1000_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:15:13.198486",
+    "updated_at": "2026-05-11T14:15:13.198486"
+  },
+  {
+    "file_id": "4ed2203e-561d-48ed-9187-c82aa0a6b85a",
+    "filename": "dirty_messy_complex_728_rows.csv",
+    "path": "uploads/4ed2203e-561d-48ed-9187-c82aa0a6b85a_dirty_messy_complex_728_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:18:06.426328",
+    "updated_at": "2026-05-11T14:18:06.426328"
+  },
+  {
+    "file_id": "e9583490-2c3b-4983-8017-4cca96eabb58",
+    "filename": "travel_agency_bookings_dataset_2600_rows.csv",
+    "path": "uploads/e9583490-2c3b-4983-8017-4cca96eabb58_travel_agency_bookings_dataset_2600_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:22:49.672693",
+    "updated_at": "2026-05-11T14:22:49.672693"
+  },
+  {
+    "file_id": "19b1037b-067c-4efa-a916-af9f70add324",
+    "filename": "ecommerce_customer_behavior_sales_dataset_2300_rows.csv",
+    "path": "uploads/19b1037b-067c-4efa-a916-af9f70add324_ecommerce_customer_behavior_sales_dataset_2300_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:23:01.079108",
+    "updated_at": "2026-05-11T14:23:01.079108"
+  },
+  {
+    "file_id": "20944982-f6dc-44fe-9bfe-51fa270ae28a",
+    "filename": "travel_agency_bookings_dataset_2600_rows.csv",
+    "path": "uploads/20944982-f6dc-44fe-9bfe-51fa270ae28a_travel_agency_bookings_dataset_2600_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:23:20.032090",
+    "updated_at": "2026-05-11T14:23:20.032090"
+  },
+  {
+    "file_id": "caeafede-813c-4ed7-ade1-c23b602a4966",
+    "filename": "travel_agency_bookings_dataset_2600_rows.csv",
+    "path": "uploads/caeafede-813c-4ed7-ade1-c23b602a4966_travel_agency_bookings_dataset_2600_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:23:42.408676",
+    "updated_at": "2026-05-11T14:23:42.408676"
+  },
+  {
+    "file_id": "a87f8e94-04d5-4146-932c-d3167af9b915",
+    "filename": "travel_agency_bookings_dataset_2600_rows.csv",
+    "path": "uploads/a87f8e94-04d5-4146-932c-d3167af9b915_travel_agency_bookings_dataset_2600_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:30:51.641379",
+    "updated_at": "2026-05-11T14:30:51.641379"
+  },
+  {
+    "file_id": "3d5ad37c-a6b5-4d4c-9816-8c99b571d395",
+    "filename": "travel_agency_bookings_dataset_2600_rows.csv",
+    "path": "uploads/3d5ad37c-a6b5-4d4c-9816-8c99b571d395_travel_agency_bookings_dataset_2600_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T14:54:12.692305",
+    "updated_at": "2026-05-11T14:54:12.692305"
+  },
+  {
+    "file_id": "841817e3-f7de-493a-99a0-a0f89d304645",
+    "filename": "travel_agency_bookings_dataset_2600_rows.csv",
+    "path": "uploads/841817e3-f7de-493a-99a0-a0f89d304645_travel_agency_bookings_dataset_2600_rows.csv",
+    "user_id": "a3919ba2-c115-4ad0-bb8e-8ff1d8e1f819",
+    "user_email": "joeabiramia27@gmail.com",
+    "created_at": "2026-05-11T15:04:32.010684",
+    "updated_at": "2026-05-11T15:04:32.010684"
   }
 ]

@@ -1,0 +1,1211 @@
+Order_Date,Order_ID,Customer_ID,Item,SKU,Category,Territory,Agent,Sales_Channel,Customer_Segment,Units,Unit_Price,Discount_Rate,Shipping_Fee,Total,Payment_Method,Returned
+2026-01-13,EC-00001,CUST-1235,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Marketplace,New,195,3.0,0,2.5,587.5,Bank Transfer,No
+2026-01-25,EC-00002,CUST-1173,Phone Case,CASE-11,Mobile Accessories,Bekaa,Lina,Website,Returning,199,4.0,0,2.5,798.5,Card,No
+2026-01-25,EC-00003,CUST-1063,Tablet Cover,TABCV-18,Mobile Accessories,South,Tarek,Website,New,18,9.0,0.05,4,157.9,Card,No
+2025-11-25,EC-00004,CUST-1479,Ring Light,RING-12,Creator Gear,Mount Lebanon,Maya,WhatsApp,Returning,18,32.0,0.05,0,547.2,Cash on Delivery,No
+2025-11-03,EC-00005,CUST-1023,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Marketplace,Returning,61,3.0,0.1,4,168.7,Bank Transfer,No
+2026-02-19,EC-00006,CUST-1050,Tablet Cover,TABCV-18,Mobile Accessories,North,Omar,Website,Returning,55,9.0,0,0,495.0,Cash on Delivery,No
+2025-12-07,EC-00007,CUST-1365,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Website,VIP,266,2.0,0,4,536.0,Card,No
+2025-12-09,EC-00008,CUST-1300,Phone Case,CASE-11,Mobile Accessories,North,Kareem,Marketplace,New,70,4.0,0,2.5,282.5,Cash on Delivery,No
+2026-01-03,EC-00009,CUST-1324,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Maya,Website,New,181,5.0,0,5,910.0,Cash on Delivery,No
+2026-02-25,EC-00010,CUST-1433,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Jana,Marketplace,New,31,9.0,0,5,284.0,Cash on Delivery,No
+2026-02-09,EC-00011,CUST-1416,Ring Light,RING-12,Creator Gear,North,Omar,Marketplace,Returning,16,32.0,0.2,5,414.6,Bank Transfer,No
+2026-02-15,EC-00012,CUST-1194,Power Bank,PWR-20,Electronics,Mount Lebanon,Omar,Website,VIP,22,24.0,0,4,532.0,Wallet,No
+2026-02-16,EC-00013,CUST-1357,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Website,New,20,24.0,0.05,4,460.0,Card,No
+2026-02-15,EC-00014,CUST-1484,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Marketplace,New,169,2.0,0.2,4,274.4,Wallet,No
+2026-01-21,EC-00015,CUST-1168,Charging Cable,CABL-07,Mobile Accessories,South,Kareem,Website,Returning,122,3.0,0,5,371.0,Card,Yes
+2026-02-25,EC-00016,CUST-1356,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Maya,Instagram,New,3,45.0,0.1,5,126.5,Bank Transfer,No
+2026-02-06,EC-00017,CUST-1416,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Marketplace,Returning,211,4.0,0.05,0,801.8,Bank Transfer,No
+2026-02-14,EC-00018,CUST-1380,Power Bank,PWR-20,Electronics,North,Tarek,WhatsApp,New,14,24.0,0.15,5,290.6,Card,No
+2026-02-06,EC-00019,CUST-1252,Charging Cable,CABL-07,Mobile Accessories,Gulf,Lina,Website,Returning,200,3.0,0,2.5,602.5,Wallet,No
+2025-11-05,EC-00020,CUST-1252,Charging Cable,CABL-07,Mobile Accessories,Gulf,Tarek,Instagram,New,203,3.0,0,4,613.0,Cash on Delivery,No
+2026-01-10,EC-00021,CUST-1477,Charging Cable,CABL-07,Mobile Accessories,South,Tarek,Marketplace,Returning,56,3.0,0.05,0,159.6,Cash on Delivery,No
+2026-02-21,EC-00022,CUST-1452,Phone Stand,STND-09,Mobile Accessories,South,Omar,Marketplace,New,217,5.0,0.1,4,980.5,Bank Transfer,No
+2025-11-01,EC-00023,CUST-1348,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Website,VIP,88,9.0,0.15,5,678.2,Bank Transfer,No
+2026-01-03,EC-00024,CUST-1099,Phone Case,CASE-11,Mobile Accessories,South,Tarek,Website,New,147,4.0,0.05,4,562.6,Wallet,No
+2025-11-11,EC-00025,CUST-1159,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Tarek,Website,Returning,24,9.0,0.15,2.5,186.1,Card,No
+2026-01-20,EC-00026,CUST-1242,Power Bank,PWR-20,Electronics,Beirut,Kareem,Marketplace,Returning,23,24.0,0.15,4,473.2,Cash on Delivery,No
+2025-12-14,EC-00027,CUST-1296,Smart Watch,WATC-30,Electronics,Bekaa,Jana,Marketplace,VIP,12,115.0,0.05,0,1311.0,Card,No
+2025-11-11,EC-00028,CUST-1226,Ring Light,RING-12,Creator Gear,Gulf,Kareem,Website,Returning,5,32.0,0.1,0,144.0,Card,No
+2025-12-09,EC-00029,CUST-1385,Power Bank,PWR-20,Electronics,North,Maya,Marketplace,Returning,12,24.0,0.15,5,249.8,Bank Transfer,No
+2025-11-30,EC-00030,CUST-1480,Smart Watch,WATC-30,Electronics,South,Jana,Website,New,7,115.0,0.15,0,684.25,Card,No
+2025-12-29,EC-00031,CUST-1064,Phone Stand,STND-09,Mobile Accessories,,Maya,Website,Returning,57,5.0,0.05,2.5,273.25,Wallet,No
+2025-12-16,EC-00032,CUST-1262,Phone Case,CASE-11,Mobile Accessories,South,Kareem,Website,New,51,4.0,0,4,208.0,Wallet,No
+2025-12-10,EC-00033,CUST-1336,Power Bank,PWR-20,Electronics,Mount Lebanon,Omar,Website,New,13,24.0,0,0,312.0,Cash on Delivery,No
+2025-11-08,EC-00034,CUST-1174,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Jana,Marketplace,New,90,3.0,0.2,2.5,218.5,Cash on Delivery,No
+2026-01-25,EC-00035,CUST-1214,Phone Stand,STND-09,Mobile Accessories,South,Kareem,Instagram,New,188,5.0,0.05,4,897.0,Wallet,No
+2025-11-21,EC-00036,CUST-1109,Screen Wipes,WIPE-03,Consumables,Bekaa,Maya,Instagram,VIP,254,2.0,0,2.5,510.5,Cash on Delivery,No
+2026-01-01,EC-00037,CUST-1037,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Lina,Marketplace,New,15,45.0,0,0,675.0,Wallet,No
+2025-11-04,EC-00038,CUST-1145,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Website,Returning,132,5.0,0,0,660.0,Cash on Delivery,No
+2025-11-29,EC-00039,CUST-1010,Tablet Cover,TABCV-18,Mobile Accessories,South,Lina,Marketplace,New,40,9.0,0,4,364.0,Cash on Delivery,No
+2025-12-19,EC-00040,CUST-1481,Power Bank,PWR-20,Electronics,Bekaa,Lina,WhatsApp,New,10,24.0,0,4,244.0,Bank Transfer,No
+2026-02-21,EC-00041,CUST-1325,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Omar,Marketplace,New,15,45.0,0.1,4,611.5,Cash on Delivery,No
+2026-02-26,EC-00042,CUST-1143,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Marketplace,New,78,2.0,0,0,156.0,Cash on Delivery,No
+2026-02-17,EC-00043,CUST-1198,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Kareem,Website,New,160,5.0,0.1,0,720.0,Wallet,No
+2026-01-03,EC-00044,CUST-1404,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Website,Returning,166,5.0,0.05,5,793.5,Card,No
+2025-11-27,EC-00045,CUST-1043,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,New,136,3.0,0.05,4,391.6,Cash on Delivery,No
+2026-02-05,EC-00046,CUST-1221,Screen Wipes,WIPE-03,Consumables,North,Lina,Website,New,171,2.0,0.05,5,329.9,Bank Transfer,No
+2025-12-18,EC-00047,CUST-1150,Wireless Earbuds,EAR-15,Electronics,North,Kareem,Website,New,5,62.0,0.1,4,283.0,Card,No
+2026-02-09,EC-00048,CUST-1381,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Website,New,91,3.0,0,4,277.0,Wallet,No
+2025-11-25,EC-00049,CUST-1400,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Tarek,Marketplace,VIP,4,45.0,0.1,4,166.0,Bank Transfer,No
+2025-12-22,EC-00050,CUST-1383,Smart Watch,WATC-30,Electronics,South,Maya,Instagram,New,3,115.0,0.15,2.5,295.75,Cash on Delivery,No
+2025-12-31,EC-00051,CUST-1096,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Jana,Marketplace,Returning,158,3.0,0,0,474.0,Bank Transfer,No
+2026-02-07,EC-00052,CUST-1377,Ring Light,RING-12,Creator Gear,North,Kareem,Website,Returning,14,32.0,0,2.5,450.5,Card,No
+2026-01-03,EC-00053,CUST-1011,Wireless Earbuds,EAR-15,Electronics,Bekaa,Lina,Website,New,7,62.0,0.1,4,394.6,Card,No
+2026-02-27,EC-00054,CUST-1104,Screen Wipes,WIPE-03,Consumables,Gulf,Lina,Instagram,Returning,195,2.0,0.05,5,375.5,Bank Transfer,Yes
+2025-11-09,EC-00055,CUST-1345,Phone Stand,STND-09,Mobile Accessories,Beirut,Maya,Website,VIP,254,5.0,0.15,0,1079.5,Cash on Delivery,No
+2025-11-05,EC-00056,CUST-1268,Smart Watch,WATC-30,Electronics,Mount Lebanon,Maya,Website,New,7,115.0,0,2.5,807.5,Card,No
+2025-12-29,EC-00057,CUST-1214,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Website,VIP,175,2.0,0,0,350.0,Bank Transfer,No
+2026-02-04,EC-00058,CUST-1294,Screen Wipes,WIPE-03,Consumables,Gulf,Omar,Website,New,150,2.0,0.1,5,275.0,Wallet,No
+2026-01-15,EC-00059,CUST-1126,Charging Cable,CABL-07,Mobile Accessories,South,Kareem,Website,New,76,3.0,0.05,5,221.6,Wallet,No
+2026-02-25,EC-00060,CUST-1431,Power Bank,PWR-20,Electronics,Mount Lebanon,Kareem,Instagram,Returning,12,24.0,0.1,5,264.2,Wallet,No
+2025-12-21,EC-00061,CUST-1337,Power Bank,PWR-20,Electronics,Bekaa,Omar,Website,New,22,24.0,0.1,5,480.2,Cash on Delivery,No
+2026-01-29,EC-00062,CUST-1034,Power Bank,PWR-20,Electronics,North,Maya,Website,Returning,11,24.0,0.15,4,228.4,Cash on Delivery,No
+2026-02-25,EC-00063,CUST-1084,Phone Stand,STND-09,Mobile Accessories,Gulf,Jana,Website,New,66,5.0,0.05,4,317.5,Wallet,No
+2025-11-27,EC-00064,CUST-1203,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Maya,Instagram,Returning,158,5.0,0,5,795.0,Card,No
+2025-11-02,EC-00065,CUST-1124,Charging Cable,CABL-07,Mobile Accessories,South,Omar,Website,Returning,164,3.0,0.05,0,467.4,Bank Transfer,No
+2025-11-18,EC-00066,CUST-1200,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Website,New,65,5.0,0,0,325.0,Cash on Delivery,No
+2025-11-10,EC-00067,CUST-1024,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Lina,Website,New,9,45.0,0.1,2.5,367.0,Card,No
+2025-12-20,EC-00068,CUST-1102,Bluetooth Speaker,SPKR-21,Electronics,North,Jana,Website,Returning,9,45.0,0.15,4,348.25,Card,No
+2025-11-03,EC-00069,CUST-1425,Phone Case,CASE-11,Mobile Accessories,Gulf,Lina,Marketplace,Returning,56,4.0,0,0,224.0,Cash on Delivery,No
+2026-02-01,EC-00070,CUST-1202,Charging Cable,CABL-07,Mobile Accessories,North,Maya,Marketplace,New,200,3.0,0,2.5,602.5,Bank Transfer,Yes
+2025-11-16,EC-00071,CUST-1033,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,Website,New,120,3.0,0,2.5,362.5,Wallet,No
+2026-01-23,EC-00072,CUST-1405,Power Bank,PWR-20,Electronics,Beirut,Omar,Website,Returning,18,24.0,0.2,0,345.6,Cash on Delivery,No
+2025-12-03,EC-00073,CUST-1452,Ring Light,RING-12,Creator Gear,Mount Lebanon,Tarek,Marketplace,Returning,25,32.0,0,2.5,802.5,Wallet,No
+2026-02-17,EC-00074,CUST-1360,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Maya,Instagram,Returning,15,45.0,0.05,2.5,643.75,Card,No
+2025-11-30,EC-00075,CUST-1255,Screen Wipes,WIPE-03,Consumables,,Maya,Website,Returning,102,2.0,0.05,0,193.8,Wallet,No
+2025-11-26,EC-00076,CUST-1162,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Website,Returning,153,2.0,0.1,4,279.4,Card,No
+2026-01-06,EC-00077,CUST-1027,Wireless Earbuds,EAR-15,Electronics,North,Lina,Marketplace,New,12,62.0,0,2.5,746.5,Cash on Delivery,No
+2026-02-11,EC-00078,CUST-1251,Bluetooth Speaker,SPKR-21,Electronics,South,Jana,Marketplace,Returning,8,45.0,0.05,0,342.0,Card,No
+2025-11-25,EC-00079,CUST-1040,Screen Wipes,WIPE-03,Consumables,Gulf,Omar,Website,New,180,2.0,0.15,2.5,308.5,Bank Transfer,No
+2026-02-01,EC-00080,CUST-1103,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Website,New,103,5.0,0,5,520.0,Wallet,Yes
+2026-02-19,EC-00081,CUST-1419,Wireless Earbuds,EAR-15,Electronics,Beirut,Lina,Website,New,8,62.0,0.05,5,476.2,Bank Transfer,No
+2025-11-03,EC-00082,CUST-1237,Wireless Earbuds,EAR-15,Electronics,North,Maya,Marketplace,VIP,12,62.0,0.05,2.5,709.3,Wallet,No
+2025-12-29,EC-00083,CUST-1441,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Website,New,160,3.0,0,2.5,482.5,Wallet,No
+2026-01-02,EC-00084,CUST-1019,Phone Case,CASE-11,Mobile Accessories,North,Kareem,WhatsApp,New,165,4.0,0,0,660.0,Card,No
+2025-12-20,EC-00085,CUST-1188,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Kareem,WhatsApp,Returning,59,9.0,0.05,5,509.45,Card,No
+2026-01-23,EC-00086,CUST-1330,Phone Case,CASE-11,Mobile Accessories,North,Omar,Website,New,132,4.0,0.05,0,501.6,Cash on Delivery,No
+2025-12-04,EC-00087,CUST-1047,Power Bank,PWR-20,Electronics,Gulf,Omar,Website,Returning,24,24.0,0.15,0,489.6,Bank Transfer,No
+2025-12-21,EC-00088,CUST-1154,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Maya,Instagram,New,16,45.0,0,5,725.0,Bank Transfer,No
+2026-01-15,EC-00089,CUST-1137,Charging Cable,CABL-07,Mobile Accessories,North,Tarek,Marketplace,New,186,3.0,0.1,4,506.2,Cash on Delivery,No
+2026-02-28,EC-00090,CUST-1335,Wireless Earbuds,EAR-15,Electronics,South,Maya,WhatsApp,Returning,1,62.0,0,5,67.0,Wallet,No
+2026-02-02,EC-00091,CUST-1416,Phone Case,CASE-11,Mobile Accessories,Beirut,Omar,Marketplace,New,86,4.0,0.05,0,326.8,Cash on Delivery,No
+2025-11-24,EC-00092,CUST-1085,Charging Cable,CABL-07,Mobile Accessories,South,Omar,Website,VIP,180,3.0,0.05,0,513.0,Card,No
+2025-12-08,EC-00093,CUST-1136,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Website,Returning,162,2.0,0.05,0,307.8,Card,No
+2026-01-25,EC-00094,CUST-1242,Power Bank,PWR-20,Electronics,Gulf,Maya,Website,Returning,15,24.0,0.05,4,346.0,Wallet,Yes
+2026-01-17,EC-00095,CUST-1499,Phone Case,CASE-11,Mobile Accessories,North,Lina,WhatsApp,Returning,132,4.0,0.1,5,480.2,Wallet,No
+2026-02-20,EC-00096,CUST-1143,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Marketplace,New,75,4.0,0,0,300.0,Cash on Delivery,No
+2025-12-18,EC-00097,CUST-1184,Phone Stand,STND-09,Mobile Accessories,South,Kareem,Instagram,Returning,40,5.0,0.2,4,164.0,Card,No
+2026-02-12,EC-00098,CUST-1476,Bluetooth Speaker,SPKR-21,Electronics,South,Omar,Instagram,New,22,45.0,0.1,4,895.0,Bank Transfer,No
+2026-01-24,EC-00099,CUST-1407,Smart Watch,WATC-30,Electronics,Gulf,Tarek,Website,Returning,12,115.0,0,0,1380.0,Card,No
+2025-12-09,EC-00100,CUST-1087,Smart Watch,WATC-30,Electronics,Gulf,Kareem,Website,New,2,115.0,0.05,2.5,221.0,Card,No
+2025-11-14,EC-00101,CUST-1340,Phone Case,CASE-11,Mobile Accessories,South,Omar,WhatsApp,New,138,4.0,0.1,2.5,499.3,Bank Transfer,No
+2026-02-23,EC-00102,CUST-1392,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Jana,Instagram,New,25,45.0,0,2.5,1127.5,Card,Yes
+2026-01-22,EC-00103,CUST-1114,Phone Case,CASE-11,Mobile Accessories,Gulf,Tarek,Marketplace,New,204,4.0,0.1,5,739.4,Wallet,No
+2025-11-15,EC-00104,CUST-1488,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,Marketplace,VIP,86,3.0,0.05,2.5,247.6,Bank Transfer,No
+2026-01-13,EC-00105,CUST-1478,Bluetooth Speaker,SPKR-21,Electronics,North,Jana,Instagram,Returning,16,45.0,0,4,724.0,Cash on Delivery,No
+2026-01-06,EC-00106,CUST-1255,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Maya,Website,Returning,17,45.0,0,4,769.0,Bank Transfer,No
+2025-11-19,EC-00107,CUST-1352,Power Bank,PWR-20,Electronics,Beirut,Tarek,Marketplace,Returning,4,24.0,0.05,4,95.2,Card,No
+2025-12-06,EC-00108,CUST-1414,Ring Light,RING-12,Creator Gear,South,Kareem,Instagram,New,12,32.0,0.1,5,350.6,Wallet,No
+2025-11-20,EC-00109,CUST-1372,Smart Watch,WATC-30,Electronics,Beirut,Tarek,WhatsApp,New,12,115.0,0,2.5,1382.5,Bank Transfer,No
+2025-12-09,EC-00110,CUST-1387,Ring Light,RING-12,Creator Gear,Mount Lebanon,,WhatsApp,Returning,13,32.0,0.05,5,400.2,Bank Transfer,Yes
+2025-12-21,EC-00111,CUST-1405,Screen Wipes,WIPE-03,Consumables,South,Lina,Marketplace,New,180,2.0,0,2.5,362.5,Card,No
+2026-02-17,EC-00112,CUST-1411,Tablet Cover,TABCV-18,Mobile Accessories,North,Tarek,Website,New,76,9.0,0,2.5,686.5,Cash on Delivery,No
+2026-02-03,EC-00113,CUST-1086,Power Bank,PWR-20,Electronics,North,Jana,Website,Returning,7,24.0,0,5,173.0,Card,No
+2025-11-13,EC-00114,CUST-1206,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Maya,Website,New,126,4.0,0.05,2.5,481.3,Cash on Delivery,No
+2025-11-05,EC-00115,CUST-1442,Screen Wipes,WIPE-03,Consumables,North,Lina,Marketplace,VIP,259,2.0,0.1,0,466.2,Bank Transfer,No
+2025-12-06,EC-00116,CUST-1293,Power Bank,PWR-20,Electronics,North,Maya,Website,New,18,24.0,0.1,2.5,391.3,Bank Transfer,No
+2025-12-06,EC-00117,CUST-1050,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Jana,Website,New,23,45.0,0.1,4,935.5,Wallet,No
+2025-11-09,EC-00118,CUST-1428,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Jana,Website,Returning,3,45.0,0,5,140.0,Card,No
+2026-02-05,EC-00119,CUST-1062,Wireless Earbuds,EAR-15,Electronics,Gulf,Maya,Website,Returning,3,62.0,0,5,191.0,Card,No
+2025-11-17,EC-00120,CUST-1186,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Instagram,Returning,4,24.0,0,0,96.0,Cash on Delivery,No
+2025-12-25,EC-00121,CUST-1227,Ring Light,RING-12,Creator Gear,Mount Lebanon,Omar,Website,VIP,24,32.0,0.15,4,656.8,Cash on Delivery,No
+2026-01-13,EC-00122,CUST-1096,Phone Stand,STND-09,Mobile Accessories,North,Lina,Instagram,New,216,5.0,0,0,1080.0,Cash on Delivery,No
+2025-12-09,EC-00123,CUST-1130,Smart Watch,WATC-30,Electronics,Beirut,Omar,Instagram,New,6,115.0,0,5,695.0,Wallet,No
+2025-12-19,EC-00124,CUST-1036,Power Bank,PWR-20,Electronics,,Kareem,Website,New,16,24.0,0.2,2.5,309.7,Wallet,No
+2026-01-21,EC-00125,CUST-1161,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Lina,Instagram,Returning,19,45.0,0.05,5,817.25,Bank Transfer,No
+2025-12-19,EC-00126,CUST-1045,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,Website,Returning,215,2.0,0.05,0,408.5,Wallet,No
+2026-02-25,EC-00127,CUST-1063,Phone Case,CASE-11,Mobile Accessories,Beirut,Omar,Website,New,96,4.0,0,0,384.0,Cash on Delivery,No
+2026-01-07,EC-00128,CUST-1459,Bluetooth Speaker,SPKR-21,Electronics,North,Kareem,Website,New,21,45.0,0.15,4,807.25,Card,No
+2025-11-22,EC-00129,CUST-1065,Phone Case,CASE-11,Mobile Accessories,South,Omar,Website,Returning,176,4.0,0.05,5,673.8,Wallet,No
+2025-11-02,EC-00130,CUST-1127,Bluetooth Speaker,SPKR-21,Electronics,South,Tarek,Website,New,11,45.0,0,4,499.0,Bank Transfer,No
+2026-01-30,EC-00131,CUST-1439,Phone Stand,STND-09,Mobile Accessories,North,Lina,Marketplace,New,110,5.0,0.2,2.5,442.5,Card,No
+2025-12-10,EC-00132,CUST-1043,Phone Case,CASE-11,Mobile Accessories,North,Maya,Instagram,New,101,4.0,0.2,2.5,325.7,Wallet,No
+2026-01-10,EC-00133,CUST-1263,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Maya,WhatsApp,New,80,9.0,0.15,2.5,614.5,Card,No
+2025-12-22,EC-00134,CUST-1338,Screen Wipes,WIPE-03,Consumables,Beirut,Tarek,Website,New,176,2.0,0.1,2.5,319.3,Card,Yes
+2026-01-17,EC-00135,CUST-1216,Phone Case,CASE-11,Mobile Accessories,Beirut,Jana,WhatsApp,New,133,4.0,0.15,4,456.2,Bank Transfer,Yes
+2025-12-19,EC-00136,CUST-1247,Charging Cable,CABL-07,Mobile Accessories,Gulf,Lina,WhatsApp,New,178,3.0,0.15,0,453.9,Wallet,No
+2025-12-04,EC-00137,CUST-1456,Charging Cable,CABL-07,Mobile Accessories,South,Jana,Website,VIP,255,3.0,0.05,0,726.75,Bank Transfer,Yes
+2025-11-08,EC-00138,CUST-1004,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Website,New,129,4.0,0.15,2.5,441.1,Card,No
+2025-12-26,EC-00139,CUST-1202,Phone Stand,STND-09,Mobile Accessories,Beirut,Jana,Marketplace,New,164,5.0,0,4,824.0,Wallet,No
+2025-12-09,EC-00140,CUST-1181,Phone Case,CASE-11,Mobile Accessories,Bekaa,Jana,Marketplace,New,152,4.0,0.1,5,552.2,Bank Transfer,No
+2025-11-01,EC-00141,CUST-1082,Phone Case,CASE-11,Mobile Accessories,Bekaa,Omar,Website,New,74,4.0,0,4,300.0,Cash on Delivery,No
+2026-01-01,EC-00142,CUST-1399,Ring Light,RING-12,Creator Gear,Gulf,Maya,Website,Returning,24,32.0,0.1,4,695.2,Bank Transfer,No
+2026-01-04,EC-00143,CUST-1392,Bluetooth Speaker,SPKR-21,Electronics,South,Kareem,Website,VIP,4,45.0,0,4,184.0,Cash on Delivery,No
+2025-11-07,EC-00144,CUST-1126,Bluetooth Speaker,SPKR-21,Electronics,North,Jana,Marketplace,New,12,45.0,0,0,540.0,Cash on Delivery,No
+2026-02-02,EC-00145,CUST-1361,Phone Stand,STND-09,Mobile Accessories,Beirut,Maya,Marketplace,VIP,129,5.0,0.1,5,585.5,Card,No
+2026-01-29,EC-00146,CUST-1019,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Omar,WhatsApp,Returning,23,45.0,0,0,1035.0,Wallet,No
+2025-11-25,EC-00147,CUST-1118,Tablet Cover,TABCV-18,Mobile Accessories,North,Jana,Website,Returning,63,9.0,0,4,571.0,Cash on Delivery,No
+2025-12-14,EC-00148,CUST-1126,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Instagram,New,108,4.0,0,4,436.0,Wallet,No
+2026-02-23,EC-00149,CUST-1129,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Marketplace,New,113,2.0,0.05,0,214.7,Bank Transfer,No
+2025-12-17,EC-00150,CUST-1301,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Website,Returning,73,4.0,0,4,296.0,Wallet,No
+2025-12-01,EC-00151,CUST-1495,Power Bank,PWR-20,Electronics,Beirut,Kareem,Website,New,23,24.0,0.1,0,496.8,Cash on Delivery,No
+2025-11-25,EC-00152,CUST-1078,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Maya,WhatsApp,Returning,12,45.0,0.1,2.5,488.5,Card,No
+2025-11-17,EC-00153,CUST-1367,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Marketplace,Returning,183,3.0,0.2,4,443.2,Card,No
+2026-02-25,EC-00154,CUST-1066,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Jana,WhatsApp,New,45,4.0,0,4,184.0,Wallet,No
+2025-11-06,EC-00155,CUST-1384,Ring Light,RING-12,Creator Gear,Beirut,Tarek,Website,Returning,18,32.0,0.1,0,518.4,Bank Transfer,No
+2026-01-11,EC-00156,CUST-1404,Wireless Earbuds,EAR-15,Electronics,North,Lina,Website,New,10,62.0,0,0,620.0,Bank Transfer,No
+2026-01-04,EC-00157,CUST-1273,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Lina,Marketplace,New,11,45.0,0.05,2.5,472.75,Cash on Delivery,No
+2025-12-08,EC-00158,CUST-1107,Screen Wipes,WIPE-03,Consumables,Beirut,Lina,WhatsApp,New,53,2.0,0.1,2.5,97.9,Card,Yes
+2025-11-01,EC-00159,CUST-1313,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,Website,VIP,25,24.0,0,2.5,602.5,Wallet,No
+2025-12-12,EC-00160,CUST-1444,Ring Light,RING-12,Creator Gear,Mount Lebanon,Maya,Marketplace,New,11,32.0,0,0,352.0,Card,No
+2026-02-01,EC-00161,CUST-1137,Wireless Earbuds,EAR-15,Electronics,North,Tarek,Website,Returning,10,62.0,0.05,5,594.0,Cash on Delivery,No
+2026-01-14,EC-00162,CUST-1092,Power Bank,PWR-20,Electronics,Bekaa,Kareem,Website,New,16,24.0,0,5,389.0,Bank Transfer,No
+2025-11-24,EC-00163,CUST-1090,Wireless Earbuds,EAR-15,Electronics,Beirut,Jana,Instagram,Returning,11,62.0,0,4,686.0,Bank Transfer,No
+2026-01-27,EC-00164,CUST-1070,Power Bank,PWR-20,Electronics,Beirut,Maya,Website,New,23,24.0,0.2,0,441.6,Card,No
+2026-01-17,EC-00165,CUST-1042,Screen Wipes,WIPE-03,Consumables,,Maya,Marketplace,Returning,204,2.0,0.15,2.5,349.3,Wallet,No
+2025-11-19,EC-00166,CUST-1245,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Maya,WhatsApp,New,58,9.0,0.15,0,443.7,Bank Transfer,No
+2026-02-13,EC-00167,CUST-1022,Charging Cable,CABL-07,Mobile Accessories,North,Omar,Website,Returning,108,3.0,0.05,0,307.8,Card,No
+2026-01-09,EC-00168,CUST-1335,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Website,VIP,58,3.0,0,5,179.0,Wallet,No
+2025-11-29,EC-00169,CUST-1489,Tablet Cover,TABCV-18,Mobile Accessories,South,Tarek,Marketplace,Returning,29,9.0,0.05,0,247.95,Wallet,No
+2025-12-16,EC-00170,CUST-1171,Screen Wipes,WIPE-03,Consumables,North,Lina,WhatsApp,VIP,64,2.0,0.05,2.5,124.1,Cash on Delivery,No
+2026-01-26,EC-00171,CUST-1338,Phone Case,CASE-11,Mobile Accessories,Bekaa,Tarek,Website,Returning,129,4.0,0.15,4,442.6,Wallet,No
+2026-02-28,EC-00172,CUST-1199,Charging Cable,CABL-07,Mobile Accessories,Gulf,Maya,Marketplace,Returning,78,3.0,0.1,2.5,213.1,Bank Transfer,No
+2026-02-01,EC-00173,CUST-1065,Wireless Earbuds,EAR-15,Electronics,Gulf,Maya,Website,New,12,62.0,0,0,744.0,Cash on Delivery,No
+2026-02-07,EC-00174,CUST-1483,Phone Case,CASE-11,Mobile Accessories,North,Kareem,Instagram,VIP,242,4.0,0.1,4,875.2,Cash on Delivery,No
+2025-12-20,EC-00175,CUST-1397,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Jana,Instagram,Returning,98,4.0,0,5,397.0,Cash on Delivery,No
+2026-01-29,EC-00176,CUST-1030,Screen Wipes,WIPE-03,Consumables,North,Omar,WhatsApp,New,182,2.0,0.05,2.5,348.3,Wallet,No
+2025-12-17,EC-00177,CUST-1423,Smart Watch,WATC-30,Electronics,Bekaa,Omar,Website,New,9,115.0,0.2,5,833.0,Cash on Delivery,No
+2025-11-08,EC-00178,CUST-1359,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Marketplace,New,1,62.0,0.1,5,60.8,Card,No
+2026-01-24,EC-00179,CUST-1291,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Marketplace,New,14,24.0,0,2.5,338.5,Bank Transfer,No
+2025-11-20,EC-00180,CUST-1330,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Omar,Marketplace,Returning,5,62.0,0.05,4,298.5,Card,No
+2025-12-07,EC-00181,CUST-1348,Screen Wipes,WIPE-03,Consumables,Beirut,Tarek,Website,Returning,168,2.0,0,5,341.0,Bank Transfer,No
+2026-01-10,EC-00182,CUST-1267,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Jana,Instagram,Returning,16,45.0,0.15,4,616.0,Bank Transfer,Yes
+2025-11-17,EC-00183,CUST-1239,Wireless Earbuds,EAR-15,Electronics,North,Maya,Website,New,12,62.0,0.2,0,595.2,Bank Transfer,No
+2025-12-11,EC-00184,CUST-1039,Power Bank,PWR-20,Electronics,North,Kareem,Website,Returning,23,24.0,0.05,4,528.4,Wallet,No
+2026-01-17,EC-00185,CUST-1158,Wireless Earbuds,EAR-15,Electronics,North,Omar,Website,Returning,2,62.0,0,0,124.0,Cash on Delivery,No
+2026-01-10,EC-00186,CUST-1161,Charging Cable,CABL-07,Mobile Accessories,Gulf,Omar,Website,VIP,230,3.0,0,5,695.0,Card,No
+2025-12-10,EC-00187,CUST-1359,Screen Wipes,WIPE-03,Consumables,North,Lina,WhatsApp,New,120,2.0,0.1,4,220.0,Card,Yes
+2025-12-13,EC-00188,CUST-1444,Phone Case,CASE-11,Mobile Accessories,South,Maya,Instagram,Returning,46,4.0,0.05,5,179.8,Card,No
+2025-12-08,EC-00189,CUST-1082,Charging Cable,CABL-07,Mobile Accessories,South,Maya,Marketplace,New,99,3.0,0.15,2.5,254.95,Wallet,No
+2025-12-28,EC-00190,CUST-1312,Wireless Earbuds,EAR-15,Electronics,North,Lina,Instagram,VIP,1,62.0,0.15,5,57.7,Card,No
+2025-11-20,EC-00191,CUST-1232,Power Bank,PWR-20,Electronics,Gulf,Maya,Marketplace,New,12,24.0,0.05,0,273.6,Wallet,No
+2025-11-22,EC-00192,CUST-1242,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Lina,Instagram,New,24,9.0,0,5,221.0,Wallet,No
+2026-02-06,EC-00193,CUST-1438,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Omar,WhatsApp,VIP,96,9.0,0,4,868.0,Cash on Delivery,No
+2025-12-27,EC-00194,CUST-1329,Phone Case,CASE-11,Mobile Accessories,Bekaa,Lina,Website,Returning,169,4.0,0.05,0,642.2,Card,No
+2026-02-03,EC-00195,CUST-1114,Wireless Earbuds,EAR-15,Electronics,South,Jana,Website,Returning,5,62.0,0,5,315.0,Bank Transfer,No
+2026-02-20,EC-00196,CUST-1469,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Instagram,Returning,159,5.0,0,2.5,797.5,Bank Transfer,No
+2026-02-07,EC-00197,CUST-1232,Phone Case,CASE-11,Mobile Accessories,North,Maya,Website,VIP,205,4.0,0,5,825.0,Card,No
+2026-01-09,EC-00198,CUST-1185,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Tarek,Website,Returning,193,2.0,0.1,0,347.4,Bank Transfer,Yes
+2025-12-31,EC-00199,CUST-1035,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,WhatsApp,Returning,109,3.0,0,2.5,329.5,Wallet,No
+2025-12-22,EC-00200,CUST-1047,Screen Wipes,WIPE-03,Consumables,Bekaa,Kareem,Marketplace,Returning,211,2.0,0.15,2.5,361.2,Bank Transfer,No
+2025-12-14,EC-00201,CUST-1223,Ring Light,RING-12,Creator Gear,North,Omar,Website,New,18,32.0,0.05,2.5,549.7,Wallet,Yes
+2026-02-25,EC-00202,CUST-1421,Bluetooth Speaker,SPKR-21,Electronics,North,Maya,Instagram,VIP,11,45.0,0,2.5,497.5,Wallet,No
+2025-11-02,EC-00203,CUST-1482,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Instagram,New,212,2.0,0,0,424.0,Cash on Delivery,Yes
+2026-01-21,EC-00204,CUST-1110,Phone Case,CASE-11,Mobile Accessories,Gulf,Maya,Website,Returning,88,4.0,0.05,2.5,336.9,Wallet,No
+2025-11-27,EC-00205,CUST-1444,Ring Light,RING-12,Creator Gear,Gulf,Jana,WhatsApp,New,14,32.0,0,4,452.0,Card,No
+2026-01-29,EC-00206,CUST-1090,Phone Stand,STND-09,Mobile Accessories,Gulf,Kareem,Website,New,178,5.0,0.05,4,849.5,Bank Transfer,No
+2025-12-25,EC-00207,CUST-1359,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Omar,Instagram,New,208,4.0,0.1,5,753.8,Card,No
+2025-11-12,EC-00208,CUST-1257,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Website,VIP,2,62.0,0.05,0,117.8,Card,No
+2026-01-25,EC-00209,CUST-1179,Charging Cable,CABL-07,Mobile Accessories,North,Omar,Marketplace,Returning,69,3.0,0,5,212.0,Bank Transfer,Yes
+2025-12-23,EC-00210,CUST-1135,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Website,VIP,54,9.0,0.05,4,465.7,Wallet,No
+2026-02-16,EC-00211,CUST-1191,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Tarek,Website,VIP,85,9.0,0,0,765.0,Wallet,No
+2025-12-13,EC-00212,CUST-1410,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Website,VIP,111,3.0,0.05,5,321.35,Bank Transfer,No
+2025-11-17,EC-00213,CUST-1064,Tablet Cover,TABCV-18,Mobile Accessories,North,Tarek,Website,VIP,44,9.0,0.05,0,376.2,Card,No
+2026-01-20,EC-00214,CUST-1013,Power Bank,PWR-20,Electronics,North,Tarek,WhatsApp,Returning,8,24.0,0.2,2.5,156.1,Bank Transfer,No
+2025-11-02,EC-00215,CUST-1066,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Instagram,Returning,5,24.0,0.05,0,114.0,Bank Transfer,No
+2026-01-21,EC-00216,CUST-1413,Power Bank,PWR-20,Electronics,North,Omar,Marketplace,New,9,24.0,0.05,2.5,207.7,Bank Transfer,No
+2026-02-07,EC-00217,CUST-1474,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,WhatsApp,Returning,203,3.0,0.2,0,487.2,Card,No
+2025-11-14,EC-00218,CUST-1251,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Website,New,132,2.0,0.15,2.5,226.9,Card,No
+2025-12-23,EC-00219,CUST-1092,Screen Wipes,WIPE-03,Consumables,Gulf,Maya,Website,New,120,2.0,0.05,5,233.0,Wallet,No
+2025-11-02,EC-00220,CUST-1307,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Instagram,New,58,9.0,0.2,5,422.6,Card,Yes
+2025-11-21,EC-00221,CUST-1186,Phone Stand,STND-09,Mobile Accessories,Beirut,Maya,Website,New,45,5.0,0.05,2.5,216.25,Card,No
+2026-02-24,EC-00222,CUST-1047,Charging Cable,CABL-07,Mobile Accessories,North,Omar,Website,Returning,72,3.0,0,5,221.0,Wallet,No
+2026-01-30,EC-00223,CUST-1351,Phone Stand,STND-09,Mobile Accessories,,Tarek,Marketplace,New,142,5.0,0.15,4,607.5,Wallet,No
+2025-12-21,EC-00224,CUST-1382,Screen Wipes,WIPE-03,Consumables,Bekaa,Jana,Website,Returning,164,2.0,0.05,5,316.6,Wallet,No
+2026-02-13,EC-00225,CUST-1455,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Website,Returning,135,4.0,0.15,0,459.0,Card,No
+2026-01-05,EC-00226,CUST-1414,Charging Cable,CABL-07,Mobile Accessories,North,Jana,Marketplace,Returning,175,3.0,0,0,525.0,Wallet,No
+2025-12-25,EC-00227,CUST-1352,Wireless Earbuds,EAR-15,Electronics,North,Maya,Website,New,3,62.0,0.1,0,167.4,Card,No
+2026-01-31,EC-00228,CUST-1052,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Marketplace,Returning,138,4.0,0,2.5,554.5,Wallet,No
+2026-01-31,EC-00229,CUST-1163,Power Bank,PWR-20,Electronics,Bekaa,Tarek,Website,VIP,20,24.0,0.1,5,437.0,Cash on Delivery,No
+2025-11-26,EC-00230,CUST-1121,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,WhatsApp,New,71,2.0,0.05,4,138.9,Card,No
+2025-12-07,EC-00231,CUST-1273,Screen Wipes,WIPE-03,Consumables,South,Jana,WhatsApp,VIP,140,2.0,0,5,285.0,Card,No
+2025-12-14,EC-00232,CUST-1284,Power Bank,PWR-20,Electronics,Beirut,Maya,Marketplace,New,12,24.0,0,4,292.0,Wallet,No
+2026-01-03,EC-00233,CUST-1480,Power Bank,PWR-20,Electronics,North,Tarek,WhatsApp,New,23,24.0,0.2,0,441.6,Card,No
+2025-11-04,EC-00234,CUST-1097,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Omar,Website,New,216,3.0,0.1,2.5,585.7,Wallet,No
+2026-02-13,EC-00235,CUST-1168,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Tarek,Marketplace,New,20,9.0,0,4,184.0,Bank Transfer,No
+2025-12-05,EC-00236,CUST-1342,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Jana,Instagram,New,7,45.0,0.1,5,288.5,Card,No
+2026-01-06,EC-00237,CUST-1364,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Tarek,Instagram,New,163,5.0,0,4,819.0,Card,No
+2025-12-16,EC-00238,CUST-1006,Phone Stand,STND-09,Mobile Accessories,Bekaa,Tarek,Instagram,Returning,217,5.0,0,5,1090.0,Cash on Delivery,No
+2025-12-30,EC-00239,CUST-1159,Wireless Earbuds,EAR-15,Electronics,Beirut,Maya,Website,Returning,9,62.0,0.05,4,534.1,Bank Transfer,No
+2026-01-23,EC-00240,CUST-1096,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Website,New,155,2.0,0.15,2.5,266.0,Card,No
+2025-12-06,EC-00241,CUST-1235,Phone Case,CASE-11,Mobile Accessories,South,Jana,Instagram,New,67,4.0,0.1,2.5,243.7,Cash on Delivery,No
+2025-12-05,EC-00242,CUST-1203,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Kareem,Website,New,180,2.0,0,5,365.0,Bank Transfer,No
+2026-01-05,EC-00243,CUST-1304,Phone Case,CASE-11,Mobile Accessories,North,Lina,Website,Returning,148,4.0,0,2.5,594.5,Wallet,No
+2026-01-07,EC-00244,CUST-1294,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Marketplace,Returning,6,24.0,0,0,144.0,Wallet,No
+2025-12-01,EC-00245,CUST-1421,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,Returning,143,2.0,0,0,286.0,Wallet,No
+2026-01-03,EC-00246,CUST-1464,Charging Cable,CABL-07,Mobile Accessories,South,Lina,Instagram,Returning,113,3.0,0.1,0,305.1,Bank Transfer,No
+2026-02-03,EC-00247,CUST-1006,Charging Cable,CABL-07,Mobile Accessories,Gulf,Omar,Website,Returning,82,3.0,0,5,251.0,Bank Transfer,No
+2025-12-25,EC-00248,CUST-1250,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Marketplace,New,42,4.0,0.05,5,164.6,Cash on Delivery,No
+2025-12-31,EC-00249,CUST-1396,Screen Wipes,WIPE-03,Consumables,Bekaa,Jana,Marketplace,New,98,2.0,0.05,2.5,188.7,Card,No
+2025-11-13,EC-00250,CUST-1234,Charging Cable,CABL-07,Mobile Accessories,South,Kareem,Instagram,New,179,3.0,0,5,542.0,Card,No
+2026-02-14,EC-00251,CUST-1372,Phone Case,CASE-11,Mobile Accessories,South,Jana,Marketplace,Returning,192,4.0,0.05,4,733.6,Card,No
+2025-11-19,EC-00252,CUST-1381,Ring Light,RING-12,Creator Gear,Bekaa,Tarek,WhatsApp,New,3,32.0,0,5,101.0,Card,No
+2025-11-25,EC-00253,CUST-1347,Tablet Cover,TABCV-18,Mobile Accessories,North,Maya,WhatsApp,Returning,72,9.0,0.2,2.5,520.9,Wallet,No
+2026-02-22,EC-00254,CUST-1232,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Website,New,173,4.0,0.1,0,622.8,Wallet,No
+2025-12-07,EC-00255,CUST-1147,Screen Wipes,WIPE-03,Consumables,Beirut,Tarek,Website,Returning,173,2.0,0.2,2.5,279.3,Card,No
+2026-02-11,EC-00256,CUST-1338,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Omar,Website,Returning,53,3.0,0.05,0,151.05,Card,No
+2025-11-07,EC-00257,CUST-1073,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Marketplace,New,183,3.0,0,0,549.0,Cash on Delivery,No
+2025-12-26,EC-00258,CUST-1495,Power Bank,PWR-20,Electronics,Beirut,,Website,VIP,12,24.0,0.1,5,264.2,Card,No
+2026-02-23,EC-00259,CUST-1102,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Website,New,122,3.0,0.1,2.5,331.9,Wallet,No
+2025-11-18,EC-00260,CUST-1448,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Website,Returning,200,4.0,0.05,2.5,762.5,Bank Transfer,No
+2025-11-13,EC-00261,CUST-1492,Screen Wipes,WIPE-03,Consumables,North,Lina,Instagram,Returning,131,2.0,0.05,5,253.9,Bank Transfer,No
+2025-12-30,EC-00262,CUST-1278,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Kareem,Website,New,117,2.0,0.1,4,214.6,Wallet,No
+2025-11-07,EC-00263,CUST-1138,Wireless Earbuds,EAR-15,Electronics,North,Kareem,Marketplace,New,9,62.0,0.05,0,530.1,Card,No
+2025-12-13,EC-00264,CUST-1264,Power Bank,PWR-20,Electronics,Bekaa,Jana,Instagram,New,4,24.0,0,0,96.0,Cash on Delivery,No
+2026-01-11,EC-00265,CUST-1479,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Omar,Marketplace,Returning,3,62.0,0,4,190.0,Card,No
+2026-02-12,EC-00266,CUST-1242,Phone Stand,STND-09,Mobile Accessories,South,Maya,Website,New,70,5.0,0.05,2.5,335.0,Card,No
+2026-02-15,EC-00267,CUST-1348,Phone Stand,STND-09,Mobile Accessories,North,Maya,Website,New,87,5.0,0.15,4,373.75,Bank Transfer,No
+2026-02-18,EC-00268,CUST-1148,Power Bank,PWR-20,Electronics,Beirut,Omar,Instagram,New,24,24.0,0,2.5,578.5,Wallet,No
+2026-01-25,EC-00269,CUST-1217,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Marketplace,New,218,2.0,0.1,5,397.4,Cash on Delivery,No
+2025-11-04,EC-00270,CUST-1464,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Website,New,205,3.0,0.1,5,558.5,Wallet,No
+2025-11-18,EC-00271,CUST-1361,Phone Stand,STND-09,Mobile Accessories,South,Lina,Website,New,168,5.0,0.15,2.5,716.5,Bank Transfer,No
+2026-01-05,EC-00272,CUST-1390,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Marketplace,Returning,157,2.0,0.1,2.5,285.1,Wallet,No
+2026-02-27,EC-00273,CUST-1165,Phone Case,CASE-11,Mobile Accessories,Gulf,Tarek,Instagram,VIP,244,4.0,0.1,4,882.4,Wallet,No
+2026-01-14,EC-00274,CUST-1347,Power Bank,PWR-20,Electronics,North,Maya,Website,Returning,10,24.0,0,0,240.0,Bank Transfer,No
+2025-12-12,EC-00275,CUST-1215,Wireless Earbuds,EAR-15,Electronics,Gulf,Tarek,Marketplace,New,3,62.0,0.1,5,172.4,Card,No
+2025-11-08,EC-00276,CUST-1164,Power Bank,PWR-20,Electronics,Beirut,Tarek,Website,Returning,22,24.0,0.05,0,501.6,Card,No
+2026-01-29,EC-00277,CUST-1379,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Instagram,New,104,4.0,0.05,4,399.2,Cash on Delivery,No
+2025-12-26,EC-00278,CUST-1457,Wireless Earbuds,EAR-15,Electronics,Bekaa,Omar,Website,New,11,62.0,0,0,682.0,Card,No
+2025-12-17,EC-00279,CUST-1106,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Maya,Website,Returning,12,62.0,0.1,5,674.6,Bank Transfer,No
+2026-01-04,EC-00280,CUST-1291,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Jana,Marketplace,Returning,152,4.0,0.05,5,582.6,Card,No
+2025-11-17,EC-00281,CUST-1148,Wireless Earbuds,EAR-15,Electronics,North,Maya,Instagram,New,9,62.0,0,2.5,560.5,Wallet,No
+2025-12-20,EC-00282,CUST-1029,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Omar,WhatsApp,New,21,45.0,0,4,949.0,Card,No
+2026-01-14,EC-00283,CUST-1030,Phone Stand,STND-09,Mobile Accessories,Gulf,Lina,Marketplace,New,147,5.0,0,4,739.0,Cash on Delivery,No
+2025-11-27,EC-00284,CUST-1036,Phone Stand,STND-09,Mobile Accessories,South,Tarek,WhatsApp,New,166,5.0,0,0,830.0,Bank Transfer,No
+2026-01-16,EC-00285,CUST-1332,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Jana,Instagram,New,4,45.0,0,5,185.0,Wallet,No
+2025-12-26,EC-00286,CUST-1377,Phone Stand,STND-09,Mobile Accessories,South,Omar,Website,New,90,5.0,0.05,5,432.5,Card,No
+2026-01-10,EC-00287,CUST-1459,Phone Stand,STND-09,Mobile Accessories,North,Kareem,Marketplace,New,149,5.0,0.05,0,707.75,Wallet,No
+2025-12-16,EC-00288,CUST-1007,Charging Cable,CABL-07,Mobile Accessories,North,Maya,Website,New,42,3.0,0,0,126.0,Cash on Delivery,Yes
+2026-02-13,EC-00289,CUST-1066,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Website,New,129,2.0,0.05,2.5,247.6,Bank Transfer,Yes
+2026-01-01,EC-00290,CUST-1439,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Website,Returning,18,24.0,0.1,4,392.8,Cash on Delivery,No
+2025-12-27,EC-00291,CUST-1257,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Jana,Website,Returning,19,45.0,0.15,4,730.75,Card,No
+2025-11-07,EC-00292,CUST-1283,Phone Case,CASE-11,Mobile Accessories,North,Jana,Instagram,New,75,4.0,0.15,2.5,257.5,Cash on Delivery,No
+2025-11-16,EC-00293,CUST-1010,Phone Case,CASE-11,Mobile Accessories,Bekaa,Omar,Website,New,152,4.0,0.1,5,552.2,Bank Transfer,Yes
+2026-02-16,EC-00294,CUST-1441,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Website,VIP,69,2.0,0,5,143.0,Bank Transfer,No
+2025-12-20,EC-00295,CUST-1178,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Website,New,53,4.0,0.1,0,190.8,Card,No
+2026-02-25,EC-00296,CUST-1400,Power Bank,PWR-20,Electronics,Bekaa,Lina,Marketplace,Returning,3,24.0,0,5,77.0,Card,No
+2026-02-12,EC-00297,CUST-1195,Screen Wipes,WIPE-03,Consumables,North,Tarek,WhatsApp,New,176,2.0,0.05,4,338.4,Bank Transfer,No
+2026-02-04,EC-00298,CUST-1151,Ring Light,RING-12,Creator Gear,Beirut,Maya,Website,Returning,11,32.0,0,2.5,354.5,Wallet,No
+2026-01-13,EC-00299,CUST-1291,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,,Website,New,207,4.0,0.1,0,745.2,Wallet,No
+2026-02-16,EC-00300,CUST-1284,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Website,New,49,3.0,0.2,5,122.6,Cash on Delivery,No
+2025-12-23,EC-00301,CUST-1141,Screen Wipes,WIPE-03,Consumables,Gulf,Lina,Marketplace,Returning,56,2.0,0.05,4,110.4,Wallet,No
+2026-02-20,EC-00302,CUST-1259,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Website,Returning,52,5.0,0,0,260.0,Bank Transfer,No
+2026-01-14,EC-00303,CUST-1439,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Omar,Website,Returning,106,4.0,0.2,0,339.2,Wallet,No
+2026-01-09,EC-00304,CUST-1292,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Lina,Website,New,6,45.0,0.05,2.5,259.0,Wallet,No
+2026-02-15,EC-00305,CUST-1208,Smart Watch,WATC-30,Electronics,North,Tarek,Website,New,1,115.0,0,4,119.0,Wallet,No
+2025-12-31,EC-00306,CUST-1108,Ring Light,RING-12,Creator Gear,North,Maya,Website,New,7,32.0,0.15,0,190.4,Wallet,No
+2026-01-05,EC-00307,CUST-1076,Bluetooth Speaker,SPKR-21,Electronics,South,Jana,Marketplace,VIP,19,45.0,0.15,0,726.75,Bank Transfer,No
+2026-02-06,EC-00308,CUST-1062,Ring Light,RING-12,Creator Gear,Beirut,Maya,WhatsApp,VIP,26,32.0,0.05,5,795.4,Card,No
+2026-01-17,EC-00309,CUST-1409,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Kareem,Website,New,187,5.0,0,2.5,937.5,Wallet,No
+2025-11-30,EC-00310,CUST-1039,Phone Stand,STND-09,Mobile Accessories,South,Maya,Marketplace,New,144,5.0,0,4,724.0,Wallet,No
+2026-01-23,EC-00311,CUST-1208,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Website,Returning,72,5.0,0.15,2.5,308.5,Cash on Delivery,No
+2026-01-17,EC-00312,CUST-1395,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Website,New,169,3.0,0.2,5,410.6,Cash on Delivery,No
+2026-02-24,EC-00313,CUST-1064,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,,Website,New,181,3.0,0.1,5,493.7,Card,No
+2026-02-15,EC-00314,CUST-1356,Phone Case,CASE-11,Mobile Accessories,South,Maya,Website,Returning,139,4.0,0.15,4,476.6,Cash on Delivery,No
+2026-01-31,EC-00315,CUST-1466,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Instagram,Returning,51,3.0,0,4,157.0,Bank Transfer,Yes
+2026-01-20,EC-00316,CUST-1003,Phone Case,CASE-11,Mobile Accessories,Bekaa,Lina,Marketplace,Returning,86,4.0,0.1,0,309.6,Wallet,No
+2026-01-26,EC-00317,CUST-1252,Power Bank,PWR-20,Electronics,North,Kareem,Website,Returning,11,24.0,0.2,0,211.2,Wallet,No
+2025-11-07,EC-00318,CUST-1488,Power Bank,PWR-20,Electronics,Bekaa,Jana,Instagram,VIP,15,24.0,0,4,364.0,Cash on Delivery,No
+2025-11-06,EC-00319,CUST-1145,Wireless Earbuds,EAR-15,Electronics,South,Tarek,Website,New,10,62.0,0.15,4,531.0,Cash on Delivery,No
+2025-11-16,EC-00320,CUST-1341,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Omar,Marketplace,New,106,3.0,0.2,0,254.4,Wallet,No
+2025-11-19,EC-00321,CUST-1426,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Jana,Marketplace,New,50,2.0,0.2,2.5,82.5,Card,No
+2025-12-18,EC-00322,CUST-1366,Charging Cable,CABL-07,Mobile Accessories,Gulf,Jana,Website,New,72,3.0,0.15,4,187.6,Card,No
+2025-12-27,EC-00323,CUST-1113,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Maya,Marketplace,VIP,36,9.0,0.2,0,259.2,Card,No
+2025-12-12,EC-00324,CUST-1019,Screen Wipes,WIPE-03,Consumables,North,Kareem,Instagram,New,58,2.0,0.1,4,108.4,Bank Transfer,No
+2025-11-13,EC-00325,CUST-1300,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Lina,Website,Returning,19,9.0,0.2,0,136.8,Bank Transfer,No
+2026-02-20,EC-00326,CUST-1325,Ring Light,RING-12,Creator Gear,South,Lina,Instagram,New,8,32.0,0.1,4,234.4,Card,No
+2026-01-06,EC-00327,CUST-1352,Smart Watch,WATC-30,Electronics,,Maya,Website,New,10,115.0,0,2.5,1152.5,Wallet,No
+2026-01-18,EC-00328,CUST-1342,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,Returning,86,4.0,0.15,2.5,294.9,Bank Transfer,No
+2026-01-02,EC-00329,CUST-1228,Wireless Earbuds,EAR-15,Electronics,North,Lina,Instagram,New,4,62.0,0,4,252.0,Wallet,No
+2025-12-02,EC-00330,CUST-1247,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Kareem,WhatsApp,Returning,14,45.0,0.1,2.5,569.5,Bank Transfer,No
+2026-01-16,EC-00331,CUST-1162,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Website,New,144,4.0,0,4,580.0,Bank Transfer,No
+2025-12-21,EC-00332,CUST-1209,Wireless Earbuds,EAR-15,Electronics,North,Lina,WhatsApp,New,12,62.0,0,0,744.0,Cash on Delivery,No
+2026-01-13,EC-00333,CUST-1010,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Website,VIP,71,9.0,0,0,639.0,Bank Transfer,Yes
+2025-11-12,EC-00334,CUST-1101,Wireless Earbuds,EAR-15,Electronics,North,Lina,Marketplace,Returning,11,62.0,0,2.5,684.5,Cash on Delivery,No
+2026-02-16,EC-00335,CUST-1127,Phone Stand,STND-09,Mobile Accessories,Bekaa,Omar,Website,New,135,5.0,0,2.5,677.5,Card,No
+2025-11-05,EC-00336,CUST-1117,Smart Watch,WATC-30,Electronics,South,Jana,Website,New,8,115.0,0,4,924.0,Cash on Delivery,No
+2025-11-05,EC-00337,CUST-1369,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Marketplace,New,109,3.0,0.15,0,277.95,Bank Transfer,No
+2025-11-03,EC-00338,CUST-1439,Screen Wipes,WIPE-03,Consumables,Bekaa,Jana,WhatsApp,New,190,2.0,0.1,2.5,344.5,Wallet,No
+2026-02-09,EC-00339,CUST-1219,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Maya,Website,New,65,4.0,0,5,265.0,Card,No
+2025-11-29,EC-00340,CUST-1372,Ring Light,RING-12,Creator Gear,Mount Lebanon,Kareem,Website,Returning,19,32.0,0,0,608.0,Bank Transfer,Yes
+2025-12-18,EC-00341,CUST-1288,Wireless Earbuds,EAR-15,Electronics,South,Kareem,Website,VIP,9,62.0,0.1,5,507.2,Card,No
+2026-01-22,EC-00342,CUST-1042,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,WhatsApp,New,83,4.0,0,5,337.0,Cash on Delivery,No
+2025-12-22,EC-00343,CUST-1379,Power Bank,PWR-20,Electronics,Mount Lebanon,Tarek,Marketplace,Returning,4,24.0,0.1,4,90.4,Wallet,No
+2026-02-15,EC-00344,CUST-1160,Screen Wipes,WIPE-03,Consumables,North,Jana,Instagram,Returning,108,2.0,0.1,5,199.4,Cash on Delivery,No
+2025-12-12,EC-00345,CUST-1192,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Jana,Marketplace,VIP,75,5.0,0.15,5,323.75,Cash on Delivery,No
+2026-02-05,EC-00346,CUST-1320,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,Website,New,69,2.0,0,5,143.0,Bank Transfer,No
+2025-11-18,EC-00347,CUST-1314,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Kareem,Website,New,5,62.0,0.1,4,283.0,Wallet,No
+2026-01-12,EC-00348,CUST-1107,Power Bank,PWR-20,Electronics,Beirut,Jana,Marketplace,Returning,25,24.0,0,4,604.0,Wallet,No
+2026-02-27,EC-00349,CUST-1240,Wireless Earbuds,EAR-15,Electronics,Gulf,Omar,Website,Returning,8,62.0,0,5,501.0,Card,No
+2025-11-01,EC-00350,CUST-1034,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Website,New,64,4.0,0,5,261.0,Wallet,No
+2026-01-21,EC-00351,CUST-1156,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Website,New,112,5.0,0.15,5,481.0,Wallet,No
+2026-01-19,EC-00352,CUST-1143,Wireless Earbuds,EAR-15,Electronics,Gulf,Jana,Instagram,Returning,2,62.0,0.05,0,117.8,Cash on Delivery,No
+2025-12-04,EC-00353,CUST-1377,Power Bank,PWR-20,Electronics,Beirut,Jana,Instagram,Returning,13,24.0,0.05,4,300.4,Bank Transfer,Yes
+2025-11-27,EC-00354,CUST-1165,Charging Cable,CABL-07,Mobile Accessories,South,Omar,Website,Returning,77,3.0,0,5,236.0,Card,No
+2026-02-23,EC-00355,CUST-1201,Ring Light,RING-12,Creator Gear,Beirut,Kareem,Website,New,12,32.0,0.05,0,364.8,Bank Transfer,No
+2026-02-08,EC-00356,CUST-1484,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Marketplace,New,60,4.0,0.15,2.5,206.5,Wallet,Yes
+2026-01-31,EC-00357,CUST-1091,Screen Wipes,WIPE-03,Consumables,North,Kareem,Instagram,Returning,215,2.0,0,5,435.0,Card,No
+2026-02-19,EC-00358,CUST-1091,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,New,197,4.0,0.05,2.5,751.1,Card,No
+2025-11-26,EC-00359,CUST-1017,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Maya,Instagram,New,134,4.0,0.15,0,455.6,Wallet,No
+2026-01-22,EC-00360,CUST-1474,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Marketplace,New,54,5.0,0.2,0,216.0,Bank Transfer,No
+2026-01-17,EC-00361,CUST-1313,Power Bank,PWR-20,Electronics,Mount Lebanon,Kareem,Marketplace,Returning,20,24.0,0.1,0,432.0,Cash on Delivery,No
+2026-01-30,EC-00362,CUST-1439,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Omar,Website,Returning,6,45.0,0,0,270.0,Wallet,No
+2026-02-18,EC-00363,CUST-1300,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Maya,Website,Returning,121,3.0,0.15,2.5,311.05,Wallet,No
+2026-01-06,EC-00364,CUST-1042,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Kareem,Marketplace,Returning,56,2.0,0,2.5,114.5,Cash on Delivery,No
+2025-12-27,EC-00365,CUST-1238,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Tarek,Instagram,New,40,2.0,0,4,84.0,Card,No
+2026-01-12,EC-00366,CUST-1403,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Maya,Website,New,55,9.0,0.05,0,470.25,Card,No
+2025-11-28,EC-00367,CUST-1377,Power Bank,PWR-20,Electronics,Mount Lebanon,Tarek,WhatsApp,New,24,24.0,0.1,2.5,520.9,Cash on Delivery,No
+2025-12-10,EC-00368,CUST-1102,Screen Wipes,WIPE-03,Consumables,South,Omar,Website,Returning,145,2.0,0,2.5,292.5,Cash on Delivery,No
+2025-12-08,EC-00369,CUST-1351,Charging Cable,CABL-07,Mobile Accessories,North,Maya,Instagram,Returning,129,3.0,0.1,5,353.3,Cash on Delivery,No
+2025-11-05,EC-00370,CUST-1358,Ring Light,RING-12,Creator Gear,Mount Lebanon,Omar,Instagram,New,25,32.0,0.05,4,764.0,Wallet,No
+2025-11-12,EC-00371,CUST-1239,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Instagram,New,69,5.0,0.05,2.5,330.25,Wallet,No
+2025-12-18,EC-00372,CUST-1243,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Website,New,14,24.0,0.15,0,285.6,Wallet,No
+2025-12-14,EC-00373,CUST-1233,Power Bank,PWR-20,Electronics,Beirut,Lina,Website,New,8,24.0,0.1,5,177.8,Bank Transfer,No
+2026-02-02,EC-00374,CUST-1475,Phone Case,CASE-11,Mobile Accessories,Bekaa,Lina,Marketplace,Returning,163,4.0,0.1,4,590.8,Cash on Delivery,No
+2026-02-06,EC-00375,CUST-1472,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Maya,Website,Returning,66,9.0,0.05,2.5,566.8,Wallet,No
+2026-02-22,EC-00376,CUST-1027,Power Bank,PWR-20,Electronics,South,Jana,Website,VIP,9,24.0,0,4,220.0,Card,No
+2025-12-10,EC-00377,CUST-1154,Wireless Earbuds,EAR-15,Electronics,Beirut,Lina,Instagram,New,1,62.0,0.1,2.5,58.3,Wallet,No
+2025-11-11,EC-00378,CUST-1081,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Kareem,Website,New,215,3.0,0.05,4,616.75,Wallet,No
+2025-11-13,EC-00379,CUST-1049,Phone Stand,STND-09,Mobile Accessories,South,Tarek,Website,New,136,5.0,0.15,2.5,580.5,Bank Transfer,No
+2025-11-17,EC-00380,CUST-1273,Phone Case,CASE-11,Mobile Accessories,Gulf,Kareem,Marketplace,VIP,265,4.0,0.1,5,959.0,Card,No
+2025-12-15,EC-00381,CUST-1256,Phone Stand,STND-09,Mobile Accessories,South,Jana,Website,VIP,106,5.0,0.1,4,481.0,Card,No
+2026-01-18,EC-00382,CUST-1173,Power Bank,PWR-20,Electronics,North,Maya,Instagram,New,9,24.0,0,4,220.0,Bank Transfer,No
+2026-01-23,EC-00383,CUST-1203,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,Website,Returning,48,3.0,0,5,149.0,Card,No
+2025-12-30,EC-00384,CUST-1196,Wireless Earbuds,EAR-15,Electronics,North,Tarek,Website,Returning,1,62.0,0,2.5,64.5,Bank Transfer,No
+2025-11-02,EC-00385,CUST-1410,Phone Stand,STND-09,Mobile Accessories,Gulf,Kareem,Website,New,148,5.0,0,0,740.0,Bank Transfer,No
+2026-01-04,EC-00386,CUST-1196,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Marketplace,VIP,85,4.0,0.1,5,311.0,Card,No
+2025-11-20,EC-00387,CUST-1237,Screen Wipes,WIPE-03,Consumables,Gulf,Tarek,Instagram,New,197,2.0,0.1,5,359.6,Wallet,No
+2025-11-06,EC-00388,CUST-1392,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Website,Returning,134,2.0,0,4,272.0,Card,No
+2026-01-09,EC-00389,CUST-1018,Charging Cable,CABL-07,Mobile Accessories,North,Kareem,Website,New,202,3.0,0,0,606.0,Bank Transfer,No
+2025-12-02,EC-00390,CUST-1352,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Omar,Marketplace,Returning,150,3.0,0.15,4,386.5,Cash on Delivery,Yes
+2026-02-26,EC-00391,CUST-1311,Smart Watch,WATC-30,Electronics,Bekaa,Tarek,Marketplace,Returning,1,115.0,0,4,119.0,Card,No
+2025-12-19,EC-00392,CUST-1131,Phone Stand,STND-09,Mobile Accessories,South,Lina,WhatsApp,Returning,148,5.0,0,2.5,742.5,Card,Yes
+2026-02-16,EC-00393,CUST-1025,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Omar,Instagram,VIP,100,9.0,0.05,2.5,857.5,Wallet,No
+2026-01-13,EC-00394,CUST-1465,Phone Stand,STND-09,Mobile Accessories,South,Kareem,Website,Returning,87,5.0,0,0,435.0,Cash on Delivery,No
+2026-01-26,EC-00395,CUST-1499,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,New,73,3.0,0,5,224.0,Wallet,No
+2025-11-13,EC-00396,CUST-1168,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,Website,Returning,195,3.0,0.15,5,502.25,Bank Transfer,No
+2025-12-31,EC-00397,CUST-1357,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Lina,Website,Returning,34,9.0,0.05,5,295.7,Cash on Delivery,No
+2026-01-26,EC-00398,CUST-1382,Phone Case,CASE-11,Mobile Accessories,North,Tarek,Marketplace,VIP,251,4.0,0.05,4,957.8,Wallet,No
+2025-12-09,EC-00399,CUST-1212,Charging Cable,CABL-07,Mobile Accessories,North,Tarek,Instagram,New,189,3.0,0,4,571.0,Card,No
+2026-02-05,EC-00400,CUST-1111,Ring Light,RING-12,Creator Gear,Mount Lebanon,Kareem,WhatsApp,New,20,32.0,0,0,640.0,Cash on Delivery,No
+2025-11-15,EC-00401,CUST-1214,Power Bank,PWR-20,Electronics,Beirut,Omar,Marketplace,VIP,19,24.0,0.05,4,437.2,Wallet,No
+2025-12-11,EC-00402,CUST-1206,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Tarek,Marketplace,VIP,14,62.0,0,5,873.0,Bank Transfer,No
+2026-02-05,EC-00403,CUST-1335,Phone Stand,STND-09,Mobile Accessories,Bekaa,Kareem,Website,Returning,142,5.0,0,4,714.0,Cash on Delivery,No
+2026-01-27,EC-00404,CUST-1317,Tablet Cover,TABCV-18,Mobile Accessories,North,Tarek,Website,New,39,9.0,0.05,2.5,335.95,Card,No
+2026-01-16,EC-00405,CUST-1011,Power Bank,PWR-20,Electronics,North,Maya,Website,New,21,24.0,0.05,0,478.8,Bank Transfer,Yes
+2026-01-10,EC-00406,CUST-1150,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Instagram,Returning,101,5.0,0,2.5,507.5,Card,No
+2026-02-23,EC-00407,CUST-1056,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Kareem,Website,Returning,101,2.0,0.1,5,186.8,Wallet,No
+2026-02-20,EC-00408,CUST-1240,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Kareem,Marketplace,New,19,9.0,0.1,5,158.9,Bank Transfer,No
+2025-11-10,EC-00409,CUST-1423,Wireless Earbuds,EAR-15,Electronics,Gulf,Tarek,Instagram,Returning,10,62.0,0.1,0,558.0,Card,No
+2025-12-08,EC-00410,CUST-1063,Wireless Earbuds,EAR-15,Electronics,Bekaa,Tarek,Marketplace,New,12,62.0,0.15,5,637.4,Card,No
+2025-11-19,EC-00411,CUST-1124,Smart Watch,WATC-30,Electronics,South,Jana,Marketplace,New,3,115.0,0,4,349.0,Bank Transfer,No
+2025-11-27,EC-00412,CUST-1352,Charging Cable,CABL-07,Mobile Accessories,North,Tarek,Website,VIP,206,3.0,0.1,4,560.2,Bank Transfer,No
+2025-12-13,EC-00413,CUST-1450,Wireless Earbuds,EAR-15,Electronics,South,Jana,Website,New,3,62.0,0,4,190.0,Wallet,No
+2026-01-12,EC-00414,CUST-1412,Phone Case,CASE-11,Mobile Accessories,North,Tarek,Website,Returning,161,4.0,0.1,4,583.6,Cash on Delivery,No
+2025-11-19,EC-00415,CUST-1132,Power Bank,PWR-20,Electronics,Bekaa,Lina,Instagram,New,9,24.0,0.05,2.5,207.7,Wallet,No
+2026-02-01,EC-00416,CUST-1256,Phone Stand,STND-09,Mobile Accessories,Bekaa,Jana,Website,Returning,83,5.0,0.2,2.5,334.5,Wallet,No
+2026-01-06,EC-00417,CUST-1484,Phone Case,CASE-11,Mobile Accessories,Bekaa,Kareem,Instagram,Returning,163,4.0,0,5,657.0,Card,No
+2025-12-14,EC-00418,CUST-1291,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,Returning,70,3.0,0.1,4,193.0,Card,No
+2026-02-16,EC-00419,CUST-1487,Wireless Earbuds,EAR-15,Electronics,Bekaa,Jana,Marketplace,Returning,6,62.0,0.1,5,339.8,Wallet,No
+2026-01-04,EC-00420,CUST-1267,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Jana,Marketplace,Returning,60,2.0,0.2,0,96.0,Cash on Delivery,No
+2025-12-02,EC-00421,CUST-1311,Charging Cable,CABL-07,Mobile Accessories,South,Tarek,WhatsApp,Returning,98,3.0,0.1,5,269.6,Wallet,No
+2026-01-10,EC-00422,CUST-1124,Charging Cable,CABL-07,Mobile Accessories,South,Tarek,Marketplace,New,73,3.0,0.05,0,208.05,Bank Transfer,No
+2025-12-30,EC-00423,CUST-1101,Screen Wipes,WIPE-03,Consumables,Bekaa,Maya,Website,Returning,90,2.0,0.05,5,176.0,Card,No
+2026-01-09,EC-00424,CUST-1099,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,Instagram,Returning,6,24.0,0.1,5,134.6,Bank Transfer,No
+2025-11-01,EC-00425,CUST-1153,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Instagram,New,169,3.0,0.05,4,485.65,Wallet,Yes
+2026-02-20,EC-00426,CUST-1163,Phone Stand,STND-09,Mobile Accessories,,Tarek,Instagram,New,152,5.0,0,2.5,762.5,Bank Transfer,No
+2026-01-03,EC-00427,CUST-1055,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Marketplace,New,153,3.0,0,2.5,461.5,Cash on Delivery,No
+2025-11-28,EC-00428,CUST-1098,Charging Cable,CABL-07,Mobile Accessories,North,Jana,Instagram,Returning,196,3.0,0,2.5,590.5,Bank Transfer,No
+2026-02-09,EC-00429,CUST-1137,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Website,VIP,201,3.0,0.1,5,547.7,Cash on Delivery,No
+2026-02-28,EC-00430,CUST-1217,Charging Cable,CABL-07,Mobile Accessories,Gulf,,Website,New,130,3.0,0.15,4,335.5,Bank Transfer,No
+2026-02-06,EC-00431,CUST-1009,Phone Case,CASE-11,Mobile Accessories,South,Kareem,Website,New,205,4.0,0.1,5,743.0,Cash on Delivery,No
+2025-11-27,EC-00432,CUST-1316,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Lina,Website,New,15,45.0,0,2.5,677.5,Bank Transfer,No
+2026-02-18,EC-00433,CUST-1199,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,New,191,3.0,0.05,0,544.35,Bank Transfer,No
+2025-12-02,EC-00434,CUST-1145,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Website,New,127,3.0,0,4,385.0,Card,No
+2025-12-31,EC-00435,CUST-1287,Screen Wipes,WIPE-03,Consumables,South,Lina,WhatsApp,Returning,78,2.0,0.15,4,136.6,Card,No
+2025-12-27,EC-00436,CUST-1034,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Tarek,Website,Returning,114,3.0,0.1,2.5,310.3,Wallet,No
+2026-02-18,EC-00437,CUST-1346,Phone Case,CASE-11,Mobile Accessories,South,Tarek,Marketplace,New,159,4.0,0,4,640.0,Wallet,No
+2025-12-03,EC-00438,CUST-1030,Power Bank,PWR-20,Electronics,Gulf,Omar,Website,New,15,24.0,0.1,0,324.0,Wallet,No
+2025-11-03,EC-00439,CUST-1376,Power Bank,PWR-20,Electronics,Gulf,Jana,Marketplace,New,20,24.0,0.05,4,460.0,Card,No
+2026-01-12,EC-00440,CUST-1097,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,Instagram,Returning,62,2.0,0.05,5,122.8,Card,No
+2026-02-07,EC-00441,CUST-1294,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Kareem,Instagram,VIP,9,45.0,0.1,0,364.5,Wallet,No
+2025-12-29,EC-00442,CUST-1115,Phone Stand,STND-09,Mobile Accessories,South,Kareem,Marketplace,New,115,5.0,0,5,580.0,Wallet,No
+2025-12-25,EC-00443,CUST-1294,Screen Wipes,WIPE-03,Consumables,Bekaa,Jana,Marketplace,New,157,2.0,0.1,2.5,285.1,Wallet,No
+2026-02-23,EC-00444,CUST-1483,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Omar,Website,New,54,9.0,0,0,486.0,Card,No
+2026-02-08,EC-00445,CUST-1217,Screen Wipes,WIPE-03,Consumables,North,Maya,Website,New,98,2.0,0.1,2.5,178.9,Wallet,No
+2025-11-30,EC-00446,CUST-1444,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Lina,Website,Returning,71,9.0,0,5,644.0,Cash on Delivery,No
+2025-12-19,EC-00447,CUST-1296,Screen Wipes,WIPE-03,Consumables,North,Omar,Website,New,71,2.0,0,2.5,144.5,Card,No
+2025-11-21,EC-00448,CUST-1409,Wireless Earbuds,EAR-15,Electronics,Beirut,Kareem,Marketplace,New,6,62.0,0,2.5,374.5,Wallet,Yes
+2026-01-01,EC-00449,CUST-1484,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Website,New,147,3.0,0,0,441.0,Wallet,No
+2026-02-16,EC-00450,CUST-1008,Screen Wipes,WIPE-03,Consumables,Gulf,Tarek,Website,VIP,76,2.0,0.1,5,141.8,Wallet,No
+2026-02-02,EC-00451,CUST-1240,Power Bank,PWR-20,Electronics,North,Omar,Marketplace,New,3,24.0,0,2.5,74.5,Card,No
+2025-11-08,EC-00452,CUST-1479,Power Bank,PWR-20,Electronics,Beirut,Tarek,Marketplace,New,16,24.0,0.15,5,331.4,Cash on Delivery,No
+2026-02-03,EC-00453,CUST-1320,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Lina,Marketplace,New,3,62.0,0,2.5,188.5,Wallet,No
+2026-02-25,EC-00454,CUST-1023,Smart Watch,WATC-30,Electronics,Mount Lebanon,Maya,Marketplace,New,8,115.0,0,2.5,922.5,Bank Transfer,No
+2026-02-06,EC-00455,CUST-1243,Power Bank,PWR-20,Electronics,Mount Lebanon,Omar,Website,New,10,24.0,0,0,240.0,Bank Transfer,No
+2025-12-24,EC-00456,CUST-1131,Smart Watch,WATC-30,Electronics,Mount Lebanon,Omar,Marketplace,Returning,1,115.0,0,5,120.0,Cash on Delivery,No
+2025-12-12,EC-00457,CUST-1263,Power Bank,PWR-20,Electronics,North,Jana,Marketplace,New,18,24.0,0.1,2.5,391.3,Cash on Delivery,No
+2026-02-12,EC-00458,CUST-1128,Ring Light,RING-12,Creator Gear,Beirut,Maya,Marketplace,Returning,12,32.0,0.15,0,326.4,Cash on Delivery,No
+2026-02-02,EC-00459,CUST-1067,Power Bank,PWR-20,Electronics,North,Kareem,Marketplace,New,21,24.0,0.2,4,407.2,Wallet,No
+2025-12-25,EC-00460,CUST-1007,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,WhatsApp,New,138,4.0,0.05,2.5,526.9,Cash on Delivery,Yes
+2026-01-21,EC-00461,CUST-1445,Screen Wipes,WIPE-03,Consumables,Bekaa,Omar,Website,New,163,2.0,0.05,4,313.7,Bank Transfer,No
+2025-12-28,EC-00462,CUST-1456,Ring Light,RING-12,Creator Gear,Mount Lebanon,Lina,Instagram,New,11,32.0,0.1,4,320.8,Cash on Delivery,No
+2025-12-03,EC-00463,CUST-1187,Phone Case,CASE-11,Mobile Accessories,Bekaa,Jana,Instagram,New,127,4.0,0.1,4,461.2,Bank Transfer,No
+2026-01-22,EC-00464,CUST-1177,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,Website,New,68,2.0,0,4,140.0,Wallet,No
+2025-12-28,EC-00465,CUST-1348,Phone Case,CASE-11,Mobile Accessories,Gulf,Maya,WhatsApp,VIP,108,4.0,0,2.5,434.5,Cash on Delivery,No
+2026-02-08,EC-00466,CUST-1185,Screen Wipes,WIPE-03,Consumables,South,Lina,Instagram,Returning,184,2.0,0.15,0,312.8,Cash on Delivery,No
+2026-01-28,EC-00467,CUST-1384,Ring Light,RING-12,Creator Gear,Mount Lebanon,Lina,Website,Returning,23,32.0,0.05,2.5,701.7,Cash on Delivery,No
+2026-01-09,EC-00468,CUST-1239,Ring Light,RING-12,Creator Gear,Mount Lebanon,Omar,Website,VIP,19,32.0,0,5,613.0,Wallet,No
+2025-11-18,EC-00469,CUST-1210,Bluetooth Speaker,SPKR-21,Electronics,North,Maya,Website,Returning,12,45.0,0,0,540.0,Cash on Delivery,No
+2025-11-19,EC-00470,CUST-1179,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Website,New,147,5.0,0,2.5,737.5,Card,No
+2025-11-29,EC-00471,CUST-1141,Ring Light,RING-12,Creator Gear,Beirut,Kareem,Website,Returning,24,32.0,0,5,773.0,Wallet,No
+2025-11-02,EC-00472,CUST-1063,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Website,Returning,18,24.0,0,5,437.0,Bank Transfer,No
+2025-11-20,EC-00473,CUST-1238,Screen Wipes,WIPE-03,Consumables,Gulf,Tarek,Website,New,50,2.0,0,4,104.0,Bank Transfer,No
+2026-01-14,EC-00474,CUST-1435,Charging Cable,CABL-07,Mobile Accessories,South,Kareem,Marketplace,New,66,3.0,0,4,202.0,Bank Transfer,No
+2026-02-16,EC-00475,CUST-1327,Bluetooth Speaker,SPKR-21,Electronics,North,Maya,Instagram,Returning,11,45.0,0.15,4,424.75,Wallet,No
+2025-12-24,EC-00476,CUST-1222,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Lina,Website,New,18,45.0,0,5,815.0,Wallet,No
+2025-11-14,EC-00477,CUST-1055,Ring Light,RING-12,Creator Gear,Bekaa,Kareem,Instagram,Returning,15,32.0,0.05,5,461.0,Card,No
+2026-01-13,EC-00478,CUST-1020,Screen Wipes,WIPE-03,Consumables,Gulf,Omar,Website,Returning,194,2.0,0.05,5,373.6,Wallet,No
+2026-01-22,EC-00479,CUST-1013,Wireless Earbuds,EAR-15,Electronics,Bekaa,Jana,Marketplace,New,7,62.0,0.1,5,395.6,Cash on Delivery,No
+2026-01-12,EC-00480,CUST-1349,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Website,VIP,59,3.0,0.1,4,163.3,Wallet,No
+2025-12-16,EC-00481,CUST-1082,Ring Light,RING-12,Creator Gear,Beirut,Kareem,Marketplace,New,25,32.0,0.2,4,644.0,Cash on Delivery,No
+2026-01-11,EC-00482,CUST-1315,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,,Marketplace,Returning,3,62.0,0.15,0,158.1,Cash on Delivery,No
+2025-12-11,EC-00483,CUST-1103,Smart Watch,WATC-30,Electronics,Beirut,Tarek,Website,New,10,115.0,0.05,2.5,1095.0,Wallet,No
+2026-02-18,EC-00484,CUST-1158,Bluetooth Speaker,SPKR-21,Electronics,North,Kareem,Marketplace,Returning,8,45.0,0,0,360.0,Wallet,No
+2026-02-05,EC-00485,CUST-1074,Phone Stand,STND-09,Mobile Accessories,Beirut,Jana,Marketplace,New,63,5.0,0.1,5,288.5,Wallet,No
+2026-01-08,EC-00486,CUST-1115,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Website,VIP,144,4.0,0.05,0,547.2,Bank Transfer,No
+2026-02-14,EC-00487,CUST-1115,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Tarek,WhatsApp,New,97,2.0,0.15,2.5,167.4,Bank Transfer,No
+2026-01-22,EC-00488,CUST-1282,Wireless Earbuds,EAR-15,Electronics,Beirut,Lina,Website,New,10,62.0,0.05,5,594.0,Cash on Delivery,No
+2025-12-23,EC-00489,CUST-1134,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Instagram,VIP,174,3.0,0.1,4,473.8,Bank Transfer,No
+2025-12-18,EC-00490,CUST-1296,Phone Case,CASE-11,Mobile Accessories,Gulf,Omar,Website,New,217,4.0,0,2.5,870.5,Cash on Delivery,No
+2025-11-13,EC-00491,CUST-1367,Ring Light,RING-12,Creator Gear,South,Jana,Marketplace,Returning,6,32.0,0.1,2.5,175.3,Cash on Delivery,No
+2025-12-30,EC-00492,CUST-1229,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Kareem,Instagram,New,151,3.0,0,2.5,455.5,Card,No
+2026-02-23,EC-00493,CUST-1251,Phone Case,CASE-11,Mobile Accessories,Bekaa,Omar,Website,New,110,4.0,0.05,0,418.0,Bank Transfer,No
+2026-01-30,EC-00494,CUST-1291,Wireless Earbuds,EAR-15,Electronics,Beirut,Kareem,Website,New,9,62.0,0.1,4,506.2,Bank Transfer,No
+2025-11-19,EC-00495,CUST-1396,Wireless Earbuds,EAR-15,Electronics,Gulf,Jana,Website,New,10,62.0,0,4,624.0,Card,No
+2026-01-18,EC-00496,CUST-1015,Screen Wipes,WIPE-03,Consumables,North,Omar,Marketplace,New,193,2.0,0.1,2.5,349.9,Bank Transfer,No
+2026-02-02,EC-00497,CUST-1070,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Instagram,VIP,174,2.0,0.1,5,318.2,Wallet,No
+2025-11-24,EC-00498,CUST-1179,Screen Wipes,WIPE-03,Consumables,North,Tarek,Website,New,63,2.0,0,5,131.0,Card,No
+2025-12-14,EC-00499,CUST-1000,Phone Stand,STND-09,Mobile Accessories,Beirut,Lina,Website,Returning,182,5.0,0,4,914.0,Card,No
+2025-11-01,EC-00500,CUST-1111,Phone Case,CASE-11,Mobile Accessories,North,Jana,Instagram,Returning,84,4.0,0,5,341.0,Wallet,No
+2025-11-13,EC-00501,CUST-1416,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Jana,Website,New,71,9.0,0.1,2.5,577.6,Bank Transfer,No
+2025-11-04,EC-00502,CUST-1085,Power Bank,PWR-20,Electronics,Gulf,Maya,Marketplace,New,12,24.0,0,2.5,290.5,Card,No
+2026-01-03,EC-00503,CUST-1483,Charging Cable,CABL-07,Mobile Accessories,Beirut,Jana,WhatsApp,VIP,260,3.0,0.05,5,746.0,Card,No
+2026-01-25,EC-00504,CUST-1030,Phone Stand,STND-09,Mobile Accessories,North,Lina,Website,VIP,206,5.0,0,5,1035.0,Bank Transfer,No
+2026-02-12,EC-00505,CUST-1329,Smart Watch,WATC-30,Electronics,Mount Lebanon,Jana,Website,New,11,115.0,0.1,5,1143.5,Cash on Delivery,No
+2025-12-07,EC-00506,CUST-1251,Phone Case,CASE-11,Mobile Accessories,North,Omar,Website,Returning,143,4.0,0.05,0,543.4,Card,No
+2025-12-12,EC-00507,CUST-1021,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,Instagram,Returning,12,24.0,0.1,0,259.2,Cash on Delivery,No
+2025-11-12,EC-00508,CUST-1197,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Jana,Instagram,Returning,52,3.0,0.05,0,148.2,Cash on Delivery,Yes
+2025-12-16,EC-00509,CUST-1022,Ring Light,RING-12,Creator Gear,Beirut,Tarek,Marketplace,Returning,19,32.0,0.15,4,520.8,Cash on Delivery,No
+2025-11-13,EC-00510,CUST-1195,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Marketplace,New,92,5.0,0.05,0,437.0,Cash on Delivery,No
+2026-02-24,EC-00511,CUST-1190,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Maya,WhatsApp,Returning,13,45.0,0.2,5,473.0,Bank Transfer,No
+2025-11-06,EC-00512,CUST-1449,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Jana,Marketplace,VIP,185,2.0,0.1,4,337.0,Wallet,No
+2025-12-23,EC-00513,CUST-1005,Bluetooth Speaker,SPKR-21,Electronics,North,Kareem,Website,Returning,9,45.0,0.1,5,369.5,Bank Transfer,No
+2025-11-06,EC-00514,CUST-1274,Bluetooth Speaker,SPKR-21,Electronics,North,Tarek,Marketplace,New,6,45.0,0,5,275.0,Wallet,No
+2025-11-22,EC-00515,CUST-1133,Ring Light,RING-12,Creator Gear,Beirut,Tarek,Marketplace,Returning,12,32.0,0.05,4,368.8,Card,No
+2026-02-06,EC-00516,CUST-1055,Screen Wipes,WIPE-03,Consumables,Bekaa,Omar,WhatsApp,Returning,167,2.0,0,0,334.0,Card,No
+2025-11-30,EC-00517,CUST-1073,Screen Wipes,WIPE-03,Consumables,North,Maya,Marketplace,Returning,101,2.0,0.05,4,195.9,Bank Transfer,No
+2026-01-16,EC-00518,CUST-1485,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Jana,Marketplace,New,4,62.0,0.1,0,223.2,Cash on Delivery,No
+2025-12-14,EC-00519,CUST-1149,Smart Watch,WATC-30,Electronics,Beirut,Omar,Website,New,11,115.0,0,5,1270.0,Card,No
+2025-11-29,EC-00520,CUST-1147,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Marketplace,New,152,3.0,0,2.5,458.5,Cash on Delivery,No
+2025-11-19,EC-00521,CUST-1164,Phone Stand,STND-09,Mobile Accessories,North,Maya,Marketplace,New,176,5.0,0,2.5,882.5,Wallet,No
+2025-11-05,EC-00522,CUST-1390,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Website,New,54,2.0,0.1,0,97.2,Card,No
+2026-01-12,EC-00523,CUST-1383,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,WhatsApp,Returning,112,5.0,0.1,5,509.0,Cash on Delivery,No
+2026-01-27,EC-00524,CUST-1146,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Instagram,VIP,99,5.0,0.05,4,474.25,Cash on Delivery,No
+2025-12-20,EC-00525,CUST-1450,Ring Light,RING-12,Creator Gear,Bekaa,Lina,Marketplace,New,12,32.0,0,5,389.0,Cash on Delivery,No
+2025-12-22,EC-00526,CUST-1198,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,WhatsApp,New,146,2.0,0.05,5,282.4,Bank Transfer,No
+2025-12-17,EC-00527,CUST-1373,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Omar,Marketplace,New,95,4.0,0.1,2.5,344.5,Wallet,Yes
+2026-02-24,EC-00528,CUST-1231,Phone Stand,STND-09,Mobile Accessories,Bekaa,Kareem,Website,New,140,5.0,0,0,700.0,Wallet,No
+2026-02-24,EC-00529,CUST-1479,Smart Watch,WATC-30,Electronics,South,Jana,Website,New,6,115.0,0.05,2.5,658.0,Bank Transfer,No
+2025-11-24,EC-00530,CUST-1294,Ring Light,RING-12,Creator Gear,Beirut,Omar,Website,Returning,11,32.0,0.2,2.5,284.1,Cash on Delivery,No
+2025-11-20,EC-00531,CUST-1402,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,VIP,150,4.0,0.05,0,570.0,Card,No
+2025-11-11,EC-00532,CUST-1157,Screen Wipes,WIPE-03,Consumables,Gulf,Maya,Website,New,131,2.0,0,2.5,264.5,Card,Yes
+2025-12-17,EC-00533,CUST-1077,Power Bank,PWR-20,Electronics,North,Kareem,Instagram,Returning,12,24.0,0,2.5,290.5,Cash on Delivery,No
+2025-12-24,EC-00534,CUST-1462,Screen Wipes,WIPE-03,Consumables,Gulf,Kareem,Website,Returning,160,2.0,0.1,4,292.0,Cash on Delivery,No
+2025-11-15,EC-00535,CUST-1010,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Kareem,Website,New,15,45.0,0.05,5,646.25,Wallet,No
+2026-02-28,EC-00536,CUST-1453,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Marketplace,VIP,264,4.0,0.05,4,1007.2,Wallet,Yes
+2025-11-09,EC-00537,CUST-1405,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Tarek,Website,New,211,3.0,0,4,637.0,Card,No
+2025-12-16,EC-00538,CUST-1143,Power Bank,PWR-20,Electronics,Bekaa,Maya,Instagram,Returning,8,24.0,0,4,196.0,Card,No
+2026-01-02,EC-00539,CUST-1383,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Website,New,154,4.0,0.2,4,496.8,Bank Transfer,No
+2026-01-24,EC-00540,CUST-1102,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Marketplace,VIP,52,2.0,0.1,0,93.6,Bank Transfer,No
+2025-12-19,EC-00541,CUST-1175,Phone Case,CASE-11,Mobile Accessories,South,Lina,Marketplace,New,171,4.0,0.15,5,586.4,Cash on Delivery,No
+2025-12-15,EC-00542,CUST-1467,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Kareem,Website,New,17,45.0,0.15,0,650.25,Wallet,No
+2026-02-19,EC-00543,CUST-1410,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Marketplace,New,59,5.0,0,0,295.0,Cash on Delivery,No
+2026-02-08,EC-00544,CUST-1169,Screen Wipes,WIPE-03,Consumables,Beirut,Tarek,Website,Returning,198,2.0,0,5,401.0,Card,No
+2026-01-18,EC-00545,CUST-1405,Screen Wipes,WIPE-03,Consumables,South,Omar,WhatsApp,VIP,109,2.0,0,0,218.0,Cash on Delivery,No
+2025-11-27,EC-00546,CUST-1095,Screen Wipes,WIPE-03,Consumables,Beirut,Lina,Instagram,New,90,2.0,0.1,5,167.0,Bank Transfer,No
+2025-12-07,EC-00547,CUST-1449,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Maya,Website,New,5,45.0,0,2.5,227.5,Cash on Delivery,No
+2026-01-29,EC-00548,CUST-1259,Screen Wipes,WIPE-03,Consumables,South,Omar,Website,New,98,2.0,0,4,200.0,Wallet,No
+2025-11-28,EC-00549,CUST-1032,Phone Case,CASE-11,Mobile Accessories,Bekaa,Tarek,Website,New,214,4.0,0,2.5,858.5,Bank Transfer,No
+2025-12-15,EC-00550,CUST-1394,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Kareem,Website,Returning,72,9.0,0,0,648.0,Wallet,No
+2026-01-29,EC-00551,CUST-1153,Bluetooth Speaker,SPKR-21,Electronics,South,Maya,Instagram,Returning,13,45.0,0.05,5,560.75,Bank Transfer,No
+2025-12-11,EC-00552,CUST-1407,Phone Stand,STND-09,Mobile Accessories,South,Omar,Instagram,New,130,5.0,0,5,655.0,Bank Transfer,No
+2025-12-30,EC-00553,CUST-1195,Smart Watch,WATC-30,Electronics,,Omar,Website,Returning,7,115.0,0.2,2.5,646.5,Cash on Delivery,No
+2025-12-22,EC-00554,CUST-1076,Phone Case,CASE-11,Mobile Accessories,North,Tarek,WhatsApp,New,87,4.0,0,0,348.0,Wallet,No
+2025-12-14,EC-00555,CUST-1370,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Omar,Website,VIP,225,3.0,0,2.5,677.5,Bank Transfer,No
+2025-12-26,EC-00556,CUST-1311,Phone Case,CASE-11,Mobile Accessories,Bekaa,Kareem,WhatsApp,New,67,4.0,0,4,272.0,Wallet,No
+2025-11-19,EC-00557,CUST-1350,Charging Cable,CABL-07,Mobile Accessories,Gulf,,Website,New,118,3.0,0.05,4,340.3,Bank Transfer,No
+2026-01-18,EC-00558,CUST-1242,Screen Wipes,WIPE-03,Consumables,Beirut,Lina,Website,New,216,2.0,0.15,4,371.2,Card,No
+2025-11-03,EC-00559,CUST-1284,Phone Case,CASE-11,Mobile Accessories,North,Omar,WhatsApp,Returning,120,4.0,0.05,5,461.0,Wallet,No
+2026-01-13,EC-00560,CUST-1312,Wireless Earbuds,EAR-15,Electronics,South,Omar,WhatsApp,Returning,10,62.0,0.2,2.5,498.5,Cash on Delivery,No
+2026-02-13,EC-00561,CUST-1041,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Kareem,Marketplace,New,2,62.0,0,2.5,126.5,Bank Transfer,No
+2025-12-30,EC-00562,CUST-1186,Power Bank,PWR-20,Electronics,Bekaa,Tarek,Website,New,9,24.0,0.1,4,198.4,Card,No
+2025-12-31,EC-00563,CUST-1248,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Website,Returning,183,3.0,0,4,553.0,Wallet,Yes
+2026-01-17,EC-00564,CUST-1099,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Tarek,Website,VIP,38,9.0,0,0,342.0,Wallet,No
+2025-12-02,EC-00565,CUST-1238,Wireless Earbuds,EAR-15,Electronics,North,Maya,Website,New,5,62.0,0,5,315.0,Cash on Delivery,No
+2025-12-28,EC-00566,CUST-1232,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Website,New,11,24.0,0.05,2.5,253.3,Wallet,No
+2025-11-21,EC-00567,CUST-1368,Power Bank,PWR-20,Electronics,North,Maya,Website,Returning,20,24.0,0.05,2.5,458.5,Bank Transfer,No
+2026-01-10,EC-00568,CUST-1291,Screen Wipes,WIPE-03,Consumables,North,Lina,Website,New,48,2.0,0.1,4,90.4,Card,No
+2026-02-22,EC-00569,CUST-1481,Phone Stand,STND-09,Mobile Accessories,South,Tarek,Website,New,57,5.0,0,0,285.0,Cash on Delivery,No
+2025-11-12,EC-00570,CUST-1328,Wireless Earbuds,EAR-15,Electronics,Gulf,Lina,Website,New,2,62.0,0.05,0,117.8,Bank Transfer,No
+2026-01-28,EC-00571,CUST-1285,Screen Wipes,WIPE-03,Consumables,Bekaa,Omar,Website,New,106,2.0,0,0,212.0,Card,No
+2025-11-07,EC-00572,CUST-1165,Power Bank,PWR-20,Electronics,South,Kareem,Website,New,10,24.0,0.2,2.5,194.5,Bank Transfer,No
+2026-02-05,EC-00573,CUST-1020,Power Bank,PWR-20,Electronics,North,Jana,Marketplace,New,24,24.0,0.1,5,523.4,Cash on Delivery,No
+2026-01-15,EC-00574,CUST-1077,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Website,Returning,188,2.0,0.15,2.5,322.1,Card,No
+2026-02-26,EC-00575,CUST-1167,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,Instagram,New,8,24.0,0.15,4,167.2,Wallet,No
+2025-12-21,EC-00576,CUST-1057,Screen Wipes,WIPE-03,Consumables,North,Maya,Website,VIP,264,2.0,0.05,5,506.6,Card,No
+2025-12-20,EC-00577,CUST-1418,Wireless Earbuds,EAR-15,Electronics,South,Omar,Website,Returning,12,62.0,0,2.5,746.5,Wallet,No
+2025-12-17,EC-00578,CUST-1110,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Omar,Instagram,VIP,130,5.0,0,0,650.0,Cash on Delivery,No
+2026-02-19,EC-00579,CUST-1245,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,New,140,4.0,0.05,2.5,534.5,Wallet,No
+2026-02-10,EC-00580,CUST-1484,Ring Light,RING-12,Creator Gear,Bekaa,Omar,Website,New,3,32.0,0.15,0,81.6,Wallet,No
+2026-02-28,EC-00581,CUST-1379,Screen Wipes,WIPE-03,Consumables,North,Tarek,Instagram,New,53,2.0,0,2.5,108.5,Wallet,Yes
+2025-11-10,EC-00582,CUST-1454,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Marketplace,VIP,146,3.0,0,5,443.0,Cash on Delivery,Yes
+2025-11-16,EC-00583,CUST-1120,Tablet Cover,TABCV-18,Mobile Accessories,South,Tarek,Marketplace,VIP,94,9.0,0,0,846.0,Bank Transfer,No
+2026-02-20,EC-00584,CUST-1203,Tablet Cover,TABCV-18,Mobile Accessories,South,Lina,Website,Returning,76,9.0,0,2.5,686.5,Bank Transfer,No
+2025-11-04,EC-00585,CUST-1448,Screen Wipes,WIPE-03,Consumables,North,Kareem,Website,VIP,234,2.0,0.15,0,397.8,Wallet,Yes
+2026-01-30,EC-00586,CUST-1332,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Website,New,88,3.0,0,5,269.0,Card,No
+2026-02-20,EC-00587,CUST-1045,Power Bank,PWR-20,Electronics,Bekaa,Jana,WhatsApp,New,10,24.0,0.1,0,216.0,Wallet,No
+2025-12-29,EC-00588,CUST-1177,Smart Watch,WATC-30,Electronics,Mount Lebanon,Lina,Marketplace,New,9,115.0,0.05,4,987.25,Bank Transfer,No
+2025-11-23,EC-00589,CUST-1208,Power Bank,PWR-20,Electronics,North,Lina,Marketplace,New,24,24.0,0.1,5,523.4,Wallet,No
+2025-12-26,EC-00590,CUST-1175,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Website,New,159,2.0,0.05,2.5,304.6,Cash on Delivery,No
+2026-01-16,EC-00591,CUST-1202,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,Returning,75,4.0,0.2,2.5,242.5,Card,No
+2026-02-14,EC-00592,CUST-1350,Phone Case,CASE-11,Mobile Accessories,Beirut,Jana,Instagram,New,187,4.0,0,2.5,750.5,Wallet,No
+2026-01-02,EC-00593,CUST-1383,Screen Wipes,WIPE-03,Consumables,South,Lina,Instagram,New,208,2.0,0.1,2.5,376.9,Bank Transfer,No
+2026-01-28,EC-00594,CUST-1457,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Instagram,New,12,62.0,0.15,2.5,634.9,Card,No
+2026-01-03,EC-00595,CUST-1097,Screen Wipes,WIPE-03,Consumables,Beirut,Lina,Website,New,93,2.0,0.05,0,176.7,Card,Yes
+2025-11-03,EC-00596,CUST-1183,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,Returning,57,2.0,0,0,114.0,Bank Transfer,No
+2025-11-02,EC-00597,CUST-1303,Bluetooth Speaker,SPKR-21,Electronics,North,Kareem,Website,New,22,45.0,0.05,5,945.5,Card,No
+2026-01-26,EC-00598,CUST-1394,Phone Stand,STND-09,Mobile Accessories,Beirut,Lina,Website,New,161,5.0,0.15,5,689.25,Card,No
+2025-12-25,EC-00599,CUST-1044,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Lina,WhatsApp,Returning,3,45.0,0,5,140.0,Bank Transfer,No
+2025-12-03,EC-00600,CUST-1240,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Marketplace,Returning,64,5.0,0.05,4,308.0,Card,No
+2025-12-12,EC-00601,CUST-1227,Charging Cable,CABL-07,Mobile Accessories,,Kareem,Website,New,42,3.0,0.1,0,113.4,Card,Yes
+2026-01-04,EC-00602,CUST-1357,Charging Cable,CABL-07,Mobile Accessories,Beirut,Jana,Website,VIP,259,3.0,0.1,4,703.3,Bank Transfer,No
+2025-11-23,EC-00603,CUST-1039,Tablet Cover,TABCV-18,Mobile Accessories,North,Omar,Website,Returning,69,9.0,0,2.5,623.5,Cash on Delivery,Yes
+2026-01-01,EC-00604,CUST-1443,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Marketplace,VIP,170,5.0,0,2.5,852.5,Bank Transfer,No
+2025-11-30,EC-00605,CUST-1406,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Maya,Website,New,22,45.0,0.05,5,945.5,Bank Transfer,No
+2025-11-03,EC-00606,CUST-1216,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Lina,Instagram,New,18,45.0,0,5,815.0,Card,No
+2025-11-09,EC-00607,CUST-1082,Screen Wipes,WIPE-03,Consumables,Bekaa,Tarek,Website,New,102,2.0,0.15,2.5,175.9,Card,No
+2026-01-13,EC-00608,CUST-1059,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,WhatsApp,New,107,3.0,0.05,2.5,307.45,Card,No
+2025-11-30,EC-00609,CUST-1340,Charging Cable,CABL-07,Mobile Accessories,North,Tarek,Marketplace,New,55,3.0,0.05,0,156.75,Wallet,No
+2026-01-14,EC-00610,CUST-1244,Phone Stand,STND-09,Mobile Accessories,North,Omar,Website,New,162,5.0,0.1,2.5,731.5,Bank Transfer,No
+2025-11-28,EC-00611,CUST-1074,Screen Wipes,WIPE-03,Consumables,North,Tarek,Instagram,Returning,58,2.0,0,2.5,118.5,Card,No
+2026-01-01,EC-00612,CUST-1423,Phone Stand,STND-09,Mobile Accessories,Gulf,Jana,Website,Returning,145,5.0,0.15,4,620.25,Wallet,Yes
+2025-12-23,EC-00613,CUST-1310,Screen Wipes,WIPE-03,Consumables,North,Lina,Marketplace,New,211,2.0,0.1,4,383.8,Cash on Delivery,No
+2026-02-04,EC-00614,CUST-1038,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Jana,Marketplace,Returning,35,9.0,0,4,319.0,Bank Transfer,No
+2026-01-16,EC-00615,CUST-1237,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Marketplace,Returning,204,2.0,0,4,412.0,Wallet,No
+2025-12-09,EC-00616,CUST-1046,Smart Watch,WATC-30,Electronics,Mount Lebanon,Lina,Marketplace,New,8,115.0,0,2.5,922.5,Bank Transfer,No
+2025-12-14,EC-00617,CUST-1463,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Maya,Website,New,109,5.0,0.15,2.5,465.75,Wallet,No
+2026-02-25,EC-00618,CUST-1342,Charging Cable,CABL-07,Mobile Accessories,Beirut,,Website,New,213,3.0,0,4,643.0,Cash on Delivery,No
+2026-02-07,EC-00619,CUST-1236,Power Bank,PWR-20,Electronics,South,Tarek,Website,Returning,14,24.0,0.1,4,306.4,Cash on Delivery,No
+2025-11-16,EC-00620,CUST-1414,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Tarek,Website,Returning,23,45.0,0.15,2.5,882.25,Bank Transfer,No
+2025-12-18,EC-00621,CUST-1494,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,WhatsApp,New,127,3.0,0,0,381.0,Bank Transfer,No
+2026-02-13,EC-00622,CUST-1215,Phone Stand,STND-09,Mobile Accessories,,Maya,Website,VIP,208,5.0,0.05,4,992.0,Cash on Delivery,No
+2025-12-05,EC-00623,CUST-1185,Screen Wipes,WIPE-03,Consumables,North,Kareem,Instagram,New,139,2.0,0,2.5,280.5,Card,No
+2025-11-06,EC-00624,CUST-1456,Smart Watch,WATC-30,Electronics,Beirut,Jana,Instagram,New,2,115.0,0.15,5,200.5,Card,No
+2025-11-02,EC-00625,CUST-1181,Screen Wipes,WIPE-03,Consumables,Gulf,Tarek,Website,New,99,2.0,0,4,202.0,Cash on Delivery,No
+2025-11-20,EC-00626,CUST-1046,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Website,VIP,172,2.0,0,0,344.0,Wallet,Yes
+2026-02-12,EC-00627,CUST-1001,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Website,New,82,5.0,0.15,2.5,351.0,Cash on Delivery,No
+2026-01-25,EC-00628,CUST-1227,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Jana,Marketplace,New,99,3.0,0,0,297.0,Bank Transfer,No
+2025-11-20,EC-00629,CUST-1448,Bluetooth Speaker,SPKR-21,Electronics,North,Jana,Marketplace,New,11,45.0,0,5,500.0,Wallet,No
+2025-12-12,EC-00630,CUST-1357,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,,Marketplace,Returning,135,2.0,0,0,270.0,Bank Transfer,No
+2025-11-22,EC-00631,CUST-1449,Wireless Earbuds,EAR-15,Electronics,Beirut,Lina,Website,New,12,62.0,0,2.5,746.5,Bank Transfer,No
+2025-11-04,EC-00632,CUST-1010,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Tarek,Marketplace,New,3,45.0,0,4,139.0,Bank Transfer,No
+2025-12-26,EC-00633,CUST-1086,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Maya,Website,New,11,45.0,0,4,499.0,Cash on Delivery,No
+2026-02-18,EC-00634,CUST-1468,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Marketplace,Returning,15,24.0,0,2.5,362.5,Cash on Delivery,No
+2025-11-12,EC-00635,CUST-1142,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,Website,VIP,21,24.0,0,2.5,506.5,Cash on Delivery,No
+2025-11-30,EC-00636,CUST-1240,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Website,New,53,4.0,0.05,2.5,203.9,Bank Transfer,No
+2026-02-23,EC-00637,CUST-1398,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Instagram,New,65,3.0,0,2.5,197.5,Bank Transfer,No
+2026-01-10,EC-00638,CUST-1262,Wireless Earbuds,EAR-15,Electronics,South,Omar,Instagram,New,1,62.0,0,2.5,64.5,Card,No
+2026-01-04,EC-00639,CUST-1142,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Website,New,73,5.0,0,4,369.0,Bank Transfer,No
+2025-12-02,EC-00640,CUST-1147,Phone Stand,STND-09,Mobile Accessories,South,Tarek,Website,Returning,50,5.0,0,5,255.0,Bank Transfer,No
+2026-01-07,EC-00641,CUST-1295,Wireless Earbuds,EAR-15,Electronics,South,Kareem,Instagram,Returning,9,62.0,0.05,4,534.1,Bank Transfer,No
+2026-02-05,EC-00642,CUST-1059,Charging Cable,CABL-07,Mobile Accessories,Gulf,,Instagram,New,49,3.0,0,4,151.0,Bank Transfer,No
+2025-12-19,EC-00643,CUST-1302,Phone Case,CASE-11,Mobile Accessories,North,Lina,Instagram,Returning,95,4.0,0.05,2.5,363.5,Cash on Delivery,No
+2026-01-23,EC-00644,CUST-1238,Wireless Earbuds,EAR-15,Electronics,North,Omar,Website,New,8,62.0,0,5,501.0,Wallet,No
+2026-02-21,EC-00645,CUST-1179,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Website,New,203,3.0,0.15,4,521.65,Bank Transfer,No
+2026-02-25,EC-00646,CUST-1444,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Website,New,171,4.0,0.05,0,649.8,Bank Transfer,Yes
+2025-11-09,EC-00647,CUST-1260,Phone Case,CASE-11,Mobile Accessories,Beirut,Jana,Website,VIP,96,4.0,0.1,4,349.6,Cash on Delivery,No
+2026-01-20,EC-00648,CUST-1410,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Website,Returning,128,5.0,0.05,4,612.0,Card,No
+2026-02-22,EC-00649,CUST-1193,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Jana,Website,Returning,184,4.0,0.05,2.5,701.7,Wallet,Yes
+2026-01-24,EC-00650,CUST-1112,Bluetooth Speaker,SPKR-21,Electronics,South,Tarek,Website,New,9,45.0,0,5,410.0,Card,No
+2025-11-06,EC-00651,CUST-1107,Charging Cable,CABL-07,Mobile Accessories,Gulf,Omar,Website,New,78,3.0,0.05,4,226.3,Card,Yes
+2025-11-09,EC-00652,CUST-1252,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Instagram,New,159,3.0,0.15,2.5,407.95,Card,No
+2025-11-11,EC-00653,CUST-1280,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Lina,Instagram,VIP,22,45.0,0.2,4,796.0,Wallet,No
+2026-01-20,EC-00654,CUST-1011,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Tarek,Marketplace,Returning,19,45.0,0.1,2.5,772.0,Bank Transfer,No
+2026-01-01,EC-00655,CUST-1131,Charging Cable,CABL-07,Mobile Accessories,Gulf,Lina,Instagram,Returning,143,3.0,0,4,433.0,Card,No
+2026-02-14,EC-00656,CUST-1204,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,New,79,2.0,0.15,4,138.3,Bank Transfer,No
+2026-01-12,EC-00657,CUST-1029,Phone Case,CASE-11,Mobile Accessories,Beirut,Omar,Instagram,VIP,261,4.0,0,4,1048.0,Bank Transfer,No
+2025-12-22,EC-00658,CUST-1251,Wireless Earbuds,EAR-15,Electronics,Beirut,Kareem,WhatsApp,New,6,62.0,0,2.5,374.5,Bank Transfer,No
+2026-01-15,EC-00659,CUST-1436,Charging Cable,CABL-07,Mobile Accessories,North,Omar,Website,Returning,82,3.0,0,4,250.0,Card,No
+2025-11-13,EC-00660,CUST-1001,Screen Wipes,WIPE-03,Consumables,Bekaa,Maya,Website,New,63,2.0,0.15,2.5,109.6,Bank Transfer,Yes
+2025-11-23,EC-00661,CUST-1457,Screen Wipes,WIPE-03,Consumables,North,Lina,Marketplace,VIP,274,2.0,0,0,548.0,Wallet,No
+2025-12-13,EC-00662,CUST-1251,Screen Wipes,WIPE-03,Consumables,Gulf,Maya,WhatsApp,Returning,89,2.0,0.1,5,165.2,Card,No
+2025-12-05,EC-00663,CUST-1397,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Website,Returning,7,24.0,0,4,172.0,Card,No
+2026-01-03,EC-00664,CUST-1260,Power Bank,PWR-20,Electronics,South,Maya,Website,New,8,24.0,0.1,5,177.8,Wallet,No
+2025-12-08,EC-00665,CUST-1076,Power Bank,PWR-20,Electronics,Bekaa,Kareem,Marketplace,New,12,24.0,0.1,2.5,261.7,Cash on Delivery,No
+2025-11-05,EC-00666,CUST-1170,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,Website,VIP,90,2.0,0,0,180.0,Wallet,No
+2026-01-14,EC-00667,CUST-1107,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Website,Returning,211,3.0,0.05,4,605.35,Bank Transfer,Yes
+2026-01-23,EC-00668,CUST-1494,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Website,New,104,2.0,0,5,213.0,Bank Transfer,No
+2026-02-09,EC-00669,CUST-1384,Bluetooth Speaker,SPKR-21,Electronics,North,Omar,Marketplace,Returning,25,45.0,0.05,4,1072.75,Cash on Delivery,Yes
+2025-11-01,EC-00670,CUST-1309,Smart Watch,WATC-30,Electronics,Beirut,Lina,Website,New,6,115.0,0,2.5,692.5,Bank Transfer,No
+2025-12-06,EC-00671,CUST-1053,Tablet Cover,TABCV-18,Mobile Accessories,South,Kareem,Website,New,61,9.0,0.1,4,498.1,Bank Transfer,No
+2026-02-07,EC-00672,CUST-1455,Smart Watch,WATC-30,Electronics,Mount Lebanon,Omar,Website,Returning,12,115.0,0.1,4,1246.0,Cash on Delivery,No
+2025-12-26,EC-00673,CUST-1170,Wireless Earbuds,EAR-15,Electronics,South,Maya,Instagram,Returning,9,62.0,0,5,563.0,Card,No
+2025-12-23,EC-00674,CUST-1427,Power Bank,PWR-20,Electronics,Gulf,Maya,Instagram,Returning,17,24.0,0.15,2.5,349.3,Cash on Delivery,No
+2025-12-28,EC-00675,CUST-1117,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Maya,Marketplace,Returning,188,3.0,0,4,568.0,Card,No
+2025-11-29,EC-00676,CUST-1460,Ring Light,RING-12,Creator Gear,North,Kareem,Website,New,5,32.0,0.1,4,148.0,Bank Transfer,No
+2025-11-03,EC-00677,CUST-1282,Phone Stand,STND-09,Mobile Accessories,Gulf,Tarek,Marketplace,Returning,209,5.0,0,2.5,1047.5,Wallet,No
+2026-02-08,EC-00678,CUST-1040,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Instagram,New,179,2.0,0.1,0,322.2,Wallet,No
+2026-01-22,EC-00679,CUST-1212,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Maya,Website,Returning,106,3.0,0,4,322.0,Cash on Delivery,No
+2026-02-24,EC-00680,CUST-1079,Phone Case,CASE-11,Mobile Accessories,South,Lina,Website,VIP,149,4.0,0.2,0,476.8,Card,No
+2026-02-18,EC-00681,CUST-1172,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Maya,Marketplace,Returning,49,9.0,0.2,0,352.8,Card,No
+2026-01-04,EC-00682,CUST-1047,Wireless Earbuds,EAR-15,Electronics,South,Kareem,Instagram,New,10,62.0,0,0,620.0,Wallet,No
+2025-11-23,EC-00683,CUST-1083,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Marketplace,VIP,248,4.0,0.1,0,892.8,Cash on Delivery,Yes
+2025-12-14,EC-00684,CUST-1405,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Jana,Website,VIP,251,3.0,0,4,757.0,Bank Transfer,No
+2025-11-14,EC-00685,CUST-1381,Wireless Earbuds,EAR-15,Electronics,South,Kareem,Website,New,11,62.0,0.05,0,647.9,Cash on Delivery,Yes
+2026-02-15,EC-00686,CUST-1018,Power Bank,PWR-20,Electronics,Gulf,Kareem,Instagram,New,13,24.0,0.1,2.5,283.3,Bank Transfer,No
+2025-11-25,EC-00687,CUST-1441,Screen Wipes,WIPE-03,Consumables,North,Tarek,WhatsApp,Returning,146,2.0,0.1,0,262.8,Bank Transfer,Yes
+2025-11-11,EC-00688,CUST-1415,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,Instagram,New,74,2.0,0.05,4,144.6,Card,No
+2026-02-09,EC-00689,CUST-1340,Smart Watch,WATC-30,Electronics,North,Lina,Instagram,New,1,115.0,0.15,0,97.75,Cash on Delivery,Yes
+2026-01-29,EC-00690,CUST-1157,Charging Cable,CABL-07,Mobile Accessories,North,Omar,Website,Returning,59,3.0,0.2,4,145.6,Wallet,No
+2025-12-23,EC-00691,CUST-1048,Screen Wipes,WIPE-03,Consumables,Gulf,Lina,Website,New,75,2.0,0.15,0,127.5,Wallet,No
+2026-02-07,EC-00692,CUST-1389,Phone Case,CASE-11,Mobile Accessories,Bekaa,Omar,Instagram,Returning,60,4.0,0,4,244.0,Card,No
+2026-02-12,EC-00693,CUST-1020,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Tarek,Instagram,VIP,30,45.0,0,5,1355.0,Wallet,No
+2026-02-26,EC-00694,CUST-1244,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Lina,Website,New,23,9.0,0,0,207.0,Card,No
+2025-12-31,EC-00695,CUST-1086,Wireless Earbuds,EAR-15,Electronics,North,Maya,Website,Returning,9,62.0,0.15,2.5,476.8,Cash on Delivery,No
+2026-01-23,EC-00696,CUST-1490,Tablet Cover,TABCV-18,Mobile Accessories,South,Maya,Instagram,New,42,9.0,0.1,2.5,342.7,Cash on Delivery,No
+2025-12-23,EC-00697,CUST-1108,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Instagram,Returning,88,2.0,0.05,2.5,169.7,Bank Transfer,No
+2025-11-25,EC-00698,CUST-1455,Smart Watch,WATC-30,Electronics,North,Omar,Website,Returning,10,115.0,0,2.5,1152.5,Card,No
+2026-01-30,EC-00699,CUST-1295,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Website,New,191,4.0,0,4,768.0,Cash on Delivery,No
+2026-02-13,EC-00700,CUST-1350,Power Bank,PWR-20,Electronics,Beirut,Tarek,Website,Returning,10,24.0,0.2,0,192.0,Bank Transfer,No
+2025-11-18,EC-00701,CUST-1174,Ring Light,RING-12,Creator Gear,Beirut,Maya,Instagram,Returning,25,32.0,0,0,800.0,Cash on Delivery,No
+2025-12-28,EC-00702,CUST-1103,Screen Wipes,WIPE-03,Consumables,South,Maya,Marketplace,New,145,2.0,0,4,294.0,Cash on Delivery,No
+2025-11-27,EC-00703,CUST-1129,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Marketplace,Returning,165,4.0,0.05,4,631.0,Card,No
+2025-12-26,EC-00704,CUST-1143,Phone Stand,STND-09,Mobile Accessories,Beirut,Maya,Marketplace,Returning,92,5.0,0,4,464.0,Cash on Delivery,No
+2025-12-25,EC-00705,CUST-1442,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Jana,Website,New,5,62.0,0.1,5,284.0,Wallet,No
+2026-02-16,EC-00706,CUST-1196,Phone Stand,STND-09,Mobile Accessories,North,Omar,Instagram,New,74,5.0,0,2.5,372.5,Cash on Delivery,No
+2026-01-10,EC-00707,CUST-1264,Phone Stand,STND-09,Mobile Accessories,Gulf,Maya,Website,New,105,5.0,0.1,4,476.5,Wallet,No
+2026-02-04,EC-00708,CUST-1270,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Website,New,102,4.0,0.1,2.5,369.7,Card,No
+2025-11-20,EC-00709,CUST-1375,Ring Light,RING-12,Creator Gear,North,Tarek,Marketplace,New,13,32.0,0,2.5,418.5,Wallet,No
+2026-02-01,EC-00710,CUST-1241,Wireless Earbuds,EAR-15,Electronics,Beirut,Lina,Instagram,Returning,11,62.0,0.15,4,583.7,Cash on Delivery,No
+2026-02-22,EC-00711,CUST-1287,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,Website,Returning,176,3.0,0,2.5,530.5,Card,No
+2026-01-28,EC-00712,CUST-1499,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Website,Returning,92,2.0,0.05,0,174.8,Bank Transfer,No
+2026-01-31,EC-00713,CUST-1143,Screen Wipes,WIPE-03,Consumables,South,Omar,Website,New,42,2.0,0.15,5,76.4,Bank Transfer,No
+2026-02-23,EC-00714,CUST-1352,Charging Cable,CABL-07,Mobile Accessories,North,Omar,Instagram,New,104,3.0,0.1,2.5,283.3,Wallet,No
+2026-01-09,EC-00715,CUST-1257,Charging Cable,CABL-07,Mobile Accessories,South,Tarek,Website,Returning,95,3.0,0.1,4,260.5,Cash on Delivery,No
+2026-02-27,EC-00716,CUST-1049,Power Bank,PWR-20,Electronics,Beirut,Tarek,Website,New,17,24.0,0.05,2.5,390.1,Card,No
+2026-01-25,EC-00717,CUST-1151,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,New,85,3.0,0,2.5,257.5,Bank Transfer,No
+2025-11-08,EC-00718,CUST-1221,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Omar,Website,Returning,9,45.0,0,4,409.0,Cash on Delivery,No
+2026-01-28,EC-00719,CUST-1391,Screen Wipes,WIPE-03,Consumables,Gulf,Kareem,Website,New,48,2.0,0.05,5,96.2,Cash on Delivery,No
+2025-11-28,EC-00720,CUST-1080,Screen Wipes,WIPE-03,Consumables,North,Kareem,Website,Returning,108,2.0,0.1,4,198.4,Cash on Delivery,No
+2025-12-28,EC-00721,CUST-1151,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Website,New,94,4.0,0.15,0,319.6,Bank Transfer,No
+2026-02-07,EC-00722,CUST-1202,Phone Stand,STND-09,Mobile Accessories,Gulf,Jana,Website,Returning,53,5.0,0,0,265.0,Cash on Delivery,No
+2025-11-07,EC-00723,CUST-1282,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Omar,Marketplace,New,52,5.0,0.05,0,247.0,Card,No
+2025-12-14,EC-00724,CUST-1105,Phone Stand,STND-09,Mobile Accessories,Beirut,Lina,Website,New,85,5.0,0,5,430.0,Cash on Delivery,No
+2026-02-11,EC-00725,CUST-1164,Wireless Earbuds,EAR-15,Electronics,South,Maya,Instagram,Returning,2,62.0,0.05,0,117.8,Bank Transfer,No
+2025-11-22,EC-00726,CUST-1370,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Lina,Website,Returning,3,45.0,0.1,0,121.5,Card,No
+2025-11-11,EC-00727,CUST-1457,Phone Case,CASE-11,Mobile Accessories,South,Tarek,Instagram,New,88,4.0,0.05,0,334.4,Wallet,No
+2025-11-08,EC-00728,CUST-1258,Wireless Earbuds,EAR-15,Electronics,South,Jana,Website,New,6,62.0,0,0,372.0,Wallet,No
+2026-02-05,EC-00729,CUST-1466,Charging Cable,CABL-07,Mobile Accessories,Beirut,Jana,Marketplace,Returning,187,3.0,0.05,4,536.95,Card,No
+2025-11-20,EC-00730,CUST-1022,Charging Cable,CABL-07,Mobile Accessories,South,Jana,Instagram,New,137,3.0,0.05,5,395.45,Card,No
+2025-11-01,EC-00731,CUST-1207,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Kareem,Website,New,14,45.0,0.1,4,571.0,Bank Transfer,No
+2026-01-12,EC-00732,CUST-1087,Screen Wipes,WIPE-03,Consumables,North,Lina,Instagram,VIP,168,2.0,0.1,4,306.4,Bank Transfer,No
+2026-02-02,EC-00733,CUST-1402,Screen Wipes,WIPE-03,Consumables,South,Tarek,Instagram,New,101,2.0,0,5,207.0,Card,No
+2026-02-07,EC-00734,CUST-1129,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Website,New,11,24.0,0.1,0,237.6,Card,No
+2026-02-22,EC-00735,CUST-1476,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Maya,Website,Returning,204,5.0,0,5,1025.0,Cash on Delivery,No
+2026-01-06,EC-00736,CUST-1204,Charging Cable,CABL-07,Mobile Accessories,South,Omar,Instagram,New,108,3.0,0,0,324.0,Wallet,No
+2026-02-01,EC-00737,CUST-1387,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Tarek,Marketplace,New,116,3.0,0,2.5,350.5,Cash on Delivery,No
+2025-12-18,EC-00738,CUST-1149,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Kareem,Website,New,11,45.0,0,0,495.0,Bank Transfer,No
+2025-11-21,EC-00739,CUST-1349,Phone Case,CASE-11,Mobile Accessories,South,Lina,Marketplace,New,143,4.0,0.1,4,518.8,Cash on Delivery,No
+2025-12-08,EC-00740,CUST-1262,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Tarek,Website,New,136,3.0,0,4,412.0,Card,No
+2026-02-07,EC-00741,CUST-1497,Charging Cable,CABL-07,Mobile Accessories,,Omar,Instagram,New,85,3.0,0.15,4,220.75,Cash on Delivery,No
+2025-12-30,EC-00742,CUST-1469,Power Bank,PWR-20,Electronics,South,Tarek,Marketplace,New,24,24.0,0.05,4,551.2,Cash on Delivery,No
+2025-11-27,EC-00743,CUST-1113,Ring Light,RING-12,Creator Gear,Bekaa,Omar,Marketplace,New,13,32.0,0.15,0,353.6,Cash on Delivery,No
+2026-02-12,EC-00744,CUST-1046,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,Instagram,New,71,2.0,0.05,2.5,137.4,Cash on Delivery,No
+2026-01-03,EC-00745,CUST-1470,Charging Cable,CABL-07,Mobile Accessories,North,Lina,WhatsApp,New,144,3.0,0.15,0,367.2,Bank Transfer,Yes
+2026-02-06,EC-00746,CUST-1094,Ring Light,RING-12,Creator Gear,Gulf,Maya,Instagram,New,16,32.0,0.1,0,460.8,Cash on Delivery,No
+2026-02-14,EC-00747,CUST-1193,Screen Wipes,WIPE-03,Consumables,Bekaa,Jana,Website,Returning,68,2.0,0.05,0,129.2,Wallet,No
+2025-12-31,EC-00748,CUST-1451,Power Bank,PWR-20,Electronics,Mount Lebanon,Tarek,Website,VIP,8,24.0,0.2,5,158.6,Cash on Delivery,No
+2025-12-21,EC-00749,CUST-1327,Phone Case,CASE-11,Mobile Accessories,Bekaa,Omar,Marketplace,New,194,4.0,0,0,776.0,Wallet,No
+2025-11-14,EC-00750,CUST-1417,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Instagram,New,46,5.0,0.05,5,223.5,Cash on Delivery,No
+2025-11-28,EC-00751,CUST-1018,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Website,New,13,24.0,0,0,312.0,Wallet,No
+2025-11-17,EC-00752,CUST-1479,Phone Stand,STND-09,Mobile Accessories,North,Tarek,Website,New,45,5.0,0.1,4,206.5,Bank Transfer,No
+2025-12-25,EC-00753,CUST-1483,Phone Case,CASE-11,Mobile Accessories,Bekaa,Maya,Instagram,New,72,4.0,0.05,0,273.6,Cash on Delivery,Yes
+2026-02-20,EC-00754,CUST-1350,Ring Light,RING-12,Creator Gear,Mount Lebanon,Omar,Website,New,22,32.0,0,0,704.0,Bank Transfer,No
+2025-11-10,EC-00755,CUST-1220,Phone Case,CASE-11,Mobile Accessories,South,Maya,WhatsApp,Returning,105,4.0,0.15,4,361.0,Cash on Delivery,No
+2025-12-26,EC-00756,CUST-1493,Power Bank,PWR-20,Electronics,Mount Lebanon,Kareem,Website,Returning,7,24.0,0.05,4,163.6,Card,No
+2025-11-15,EC-00757,CUST-1341,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Maya,Marketplace,VIP,111,3.0,0,2.5,335.5,Cash on Delivery,No
+2025-12-23,EC-00758,CUST-1009,Screen Wipes,WIPE-03,Consumables,Beirut,Lina,Instagram,New,66,2.0,0.1,5,123.8,Card,No
+2026-01-04,EC-00759,CUST-1231,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,New,186,4.0,0,0,744.0,Wallet,No
+2026-01-14,EC-00760,CUST-1336,Wireless Earbuds,EAR-15,Electronics,North,Jana,Marketplace,Returning,11,62.0,0.05,5,652.9,Wallet,No
+2026-02-15,EC-00761,CUST-1401,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Jana,Marketplace,Returning,156,5.0,0,4,784.0,Wallet,No
+2026-01-14,EC-00762,CUST-1405,Phone Case,CASE-11,Mobile Accessories,Gulf,Omar,Website,Returning,115,4.0,0,4,464.0,Cash on Delivery,No
+2025-11-23,EC-00763,CUST-1358,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Omar,Website,New,70,9.0,0,0,630.0,Card,No
+2026-01-11,EC-00764,CUST-1158,Phone Stand,STND-09,Mobile Accessories,North,Maya,Instagram,New,47,5.0,0.1,2.5,214.0,Cash on Delivery,No
+2026-01-06,EC-00765,CUST-1287,Power Bank,PWR-20,Electronics,North,Tarek,Instagram,New,10,24.0,0.15,2.5,206.5,Card,No
+2026-02-16,EC-00766,CUST-1289,Wireless Earbuds,EAR-15,Electronics,North,Maya,Marketplace,VIP,14,62.0,0,2.5,870.5,Bank Transfer,No
+2025-12-14,EC-00767,CUST-1047,Screen Wipes,WIPE-03,Consumables,Bekaa,Omar,Website,Returning,179,2.0,0.1,5,327.2,Bank Transfer,No
+2026-01-13,EC-00768,CUST-1425,Phone Case,CASE-11,Mobile Accessories,North,Maya,WhatsApp,New,183,4.0,0.05,5,700.4,Cash on Delivery,No
+2026-02-07,EC-00769,CUST-1204,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Jana,Website,VIP,88,3.0,0,2.5,266.5,Cash on Delivery,No
+2025-12-01,EC-00770,CUST-1114,Power Bank,PWR-20,Electronics,South,Jana,Website,VIP,4,24.0,0.15,2.5,84.1,Card,No
+2025-11-01,EC-00771,CUST-1390,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Jana,Website,VIP,6,45.0,0.2,0,216.0,Bank Transfer,No
+2026-01-04,EC-00772,CUST-1028,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Marketplace,New,46,3.0,0,0,138.0,Wallet,No
+2025-11-11,EC-00773,CUST-1486,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Tarek,Website,New,85,3.0,0.15,2.5,219.25,Bank Transfer,No
+2026-01-22,EC-00774,CUST-1306,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Website,Returning,109,4.0,0,5,441.0,Wallet,No
+2025-12-21,EC-00775,CUST-1284,Charging Cable,CABL-07,Mobile Accessories,South,,Marketplace,Returning,145,3.0,0.1,2.5,394.0,Card,No
+2026-02-04,EC-00776,CUST-1134,Tablet Cover,TABCV-18,Mobile Accessories,South,Kareem,WhatsApp,VIP,44,9.0,0.05,0,376.2,Card,No
+2025-12-21,EC-00777,CUST-1488,Tablet Cover,TABCV-18,Mobile Accessories,South,Lina,Website,New,40,9.0,0.05,0,342.0,Wallet,Yes
+2025-12-16,EC-00778,CUST-1104,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Lina,WhatsApp,New,17,45.0,0.05,0,726.75,Cash on Delivery,No
+2026-01-26,EC-00779,CUST-1253,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,Website,New,148,2.0,0,4,300.0,Wallet,No
+2025-12-19,EC-00780,CUST-1086,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Marketplace,Returning,118,2.0,0,0,236.0,Wallet,No
+2025-11-07,EC-00781,CUST-1104,Screen Wipes,WIPE-03,Consumables,North,Jana,Website,Returning,150,2.0,0,0,300.0,Wallet,No
+2026-02-15,EC-00782,CUST-1038,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Maya,WhatsApp,VIP,209,2.0,0.1,2.5,378.7,Card,No
+2026-02-15,EC-00783,CUST-1476,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Marketplace,Returning,86,3.0,0,2.5,260.5,Bank Transfer,No
+2025-11-22,EC-00784,CUST-1118,Power Bank,PWR-20,Electronics,North,Kareem,Marketplace,Returning,17,24.0,0,5,413.0,Cash on Delivery,No
+2026-02-21,EC-00785,CUST-1011,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Jana,Marketplace,New,47,2.0,0,5,99.0,Bank Transfer,Yes
+2026-02-09,EC-00786,CUST-1480,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Tarek,Website,Returning,6,45.0,0.05,0,256.5,Bank Transfer,No
+2025-12-01,EC-00787,CUST-1430,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Omar,Marketplace,New,15,9.0,0,2.5,137.5,Cash on Delivery,No
+2025-11-24,EC-00788,CUST-1171,Charging Cable,CABL-07,Mobile Accessories,North,Tarek,Website,VIP,266,3.0,0.15,4,682.3,Bank Transfer,No
+2026-02-28,EC-00789,CUST-1292,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,Website,New,206,2.0,0.1,2.5,373.3,Cash on Delivery,No
+2025-12-12,EC-00790,CUST-1319,Power Bank,PWR-20,Electronics,Gulf,Jana,WhatsApp,Returning,20,24.0,0.1,4,436.0,Wallet,No
+2026-02-09,EC-00791,CUST-1277,Phone Stand,STND-09,Mobile Accessories,Beirut,Omar,Website,VIP,155,5.0,0.1,2.5,700.0,Bank Transfer,No
+2026-02-01,EC-00792,CUST-1312,Power Bank,PWR-20,Electronics,South,Jana,WhatsApp,Returning,12,24.0,0.15,4,248.8,Card,No
+2026-01-22,EC-00793,CUST-1472,Screen Wipes,WIPE-03,Consumables,North,Tarek,Instagram,New,49,2.0,0.1,5,93.2,Cash on Delivery,No
+2025-12-01,EC-00794,CUST-1399,Tablet Cover,TABCV-18,Mobile Accessories,North,Kareem,Instagram,Returning,38,9.0,0,5,347.0,Card,No
+2026-01-18,EC-00795,CUST-1367,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Kareem,Instagram,Returning,138,2.0,0.05,5,267.2,Cash on Delivery,No
+2026-02-16,EC-00796,CUST-1000,Smart Watch,WATC-30,Electronics,North,Jana,Website,VIP,1,115.0,0.1,4,107.5,Bank Transfer,No
+2026-01-22,EC-00797,CUST-1199,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Omar,Website,Returning,47,3.0,0.1,4,130.9,Bank Transfer,No
+2026-02-02,EC-00798,CUST-1175,Power Bank,PWR-20,Electronics,South,Jana,Website,Returning,8,24.0,0,2.5,194.5,Wallet,No
+2025-12-05,EC-00799,CUST-1126,Charging Cable,CABL-07,Mobile Accessories,Gulf,Kareem,Instagram,New,75,3.0,0,4,229.0,Cash on Delivery,No
+2026-01-27,EC-00800,CUST-1461,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Lina,Marketplace,Returning,96,5.0,0.15,2.5,410.5,Card,No
+2025-12-14,EC-00801,CUST-1483,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Marketplace,New,176,4.0,0.1,5,638.6,Wallet,No
+2025-12-20,EC-00802,CUST-1440,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,WhatsApp,New,217,3.0,0,4,655.0,Card,No
+2026-01-11,EC-00803,CUST-1164,Bluetooth Speaker,SPKR-21,Electronics,North,Maya,WhatsApp,New,11,45.0,0.2,4,400.0,Bank Transfer,No
+2026-02-07,EC-00804,CUST-1057,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Omar,Website,New,22,45.0,0,0,990.0,Bank Transfer,No
+2026-01-16,EC-00805,CUST-1186,Phone Stand,STND-09,Mobile Accessories,Beirut,Jana,Marketplace,New,100,5.0,0,0,500.0,Cash on Delivery,No
+2025-12-21,EC-00806,CUST-1453,Charging Cable,CABL-07,Mobile Accessories,North,Kareem,Website,Returning,91,3.0,0,2.5,275.5,Cash on Delivery,No
+2026-02-13,EC-00807,CUST-1317,Phone Case,CASE-11,Mobile Accessories,South,Jana,Website,Returning,154,4.0,0.15,0,523.6,Wallet,No
+2026-02-17,EC-00808,CUST-1196,Screen Wipes,WIPE-03,Consumables,Bekaa,Maya,Website,Returning,62,2.0,0,4,128.0,Card,No
+2026-01-29,EC-00809,CUST-1432,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Instagram,Returning,18,24.0,0,4,436.0,Wallet,No
+2025-12-22,EC-00810,CUST-1298,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,Instagram,VIP,186,3.0,0,4,562.0,Bank Transfer,No
+2026-02-10,EC-00811,CUST-1457,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Lina,Website,New,8,62.0,0.1,4,450.4,Wallet,Yes
+2026-01-09,EC-00812,CUST-1065,Power Bank,PWR-20,Electronics,South,Kareem,WhatsApp,Returning,13,24.0,0.1,4,284.8,Wallet,No
+2026-01-18,EC-00813,CUST-1021,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Tarek,Website,New,32,9.0,0.15,0,244.8,Cash on Delivery,No
+2026-02-11,EC-00814,CUST-1444,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Jana,Instagram,New,100,3.0,0,0,300.0,Wallet,No
+2025-11-09,EC-00815,CUST-1145,Charging Cable,CABL-07,Mobile Accessories,North,Kareem,Website,New,202,3.0,0.05,2.5,578.2,Wallet,No
+2025-12-07,EC-00816,CUST-1353,Smart Watch,WATC-30,Electronics,Mount Lebanon,Kareem,Website,Returning,12,115.0,0.05,5,1316.0,Cash on Delivery,Yes
+2025-12-25,EC-00817,CUST-1433,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Marketplace,New,145,4.0,0,0,580.0,Cash on Delivery,No
+2026-02-26,EC-00818,CUST-1097,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Instagram,Returning,84,4.0,0.1,0,302.4,Card,No
+2025-11-17,EC-00819,CUST-1266,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Website,New,63,3.0,0,0,189.0,Cash on Delivery,No
+2025-12-24,EC-00820,CUST-1361,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Instagram,New,176,3.0,0,5,533.0,Card,No
+2026-01-25,EC-00821,CUST-1194,Phone Stand,STND-09,Mobile Accessories,South,Lina,Instagram,New,132,5.0,0.05,4,631.0,Cash on Delivery,No
+2026-02-19,EC-00822,CUST-1283,Power Bank,PWR-20,Electronics,Beirut,Omar,Instagram,New,24,24.0,0.1,5,523.4,Cash on Delivery,No
+2026-02-02,EC-00823,CUST-1110,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,VIP,256,2.0,0.05,0,486.4,Cash on Delivery,No
+2025-12-27,EC-00824,CUST-1489,Wireless Earbuds,EAR-15,Electronics,South,Jana,Marketplace,VIP,1,62.0,0,2.5,64.5,Cash on Delivery,No
+2026-02-03,EC-00825,CUST-1120,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Marketplace,Returning,208,4.0,0.15,0,707.2,Cash on Delivery,No
+2025-12-01,EC-00826,CUST-1062,Tablet Cover,TABCV-18,Mobile Accessories,North,Lina,Marketplace,New,41,9.0,0,4,373.0,Bank Transfer,No
+2026-02-01,EC-00827,CUST-1133,Power Bank,PWR-20,Electronics,South,Kareem,Website,Returning,12,24.0,0,0,288.0,Wallet,No
+2026-01-13,EC-00828,CUST-1292,Wireless Earbuds,EAR-15,Electronics,South,Jana,Marketplace,New,8,62.0,0.05,5,476.2,Cash on Delivery,No
+2025-12-27,EC-00829,CUST-1362,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,Returning,174,2.0,0.15,0,295.8,Wallet,No
+2025-11-18,EC-00830,CUST-1186,Power Bank,PWR-20,Electronics,Mount Lebanon,Jana,Website,New,24,24.0,0.1,0,518.4,Bank Transfer,No
+2026-02-02,EC-00831,CUST-1481,Wireless Earbuds,EAR-15,Electronics,Bekaa,Jana,Website,New,1,62.0,0,5,67.0,Bank Transfer,No
+2026-01-06,EC-00832,CUST-1326,Phone Stand,STND-09,Mobile Accessories,Bekaa,Kareem,Website,New,220,5.0,0.15,4,939.0,Bank Transfer,No
+2026-02-27,EC-00833,CUST-1417,Screen Wipes,WIPE-03,Consumables,Bekaa,Maya,Website,New,117,2.0,0,5,239.0,Wallet,No
+2025-11-15,EC-00834,CUST-1076,Phone Stand,STND-09,Mobile Accessories,North,Omar,WhatsApp,Returning,186,5.0,0.15,0,790.5,Cash on Delivery,No
+2026-02-08,EC-00835,CUST-1376,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Tarek,Website,New,53,9.0,0,4,481.0,Cash on Delivery,No
+2025-11-08,EC-00836,CUST-1495,Power Bank,PWR-20,Electronics,Beirut,Maya,Instagram,VIP,6,24.0,0,5,149.0,Card,No
+2025-11-19,EC-00837,CUST-1385,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Website,New,70,4.0,0.15,5,243.0,Cash on Delivery,No
+2025-11-07,EC-00838,CUST-1316,Screen Wipes,WIPE-03,Consumables,South,Tarek,Website,New,143,2.0,0,2.5,288.5,Card,No
+2025-12-28,EC-00839,CUST-1292,Screen Wipes,WIPE-03,Consumables,North,Tarek,WhatsApp,Returning,103,2.0,0,2.5,208.5,Cash on Delivery,No
+2025-12-26,EC-00840,CUST-1401,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Marketplace,New,210,4.0,0.1,0,756.0,Wallet,No
+2025-11-23,EC-00841,CUST-1167,Screen Wipes,WIPE-03,Consumables,North,Jana,Marketplace,Returning,75,2.0,0.15,0,127.5,Cash on Delivery,No
+2025-11-20,EC-00842,CUST-1429,Power Bank,PWR-20,Electronics,North,Maya,Marketplace,Returning,25,24.0,0.15,4,514.0,Card,No
+2026-02-12,EC-00843,CUST-1397,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Omar,Marketplace,Returning,6,62.0,0,5,377.0,Card,No
+2025-11-30,EC-00844,CUST-1390,Ring Light,RING-12,Creator Gear,Beirut,Lina,Website,VIP,25,32.0,0,4,804.0,Cash on Delivery,No
+2025-11-28,EC-00845,CUST-1216,Smart Watch,WATC-30,Electronics,Beirut,Maya,Marketplace,Returning,1,115.0,0,5,120.0,Card,Yes
+2025-12-17,EC-00846,CUST-1493,Power Bank,PWR-20,Electronics,,Jana,Instagram,New,22,24.0,0.05,5,506.6,Card,No
+2025-12-26,EC-00847,CUST-1133,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Website,New,112,4.0,0.05,0,425.6,Cash on Delivery,No
+2026-02-14,EC-00848,CUST-1315,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Maya,Website,Returning,51,9.0,0,0,459.0,Wallet,No
+2026-02-25,EC-00849,CUST-1189,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Jana,WhatsApp,Returning,62,9.0,0.05,4,534.1,Bank Transfer,No
+2026-01-15,EC-00850,CUST-1414,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Lina,Website,Returning,10,45.0,0,0,450.0,Wallet,No
+2025-12-30,EC-00851,CUST-1466,Phone Case,CASE-11,Mobile Accessories,Beirut,Jana,Website,New,171,4.0,0,2.5,686.5,Bank Transfer,No
+2026-01-10,EC-00852,CUST-1264,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Marketplace,New,81,3.0,0.05,0,230.85,Card,No
+2026-02-12,EC-00853,CUST-1100,Bluetooth Speaker,SPKR-21,Electronics,North,Maya,Website,New,6,45.0,0.2,0,216.0,Card,No
+2025-12-23,EC-00854,CUST-1271,Phone Stand,STND-09,Mobile Accessories,Beirut,Kareem,Marketplace,New,52,5.0,0.1,4,238.0,Wallet,No
+2026-01-02,EC-00855,CUST-1440,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Omar,Website,New,44,3.0,0.05,2.5,127.9,Wallet,No
+2025-12-28,EC-00856,CUST-1411,Phone Case,CASE-11,Mobile Accessories,North,Lina,Instagram,New,183,4.0,0,2.5,734.5,Cash on Delivery,Yes
+2026-01-17,EC-00857,CUST-1299,Phone Case,CASE-11,Mobile Accessories,Bekaa,Kareem,WhatsApp,Returning,140,4.0,0.05,2.5,534.5,Card,No
+2026-01-07,EC-00858,CUST-1494,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Website,New,108,3.0,0,5,329.0,Wallet,No
+2026-01-20,EC-00859,CUST-1383,Power Bank,PWR-20,Electronics,South,,Website,Returning,24,24.0,0.05,4,551.2,Wallet,No
+2026-01-14,EC-00860,CUST-1161,Charging Cable,CABL-07,Mobile Accessories,South,Jana,Website,Returning,219,3.0,0.15,4,562.45,Cash on Delivery,No
+2026-01-25,EC-00861,CUST-1306,Ring Light,RING-12,Creator Gear,Beirut,Omar,Website,Returning,19,32.0,0,4,612.0,Bank Transfer,No
+2026-02-27,EC-00862,CUST-1416,Tablet Cover,TABCV-18,Mobile Accessories,South,Jana,WhatsApp,Returning,23,9.0,0,5,212.0,Bank Transfer,No
+2025-12-19,EC-00863,CUST-1025,Power Bank,PWR-20,Electronics,South,Maya,Website,New,6,24.0,0,5,149.0,Bank Transfer,No
+2026-01-01,EC-00864,CUST-1466,Power Bank,PWR-20,Electronics,Beirut,Omar,Marketplace,New,9,24.0,0.1,4,198.4,Card,No
+2026-01-18,EC-00865,CUST-1239,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Marketplace,New,150,4.0,0.15,2.5,512.5,Card,No
+2026-01-05,EC-00866,CUST-1338,Phone Stand,STND-09,Mobile Accessories,Gulf,Omar,Website,New,80,5.0,0.1,0,360.0,Wallet,No
+2025-11-13,EC-00867,CUST-1459,Smart Watch,WATC-30,Electronics,Gulf,Jana,WhatsApp,Returning,4,115.0,0,5,465.0,Card,No
+2025-11-11,EC-00868,CUST-1435,Ring Light,RING-12,Creator Gear,Gulf,Tarek,Marketplace,New,21,32.0,0.2,0,537.6,Card,No
+2026-01-09,EC-00869,CUST-1377,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Lina,Instagram,New,30,9.0,0.05,4,260.5,Cash on Delivery,No
+2026-01-13,EC-00870,CUST-1023,Ring Light,RING-12,Creator Gear,Gulf,Lina,Website,New,8,32.0,0,0,256.0,Bank Transfer,No
+2025-12-31,EC-00871,CUST-1331,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Omar,Marketplace,New,61,4.0,0,5,249.0,Card,No
+2026-02-28,EC-00872,CUST-1258,Screen Wipes,WIPE-03,Consumables,Bekaa,Tarek,Marketplace,New,82,2.0,0.05,5,160.8,Cash on Delivery,No
+2025-12-30,EC-00873,CUST-1117,Bluetooth Speaker,SPKR-21,Electronics,North,Tarek,WhatsApp,New,23,45.0,0,0,1035.0,Card,No
+2025-12-04,EC-00874,CUST-1145,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Jana,Website,New,20,9.0,0.05,2.5,173.5,Cash on Delivery,No
+2025-12-13,EC-00875,CUST-1327,Bluetooth Speaker,SPKR-21,Electronics,North,Kareem,Instagram,Returning,24,45.0,0.1,5,977.0,Card,No
+2026-02-22,EC-00876,CUST-1219,Power Bank,PWR-20,Electronics,North,Tarek,Website,Returning,15,24.0,0.05,4,346.0,Card,Yes
+2025-12-05,EC-00877,CUST-1477,Phone Stand,STND-09,Mobile Accessories,North,Maya,Website,New,126,5.0,0,2.5,632.5,Wallet,No
+2026-01-14,EC-00878,CUST-1204,Wireless Earbuds,EAR-15,Electronics,Bekaa,Kareem,Website,Returning,1,62.0,0.05,2.5,61.4,Cash on Delivery,No
+2026-01-18,EC-00879,CUST-1319,Screen Wipes,WIPE-03,Consumables,North,Lina,Website,New,174,2.0,0.05,0,330.6,Card,No
+2025-11-12,EC-00880,CUST-1447,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Instagram,Returning,103,3.0,0,2.5,311.5,Cash on Delivery,Yes
+2026-01-31,EC-00881,CUST-1130,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Marketplace,VIP,159,4.0,0,2.5,638.5,Wallet,No
+2026-01-11,EC-00882,CUST-1063,Phone Stand,STND-09,Mobile Accessories,North,Tarek,Website,New,111,5.0,0.1,5,504.5,Card,No
+2025-12-25,EC-00883,CUST-1379,Phone Case,CASE-11,Mobile Accessories,Beirut,Omar,Marketplace,New,185,4.0,0,0,740.0,Bank Transfer,No
+2026-02-23,EC-00884,CUST-1236,Tablet Cover,TABCV-18,Mobile Accessories,South,Jana,Website,New,20,9.0,0.05,0,171.0,Cash on Delivery,No
+2025-11-13,EC-00885,CUST-1320,Charging Cable,CABL-07,Mobile Accessories,North,Kareem,Instagram,VIP,121,3.0,0.15,2.5,311.05,Bank Transfer,No
+2025-12-04,EC-00886,CUST-1281,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Jana,Instagram,VIP,272,5.0,0.2,5,1093.0,Bank Transfer,No
+2025-12-10,EC-00887,CUST-1411,Tablet Cover,TABCV-18,Mobile Accessories,North,Lina,Marketplace,Returning,56,9.0,0,4,508.0,Card,Yes
+2025-11-15,EC-00888,CUST-1475,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,Marketplace,New,215,2.0,0.1,4,391.0,Bank Transfer,No
+2026-02-22,EC-00889,CUST-1160,Bluetooth Speaker,SPKR-21,Electronics,North,Maya,Instagram,New,4,45.0,0,5,185.0,Cash on Delivery,No
+2025-12-23,EC-00890,CUST-1025,Ring Light,RING-12,Creator Gear,Mount Lebanon,Maya,Instagram,New,14,32.0,0.05,5,430.6,Card,No
+2026-01-16,EC-00891,CUST-1192,Power Bank,PWR-20,Electronics,Mount Lebanon,Omar,Website,VIP,14,24.0,0,4,340.0,Wallet,No
+2026-02-09,EC-00892,CUST-1007,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Jana,Website,New,21,9.0,0,5,194.0,Wallet,No
+2025-12-11,EC-00893,CUST-1493,Phone Case,CASE-11,Mobile Accessories,North,Kareem,Website,VIP,232,4.0,0.05,4,885.6,Cash on Delivery,No
+2025-11-25,EC-00894,CUST-1401,Wireless Earbuds,EAR-15,Electronics,Bekaa,Maya,Website,New,6,62.0,0,5,377.0,Cash on Delivery,No
+2026-02-18,EC-00895,CUST-1027,Power Bank,PWR-20,Electronics,South,Lina,Marketplace,New,15,24.0,0.05,4,346.0,Card,No
+2026-01-28,EC-00896,CUST-1451,Tablet Cover,TABCV-18,Mobile Accessories,North,Omar,Website,New,38,9.0,0.2,5,278.6,Bank Transfer,No
+2026-01-28,EC-00897,CUST-1363,Power Bank,PWR-20,Electronics,North,Omar,Marketplace,Returning,15,24.0,0,0,360.0,Card,No
+2025-11-12,EC-00898,CUST-1463,Phone Case,CASE-11,Mobile Accessories,Gulf,Jana,Marketplace,New,172,4.0,0.05,0,653.6,Card,No
+2025-11-14,EC-00899,CUST-1304,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Kareem,Instagram,New,183,5.0,0,0,915.0,Wallet,No
+2025-12-27,EC-00900,CUST-1217,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Lina,Website,VIP,84,9.0,0.1,2.5,682.9,Card,No
+2025-11-19,EC-00901,CUST-1301,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Maya,Website,New,18,45.0,0,5,815.0,Bank Transfer,No
+2026-02-19,EC-00902,CUST-1089,Wireless Earbuds,EAR-15,Electronics,Beirut,Jana,Website,Returning,3,62.0,0,4,190.0,Wallet,Yes
+2025-11-17,EC-00903,CUST-1346,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,Instagram,Returning,132,2.0,0.1,4,241.6,Bank Transfer,No
+2025-12-03,EC-00904,CUST-1483,Charging Cable,CABL-07,Mobile Accessories,North,Tarek,Instagram,Returning,90,3.0,0.15,0,229.5,Cash on Delivery,No
+2025-11-20,EC-00905,CUST-1461,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Lina,Marketplace,Returning,77,9.0,0.1,0,623.7,Bank Transfer,No
+2026-02-06,EC-00906,CUST-1284,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Tarek,Instagram,Returning,165,3.0,0,2.5,497.5,Bank Transfer,No
+2026-01-27,EC-00907,CUST-1198,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,Website,New,178,3.0,0,0,534.0,Cash on Delivery,No
+2026-02-14,EC-00908,CUST-1457,Screen Wipes,WIPE-03,Consumables,North,Tarek,Website,New,98,2.0,0,2.5,198.5,Cash on Delivery,No
+2025-12-13,EC-00909,CUST-1366,Smart Watch,WATC-30,Electronics,Bekaa,Maya,Website,VIP,15,115.0,0.1,0,1552.5,Bank Transfer,No
+2025-12-27,EC-00910,CUST-1489,Phone Stand,STND-09,Mobile Accessories,North,Maya,Marketplace,New,84,5.0,0,4,424.0,Wallet,No
+2025-12-04,EC-00911,CUST-1111,Charging Cable,CABL-07,Mobile Accessories,Beirut,Jana,Website,Returning,132,3.0,0.1,5,361.4,Bank Transfer,No
+2026-01-30,EC-00912,CUST-1063,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Marketplace,Returning,12,62.0,0.1,2.5,672.1,Cash on Delivery,No
+2026-01-08,EC-00913,CUST-1270,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Tarek,Website,Returning,138,5.0,0.1,5,626.0,Cash on Delivery,Yes
+2026-02-22,EC-00914,CUST-1053,Tablet Cover,TABCV-18,Mobile Accessories,South,Maya,Website,VIP,95,9.0,0.05,2.5,814.75,Wallet,No
+2026-02-16,EC-00915,CUST-1089,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Website,Returning,193,4.0,0.05,5,738.4,Wallet,No
+2025-11-17,EC-00916,CUST-1057,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Tarek,Website,New,45,9.0,0,0,405.0,Bank Transfer,No
+2025-11-04,EC-00917,CUST-1062,Phone Case,CASE-11,Mobile Accessories,Bekaa,Jana,Website,New,171,4.0,0.15,2.5,583.9,Card,No
+2026-02-13,EC-00918,CUST-1058,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,New,217,2.0,0.05,5,417.3,Card,No
+2026-02-25,EC-00919,CUST-1280,Screen Wipes,WIPE-03,Consumables,Bekaa,Jana,Marketplace,Returning,213,2.0,0.05,5,409.7,Card,No
+2026-02-13,EC-00920,CUST-1332,Charging Cable,CABL-07,Mobile Accessories,North,Maya,Website,VIP,125,3.0,0.15,4,322.75,Cash on Delivery,No
+2026-01-22,EC-00921,CUST-1209,Ring Light,RING-12,Creator Gear,Mount Lebanon,Maya,Marketplace,New,20,32.0,0.1,2.5,578.5,Wallet,No
+2026-02-15,EC-00922,CUST-1001,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Maya,Website,Returning,3,45.0,0.05,5,133.25,Wallet,No
+2026-02-13,EC-00923,CUST-1497,Wireless Earbuds,EAR-15,Electronics,Gulf,Tarek,Instagram,New,2,62.0,0,0,124.0,Bank Transfer,No
+2025-12-25,EC-00924,CUST-1000,Charging Cable,CABL-07,Mobile Accessories,Beirut,Tarek,Website,New,62,3.0,0.1,2.5,169.9,Bank Transfer,Yes
+2026-01-09,EC-00925,CUST-1287,Phone Case,CASE-11,Mobile Accessories,North,Jana,Website,Returning,50,4.0,0.05,0,190.0,Cash on Delivery,No
+2025-12-26,EC-00926,CUST-1310,Phone Case,CASE-11,Mobile Accessories,Beirut,Jana,Website,Returning,185,4.0,0.05,5,708.0,Bank Transfer,No
+2026-02-09,EC-00927,CUST-1349,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Instagram,Returning,202,2.0,0.05,5,388.8,Bank Transfer,No
+2026-02-09,EC-00928,CUST-1459,Power Bank,PWR-20,Electronics,North,Lina,Marketplace,New,14,24.0,0.05,0,319.2,Bank Transfer,No
+2025-11-03,EC-00929,CUST-1493,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Maya,WhatsApp,New,25,45.0,0.1,4,1016.5,Cash on Delivery,No
+2025-12-19,EC-00930,CUST-1401,Screen Wipes,WIPE-03,Consumables,Gulf,Jana,Marketplace,Returning,186,2.0,0,2.5,374.5,Bank Transfer,Yes
+2025-12-17,EC-00931,CUST-1197,Phone Case,CASE-11,Mobile Accessories,North,Maya,Instagram,New,220,4.0,0,2.5,882.5,Cash on Delivery,No
+2026-02-09,EC-00932,CUST-1223,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Tarek,Instagram,New,195,2.0,0.1,5,356.0,Wallet,Yes
+2025-11-23,EC-00933,CUST-1187,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Website,Returning,155,3.0,0,4,469.0,Wallet,No
+2026-02-26,EC-00934,CUST-1295,Screen Wipes,WIPE-03,Consumables,Bekaa,Lina,Marketplace,New,51,2.0,0,2.5,104.5,Cash on Delivery,No
+2025-11-17,EC-00935,CUST-1360,Smart Watch,WATC-30,Electronics,North,Maya,Marketplace,New,12,115.0,0,5,1385.0,Wallet,No
+2025-12-23,EC-00936,CUST-1312,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,New,160,3.0,0.2,2.5,386.5,Wallet,No
+2026-02-22,EC-00937,CUST-1134,Bluetooth Speaker,SPKR-21,Electronics,South,Maya,Website,New,23,45.0,0.2,2.5,830.5,Bank Transfer,No
+2025-12-01,EC-00938,CUST-1179,Screen Wipes,WIPE-03,Consumables,Gulf,Maya,Website,VIP,169,2.0,0,0,338.0,Card,No
+2025-11-12,EC-00939,CUST-1218,Screen Wipes,WIPE-03,Consumables,North,Maya,Instagram,Returning,67,2.0,0.2,0,107.2,Card,No
+2026-02-04,EC-00940,CUST-1016,Tablet Cover,TABCV-18,Mobile Accessories,South,Omar,WhatsApp,Returning,71,9.0,0,2.5,641.5,Bank Transfer,No
+2025-11-10,EC-00941,CUST-1293,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Tarek,Website,VIP,6,62.0,0.15,0,316.2,Wallet,No
+2026-01-11,EC-00942,CUST-1293,Bluetooth Speaker,SPKR-21,Electronics,South,Omar,Marketplace,New,21,45.0,0.05,5,902.75,Cash on Delivery,No
+2026-02-19,EC-00943,CUST-1406,Smart Watch,WATC-30,Electronics,North,Jana,Website,VIP,2,115.0,0,0,230.0,Cash on Delivery,Yes
+2025-12-31,EC-00944,CUST-1180,Charging Cable,CABL-07,Mobile Accessories,North,Jana,Website,VIP,72,3.0,0,4,220.0,Bank Transfer,No
+2025-11-29,EC-00945,CUST-1470,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Lina,Website,VIP,18,45.0,0.05,2.5,772.0,Cash on Delivery,No
+2025-12-24,EC-00946,CUST-1128,Phone Stand,STND-09,Mobile Accessories,North,Lina,WhatsApp,New,149,5.0,0.05,2.5,710.25,Wallet,Yes
+2026-02-28,EC-00947,CUST-1070,Phone Stand,STND-09,Mobile Accessories,Beirut,Lina,WhatsApp,New,98,5.0,0,4,494.0,Card,No
+2025-12-13,EC-00948,CUST-1186,Phone Case,CASE-11,Mobile Accessories,North,Kareem,WhatsApp,Returning,140,4.0,0,4,564.0,Bank Transfer,No
+2025-11-21,EC-00949,CUST-1252,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Instagram,Returning,125,3.0,0.15,4,322.75,Wallet,No
+2026-02-02,EC-00950,CUST-1481,Screen Wipes,WIPE-03,Consumables,Gulf,Maya,Marketplace,New,61,2.0,0.2,5,102.6,Bank Transfer,No
+2025-11-13,EC-00951,CUST-1090,Power Bank,PWR-20,Electronics,South,Omar,Website,New,17,24.0,0.1,0,367.2,Cash on Delivery,No
+2026-01-21,EC-00952,CUST-1000,Screen Wipes,WIPE-03,Consumables,South,Lina,WhatsApp,New,108,2.0,0.1,0,194.4,Card,No
+2026-01-25,EC-00953,CUST-1440,Screen Wipes,WIPE-03,Consumables,North,Lina,Marketplace,VIP,164,2.0,0.15,0,278.8,Bank Transfer,No
+2026-02-06,EC-00954,CUST-1335,Wireless Earbuds,EAR-15,Electronics,Gulf,Maya,Website,New,12,62.0,0.15,4,636.4,Wallet,Yes
+2025-12-27,EC-00955,CUST-1432,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Website,New,18,24.0,0,5,437.0,Cash on Delivery,No
+2025-12-30,EC-00956,CUST-1424,Power Bank,PWR-20,Electronics,Beirut,Lina,Marketplace,Returning,14,24.0,0.1,2.5,304.9,Card,No
+2025-11-07,EC-00957,CUST-1178,Screen Wipes,WIPE-03,Consumables,,Tarek,Instagram,VIP,54,2.0,0,0,108.0,Cash on Delivery,No
+2025-11-05,EC-00958,CUST-1465,Tablet Cover,TABCV-18,Mobile Accessories,North,Jana,Instagram,VIP,64,9.0,0,4,580.0,Card,No
+2025-11-29,EC-00959,CUST-1351,Ring Light,RING-12,Creator Gear,North,Jana,Instagram,New,20,32.0,0,2.5,642.5,Wallet,No
+2025-11-19,EC-00960,CUST-1203,Screen Wipes,WIPE-03,Consumables,North,Maya,Website,VIP,231,2.0,0.2,0,369.6,Bank Transfer,No
+2026-02-25,EC-00961,CUST-1256,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Maya,Instagram,Returning,76,9.0,0,2.5,686.5,Wallet,Yes
+2026-01-28,EC-00962,CUST-1010,Bluetooth Speaker,SPKR-21,Electronics,South,Omar,Marketplace,Returning,12,45.0,0,4,544.0,Card,No
+2025-12-21,EC-00963,CUST-1108,Phone Stand,STND-09,Mobile Accessories,North,Omar,Website,New,81,5.0,0.05,0,384.75,Bank Transfer,No
+2025-12-11,EC-00964,CUST-1338,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Omar,Website,New,105,3.0,0,0,315.0,Cash on Delivery,No
+2025-11-29,EC-00965,CUST-1023,Wireless Earbuds,EAR-15,Electronics,North,Maya,Website,Returning,1,62.0,0.05,5,63.9,Wallet,No
+2025-12-02,EC-00966,CUST-1059,Screen Wipes,WIPE-03,Consumables,South,Jana,Instagram,New,104,2.0,0,2.5,210.5,Card,No
+2025-12-20,EC-00967,CUST-1448,Phone Case,CASE-11,Mobile Accessories,Beirut,Omar,Instagram,New,213,4.0,0,5,857.0,Bank Transfer,No
+2025-12-12,EC-00968,CUST-1488,Smart Watch,WATC-30,Electronics,Bekaa,Maya,Website,Returning,7,115.0,0,5,810.0,Cash on Delivery,No
+2025-12-24,EC-00969,CUST-1236,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Maya,Marketplace,New,14,45.0,0,2.5,632.5,Bank Transfer,No
+2026-02-22,EC-00970,CUST-1281,Screen Wipes,WIPE-03,Consumables,,Maya,WhatsApp,New,128,2.0,0.15,2.5,220.1,Card,No
+2025-11-24,EC-00971,CUST-1268,Charging Cable,CABL-07,Mobile Accessories,South,Omar,Website,Returning,209,3.0,0,4,631.0,Card,No
+2026-01-06,EC-00972,CUST-1108,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Marketplace,Returning,16,24.0,0,0,384.0,Wallet,No
+2025-12-13,EC-00973,CUST-1353,Phone Stand,STND-09,Mobile Accessories,Beirut,Jana,Marketplace,Returning,158,5.0,0.1,5,716.0,Card,No
+2025-12-19,EC-00974,CUST-1192,Phone Stand,STND-09,Mobile Accessories,Beirut,Maya,Marketplace,Returning,100,5.0,0.05,2.5,477.5,Cash on Delivery,No
+2026-01-05,EC-00975,CUST-1070,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Omar,Marketplace,New,54,9.0,0.15,0,413.1,Cash on Delivery,Yes
+2026-02-01,EC-00976,CUST-1484,Wireless Earbuds,EAR-15,Electronics,Beirut,Maya,Website,New,5,62.0,0.05,2.5,297.0,Cash on Delivery,No
+2025-11-08,EC-00977,CUST-1498,Charging Cable,CABL-07,Mobile Accessories,Beirut,Kareem,WhatsApp,Returning,73,3.0,0.15,0,186.15,Wallet,No
+2026-01-13,EC-00978,CUST-1141,Power Bank,PWR-20,Electronics,Beirut,Maya,Marketplace,Returning,3,24.0,0,2.5,74.5,Cash on Delivery,Yes
+2025-11-29,EC-00979,CUST-1367,Smart Watch,WATC-30,Electronics,Beirut,Kareem,Instagram,Returning,3,115.0,0.1,0,310.5,Cash on Delivery,No
+2025-11-06,EC-00980,CUST-1349,Tablet Cover,TABCV-18,Mobile Accessories,South,Jana,Website,New,21,9.0,0,5,194.0,Card,No
+2025-12-15,EC-00981,CUST-1036,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Kareem,Instagram,New,21,45.0,0,2.5,947.5,Card,No
+2026-01-23,EC-00982,CUST-1020,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Kareem,Marketplace,Returning,58,3.0,0.05,5,170.3,Cash on Delivery,No
+2026-01-14,EC-00983,CUST-1198,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Maya,WhatsApp,New,4,62.0,0.15,4,214.8,Bank Transfer,No
+2025-11-21,EC-00984,CUST-1453,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,WhatsApp,New,43,2.0,0.05,4,85.7,Wallet,No
+2026-02-16,EC-00985,CUST-1043,Phone Case,CASE-11,Mobile Accessories,Gulf,Kareem,Instagram,Returning,50,4.0,0,5,205.0,Bank Transfer,No
+2025-12-17,EC-00986,CUST-1200,Phone Case,CASE-11,Mobile Accessories,North,Lina,Marketplace,Returning,116,4.0,0.1,5,422.6,Cash on Delivery,Yes
+2026-01-27,EC-00987,CUST-1097,Charging Cable,CABL-07,Mobile Accessories,South,Tarek,Website,New,42,3.0,0,5,131.0,Cash on Delivery,No
+2026-02-17,EC-00988,CUST-1470,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Website,VIP,131,3.0,0,5,398.0,Wallet,No
+2026-01-23,EC-00989,CUST-1252,Phone Stand,STND-09,Mobile Accessories,North,Tarek,Website,Returning,171,5.0,0.05,0,812.25,Card,No
+2026-02-03,EC-00990,CUST-1102,Power Bank,PWR-20,Electronics,North,,Website,New,25,24.0,0,5,605.0,Wallet,No
+2026-02-12,EC-00991,CUST-1120,Charging Cable,CABL-07,Mobile Accessories,Beirut,Lina,WhatsApp,VIP,109,3.0,0.15,0,277.95,Cash on Delivery,No
+2025-12-02,EC-00992,CUST-1270,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Marketplace,New,60,3.0,0.1,4,166.0,Bank Transfer,No
+2025-12-22,EC-00993,CUST-1407,Screen Wipes,WIPE-03,Consumables,Gulf,Lina,Website,New,139,2.0,0.15,4,240.3,Bank Transfer,No
+2025-12-22,EC-00994,CUST-1122,Power Bank,PWR-20,Electronics,Bekaa,Lina,Marketplace,VIP,29,24.0,0,2.5,698.5,Bank Transfer,No
+2025-12-18,EC-00995,CUST-1032,Power Bank,PWR-20,Electronics,Gulf,Lina,Website,VIP,28,24.0,0.1,5,609.8,Bank Transfer,Yes
+2025-11-27,EC-00996,CUST-1417,Tablet Cover,TABCV-18,Mobile Accessories,Beirut,Omar,Website,New,16,9.0,0.05,4,140.8,Wallet,No
+2025-11-24,EC-00997,CUST-1436,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Lina,Marketplace,New,7,62.0,0,5,439.0,Cash on Delivery,No
+2025-11-02,EC-00998,CUST-1062,Phone Stand,STND-09,Mobile Accessories,Gulf,Omar,Website,Returning,190,5.0,0.2,4,764.0,Wallet,No
+2025-11-07,EC-00999,CUST-1162,Ring Light,RING-12,Creator Gear,Gulf,Tarek,Instagram,New,8,32.0,0.2,0,204.8,Wallet,No
+2025-11-28,EC-01000,CUST-1330,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Jana,Website,Returning,17,45.0,0,0,765.0,Card,No
+2026-01-03,EC-01001,CUST-1477,Ring Light,RING-12,Creator Gear,Bekaa,Omar,Website,New,14,32.0,0.1,5,408.2,Wallet,No
+2025-12-11,EC-01002,CUST-1432,Screen Wipes,WIPE-03,Consumables,North,Tarek,Website,VIP,188,2.0,0.15,5,324.6,Bank Transfer,No
+2025-11-07,EC-01003,CUST-1448,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,Marketplace,VIP,266,2.0,0,5,537.0,Cash on Delivery,No
+2025-11-29,EC-01004,CUST-1057,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Omar,Instagram,New,56,9.0,0,2.5,506.5,Wallet,No
+2026-02-25,EC-01005,CUST-1479,Screen Wipes,WIPE-03,Consumables,Bekaa,Tarek,Marketplace,Returning,152,2.0,0.15,0,258.4,Wallet,No
+2025-12-12,EC-01006,CUST-1033,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Website,VIP,22,24.0,0.15,2.5,451.3,Wallet,No
+2025-11-24,EC-01007,CUST-1111,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Omar,Website,New,117,4.0,0,0,468.0,Bank Transfer,No
+2026-01-07,EC-01008,CUST-1179,Wireless Earbuds,EAR-15,Electronics,South,Kareem,WhatsApp,VIP,5,62.0,0,5,315.0,Cash on Delivery,No
+2026-01-06,EC-01009,CUST-1176,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Website,Returning,10,62.0,0.1,5,563.0,Cash on Delivery,No
+2026-02-01,EC-01010,CUST-1315,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Marketplace,VIP,96,4.0,0,5,389.0,Cash on Delivery,No
+2026-02-23,EC-01011,CUST-1115,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Maya,Website,Returning,216,5.0,0.1,2.5,974.5,Cash on Delivery,No
+2025-11-30,EC-01012,CUST-1095,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,WhatsApp,New,63,4.0,0.15,5,219.2,Bank Transfer,No
+2026-01-17,EC-01013,CUST-1063,Phone Stand,STND-09,Mobile Accessories,Gulf,Jana,Marketplace,Returning,91,5.0,0,0,455.0,Cash on Delivery,No
+2025-12-21,EC-01014,CUST-1493,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Jana,Website,VIP,266,2.0,0.05,2.5,507.9,Bank Transfer,No
+2026-01-25,EC-01015,CUST-1226,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Tarek,Marketplace,Returning,5,62.0,0.1,5,284.0,Wallet,No
+2025-11-17,EC-01016,CUST-1386,Screen Wipes,WIPE-03,Consumables,Gulf,Omar,WhatsApp,VIP,95,2.0,0.2,0,152.0,Wallet,No
+2025-12-03,EC-01017,CUST-1490,Ring Light,RING-12,Creator Gear,North,Tarek,Marketplace,Returning,25,32.0,0.1,2.5,722.5,Wallet,No
+2025-12-22,EC-01018,CUST-1459,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,WhatsApp,New,135,2.0,0.1,5,248.0,Bank Transfer,No
+2026-02-19,EC-01019,CUST-1423,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Website,New,7,62.0,0.1,5,395.6,Cash on Delivery,No
+2025-11-01,EC-01020,CUST-1337,Phone Stand,STND-09,Mobile Accessories,North,Jana,WhatsApp,Returning,207,5.0,0.05,2.5,985.75,Card,No
+2025-11-29,EC-01021,CUST-1197,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Website,Returning,11,62.0,0,5,687.0,Card,No
+2025-12-11,EC-01022,CUST-1219,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Maya,Website,New,5,45.0,0.1,0,202.5,Wallet,No
+2025-11-10,EC-01023,CUST-1192,Screen Wipes,WIPE-03,Consumables,South,Tarek,Website,New,44,2.0,0.05,0,83.6,Cash on Delivery,No
+2026-01-15,EC-01024,CUST-1222,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Marketplace,New,40,4.0,0.1,0,144.0,Cash on Delivery,No
+2026-01-25,EC-01025,CUST-1103,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Tarek,Instagram,New,209,2.0,0,4,422.0,Cash on Delivery,No
+2026-02-05,EC-01026,CUST-1267,Bluetooth Speaker,SPKR-21,Electronics,,Jana,Website,Returning,23,45.0,0.05,0,983.25,Bank Transfer,No
+2025-11-28,EC-01027,CUST-1014,Screen Wipes,WIPE-03,Consumables,North,Kareem,Website,Returning,87,2.0,0,5,179.0,Bank Transfer,No
+2025-12-14,EC-01028,CUST-1350,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Jana,Instagram,Returning,16,45.0,0,2.5,722.5,Wallet,Yes
+2025-11-26,EC-01029,CUST-1063,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Website,New,171,2.0,0.1,4,311.8,Cash on Delivery,No
+2025-11-06,EC-01030,CUST-1288,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Marketplace,Returning,164,2.0,0.1,4,299.2,Bank Transfer,Yes
+2026-02-11,EC-01031,CUST-1390,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Website,New,74,9.0,0,4,670.0,Bank Transfer,No
+2026-01-03,EC-01032,CUST-1177,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Jana,Instagram,New,62,4.0,0,2.5,250.5,Bank Transfer,No
+2026-01-28,EC-01033,CUST-1019,Ring Light,RING-12,Creator Gear,Beirut,Lina,Website,New,14,32.0,0,2.5,450.5,Bank Transfer,No
+2025-12-05,EC-01034,CUST-1356,Power Bank,PWR-20,Electronics,Mount Lebanon,Kareem,Website,New,23,24.0,0.05,4,528.4,Bank Transfer,No
+2025-11-29,EC-01035,CUST-1082,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Instagram,Returning,85,4.0,0,0,340.0,Bank Transfer,No
+2025-12-23,EC-01036,CUST-1178,Bluetooth Speaker,SPKR-21,Electronics,North,Omar,WhatsApp,Returning,22,45.0,0,4,994.0,Wallet,No
+2025-12-23,EC-01037,CUST-1402,Power Bank,PWR-20,Electronics,Beirut,Lina,Marketplace,Returning,12,24.0,0.1,4,263.2,Card,No
+2026-02-10,EC-01038,CUST-1483,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Kareem,Instagram,Returning,46,9.0,0.1,2.5,375.1,Wallet,No
+2025-12-06,EC-01039,CUST-1024,Power Bank,PWR-20,Electronics,North,Jana,Marketplace,Returning,11,24.0,0,2.5,266.5,Wallet,No
+2026-01-04,EC-01040,CUST-1080,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Kareem,Marketplace,New,187,4.0,0.1,4,677.2,Card,No
+2025-11-02,EC-01041,CUST-1154,Ring Light,RING-12,Creator Gear,South,Kareem,Website,Returning,6,32.0,0.15,0,163.2,Wallet,No
+2025-11-25,EC-01042,CUST-1005,Charging Cable,CABL-07,Mobile Accessories,South,Kareem,Website,New,189,3.0,0,2.5,569.5,Card,No
+2025-12-09,EC-01043,CUST-1072,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Website,New,196,3.0,0,0,588.0,Wallet,No
+2025-11-14,EC-01044,CUST-1298,Screen Wipes,WIPE-03,Consumables,Beirut,Tarek,Marketplace,New,140,2.0,0.15,5,243.0,Wallet,No
+2026-01-20,EC-01045,CUST-1133,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Maya,Instagram,New,5,45.0,0.15,2.5,193.75,Wallet,Yes
+2026-01-10,EC-01046,CUST-1104,Charging Cable,CABL-07,Mobile Accessories,,Lina,Website,New,58,3.0,0,4,178.0,Wallet,No
+2026-02-22,EC-01047,CUST-1149,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Omar,WhatsApp,Returning,48,3.0,0.15,2.5,124.9,Cash on Delivery,No
+2025-12-04,EC-01048,CUST-1276,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Maya,Website,Returning,188,4.0,0,5,757.0,Card,No
+2025-11-05,EC-01049,CUST-1298,Phone Stand,STND-09,Mobile Accessories,Gulf,Tarek,Website,Returning,76,5.0,0.05,4,365.0,Card,No
+2025-11-20,EC-01050,CUST-1019,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Marketplace,New,51,9.0,0,4,463.0,Wallet,No
+2025-11-27,EC-01051,CUST-1286,Smart Watch,WATC-30,Electronics,Beirut,Omar,Instagram,Returning,6,115.0,0.2,2.5,554.5,Wallet,No
+2025-12-25,EC-01052,CUST-1078,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Marketplace,Returning,80,4.0,0,2.5,322.5,Cash on Delivery,No
+2025-11-02,EC-01053,CUST-1101,Screen Wipes,WIPE-03,Consumables,Beirut,Kareem,Instagram,New,92,2.0,0.15,2.5,158.9,Wallet,No
+2025-12-23,EC-01054,CUST-1218,Phone Stand,STND-09,Mobile Accessories,Beirut,Tarek,Website,VIP,195,5.0,0,0,975.0,Cash on Delivery,No
+2026-02-08,EC-01055,CUST-1040,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Lina,Website,Returning,84,5.0,0,4,424.0,Cash on Delivery,No
+2026-02-25,EC-01056,CUST-1276,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Lina,Marketplace,New,47,3.0,0,2.5,143.5,Wallet,No
+2025-12-29,EC-01057,CUST-1338,Screen Wipes,WIPE-03,Consumables,Gulf,Jana,Marketplace,Returning,44,2.0,0,2.5,90.5,Cash on Delivery,Yes
+2025-12-08,EC-01058,CUST-1490,Screen Wipes,WIPE-03,Consumables,North,Kareem,Marketplace,Returning,106,2.0,0.1,5,195.8,Card,No
+2026-02-15,EC-01059,CUST-1025,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Tarek,Instagram,Returning,67,9.0,0,2.5,605.5,Bank Transfer,No
+2025-12-17,EC-01060,CUST-1162,Power Bank,PWR-20,Electronics,Beirut,Kareem,Website,Returning,23,24.0,0,0,552.0,Card,No
+2026-02-11,EC-01061,CUST-1248,Ring Light,RING-12,Creator Gear,South,Lina,Website,Returning,12,32.0,0.1,2.5,348.1,Cash on Delivery,Yes
+2026-01-20,EC-01062,CUST-1234,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Maya,Marketplace,New,61,3.0,0,0,183.0,Card,No
+2025-12-01,EC-01063,CUST-1025,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Jana,Website,VIP,28,45.0,0,0,1260.0,Bank Transfer,No
+2025-12-08,EC-01064,CUST-1091,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Omar,Instagram,New,21,45.0,0.2,4,760.0,Wallet,No
+2026-02-03,EC-01065,CUST-1285,Tablet Cover,TABCV-18,Mobile Accessories,South,Kareem,Website,New,78,9.0,0.2,4,565.6,Bank Transfer,No
+2025-11-24,EC-01066,CUST-1133,Charging Cable,CABL-07,Mobile Accessories,North,Lina,Website,New,85,3.0,0,4,259.0,Bank Transfer,No
+2026-02-17,EC-01067,CUST-1226,Ring Light,RING-12,Creator Gear,Gulf,Tarek,Marketplace,Returning,9,32.0,0,4,292.0,Card,No
+2025-12-10,EC-01068,CUST-1005,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Jana,Instagram,VIP,54,5.0,0,0,270.0,Wallet,No
+2026-01-18,EC-01069,CUST-1319,Bluetooth Speaker,SPKR-21,Electronics,South,Tarek,Website,Returning,13,45.0,0,5,590.0,Cash on Delivery,No
+2025-12-21,EC-01070,CUST-1471,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Omar,WhatsApp,Returning,121,4.0,0,4,488.0,Bank Transfer,No
+2025-12-31,EC-01071,CUST-1072,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Instagram,New,60,4.0,0.15,4,208.0,Cash on Delivery,No
+2025-11-04,EC-01072,CUST-1077,Power Bank,PWR-20,Electronics,Mount Lebanon,Omar,Website,New,5,24.0,0,5,125.0,Wallet,No
+2025-12-11,EC-01073,CUST-1088,Wireless Earbuds,EAR-15,Electronics,South,Kareem,Website,New,11,62.0,0.1,2.5,616.3,Wallet,No
+2026-01-25,EC-01074,CUST-1282,Wireless Earbuds,EAR-15,Electronics,Beirut,Kareem,Website,New,5,62.0,0.05,0,294.5,Wallet,No
+2025-11-13,EC-01075,CUST-1080,Charging Cable,CABL-07,Mobile Accessories,South,Omar,Marketplace,Returning,50,3.0,0,2.5,152.5,Card,No
+2026-02-13,EC-01076,CUST-1466,Power Bank,PWR-20,Electronics,Beirut,Omar,Website,Returning,5,24.0,0,4,124.0,Card,No
+2026-01-31,EC-01077,CUST-1298,Phone Case,CASE-11,Mobile Accessories,Beirut,Kareem,Instagram,Returning,142,4.0,0,0,568.0,Card,No
+2026-01-07,EC-01078,CUST-1198,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Maya,Website,VIP,92,4.0,0.15,0,312.8,Cash on Delivery,No
+2026-01-12,EC-01079,CUST-1491,Tablet Cover,TABCV-18,Mobile Accessories,Gulf,Kareem,Website,Returning,46,9.0,0.15,4,355.9,Bank Transfer,No
+2026-01-21,EC-01080,CUST-1337,Phone Case,CASE-11,Mobile Accessories,Gulf,Kareem,Marketplace,Returning,70,4.0,0.05,2.5,268.5,Cash on Delivery,No
+2025-11-15,EC-01081,CUST-1023,Power Bank,PWR-20,Electronics,South,Kareem,Marketplace,New,9,24.0,0,4,220.0,Wallet,No
+2025-11-21,EC-01082,CUST-1441,Power Bank,PWR-20,Electronics,Mount Lebanon,Maya,Website,New,19,24.0,0.15,0,387.6,Bank Transfer,No
+2025-11-20,EC-01083,CUST-1263,Smart Watch,WATC-30,Electronics,North,Jana,Instagram,Returning,10,115.0,0.1,0,1035.0,Cash on Delivery,No
+2025-11-15,EC-01084,CUST-1031,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Omar,Marketplace,New,3,45.0,0.1,2.5,124.0,Card,No
+2025-12-15,EC-01085,CUST-1023,Tablet Cover,TABCV-18,Mobile Accessories,South,Jana,Website,Returning,39,9.0,0.15,0,298.35,Wallet,No
+2026-02-12,EC-01086,CUST-1431,Charging Cable,CABL-07,Mobile Accessories,Beirut,Jana,Marketplace,Returning,40,3.0,0.15,2.5,104.5,Cash on Delivery,No
+2026-01-24,EC-01087,CUST-1477,Wireless Earbuds,EAR-15,Electronics,South,Maya,Website,New,12,62.0,0.05,5,711.8,Cash on Delivery,No
+2026-02-18,EC-01088,CUST-1247,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Omar,Marketplace,New,138,3.0,0.1,2.5,375.1,Bank Transfer,No
+2026-02-24,EC-01089,CUST-1232,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Tarek,Website,Returning,9,62.0,0.15,5,479.3,Card,No
+2025-12-02,EC-01090,CUST-1115,Phone Case,CASE-11,Mobile Accessories,North,Maya,Website,New,79,4.0,0.1,2.5,286.9,Cash on Delivery,No
+2025-11-13,EC-01091,CUST-1166,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Tarek,WhatsApp,New,8,45.0,0.05,0,342.0,Card,No
+2025-12-22,EC-01092,CUST-1460,Ring Light,RING-12,Creator Gear,Mount Lebanon,Kareem,Website,New,23,32.0,0.1,2.5,664.9,Card,No
+2026-02-18,EC-01093,CUST-1257,Power Bank,PWR-20,Electronics,Beirut,Maya,Instagram,New,17,24.0,0.2,0,326.4,Card,No
+2025-12-16,EC-01094,CUST-1345,Ring Light,RING-12,Creator Gear,North,Jana,Instagram,Returning,12,32.0,0,5,389.0,Card,No
+2026-01-31,EC-01095,CUST-1181,Smart Watch,WATC-30,Electronics,Beirut,Kareem,Website,Returning,7,115.0,0.05,2.5,767.25,Card,No
+2025-11-18,EC-01096,CUST-1343,Phone Case,CASE-11,Mobile Accessories,Beirut,Jana,Instagram,Returning,81,4.0,0,2.5,326.5,Bank Transfer,No
+2026-01-20,EC-01097,CUST-1073,Power Bank,PWR-20,Electronics,South,Tarek,Website,New,22,24.0,0,4,532.0,Bank Transfer,No
+2025-12-25,EC-01098,CUST-1304,Power Bank,PWR-20,Electronics,Gulf,Maya,Marketplace,Returning,15,24.0,0.05,0,342.0,Bank Transfer,No
+2025-12-10,EC-01099,CUST-1260,Bluetooth Speaker,SPKR-21,Electronics,Mount Lebanon,Jana,Website,Returning,21,45.0,0,4,949.0,Cash on Delivery,No
+2026-02-11,EC-01100,CUST-1375,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,Website,New,12,24.0,0.15,4,248.8,Card,No
+2025-12-19,EC-01101,CUST-1167,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Maya,Website,New,194,3.0,0,5,587.0,Cash on Delivery,No
+2025-11-16,EC-01102,CUST-1461,Smart Watch,WATC-30,Electronics,Gulf,Omar,Website,VIP,1,115.0,0,4,119.0,Card,No
+2025-11-03,EC-01103,CUST-1276,Smart Watch,WATC-30,Electronics,Beirut,Jana,Marketplace,New,2,115.0,0.1,0,207.0,Cash on Delivery,No
+2026-02-20,EC-01104,CUST-1437,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Kareem,Website,Returning,20,45.0,0,5,905.0,Card,No
+2026-01-10,EC-01105,CUST-1108,Phone Case,CASE-11,Mobile Accessories,Gulf,Omar,Website,VIP,192,4.0,0.1,0,691.2,Card,No
+2026-01-26,EC-01106,CUST-1495,Phone Case,CASE-11,Mobile Accessories,North,Tarek,Website,Returning,192,4.0,0,2.5,770.5,Wallet,No
+2025-12-20,EC-01107,CUST-1291,Charging Cable,CABL-07,Mobile Accessories,Mount Lebanon,Jana,Website,New,178,3.0,0.1,4,484.6,Card,No
+2026-01-04,EC-01108,CUST-1323,Wireless Earbuds,EAR-15,Electronics,Gulf,Maya,Marketplace,Returning,3,62.0,0,0,186.0,Cash on Delivery,No
+2025-12-25,EC-01109,CUST-1304,Phone Case,CASE-11,Mobile Accessories,South,Maya,Website,VIP,146,4.0,0.2,4,471.2,Card,No
+2025-12-21,EC-01110,CUST-1403,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Kareem,Instagram,VIP,169,5.0,0,0,845.0,Cash on Delivery,No
+2025-11-15,EC-01111,CUST-1437,Phone Case,CASE-11,Mobile Accessories,North,Jana,Website,New,120,4.0,0.15,2.5,410.5,Cash on Delivery,No
+2025-11-16,EC-01112,CUST-1157,Power Bank,PWR-20,Electronics,North,Omar,WhatsApp,Returning,12,24.0,0.05,0,273.6,Bank Transfer,No
+2026-02-24,EC-01113,CUST-1434,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Tarek,Marketplace,New,97,4.0,0.05,4,372.6,Cash on Delivery,No
+2026-01-08,EC-01114,CUST-1441,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,WhatsApp,New,129,3.0,0,2.5,389.5,Card,No
+2025-11-01,EC-01115,CUST-1398,Wireless Earbuds,EAR-15,Electronics,North,Tarek,Website,New,2,62.0,0.15,5,110.4,Cash on Delivery,No
+2026-01-21,EC-01116,CUST-1364,Ring Light,RING-12,Creator Gear,Mount Lebanon,Kareem,Marketplace,Returning,20,32.0,0.1,4,580.0,Wallet,No
+2026-01-10,EC-01117,CUST-1059,Phone Case,CASE-11,Mobile Accessories,Beirut,Tarek,Website,Returning,128,4.0,0,4,516.0,Wallet,No
+2026-01-02,EC-01118,CUST-1306,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Website,VIP,219,4.0,0.15,0,744.6,Card,No
+2025-12-04,EC-01119,CUST-1447,Phone Case,CASE-11,Mobile Accessories,North,Kareem,Website,New,94,4.0,0,2.5,378.5,Wallet,No
+2025-11-15,EC-01120,CUST-1461,Smart Watch,WATC-30,Electronics,Bekaa,Maya,Website,New,10,115.0,0.05,4,1096.5,Cash on Delivery,No
+2025-11-05,EC-01121,CUST-1035,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Jana,Website,New,175,4.0,0,0,700.0,Cash on Delivery,No
+2025-12-01,EC-01122,CUST-1285,Smart Watch,WATC-30,Electronics,Mount Lebanon,,WhatsApp,New,1,115.0,0.05,2.5,111.75,Card,No
+2025-12-16,EC-01123,CUST-1160,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Kareem,Website,New,9,62.0,0.05,4,534.1,Cash on Delivery,No
+2025-11-16,EC-01124,CUST-1401,Phone Case,CASE-11,Mobile Accessories,North,Lina,Marketplace,New,123,4.0,0.1,5,447.8,Card,No
+2025-11-13,EC-01125,CUST-1376,Phone Stand,STND-09,Mobile Accessories,Bekaa,Lina,Website,New,114,5.0,0,5,575.0,Bank Transfer,No
+2025-12-27,EC-01126,CUST-1202,Wireless Earbuds,EAR-15,Electronics,Gulf,Jana,Marketplace,Returning,2,62.0,0.2,2.5,101.7,Cash on Delivery,No
+2026-01-15,EC-01127,CUST-1057,Power Bank,PWR-20,Electronics,Beirut,Kareem,Instagram,New,13,24.0,0,0,312.0,Card,No
+2026-01-08,EC-01128,CUST-1360,Power Bank,PWR-20,Electronics,North,Omar,Instagram,Returning,10,24.0,0.15,4,208.0,Card,No
+2026-01-09,EC-01129,CUST-1480,Power Bank,PWR-20,Electronics,Mount Lebanon,Lina,WhatsApp,New,12,24.0,0,4,292.0,Bank Transfer,No
+2026-01-14,EC-01130,CUST-1064,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Marketplace,VIP,155,4.0,0.05,4,593.0,Card,No
+2026-02-16,EC-01131,CUST-1153,Power Bank,PWR-20,Electronics,Beirut,Maya,Website,Returning,20,24.0,0.05,0,456.0,Cash on Delivery,No
+2026-01-21,EC-01132,CUST-1415,Power Bank,PWR-20,Electronics,Bekaa,Maya,Instagram,VIP,26,24.0,0.05,4,596.8,Card,No
+2026-02-10,EC-01133,CUST-1371,Charging Cable,CABL-07,Mobile Accessories,Gulf,Kareem,Instagram,Returning,173,3.0,0.2,0,415.2,Cash on Delivery,No
+2026-01-21,EC-01134,CUST-1251,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Lina,Marketplace,Returning,69,2.0,0.1,2.5,126.7,Card,No
+2025-12-06,EC-01135,CUST-1227,Ring Light,RING-12,Creator Gear,North,Maya,Marketplace,New,22,32.0,0.1,2.5,636.1,Bank Transfer,No
+2026-01-13,EC-01136,CUST-1424,Screen Wipes,WIPE-03,Consumables,North,Jana,Marketplace,VIP,236,2.0,0,4,476.0,Wallet,No
+2026-02-04,EC-01137,CUST-1010,Phone Stand,STND-09,Mobile Accessories,South,Tarek,Instagram,Returning,211,5.0,0,2.5,1057.5,Card,No
+2025-11-16,EC-01138,CUST-1330,Power Bank,PWR-20,Electronics,South,Maya,Website,VIP,25,24.0,0,5,605.0,Wallet,No
+2025-12-15,EC-01139,CUST-1367,Screen Wipes,WIPE-03,Consumables,South,Maya,Instagram,Returning,123,2.0,0.15,0,209.1,Card,No
+2025-11-06,EC-01140,CUST-1407,Charging Cable,CABL-07,Mobile Accessories,Beirut,Omar,Website,Returning,92,3.0,0,4,280.0,Bank Transfer,Yes
+2025-11-27,EC-01141,CUST-1107,Phone Case,CASE-11,Mobile Accessories,North,Kareem,Website,Returning,170,4.0,0.1,5,617.0,Wallet,No
+2025-12-01,EC-01142,CUST-1126,Wireless Earbuds,EAR-15,Electronics,Beirut,Maya,Instagram,Returning,7,62.0,0,4,438.0,Card,No
+2026-01-23,EC-01143,CUST-1148,Phone Case,CASE-11,Mobile Accessories,North,Kareem,Website,New,87,4.0,0,0,348.0,Cash on Delivery,No
+2025-12-21,EC-01144,CUST-1437,Ring Light,RING-12,Creator Gear,Mount Lebanon,Tarek,Website,New,10,32.0,0.05,2.5,306.5,Cash on Delivery,No
+2026-01-09,EC-01145,CUST-1130,Power Bank,PWR-20,Electronics,Gulf,Tarek,Website,New,10,24.0,0,0,240.0,Wallet,No
+2025-11-09,EC-01146,CUST-1104,Wireless Earbuds,EAR-15,Electronics,South,Maya,Website,New,12,62.0,0.05,4,710.8,Wallet,No
+2026-01-08,EC-01147,CUST-1286,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Lina,Website,New,62,9.0,0.2,0,446.4,Card,No
+2025-11-18,EC-01148,CUST-1132,Phone Stand,STND-09,Mobile Accessories,Beirut,Lina,Website,New,148,5.0,0,0,740.0,Wallet,No
+2025-12-29,EC-01149,CUST-1205,Screen Wipes,WIPE-03,Consumables,South,Omar,Instagram,Returning,45,2.0,0.05,0,85.5,Wallet,No
+2026-01-28,EC-01150,CUST-1390,Wireless Earbuds,EAR-15,Electronics,Gulf,Jana,Instagram,Returning,1,62.0,0.05,2.5,61.4,Wallet,No
+2026-01-18,EC-01151,CUST-1457,Phone Stand,STND-09,Mobile Accessories,South,Lina,Marketplace,New,220,5.0,0,4,1104.0,Bank Transfer,No
+2025-11-18,EC-01152,CUST-1387,Smart Watch,WATC-30,Electronics,Beirut,Lina,Marketplace,New,7,115.0,0.1,0,724.5,Bank Transfer,No
+2026-02-16,EC-01153,CUST-1105,Smart Watch,WATC-30,Electronics,Beirut,Tarek,Marketplace,New,5,115.0,0.2,0,460.0,Bank Transfer,No
+2025-12-27,EC-01154,CUST-1424,Power Bank,PWR-20,Electronics,North,Jana,Website,New,15,24.0,0,5,365.0,Wallet,No
+2025-11-13,EC-01155,CUST-1095,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Instagram,New,129,3.0,0,5,392.0,Cash on Delivery,Yes
+2025-12-21,EC-01156,CUST-1119,Screen Wipes,WIPE-03,Consumables,Beirut,Omar,WhatsApp,VIP,71,2.0,0.1,2.5,130.3,Card,No
+2026-01-18,EC-01157,CUST-1253,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Kareem,Instagram,New,111,2.0,0,0,222.0,Wallet,No
+2025-11-13,EC-01158,CUST-1365,Power Bank,PWR-20,Electronics,Beirut,Lina,WhatsApp,New,20,24.0,0.1,0,432.0,Wallet,No
+2025-11-13,EC-01159,CUST-1199,Ring Light,RING-12,Creator Gear,,Omar,Marketplace,Returning,17,32.0,0,5,549.0,Wallet,No
+2026-02-19,EC-01160,CUST-1007,Tablet Cover,TABCV-18,Mobile Accessories,North,Omar,Website,New,78,9.0,0.15,2.5,599.2,Wallet,No
+2026-02-15,EC-01161,CUST-1220,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Omar,Website,New,21,9.0,0,4,193.0,Card,No
+2026-01-28,EC-01162,CUST-1077,Phone Case,CASE-11,Mobile Accessories,Beirut,Maya,Website,New,217,4.0,0.1,0,781.2,Card,Yes
+2025-11-05,EC-01163,CUST-1490,Power Bank,PWR-20,Electronics,South,Omar,Website,Returning,7,24.0,0,4,172.0,Card,No
+2025-11-02,EC-01164,CUST-1236,Phone Case,CASE-11,Mobile Accessories,Mount Lebanon,Lina,Website,New,102,4.0,0,0,408.0,Cash on Delivery,No
+2026-01-18,EC-01165,CUST-1380,Phone Stand,STND-09,Mobile Accessories,Beirut,Maya,Marketplace,New,63,5.0,0,5,320.0,Bank Transfer,No
+2026-02-22,EC-01166,CUST-1405,Screen Wipes,WIPE-03,Consumables,North,Omar,Website,New,104,2.0,0,4,212.0,Card,No
+2026-01-03,EC-01167,CUST-1074,Screen Wipes,WIPE-03,Consumables,Beirut,Maya,Instagram,New,105,2.0,0,5,215.0,Cash on Delivery,No
+2026-02-06,EC-01168,CUST-1109,Charging Cable,CABL-07,Mobile Accessories,Bekaa,Omar,Website,New,205,3.0,0,2.5,617.5,Wallet,No
+2026-02-05,EC-01169,CUST-1242,Screen Wipes,WIPE-03,Consumables,Gulf,Tarek,Marketplace,Returning,118,2.0,0.1,5,217.4,Cash on Delivery,No
+2025-12-19,EC-01170,CUST-1040,Power Bank,PWR-20,Electronics,Beirut,Omar,Website,Returning,13,24.0,0,2.5,314.5,Bank Transfer,No
+2026-01-17,EC-01171,CUST-1179,Wireless Earbuds,EAR-15,Electronics,South,Maya,WhatsApp,Returning,5,62.0,0.2,4,252.0,Card,No
+2025-12-19,EC-01172,CUST-1220,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,Marketplace,New,177,2.0,0.05,0,336.3,Bank Transfer,No
+2026-02-05,EC-01173,CUST-1237,Bluetooth Speaker,SPKR-21,Electronics,South,Jana,Marketplace,New,20,45.0,0.05,5,860.0,Bank Transfer,No
+2025-11-08,EC-01174,CUST-1285,Tablet Cover,TABCV-18,Mobile Accessories,Mount Lebanon,Lina,Website,New,80,9.0,0.1,5,653.0,Card,No
+2026-01-12,EC-01175,CUST-1292,Screen Wipes,WIPE-03,Consumables,Beirut,Lina,Instagram,Returning,61,2.0,0.05,0,115.9,Cash on Delivery,No
+2025-12-21,EC-01176,CUST-1138,Power Bank,PWR-20,Electronics,South,Omar,Marketplace,Returning,10,24.0,0,4,244.0,Bank Transfer,No
+2025-11-06,EC-01177,CUST-1004,Phone Stand,STND-09,Mobile Accessories,Beirut,Jana,WhatsApp,New,110,5.0,0.05,2.5,525.0,Cash on Delivery,No
+2025-11-09,EC-01178,CUST-1000,Ring Light,RING-12,Creator Gear,Beirut,Tarek,Instagram,VIP,9,32.0,0.15,4,248.8,Cash on Delivery,No
+2026-02-06,EC-01179,CUST-1303,Charging Cable,CABL-07,Mobile Accessories,Beirut,Maya,Instagram,New,114,3.0,0.1,5,312.8,Card,No
+2026-01-18,EC-01180,CUST-1001,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Jana,Marketplace,Returning,63,2.0,0,0,126.0,Card,No
+2026-01-14,EC-01181,CUST-1103,Ring Light,RING-12,Creator Gear,Bekaa,Kareem,Instagram,Returning,7,32.0,0.15,2.5,192.9,Bank Transfer,No
+2026-02-03,EC-01182,CUST-1375,Smart Watch,WATC-30,Electronics,South,Jana,Marketplace,Returning,10,115.0,0,0,1150.0,Wallet,No
+2025-12-09,EC-01183,CUST-1020,Phone Stand,STND-09,Mobile Accessories,Bekaa,Maya,WhatsApp,Returning,180,5.0,0.05,4,859.0,Card,No
+2025-11-03,EC-01184,CUST-1125,Tablet Cover,TABCV-18,Mobile Accessories,Bekaa,Jana,Instagram,Returning,46,9.0,0.05,0,393.3,Bank Transfer,No
+2025-11-11,EC-01185,CUST-1388,Tablet Cover,TABCV-18,Mobile Accessories,,Maya,Website,Returning,62,9.0,0.1,4,506.2,Wallet,No
+2025-11-20,EC-01186,CUST-1142,Ring Light,RING-12,Creator Gear,Beirut,Lina,Marketplace,Returning,5,32.0,0,4,164.0,Bank Transfer,No
+2025-12-23,EC-01187,CUST-1221,Screen Wipes,WIPE-03,Consumables,North,Jana,Instagram,New,188,2.0,0.15,4,323.6,Bank Transfer,No
+2025-11-19,EC-01188,CUST-1077,Bluetooth Speaker,SPKR-21,Electronics,Beirut,Jana,Website,VIP,4,45.0,0.1,0,162.0,Cash on Delivery,No
+2026-01-23,EC-01189,CUST-1035,Charging Cable,CABL-07,Mobile Accessories,North,Lina,WhatsApp,New,140,3.0,0,4,424.0,Bank Transfer,No
+2025-12-04,EC-01190,CUST-1486,Bluetooth Speaker,SPKR-21,Electronics,Gulf,Kareem,Website,VIP,29,45.0,0.2,5,1049.0,Cash on Delivery,No
+2025-12-15,EC-01191,CUST-1059,Ring Light,RING-12,Creator Gear,Beirut,Lina,Website,Returning,20,32.0,0.2,4,516.0,Bank Transfer,No
+2025-11-09,EC-01192,CUST-1016,Power Bank,PWR-20,Electronics,South,Lina,Website,New,24,24.0,0.15,5,494.6,Card,No
+2025-12-30,EC-01193,CUST-1234,Power Bank,PWR-20,Electronics,Beirut,Lina,Website,New,5,24.0,0,2.5,122.5,Card,No
+2025-11-04,EC-01194,CUST-1045,Screen Wipes,WIPE-03,Consumables,Bekaa,Omar,Website,VIP,231,2.0,0.1,5,420.8,Cash on Delivery,No
+2025-11-04,EC-01195,CUST-1417,Power Bank,PWR-20,Electronics,Beirut,Jana,Marketplace,New,16,24.0,0.05,4,368.8,Wallet,No
+2025-12-10,EC-01196,CUST-1153,Phone Case,CASE-11,Mobile Accessories,Beirut,Lina,Marketplace,VIP,190,4.0,0,2.5,762.5,Bank Transfer,No
+2026-02-14,EC-01197,CUST-1158,Ring Light,RING-12,Creator Gear,Beirut,Maya,Website,New,18,32.0,0.1,2.5,520.9,Bank Transfer,Yes
+2026-02-17,EC-01198,CUST-1387,Screen Wipes,WIPE-03,Consumables,Beirut,Jana,WhatsApp,New,144,2.0,0.05,2.5,276.1,Card,Yes
+2026-02-04,EC-01199,CUST-1198,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Tarek,WhatsApp,New,3,45.0,0.05,5,133.25,Wallet,No
+2026-02-28,EC-01200,CUST-1209,Bluetooth Speaker,SPKR-21,Electronics,North,Omar,Marketplace,New,5,45.0,0.2,5,185.0,Bank Transfer,No
+2025-12-25,EC-00227,CUST-1352,Wireless Earbuds,EAR-15,Electronics,North,Maya,Website,New,3,62.0,0.1,0,167.4,Card,No
+2026-01-17,EC-00309,CUST-1409,Phone Stand,STND-09,Mobile Accessories,Mount Lebanon,Kareem,Website,New,187,5.0,0,2.5,937.5,Wallet,No
+2025-11-08,EC-00178,CUST-1359,Wireless Earbuds,EAR-15,Electronics,Beirut,Tarek,Marketplace,New,1,62.0,0.1,5,60.8,Card,No
+2026-02-09,EC-00689,CUST-1340,Smart Watch,WATC-30,Electronics,North,Lina,Instagram,New,1,115.0,0.15,0,97.75,Cash on Delivery,Yes
+2025-12-10,EC-00887,CUST-1411,Tablet Cover,TABCV-18,Mobile Accessories,North,Lina,Marketplace,Returning,56,9.0,0,4,508.0,Card,Yes
+2026-01-16,EC-00518,CUST-1485,Wireless Earbuds,EAR-15,Electronics,Mount Lebanon,Jana,Marketplace,New,4,62.0,0.1,0,223.2,Cash on Delivery,No
+2025-11-20,EC-00730,CUST-1022,Charging Cable,CABL-07,Mobile Accessories,South,Jana,Instagram,New,137,3.0,0.05,5,395.45,Card,No
+2025-11-05,EC-00336,CUST-1117,Smart Watch,WATC-30,Electronics,South,Jana,Website,New,8,115.0,0,4,924.0,Cash on Delivery,No
+2025-11-01,EC-00731,CUST-1207,Bluetooth Speaker,SPKR-21,Electronics,Bekaa,Kareem,Website,New,14,45.0,0.1,4,571.0,Bank Transfer,No
+2025-12-22,EC-00526,CUST-1198,Screen Wipes,WIPE-03,Consumables,Mount Lebanon,Omar,WhatsApp,New,146,2.0,0.05,5,282.4,Bank Transfer,No

@@ -1,19 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
-import { askAiQuestion } from "../services/api";
+import { askAiQuestion, fetchAiSuggestions } from "../services/api";
 import { AIResponse } from "../types";
-
-const SUGGESTED_PROMPTS = [
-  "What is the total revenue?",
-  "Show me the top region by revenue.",
-  "Who is the best salesperson?",
-  "What is the average quantity sold?",
-  "Which product is selling the most?",
-  "What is the lowest-performing region?",
-  "How many rows are in this dataset?",
-  "What columns does this dataset have?",
-];
 
 export default function AIChatPage() {
   const { fileId } = useParams();
@@ -22,6 +11,7 @@ export default function AIChatPage() {
   const [history, setHistory] = useState<AIResponse[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const historyEndRef = useRef<HTMLDivElement>(null);
 
   const resolvedId = fileId || localStorage.getItem("lastDatasetId") || "";
@@ -36,6 +26,13 @@ export default function AIChatPage() {
       localStorage.setItem("lastDatasetId", fileId);
     }
   }, [fileId, navigate]);
+
+  useEffect(() => {
+    if (!resolvedId) return;
+    fetchAiSuggestions(resolvedId)
+      .then((res) => setSuggestions(res.data.suggestions ?? []))
+      .catch(() => setSuggestions([]));
+  }, [resolvedId]);
 
   useEffect(() => {
     historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -111,17 +108,21 @@ export default function AIChatPage() {
       <div className="chat-shell">
         <div className="chat-side-panel">
           <p className="chat-sidebar-title">Suggested questions</p>
-          {SUGGESTED_PROMPTS.map((prompt) => (
-            <button
-              key={prompt}
-              className="chip"
-              onClick={() => submitQuestion(prompt)}
-              type="button"
-              disabled={loading}
-            >
-              {prompt}
-            </button>
-          ))}
+          {suggestions.length === 0 ? (
+            <p className="chat-sidebar-empty">Loading suggestions…</p>
+          ) : (
+            suggestions.map((prompt) => (
+              <button
+                key={prompt}
+                className="chip"
+                onClick={() => submitQuestion(prompt)}
+                type="button"
+                disabled={loading}
+              >
+                {prompt}
+              </button>
+            ))
+          )}
         </div>
 
         <div className="chat-body">

@@ -39,7 +39,7 @@ export default function AnalysisPage() {
       industry: report.analysis.industry,
       rows: report.analysis.shape.rows,
       columns: report.analysis.shape.columns,
-      top_summary: report.analysis.top_summary,
+      numeric_summary: report.analysis.numeric_summary,
       generated_at: report.analysis.generated_at,
     };
     const blob = new Blob([JSON.stringify(summary, null, 2)], { type: "application/json" });
@@ -103,26 +103,33 @@ export default function AnalysisPage() {
                   <span>Columns</span>
                   <strong>{report.analysis.shape.columns}</strong>
                 </div>
-                <div className="summary-tile">
-                  <span>Revenue</span>
-                  <strong>
-                    {report.analysis.top_summary.total_revenue != null
-                      ? report.analysis.top_summary.total_revenue.toLocaleString(undefined, {
-                          style: "currency",
-                          currency: "USD",
-                          maximumFractionDigits: 0,
-                        })
-                      : "N/A"}
-                  </strong>
-                </div>
-                <div className="summary-tile">
-                  <span>Avg quantity</span>
-                  <strong>
-                    {report.analysis.top_summary.average_quantity != null
-                      ? report.analysis.top_summary.average_quantity.toFixed(1)
-                      : "N/A"}
-                  </strong>
-                </div>
+                {(() => {
+                  const numericEntries = Object.entries(report.analysis.numeric_summary ?? {});
+                  const mainEntry = numericEntries.find(([k]) =>
+                    /revenue|sales|amount|total|price|value/i.test(k)
+                  ) ?? numericEntries[0];
+                  const qtyEntry = numericEntries.find(([k]) =>
+                    /quantity|qty|units|count/i.test(k)
+                  ) ?? numericEntries[1];
+                  return (
+                    <>
+                      <div className="summary-tile">
+                        <span>{mainEntry ? mainEntry[0] : "Total"}</span>
+                        <strong>
+                          {mainEntry
+                            ? mainEntry[1].total.toLocaleString(undefined, { maximumFractionDigits: 0 })
+                            : "N/A"}
+                        </strong>
+                      </div>
+                      <div className="summary-tile">
+                        <span>{qtyEntry ? `Avg ${qtyEntry[0]}` : "Avg"}</span>
+                        <strong>
+                          {qtyEntry ? qtyEntry[1].mean.toFixed(1) : "N/A"}
+                        </strong>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
 
               {report.analysis.columns.length > 0 && (
@@ -140,7 +147,7 @@ export default function AnalysisPage() {
             </SectionCard>
 
             <SectionCard title="Key metrics">
-              <KPICards data={report.analysis.top_summary} />
+              <KPICards data={report.analysis.numeric_summary} />
             </SectionCard>
           </div>
 

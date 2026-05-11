@@ -1,35 +1,24 @@
-﻿const formatValue = (value: any) => {
-  if (value === null || value === undefined || value === "") return "N/A";
-  if (typeof value === "number") {
-    return value.toLocaleString(undefined, { maximumFractionDigits: 2 });
-  }
-  if (typeof value === "object") {
-    return value.name ? `${value.name} (${Number(value.value).toLocaleString()})` : JSON.stringify(value);
-  }
-  return String(value);
-};
+import { NumericColumnSummary } from "../types";
 
-export default function KPICards({ data }: any) {
+function formatNumber(value: number): string {
+  if (Math.abs(value) >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+  if (Math.abs(value) >= 1_000) return `${(value / 1_000).toFixed(1)}k`;
+  return value.toLocaleString(undefined, { maximumFractionDigits: 2 });
+}
+
+export default function KPICards({ data }: { data?: Record<string, NumericColumnSummary> }) {
   if (!data) return null;
 
-  const metrics = [
-    { label: "Total revenue", value: data.total_revenue },
-    { label: "Average quantity", value: data.average_quantity },
-    { label: "Best region", value: data.best_region },
-    { label: "Top salesperson", value: data.best_salesman },
-    { label: "Best-selling product", value: data.best_selling_product },
-  ].filter((item) => item.value !== undefined && item.value !== null);
-
-  if (metrics.length === 0) {
-    return <p>No KPI data available</p>;
-  }
+  const entries = Object.entries(data).slice(0, 6);
+  if (entries.length === 0) return <p>No KPI data available</p>;
 
   return (
     <div className="kpi-grid">
-      {metrics.map((metric) => (
-        <div className="kpi-card" key={metric.label}>
-          <p className="kpi-label">{metric.label}</p>
-          <h3 className="kpi-value">{formatValue(metric.value)}</h3>
+      {entries.map(([col, summary]) => (
+        <div className="kpi-card" key={col}>
+          <p className="kpi-label">{col}</p>
+          <h3 className="kpi-value">{formatNumber(summary.total)}</h3>
+          <p className="kpi-sub">avg {formatNumber(summary.mean)}</p>
         </div>
       ))}
     </div>

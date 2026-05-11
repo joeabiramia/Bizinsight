@@ -2,20 +2,112 @@ import pandas as pd
 
 from app.dataframe_utils import safe_number
 
-_REVENUE_KEYS = ["revenue", "sales", "total", "amount", "price", "value"]
-_QUANTITY_KEYS = ["quantity", "qty", "units", "count"]
-_PRODUCT_KEYS = ["product", "item", "sku", "title", "category", "name"]
-_REGION_KEYS = ["region", "territory", "area", "country", "state"]
-_SALESMAN_KEYS = ["salesman", "salesperson", "rep", "agent", "owner"]
+
+_ID_SUFFIXES = ("_id", "id", "_key", "_code", "_num", "_no", "_number", "index")
 
 
-def _find_col(df: pd.DataFrame, keywords: list) -> str | None:
-    lower = {str(c).lower(): c for c in df.columns}
-    for kw in keywords:
-        for key, original in lower.items():
-            if kw in key:
-                return original
-    return None
+def _is_id_column(col: str, series: pd.Series) -> bool:
+    """Return True if this column looks like a surrogate key / row index."""
+    lower = col.lower().replace(" ", "_")
+    # Name-based check: column is named like an ID
+    if any(lower == s or lower.endswith(s) for s in _ID_SUFFIXES):
+        return True
+    # Nameless fallback: a plain "id" or "index" column with sequential integers
+    if lower in ("id", "index", "row") and pd.api.types.is_integer_dtype(series):
+        return True
+    return False
+
+
+def _classify_columns(df: pd.DataFrame):
+    """Return (numeric, categorical, datetime) lists based on actual data types."""
+    raw_numeric = list(df.select_dtypes(include="number").columns)
+    # Filter out ID-like columns from meaningful numerics
+    numeric = [c for c in raw_numeric if not _is_id_column(c, df[c])]
+
+    datetime_cols = list(df.select_dtypes(include=["datetime", "datetimetz"]).columns)
+    categorical = []
+
+    for col in df.columns:
+        if col in raw_numeric or col in datetime_cols:
+            continue
+        if df[col].dtype == object:
+            sample = df[col].dropna().head(200)
+            try:
+                parsed = pd.to_datetime(sample, errors="coerce")
+                if parsed.notna().mean() > 0.7:
+                    datetime_cols.append(col)
+                    continue
+            except Exception:
+                pass
+        n_unique = df[col].nunique(dropna=True)
+        if 1 < n_unique <= max(30, int(len(df) * 0.05)):
+            categorical.append(col)
+
+    return numeric, categorical, datetime_cols
+
+
+def _fmt(value: float, col_name: str = "") -> str:
+    """Format a number with comma separators; add decimals only when small."""
+    col_lower = col_name.lower()
+    is_currency = any(k in col_lower for k in ["price", "revenue", "sales", "amount", "cost", "fee", "salary", "value", "income", "spend"])
+    prefix = "$" if is_currency else ""
+    if abs(value) >= 1000:
+        return f"{prefix}{value:,.0f}"
+    return f"{prefix}{value:,.2f}"
+
+
+def _group_insights(df: pd.DataFrame, cat_col: str, num_col: str, insights: list, max_pairs: int):
+    """Generate top/bottom performer insights for a categorical × numeric pair."""
+    if len(insights) >= max_pairs:
+        return
+    temp = df[[cat_col, num_col]].copy()
+    temp["_v"] = temp[num_col].apply(safe_number).fillna(0)
+    grouped = temp.groupby(cat_col, dropna=False)["_v"].sum().sort_values(ascending=False)
+    if grouped.empty:
+        return
+
+    total = grouped.sum()
+    top_name = str(grouped.index[0])
+    top_val = grouped.iloc[0]
+    top_pct = (top_val / total * 100) if total > 0 else 0
+
+    insights.append({
+        "type": "opportunity",
+        "title": f"Top {cat_col}: {top_name}",
+        "observation": (
+            f"'{top_name}' leads in {num_col} with {_fmt(top_val, num_col)}, "
+            f"accounting for {top_pct:.1f}% of the total."
+        ),
+        "interpretation": (
+            f"This is the highest-performing segment in '{cat_col}' by {num_col}. "
+            "It represents a proven driver that may be replicable elsewhere."
+        ),
+        "action": (
+            f"Prioritise resources and investment toward '{top_name}'. "
+            f"Analyse what makes it outperform and replicate that model across other {cat_col} segments."
+        ),
+    })
+
+    if len(grouped) > 1:
+        bottom_name = str(grouped.index[-1])
+        bottom_val = grouped.iloc[-1]
+        bottom_pct = (bottom_val / total * 100) if total > 0 else 0
+        insights.append({
+            "type": "risk",
+            "title": f"Lowest {cat_col}: {bottom_name}",
+            "observation": (
+                f"'{bottom_name}' contributes {_fmt(bottom_val, num_col)} ({bottom_pct:.1f}%) "
+                f"— the lowest among all {cat_col} segments."
+            ),
+            "interpretation": (
+                f"This segment underperforms in {num_col} and may be consuming "
+                "disproportionate resources relative to its contribution."
+            ),
+            "action": (
+                f"Investigate the root cause for '{bottom_name}': review market conditions, "
+                "operational bottlenecks, and whether to invest, reposition, or exit."
+            ),
+        })
 
 
 # Legacy string-list format — kept for ai_chat route compatibility
@@ -33,192 +125,145 @@ def generate_business_insights(
     insights: list[dict] = []
     rows, cols = df.shape
 
-    revenue_col = _find_col(df, _REVENUE_KEYS)
-    quantity_col = _find_col(df, _QUANTITY_KEYS)
-    product_col = _find_col(df, _PRODUCT_KEYS)
-    region_col = _find_col(df, _REGION_KEYS)
-    salesman_col = _find_col(df, _SALESMAN_KEYS)
+    numeric_cols, categorical_cols, datetime_cols = _classify_columns(df)
 
-    # ── REVENUE ──────────────────────────────────────────────────────────────
-    if revenue_col:
-        vals = df[revenue_col].apply(safe_number).dropna()
-        if not vals.empty:
-            total = vals.sum()
-            avg = vals.mean()
-            top_10_pct = vals.quantile(0.9)
+    # ── NUMERIC COLUMN SUMMARIES ───────────────────────────────────────────────
+    for num_col in numeric_cols[:5]:
+        vals = df[num_col].apply(safe_number).dropna()
+        if vals.empty or vals.nunique() < 2:
+            continue
+        total = vals.sum()
+        avg = vals.mean()
+        p90 = vals.quantile(0.9)
+        std = vals.std()
+
+        insights.append({
+            "type": "performance",
+            "title": f"{num_col} Overview",
+            "observation": (
+                f"Total {num_col}: {_fmt(total, num_col)}. "
+                f"Average: {_fmt(avg, num_col)} per record. "
+                f"Top 10% of records exceed {_fmt(p90, num_col)}."
+            ),
+            "interpretation": (
+                f"The spread between average ({_fmt(avg, num_col)}) and top-decile "
+                f"({_fmt(p90, num_col)}) indicates meaningful variation across records."
+            ),
+            "action": (
+                f"Focus on the factors that drive the top 10% of {num_col} records. "
+                "Identify what distinguishes them and use that as a benchmark."
+            ),
+        })
+
+        # Outlier alert
+        outlier_threshold = avg + 2 * std
+        outliers = vals[vals > outlier_threshold]
+        if len(outliers) > 0 and len(outliers) < rows * 0.05:
             insights.append({
-                "type": "revenue",
-                "title": f"Total Revenue: ${total:,.0f}",
+                "type": "risk",
+                "title": f"Outliers Detected in {num_col}",
                 "observation": (
-                    f"Total {revenue_col} is ${total:,.2f} with an average of "
-                    f"${avg:,.2f} per record. Top 10% of records exceed ${top_10_pct:,.2f}."
+                    f"{len(outliers)} record(s) exceed {_fmt(outlier_threshold, num_col)} "
+                    f"(mean + 2σ) in {num_col}."
                 ),
                 "interpretation": (
-                    "Revenue is concentrated in a small portion of records, "
-                    "indicating key accounts or high-value transactions drive the majority of income."
+                    "Outliers can skew averages and distort trend analysis. "
+                    "They may represent errors, exceptional cases, or fraud."
                 ),
                 "action": (
-                    "Focus retention and upsell efforts on the top 10% of revenue records. "
-                    "Identify what differentiates them and replicate that profile."
+                    f"Review the {len(outliers)} outlier records in {num_col} manually. "
+                    "Confirm they are valid before including them in aggregate KPIs."
                 ),
             })
 
-    # ── PRODUCT ──────────────────────────────────────────────────────────────
-    if product_col and revenue_col:
-        temp = df[[product_col, revenue_col]].copy()
-        temp["_v"] = temp[revenue_col].apply(safe_number).fillna(0)
-        grouped = temp.groupby(product_col)["_v"].sum().sort_values(ascending=False)
-        if not grouped.empty:
-            top = grouped.index[0]
-            total_rev = grouped.sum()
-            top_pct = (grouped.iloc[0] / total_rev * 100) if total_rev > 0 else 0
-            insights.append({
-                "type": "opportunity",
-                "title": f"Top Product: {top}",
-                "observation": f"'{top}' generates {top_pct:.1f}% of total revenue.",
-                "interpretation": (
-                    "This product is a core revenue driver. Its success may be "
-                    "replicable across similar products or markets."
-                ),
-                "action": (
-                    f"Increase marketing budget for '{top}'. Analyse what makes it "
-                    "successful and apply those learnings to underperforming products."
-                ),
-            })
-            if len(grouped) > 1:
-                bottom = grouped.index[-1]
-                bottom_val = grouped.iloc[-1]
-                bottom_pct = (bottom_val / total_rev * 100) if total_rev > 0 else 0
-                insights.append({
-                    "type": "risk",
-                    "title": f"Underperforming Product: {bottom}",
-                    "observation": f"'{bottom}' contributes only {bottom_pct:.1f}% of total revenue.",
-                    "interpretation": (
-                        "This product may be consuming resources without delivering "
-                        "proportional returns, dragging overall margins."
-                    ),
-                    "action": (
-                        f"Review pricing and promotion strategy for '{bottom}'. "
-                        "Consider A/B testing new positioning or phasing it out."
-                    ),
-                })
+    # ── CATEGORICAL × NUMERIC BREAKDOWN INSIGHTS ──────────────────────────────
+    # Rank numeric cols by total value (descending)
+    sorted_numeric = sorted(
+        numeric_cols,
+        key=lambda c: df[c].apply(safe_number).fillna(0).sum(),
+        reverse=True,
+    )
+    # Pair each categorical column with the single best numeric — avoids duplicates
+    main_numeric = sorted_numeric[0] if sorted_numeric else None
+    pair_budget = 8
+    if main_numeric:
+        for cat_col in categorical_cols[:4]:
+            _group_insights(df, cat_col, main_numeric, insights, max_pairs=len(insights) + pair_budget)
 
-    # ── REGION ───────────────────────────────────────────────────────────────
-    if region_col and revenue_col:
-        temp = df[[region_col, revenue_col]].copy()
-        temp["_v"] = temp[revenue_col].apply(safe_number).fillna(0)
-        grouped = temp.groupby(region_col)["_v"].sum().sort_values(ascending=False)
-        if not grouped.empty:
-            top_r = grouped.index[0]
-            top_val = grouped.iloc[0]
-            insights.append({
-                "type": "opportunity",
-                "title": f"Strongest Region: {top_r}",
-                "observation": f"'{top_r}' leads all regions with ${top_val:,.0f} in revenue.",
-                "interpretation": (
-                    "This region demonstrates proven market fit and strong demand "
-                    "for your product offering."
-                ),
-                "action": (
-                    f"Expand sales headcount and marketing spend in '{top_r}'. "
-                    "Study the conditions driving success there and replicate in adjacent regions."
-                ),
-            })
-            if len(grouped) > 1:
-                bottom_r = grouped.index[-1]
-                bottom_val = grouped.iloc[-1]
-                insights.append({
-                    "type": "risk",
-                    "title": f"Weak Region: {bottom_r}",
-                    "observation": f"'{bottom_r}' generates only ${bottom_val:,.0f} — the lowest among all regions.",
-                    "interpretation": (
-                        "Low regional performance may signal poor market fit, "
-                        "insufficient sales coverage, or competitive pressure."
-                    ),
-                    "action": (
-                        f"Conduct a root-cause analysis for '{bottom_r}': survey the market, "
-                        "review sales activity logs, and determine whether to invest or exit."
-                    ),
-                })
+    # ── PRICING / UNIT-VALUE SIGNAL ───────────────────────────────────────────
+    # Detect high-volume + low-unit-value products/categories
+    if len(numeric_cols) >= 2 and categorical_cols:
+        cat_col = categorical_cols[0]
+        vol_col = sorted_numeric[-1] if len(sorted_numeric) > 1 else None
+        val_col = sorted_numeric[0]
+        if vol_col and vol_col != val_col:
+            temp = df[[cat_col, vol_col, val_col]].copy()
+            temp["_vol"] = temp[vol_col].apply(safe_number).fillna(0)
+            temp["_val"] = temp[val_col].apply(safe_number).fillna(0)
+            ps = temp.groupby(cat_col).agg({"_vol": "sum", "_val": "sum"}).reset_index()
+            ps["_unit"] = ps.apply(
+                lambda r: r["_val"] / r["_vol"] if r["_vol"] > 0 else None, axis=1
+            )
+            ps = ps.dropna(subset=["_unit"])
+            if len(ps) > 1:
+                med_vol = ps["_vol"].median()
+                med_unit = ps["_unit"].median()
+                candidates = ps[(ps["_vol"] > med_vol) & (ps["_unit"] < med_unit)]
+                if not candidates.empty:
+                    flagged = str(candidates.sort_values("_vol", ascending=False).iloc[0][cat_col])
+                    insights.append({
+                        "type": "opportunity",
+                        "title": f"Potential Undervaluation: {flagged}",
+                        "observation": (
+                            f"'{flagged}' has above-median volume in {vol_col} "
+                            f"but a below-median unit value in {val_col}."
+                        ),
+                        "interpretation": (
+                            "High demand at a low unit value suggests there may be "
+                            "room to improve margins without a significant volume drop."
+                        ),
+                        "action": (
+                            f"Test a pricing or value adjustment for '{flagged}' over 30 days "
+                            "and monitor volume impact before committing permanently."
+                        ),
+                    })
 
-    # ── SALESMAN ─────────────────────────────────────────────────────────────
-    if salesman_col and revenue_col:
-        temp = df[[salesman_col, revenue_col]].copy()
-        temp["_v"] = temp[revenue_col].apply(safe_number).fillna(0)
-        grouped = temp.groupby(salesman_col)["_v"].sum().sort_values(ascending=False)
-        if not grouped.empty:
-            top_s = grouped.index[0]
-            top_val = grouped.iloc[0]
-            total_rev = grouped.sum()
-            top_pct = (top_val / total_rev * 100) if total_rev > 0 else 0
-            insights.append({
-                "type": "performance",
-                "title": f"Top Performer: {top_s}",
-                "observation": (
-                    f"'{top_s}' is responsible for {top_pct:.1f}% of total revenue "
-                    f"(${top_val:,.0f})."
-                ),
-                "interpretation": (
-                    "This salesperson significantly outperforms peers and represents "
-                    "a critical (and concentrated) revenue dependency."
-                ),
-                "action": (
-                    f"Retain and reward '{top_s}'. Document their techniques and "
-                    "run peer coaching sessions to raise the team floor."
-                ),
-            })
-            if len(grouped) > 1:
-                bottom_s = grouped.index[-1]
-                bottom_val = grouped.iloc[-1]
-                bottom_pct = (bottom_val / total_rev * 100) if total_rev > 0 else 0
+    # ── TIME TREND ────────────────────────────────────────────────────────────
+    if datetime_cols and numeric_cols:
+        dt_col = datetime_cols[0]
+        val_col = sorted_numeric[0]
+        try:
+            temp = df[[dt_col, val_col]].copy()
+            temp[dt_col] = pd.to_datetime(temp[dt_col], errors="coerce")
+            temp = temp.dropna(subset=[dt_col])
+            temp["_v"] = temp[val_col].apply(safe_number).fillna(0)
+            temp["_month"] = temp[dt_col].dt.to_period("M")
+            monthly = temp.groupby("_month")["_v"].sum()
+            if len(monthly) >= 3:
+                recent = monthly.iloc[-1]
+                prior = monthly.iloc[-2]
+                direction = "up" if recent >= prior else "down"
+                pct_change = abs((recent - prior) / prior * 100) if prior != 0 else 0
                 insights.append({
-                    "type": "risk",
-                    "title": f"Needs Development: {bottom_s}",
+                    "type": "performance",
+                    "title": f"Recent Trend in {val_col}",
                     "observation": (
-                        f"'{bottom_s}' contributes {bottom_pct:.1f}% of revenue "
-                        f"(${bottom_val:,.0f})."
+                        f"{val_col} is trending {direction} — the most recent period "
+                        f"({_fmt(recent, val_col)}) is {pct_change:.1f}% "
+                        f"{'higher' if direction == 'up' else 'lower'} than the prior period "
+                        f"({_fmt(prior, val_col)})."
                     ),
                     "interpretation": (
-                        "Consistent underperformance may indicate a skills gap, "
-                        "poor territory assignment, or motivational issues."
+                        f"A {'positive' if direction == 'up' else 'declining'} momentum "
+                        f"in {val_col} over time {'suggests growth is continuing' if direction == 'up' else 'warrants attention'}."
                     ),
                     "action": (
-                        f"Pair '{bottom_s}' with a mentor and set a 90-day improvement "
-                        "benchmark with clear KPI targets."
+                        "Review the factors driving this trend and determine whether it "
+                        "reflects seasonal patterns, operational changes, or a structural shift."
                     ),
                 })
-
-    # ── PRICING SIGNAL (high qty + low revenue) ───────────────────────────────
-    if quantity_col and revenue_col and product_col:
-        temp = df[[product_col, quantity_col, revenue_col]].copy()
-        temp["_q"] = temp[quantity_col].apply(safe_number).fillna(0)
-        temp["_r"] = temp[revenue_col].apply(safe_number).fillna(0)
-        ps = temp.groupby(product_col).agg({"_q": "sum", "_r": "sum"}).reset_index()
-        ps["_unit"] = ps.apply(
-            lambda row: row["_r"] / row["_q"] if row["_q"] > 0 else None, axis=1
-        )
-        ps = ps.dropna(subset=["_unit"])
-        if len(ps) > 1:
-            med_q = ps["_q"].median()
-            med_u = ps["_unit"].median()
-            candidates = ps[(ps["_q"] > med_q) & (ps["_unit"] < med_u)]
-            if not candidates.empty:
-                flagged = candidates.sort_values("_q", ascending=False).iloc[0][product_col]
-                insights.append({
-                    "type": "opportunity",
-                    "title": f"Potential Underpricing: {flagged}",
-                    "observation": (
-                        f"'{flagged}' has above-median sales volume but a below-median unit price."
-                    ),
-                    "interpretation": (
-                        "High demand at a low price point suggests there is room to "
-                        "increase margins without significantly reducing volume."
-                    ),
-                    "action": (
-                        f"Test a 10–15% price increase for '{flagged}' over 30 days. "
-                        "Monitor volume impact before a permanent change."
-                    ),
-                })
+        except Exception:
+            pass
 
     # ── DATA QUALITY ──────────────────────────────────────────────────────────
     missing = df.isnull().sum()
@@ -239,52 +284,53 @@ def generate_business_insights(
             ),
         })
 
-    # ── CORRELATION ───────────────────────────────────────────────────────────
-    numeric_df = df.select_dtypes(include=["number"])
-    if numeric_df.shape[1] > 1:
-        corr = numeric_df.corr()
-        reported: set = set()
-        for c1 in corr.columns:
-            for c2 in corr.columns:
-                pair = tuple(sorted([c1, c2]))
-                if c1 != c2 and pair not in reported and abs(corr[c1][c2]) > 0.6:
-                    direction = "positively" if corr[c1][c2] > 0 else "negatively"
-                    reported.add(pair)
-                    insights.append({
-                        "type": "performance",
-                        "title": f"Strong Correlation: {c1} & {c2}",
-                        "observation": (
-                            f"'{c1}' and '{c2}' are strongly {direction} correlated "
-                            f"(r = {corr[c1][c2]:.2f})."
-                        ),
-                        "interpretation": (
-                            "This relationship can be leveraged for predictive modelling "
-                            "and proactive resource planning."
-                        ),
-                        "action": (
-                            f"Use '{c1}' as a leading indicator when planning '{c2}'. "
-                            "Build a simple regression model to quantify the relationship."
-                        ),
-                    })
+    # ── CORRELATIONS ──────────────────────────────────────────────────────────
+    if len(numeric_cols) > 1:
+        numeric_df = df[numeric_cols]
+        try:
+            corr = numeric_df.corr()
+            reported: set = set()
+            for c1 in corr.columns:
+                for c2 in corr.columns:
+                    pair = tuple(sorted([c1, c2]))
+                    if c1 != c2 and pair not in reported and abs(corr[c1][c2]) > 0.6:
+                        direction = "positively" if corr[c1][c2] > 0 else "negatively"
+                        reported.add(pair)
+                        insights.append({
+                            "type": "performance",
+                            "title": f"Strong Correlation: {c1} & {c2}",
+                            "observation": (
+                                f"'{c1}' and '{c2}' are strongly {direction} correlated "
+                                f"(r = {corr[c1][c2]:.2f})."
+                            ),
+                            "interpretation": (
+                                "This relationship can be leveraged for predictive modelling "
+                                "and proactive resource planning."
+                            ),
+                            "action": (
+                                f"Use '{c1}' as a leading indicator when planning '{c2}'. "
+                                "Consider building a regression model to quantify and act on this relationship."
+                            ),
+                        })
+        except Exception:
+            pass
 
     # ── EXECUTIVE SUMMARY ─────────────────────────────────────────────────────
     parts: list[str] = []
-    if revenue_col:
-        vals = df[revenue_col].apply(safe_number).dropna()
+    for num_col in sorted_numeric[:3]:
+        vals = df[num_col].apply(safe_number).dropna()
         if not vals.empty:
-            parts.append(f"total revenue of ${vals.sum():,.0f}")
-    if product_col:
-        parts.append(f"{df[product_col].nunique()} distinct products")
-    if region_col:
-        parts.append(f"{df[region_col].nunique()} regions")
-    if salesman_col:
-        parts.append(f"{df[salesman_col].nunique()} sales representatives")
+            parts.append(f"total {num_col} of {_fmt(vals.sum(), num_col)}")
+    for cat_col in categorical_cols[:2]:
+        parts.append(f"{df[cat_col].nunique()} distinct {cat_col} values")
+    if datetime_cols:
+        parts.append(f"data spanning {datetime_cols[0]}")
 
-    summary = f"This dataset contains {rows:,} records across {cols} columns"
+    summary_text = f"This dataset contains {rows:,} records across {cols} columns"
     if parts:
-        summary += f" with {', '.join(parts)}"
-    summary += f". {len(insights)} actionable insights were identified."
+        summary_text += f", covering {', '.join(parts)}"
+    summary_text += f". {len(insights)} actionable insights were identified."
     if industry:
-        summary = f"[{industry.upper()}] " + summary
+        summary_text = f"[{industry.upper()}] " + summary_text
 
-    return {"insights": insights, "summary": summary}
+    return {"insights": insights, "summary": summary_text}

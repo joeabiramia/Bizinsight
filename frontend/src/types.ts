@@ -26,9 +26,20 @@ export interface ChartPoint {
   value: number;
 }
 
-export interface QuantityBucket {
-  range: string;
-  count: number;
+export interface NumericColumnSummary {
+  total: number;
+  mean: number;
+  median: number;
+  std: number;
+  min: number;
+  max: number;
+  p90: number;
+}
+
+export interface CategoricalColumnSummary {
+  unique_count: number;
+  top_value: string | null;
+  top_count: number;
 }
 
 export interface AnalysisData {
@@ -43,19 +54,20 @@ export interface AnalysisData {
   correlations: Record<string, any>;
   preview: Record<string, any>[];
   industry?: string;
-  top_summary: {
-    total_revenue?: number | null;
-    average_quantity?: number | null;
-    best_region?: { name: string; value: number } | null;
-    best_salesman?: { name: string; value: number } | null;
-    best_selling_product?: { name: string; value: number } | null;
+  column_types?: {
+    numeric: string[];
+    categorical: string[];
+    datetime: string[];
   };
+  numeric_summary?: Record<string, NumericColumnSummary>;
+  categorical_summary?: Record<string, CategoricalColumnSummary>;
   chart_data: {
     kpi_means: ChartPoint[];
-    product_mix: ChartPoint[];
-    sales_by_region: ChartPoint[];
-    sales_by_salesman: ChartPoint[];
-    quantity_distribution: QuantityBucket[];
+    breakdowns?: Record<string, { value_column: string | null; data: ChartPoint[] }>;
+    category_counts?: Record<string, ChartPoint[]>;
+    distributions?: Record<string, { range: string; count: number }[]>;
+    time_series?: { month: string; value: number }[];
+    time_series_meta?: { date_column: string; value_column: string };
   };
   generated_at: string;
 }

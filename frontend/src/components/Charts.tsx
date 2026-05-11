@@ -3,6 +3,8 @@ import {
   BarChart,
   Cell,
   Legend,
+  Line,
+  LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -10,6 +12,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { AnalysisData } from "../types";
 
 const PALETTE = ["#4f46e5", "#14b8a6", "#f59e0b", "#ec4899", "#38bdf8", "#a78bfa"];
 
@@ -75,32 +78,69 @@ const PieCard = ({ title, data }: { title: string; data: { name: string; value: 
   </div>
 );
 
-function normalize(items: unknown[], valueKey: string): { name: string; value: number }[] {
-  return (items as Record<string, unknown>[]).map((item) => ({
-    name: String(item.name ?? ""),
-    value: safeNumber(item[valueKey]) ?? 0,
-  }));
-}
+const LineCard = ({ title, data }: { title: string; data: { name: string; value: number }[] }) => (
+  <div className="chart-card">
+    <div className="chart-card-title">{title}</div>
+    <ResponsiveContainer width="100%" height={240}>
+      <LineChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
+        <XAxis dataKey="name" tick={{ fontSize: 10 }} />
+        <YAxis tick={{ fontSize: 11 }} tickFormatter={formatAxis} width={54} />
+        <Tooltip formatter={formatTooltipValue} />
+        <Line type="monotone" dataKey="value" stroke="#4f46e5" dot={false} strokeWidth={2} />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+);
 
-export default function Charts({ data }: { data?: Record<string, unknown[]> }) {
+export default function Charts({ data }: { data?: AnalysisData["chart_data"] }) {
   if (!data) return <p>No chart data available.</p>;
-
-  const means = normalize(data.kpi_means || [], "value");
-  const productMix = normalize(data.product_mix || [], "value");
-  const salesByRegion = normalize(data.sales_by_region || [], "value");
-  const salesBySalesman = normalize(data.sales_by_salesman || [], "value");
-  const quantityDist = (data.quantity_distribution || []).map((item) => {
-    const i = item as Record<string, unknown>;
-    return { name: String(i.range ?? ""), value: safeNumber(i.count) ?? 0 };
-  });
 
   const charts: JSX.Element[] = [];
 
-  if (productMix.length > 0) charts.push(<PieCard key="product-mix" title="Product mix" data={productMix} />);
-  if (salesByRegion.length > 0) charts.push(<BarCard key="by-region" title="Revenue by region" data={salesByRegion} />);
-  if (salesBySalesman.length > 0) charts.push(<BarCard key="by-salesman" title="Revenue by salesperson" data={salesBySalesman} />);
-  if (quantityDist.length > 0) charts.push(<BarCard key="qty-dist" title="Quantity distribution" data={quantityDist} />);
-  if (means.length > 0) charts.push(<BarCard key="kpi-means" title="Column averages" data={means} />);
+  // Time series
+  if (data.time_series && data.time_series.length > 0) {
+    const tsData = data.time_series.map((p) => ({ name: p.month, value: p.value }));
+    const label = data.time_series_meta
+      ? `${data.time_series_meta.value_column} over time`
+      : "Trend over time";
+    charts.push(<LineCard key="time-series" title={label} data={tsData} />);
+  }
+
+  // Breakdowns (bar/pie per categorical column)
+  if (data.breakdowns) {
+    const bdEntries = Object.entries(data.breakdowns).slice(0, 4);
+    bdEntries.forEach(([col, bd], i) => {
+      if (!bd.data || bd.data.length === 0) return;
+      const normalized = bd.data.map((p) => ({
+        name: String(p.name),
+        value: safeNumber(p.value) ?? 0,
+      }));
+      const title = bd.value_column ? `${bd.value_column} by ${col}` : col;
+      if (i === 0 && normalized.length <= 8) {
+        charts.push(<PieCard key={`bd-${col}`} title={title} data={normalized} />);
+      } else {
+        charts.push(<BarCard key={`bd-${col}`} title={title} data={normalized} />);
+      }
+    });
+  }
+
+  // Distributions
+  if (data.distributions) {
+    Object.entries(data.distributions).slice(0, 3).forEach(([col, dist]) => {
+      if (!dist || dist.length === 0) return;
+      const distData = dist.map((b) => ({ name: b.range, value: b.count }));
+      charts.push(<BarCard key={`dist-${col}`} title={`${col} distribution`} data={distData} />);
+    });
+  }
+
+  // KPI means fallback
+  const means = (data.kpi_means || []).map((p) => ({
+    name: String(p.name),
+    value: safeNumber(p.value) ?? 0,
+  }));
+  if (means.length > 0) {
+    charts.push(<BarCard key="kpi-means" title="Column averages" data={means} />);
+  }
 
   if (charts.length === 0) {
     return (

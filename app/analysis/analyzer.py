@@ -1,31 +1,72 @@
+import math
 from datetime import datetime
 
+import numpy as np
 import pandas as pd
 
 from app.dataframe_utils import safe_number
 
-KEYWORDS = {
-    "revenue": ["revenue", "sales", "total", "amount", "price", "value"],
-    "quantity": ["quantity", "qty", "units", "count"],
-    "product": ["product", "item", "sku", "title", "category", "name"],
-    "region": ["region", "territory", "area", "country", "state"],
-    "salesman": ["salesman", "salesperson", "rep", "agent", "owner"],
-}
+
+def _sanitize(obj):
+    """Recursively convert numpy/pandas types to JSON-safe Python native types."""
+    if isinstance(obj, dict):
+        return {str(k): _sanitize(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_sanitize(item) for item in obj]
+    if isinstance(obj, np.bool_):
+        return bool(obj)
+    if isinstance(obj, np.integer):
+        return int(obj)
+    if isinstance(obj, np.floating):
+        v = float(obj)
+        return None if (math.isnan(v) or math.isinf(v)) else v
+    if isinstance(obj, np.ndarray):
+        return [_sanitize(x) for x in obj.tolist()]
+    if isinstance(obj, float):
+        return None if (math.isnan(obj) or math.isinf(obj)) else obj
+    return obj
 
 
-def find_column(df, candidates):
-    lower_columns = {str(col).lower(): col for col in df.columns}
-    for candidate in candidates:
-        for key, original in lower_columns.items():
-            if candidate in key:
-                return original
-    return None
+def classify_columns(df: pd.DataFrame):
+    """Return (numeric, categorical, datetime) column lists."""
+    numeric = list(df.select_dtypes(include="number").columns)
+    datetime_cols = list(df.select_dtypes(include=["datetime", "datetimetz"]).columns)
+    categorical = []
+
+    for col in df.columns:
+        if col in numeric or col in datetime_cols:
+            continue
+        # Try to detect datetime strings
+        if df[col].dtype == object:
+            sample = df[col].dropna().head(200)
+            try:
+                parsed = pd.to_datetime(sample, errors="coerce")
+                if parsed.notna().mean() > 0.7:
+                    datetime_cols.append(col)
+                    continue
+            except Exception:
+                pass
+        # Treat as categorical if cardinality is reasonable
+        n_unique = df[col].nunique(dropna=True)
+        if 1 < n_unique <= max(30, int(len(df) * 0.05)):
+            categorical.append(col)
+
+    return numeric, categorical, datetime_cols
+
+
+def _pick_main_numeric(df: pd.DataFrame, numeric_cols: list) -> str | None:
+    """Return the numeric column with the highest total (best proxy for 'value')."""
+    if not numeric_cols:
+        return None
+    return max(
+        numeric_cols,
+        key=lambda c: df[c].apply(safe_number).fillna(0).sum(),
+    )
 
 
 def aggregate_by_column(df, group_col, value_col=None, top_n=6):
     if not group_col or group_col not in df.columns:
         return []
-
     if value_col and value_col in df.columns:
         temp = df[[group_col, value_col]].copy()
         temp["_value"] = temp[value_col].apply(safe_number).fillna(0)
@@ -34,32 +75,44 @@ def aggregate_by_column(df, group_col, value_col=None, top_n=6):
     else:
         grouped = df[group_col].fillna("Unknown").value_counts().reset_index()
         grouped.columns = ["name", "value"]
-
     grouped["name"] = grouped["name"].fillna("Unknown").astype(str)
     grouped = grouped.sort_values(by="value", ascending=False).head(top_n)
     return grouped.to_dict(orient="records")
 
 
-def build_quantity_distribution(series):
-    if series is None or series.empty:
+def build_distribution(series: pd.Series, bins: int = 6) -> list:
+    """Build a histogram distribution from a numeric series."""
+    values = series.dropna()
+    if values.empty or values.nunique() < 2:
         return []
-    values = series.apply(safe_number).dropna()
-    if values.empty:
+    try:
+        cut, bin_edges = pd.cut(values, bins=bins, retbins=True, duplicates="drop")
+        counts = cut.value_counts().sort_index()
+        result = []
+        for interval, count in counts.items():
+            left = bin_edges[list(counts.index).index(interval)]
+            right = bin_edges[list(counts.index).index(interval) + 1]
+            label = f"{left:.1f}–{right:.1f}"
+            result.append({"range": label, "count": int(count)})
+        return result
+    except Exception:
         return []
-    max_value = max(values.max(), 100)
-    bins = [0, 10, 50, 100, max_value + 1]
-    labels = ["0-10", "11-50", "51-100", ">100"]
-    distribution = pd.cut(values, bins=bins, labels=labels, include_lowest=True, duplicates="drop")
-    result = distribution.value_counts().sort_index().reset_index()
-    result.columns = ["range", "count"]
-    return result.to_dict(orient="records")
 
 
-def _best_value_from_group(df, group_col, value_col):
-    if not group_col or not value_col or group_col not in df.columns or value_col not in df.columns:
-        return None
-    data = aggregate_by_column(df, group_col, value_col, top_n=1)
-    return data[0] if data else None
+def build_time_series(df: pd.DataFrame, dt_col: str, value_col: str) -> list:
+    """Aggregate a value column by month."""
+    try:
+        temp = df[[dt_col, value_col]].copy()
+        temp[dt_col] = pd.to_datetime(temp[dt_col], infer_datetime_format=True, errors="coerce")
+        temp = temp.dropna(subset=[dt_col])
+        temp["_value"] = temp[value_col].apply(safe_number).fillna(0)
+        temp["_month"] = temp[dt_col].dt.to_period("M").astype(str)
+        grouped = temp.groupby("_month")["_value"].sum().reset_index()
+        grouped.columns = ["month", "value"]
+        grouped = grouped.sort_values("month")
+        return grouped.to_dict(orient="records")
+    except Exception:
+        return []
 
 
 def detect_industry(df: pd.DataFrame) -> str:
@@ -76,6 +129,8 @@ def detect_industry(df: pd.DataFrame) -> str:
         return "Marketing"
     if any(k in col_str for k in ["shipment", "tracking", "warehouse", "delivery", "freight", "logistics"]):
         return "Logistics / Supply Chain"
+    if any(k in col_str for k in ["flight", "hotel", "booking", "destination", "travel", "tour", "passenger"]):
+        return "Travel & Tourism"
     if any(k in col_str for k in ["salesman", "salesperson", "rep", "quota", "territory"]):
         return "Sales"
     if any(k in col_str for k in ["product", "sku", "order", "customer", "item"]):
@@ -85,50 +140,110 @@ def detect_industry(df: pd.DataFrame) -> str:
     return "General Business"
 
 
-def analyze_dataframe(df):
+def analyze_dataframe(df: pd.DataFrame) -> dict:
     df = df.copy()
+    numeric_cols, categorical_cols, datetime_cols = classify_columns(df)
+    numeric_df = df[numeric_cols] if numeric_cols else pd.DataFrame()
+
     summary = {
         "columns": [str(col) for col in df.columns],
         "shape": {"rows": int(df.shape[0]), "columns": int(df.shape[1])},
         "data_types": df.dtypes.astype(str).to_dict(),
         "missing_values": df.isnull().sum().astype(int).to_dict(),
         "preview": df.head(10).fillna("").to_dict(orient="records"),
+        "column_types": {
+            "numeric": numeric_cols,
+            "categorical": categorical_cols,
+            "datetime": datetime_cols,
+        },
     }
 
     try:
-        summary["statistics"] = df.describe(include="all").fillna("").to_dict()
+        summary["statistics"] = _sanitize(df.describe(include="all").fillna("").to_dict())
     except Exception:
         summary["statistics"] = {}
 
-    numeric_df = df.select_dtypes(include=["number"])
-    summary["correlations"] = numeric_df.corr().fillna(0).to_dict() if numeric_df.shape[1] > 1 else {}
+    try:
+        summary["correlations"] = (
+            _sanitize(numeric_df.corr().fillna(0).to_dict())
+            if numeric_df.shape[1] > 1
+            else {}
+        )
+    except Exception:
+        summary["correlations"] = {}
 
-    revenue_col = find_column(df, KEYWORDS["revenue"])
-    quantity_col = find_column(df, KEYWORDS["quantity"])
-    product_col = find_column(df, KEYWORDS["product"])
-    region_col = find_column(df, KEYWORDS["region"])
-    salesman_col = find_column(df, KEYWORDS["salesman"])
+    main_numeric = _pick_main_numeric(df, numeric_cols)
 
-    summary["top_summary"] = {
-        "total_revenue": float(df[revenue_col].apply(safe_number).fillna(0).sum()) if revenue_col else None,
-        "average_quantity": float(df[quantity_col].apply(safe_number).dropna().mean()) if quantity_col else None,
-        "best_region": _best_value_from_group(df, region_col, revenue_col),
-        "best_salesman": _best_value_from_group(df, salesman_col, revenue_col),
-        "best_selling_product": _best_value_from_group(df, product_col, quantity_col or revenue_col),
-    }
+    # Dynamic numeric summary
+    numeric_summary = {}
+    for col in numeric_cols[:8]:
+        vals = df[col].apply(safe_number).dropna()
+        if vals.empty:
+            continue
+        numeric_summary[str(col)] = {
+            "total": float(vals.sum()),
+            "mean": float(vals.mean()),
+            "median": float(vals.median()),
+            "std": float(vals.std()) if len(vals) > 1 else 0.0,
+            "min": float(vals.min()),
+            "max": float(vals.max()),
+            "p90": float(vals.quantile(0.9)),
+        }
+    summary["numeric_summary"] = numeric_summary
 
-    summary["chart_data"] = {
-        "kpi_means": [
-            {"name": str(col), "value": float(df[col].mean())}
-            for col in numeric_df.columns
-            if pd.notna(df[col].mean())
-        ],
-        "product_mix": aggregate_by_column(df, product_col, quantity_col or revenue_col) if product_col else [],
-        "sales_by_region": aggregate_by_column(df, region_col, revenue_col) if region_col and revenue_col else [],
-        "sales_by_salesman": aggregate_by_column(df, salesman_col, revenue_col) if salesman_col and revenue_col else [],
-        "quantity_distribution": build_quantity_distribution(df[quantity_col]) if quantity_col else [],
-    }
+    # Dynamic categorical summary
+    categorical_summary = {}
+    for col in categorical_cols[:8]:
+        vc = df[col].value_counts(dropna=False)
+        categorical_summary[str(col)] = {
+            "unique_count": int(df[col].nunique(dropna=True)),
+            "top_value": str(vc.index[0]) if not vc.empty else None,
+            "top_count": int(vc.iloc[0]) if not vc.empty else 0,
+        }
+    summary["categorical_summary"] = categorical_summary
 
+    # Dynamic chart data
+    chart_data: dict = {}
+
+    chart_data["kpi_means"] = [
+        {"name": str(col), "value": float(df[col].mean())}
+        for col in numeric_cols
+        if pd.notna(df[col].mean())
+    ]
+
+    # One breakdown chart per categorical column (using main numeric as value)
+    chart_data["breakdowns"] = {}
+    for cat_col in categorical_cols[:6]:
+        data = aggregate_by_column(df, cat_col, main_numeric, top_n=8)
+        if data:
+            chart_data["breakdowns"][str(cat_col)] = {
+                "value_column": str(main_numeric) if main_numeric else None,
+                "data": data,
+            }
+
+    # Count distribution for categorical cols with no numeric pair
+    chart_data["category_counts"] = {}
+    for cat_col in categorical_cols[:6]:
+        data = aggregate_by_column(df, cat_col, None, top_n=8)
+        if data:
+            chart_data["category_counts"][str(cat_col)] = data
+
+    # Numeric distributions
+    chart_data["distributions"] = {}
+    for col in numeric_cols[:6]:
+        dist = build_distribution(df[col].apply(safe_number))
+        if dist:
+            chart_data["distributions"][str(col)] = dist
+
+    # Time series for the first detected datetime column
+    if datetime_cols and main_numeric:
+        chart_data["time_series"] = build_time_series(df, datetime_cols[0], main_numeric)
+        chart_data["time_series_meta"] = {
+            "date_column": str(datetime_cols[0]),
+            "value_column": str(main_numeric),
+        }
+
+    summary["chart_data"] = chart_data
     summary["industry"] = detect_industry(df)
     summary["generated_at"] = datetime.utcnow().isoformat() + "Z"
-    return summary
+    return _sanitize(summary)

@@ -1,0 +1,1001 @@
+Date,Order_ID,Product,SKU,Category,Region,City,Salesperson,Channel,Quantity,Unit_Price,Discount_Rate,Revenue,Unit_Cost,Profit
+2025-10-29,RS-00001,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,David,Store,3,950,0.1,2565.0,650,615.0
+2025-10-23,RS-00002,Mechanical Keyboard,KEY-022,Accessories,North,Tripoli,Alice,Store,41,55,0,2255,25,1230
+2025-10-07,RS-00003,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,David,Store,3,380,0.1,1026.0,240,306.0
+2025-11-10,RS-00004,Wireless Mouse,MOU-014,Accessories,North,Batroun,Elie,Store,50,28,0.15,1190.0,11,640.0
+2025-12-26,RS-00005,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Bob,Store,3,950,0,2850,650,900
+2026-01-26,RS-00006,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Bob,Online,6,380,0.1,2052.0,240,612.0
+2026-01-01,RS-00007,4K Monitor,MON-040,Displays,Beirut,Beirut,Alice,Online,8,380,0.1,2736.0,240,816.0
+2025-10-26,RS-00008,27-inch Monitor,MON-027,Displays,South,Tyre,Maya,Store,5,220,0,1100,135,425
+2025-12-08,RS-00009,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Carla,Online,59,28,0,1652,11,1003
+2025-11-26,RS-00010,Wireless Mouse,MOU-014,Accessories,North,Tripoli,David,Online,49,28,0.1,1234.8,11,695.8
+2026-01-11,RS-00011,Gaming Laptop X,LAP-220,Computers,South,Saida,Maya,Store,1,1250,0.05,1187.5,850,337.5
+2025-11-06,RS-00012,Gaming Laptop X,LAP-220,Computers,South,Saida,Elie,Online,4,1250,0,5000,850,1600
+2026-01-11,RS-00013,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Rami,Store,17,220,0.05,3553.0,135,1258.0
+2026-01-17,RS-00014,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Nour,Online,29,55,0,1595,25,870
+2025-12-04,RS-00015,USB Cable,USB-001,Accessories,North,Tripoli,Bob,Online,39,14,0.05,518.7,4,362.7
+2025-10-29,RS-00016,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Rami,Store,3,1250,0.05,3562.5,850,1012.5
+2025-12-07,RS-00017,USB Cable,USB-001,Accessories,Mount Lebanon,Jounieh,Bob,Online,42,14,0.05,558.6,4,390.6
+2025-11-09,RS-00018,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Alice,Online,32,220,0.05,6688.0,135,2368.0
+2025-10-29,RS-00019,Tablet Air,TAB-080,Tablets,Bekaa,Zahle,David,Store,7,420,0,2940,280,980
+2026-02-02,RS-00020,Webcam HD,CAM-018,Accessories,Mount Lebanon,Jounieh,Carla,Online,38,65,0.15,2099.5,32,883.5
+2025-11-12,RS-00021,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,B2B,22,1250,0.1,24750.0,850,6050.0
+2026-01-04,RS-00022,27-inch Monitor,MON-027,Displays,South,Tyre,Bob,Store,6,220,0,1320,135,510
+2025-10-06,RS-00023,Mechanical Keyboard,KEY-022,Accessories,South,Saida,David,Store,24,55,0,1320,25,720
+2025-10-09,RS-00024,Webcam HD,CAM-018,Accessories,Beirut,Beirut,David,Store,41,65,0.05,2531.75,32,1219.75
+2026-02-16,RS-00025,Laptop Pro 14,LAP-140,Computers,South,Tyre,David,Online,3,950,0,2850,650,900
+2026-01-19,RS-00026,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Rami,Online,2,1250,0,2500,850,800
+2025-10-26,RS-00027,Laptop Pro 14,LAP-140,Computers,North,Batroun,Bob,Store,4,950,0,3800,650,1200
+2025-12-11,RS-00028,27-inch Monitor,MON-027,Displays,Beirut,Beirut,Rami,Online,25,220,0.1,4950.0,135,1575.0
+2025-10-26,RS-00029,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Bob,B2B,16,950,0.1,13680.0,650,3280.0
+2026-01-11,RS-00030,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Nour,Store,13,145,0,1885,85,780
+2026-01-25,RS-00031,Gaming Laptop X,LAP-220,Computers,South,Tyre,Carla,Store,3,1250,0.05,3562.5,850,1012.5
+2025-10-16,RS-00032,USB-C Dock,DOC-101,Accessories,North,Tripoli,Alice,Online,21,120,0.05,2394.0,70,924.0
+2026-02-13,RS-00033,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Carla,Store,12,950,0,11400,650,3600
+2025-12-03,RS-00034,4K Monitor,MON-040,Displays,North,Tripoli,Bob,Store,7,380,0.05,2527.0,240,847.0
+2026-02-11,RS-00035,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,David,Online,2,1250,0,2500,850,800
+2025-12-16,RS-00036,27-inch Monitor,MON-027,Displays,Beirut,Beirut,Alice,Store,31,220,0.15,5797.0,135,1612.0
+2025-10-26,RS-00037,Laptop Pro 14,LAP-140,Computers,South,Saida,Elie,Store,2,950,0,1900,650,600
+2025-12-12,RS-00038,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Alice,Online,6,950,0.05,5415.0,650,1515.0
+2025-10-27,RS-00039,Tablet Air,TAB-080,Tablets,Mount Lebanon,Jounieh,Elie,Store,8,420,0,3360,280,1120
+2025-11-23,RS-00040,Wireless Mouse,MOU-014,Accessories,South,Saida,Elie,Store,34,28,0,952,11,578
+2025-10-14,RS-00041,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Elie,Store,3,950,0.15,2422.5,650,472.5
+2025-11-11,RS-00042,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Alice,Store,25,120,0.15,2550.0,70,800.0
+2025-11-08,RS-00043,4K Monitor,MON-040,Displays,North,Batroun,Carla,Store,9,380,0.15,2907.0,240,747.0
+2025-10-11,RS-00044,Noise-Cancel Headset,HDS-033,Audio,South,Saida,David,Online,11,145,0,1595,85,660
+2026-01-13,RS-00045,USB Cable,USB-001,Accessories,Mount Lebanon,Jounieh,David,Online,44,14,0.1,554.4,4,378.4
+2025-10-07,RS-00046,Laptop Pro 14,LAP-140,Computers,North,Batroun,Nour,Online,2,950,0.1,1710.0,650,410.0
+2025-12-03,RS-00047,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Nour,Online,6,1250,0.1,6750.0,850,1650.0
+2026-01-26,RS-00048,Gaming Laptop X,LAP-220,Computers,South,Saida,David,Store,1,1250,0,1250,850,400
+2025-12-24,RS-00049,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Elie,Store,2,1250,0.1,2250.0,850,550.0
+2025-12-24,RS-00050,Tablet Air,TAB-080,Tablets,Beirut,Beirut,Elie,Store,6,420,0.15,2142.0,280,462.0
+2025-12-07,RS-00051,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Maya,Online,3,950,0.05,2707.5,650,757.5
+2026-01-07,RS-00052,Noise-Cancel Headset,HDS-033,Audio,South,Saida,Elie,Store,14,145,0,2030,85,840
+2026-02-11,RS-00053,Tablet Air,TAB-080,Tablets,South,Saida,Maya,Store,8,420,0.05,3192.0,280,952.0
+2025-11-01,RS-00054,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Elie,Online,36,28,0,1008,11,612
+2025-12-15,RS-00055,4K Monitor,MON-040,Displays,South,Saida,Nour,Online,1,380,0,380,240,140
+2025-12-17,RS-00056,27-inch Monitor,MON-027,Displays,North,Tripoli,Elie,Store,25,220,0,5500,135,2125
+2025-12-22,RS-00057,27-inch Monitor,MON-027,Displays,South,Tyre,David,Store,14,220,0.05,2926.0,135,1036.0
+2025-10-22,RS-00058,Gaming Laptop X,LAP-220,Computers,North,Batroun,Bob,Online,1,1250,0.1,1125.0,850,275.0
+2025-12-19,RS-00059,Gaming Laptop X,LAP-220,Computers,South,Saida,Carla,Store,4,1250,0.1,4500.0,850,1100.0
+2025-10-19,RS-00060,27-inch Monitor,MON-027,Displays,South,Saida,Nour,Store,10,220,0,2200,135,850
+2025-10-02,RS-00061,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Nour,Store,17,145,0,2465,85,1020
+2025-12-03,RS-00062,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Rami,Store,15,145,0,2175,85,900
+2026-02-13,RS-00063,Laptop Sleeve,SLV-010,Accessories,North,Batroun,Rami,Online,30,25,0.1,675.0,8,435.0
+2026-01-23,RS-00064,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Rami,Store,8,145,0,1160,85,480
+2025-12-10,RS-00065,USB-C Dock,DOC-101,Accessories,South,Tyre,David,Store,14,120,0,1680,70,700
+2025-12-21,RS-00066,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Carla,Store,27,145,0,3915,85,1620
+2025-11-09,RS-00067,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Nour,Store,38,28,0,1064,11,646
+2026-01-16,RS-00068,27-inch Monitor,MON-027,Displays,North,Tripoli,Nour,Store,12,220,0.15,2244.0,135,624.0
+2025-12-16,RS-00069,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,David,Store,18,120,0,2160,70,900
+2026-01-12,RS-00070,Wireless Mouse,MOU-014,Accessories,South,Tyre,Carla,B2B,45,28,0.1,1134.0,11,639.0
+2025-10-07,RS-00071,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Carla,Online,6,950,0,5700,650,1800
+2026-01-25,RS-00072,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Elie,Online,7,1250,0.1,7875.0,850,1925.0
+2025-12-04,RS-00073,Webcam HD,CAM-018,Accessories,South,Tyre,Alice,Online,42,65,0,2730,32,1386
+2025-10-18,RS-00074,USB-C Dock,DOC-101,Accessories,North,Tripoli,Alice,B2B,27,120,0.1,2916.0,70,1026.0
+2025-11-09,RS-00075,Gaming Laptop X,LAP-220,Computers,South,Tyre,Bob,Online,4,1250,0.1,4500.0,850,1100.0
+2025-11-12,RS-00076,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,Carla,B2B,72,55,0.1,3564.0,25,1764.0
+2025-12-19,RS-00077,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Nour,B2B,17,380,0.1,5814.0,240,1734.0
+2025-10-27,RS-00078,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Bob,Online,29,28,0.05,771.4,11,452.4
+2025-10-11,RS-00079,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Maya,Store,5,1250,0,6250,850,2000
+2026-02-03,RS-00080,Laptop Pro 14,LAP-140,Computers,North,Batroun,Rami,Online,3,950,0,2850,650,900
+2026-02-11,RS-00081,USB Cable,USB-001,Accessories,Bekaa,Zahle,Rami,Store,29,14,0,406,4,290
+2025-12-02,RS-00082,Webcam HD,CAM-018,Accessories,Beirut,Beirut,Elie,B2B,69,65,0.1,4036.5,32,1828.5
+2026-01-06,RS-00083,Gaming Laptop X,LAP-220,Computers,South,Tyre,Maya,Store,4,1250,0,5000,850,1600
+2025-12-10,RS-00084,4K Monitor,MON-040,Displays,South,Saida,Bob,Store,7,380,0,2660,240,980
+2025-12-01,RS-00085,Wireless Mouse,MOU-014,Accessories,South,Tyre,Rami,Online,28,28,0.05,744.8,11,436.8
+2025-12-18,RS-00086,Wireless Mouse,MOU-014,Accessories,North,Batroun,Rami,Online,38,28,0,1064,11,646
+2025-12-24,RS-00087,Gaming Laptop X,LAP-220,Computers,South,Tyre,Elie,Store,4,1250,0,5000,850,1600
+2026-02-15,RS-00088,Tablet Air,TAB-080,Tablets,Mount Lebanon,Jounieh,David,Store,10,420,0.05,3990.0,280,1190.0
+2026-02-12,RS-00089,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,David,Store,40,55,0.05,2090.0,25,1090.0
+2025-11-02,RS-00090,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Elie,Online,8,1250,0,10000,850,3200
+2026-02-03,RS-00091,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Elie,Store,2,950,0,1900,650,600
+2026-01-31,RS-00092,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Nour,Store,5,950,0.05,4512.5,650,1262.5
+2025-10-14,RS-00093,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Bob,B2B,18,950,0.1,15390.0,650,3690.0
+2026-02-11,RS-00094,27-inch Monitor,MON-027,Displays,South,Tyre,Elie,Online,13,220,0.15,2431.0,135,676.0
+2025-12-18,RS-00095,4K Monitor,MON-040,Displays,North,Tripoli,Bob,B2B,16,380,0.1,5472.0,240,1632.0
+2025-12-01,RS-00096,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Carla,Store,10,950,0,9500,650,3000
+2026-01-29,RS-00097,Gaming Laptop X,LAP-220,Computers,South,Saida,Elie,Online,2,1250,0.05,2375.0,850,675.0
+2025-12-07,RS-00098,USB-C Dock,DOC-101,Accessories,South,Saida,Nour,Store,8,120,0,960,70,400
+2025-11-08,RS-00099,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Bob,Store,20,145,0.1,2610.0,85,910.0
+2025-12-13,RS-00100,27-inch Monitor,MON-027,Displays,South,Tyre,Elie,Online,10,220,0.15,1870.0,135,520.0
+2026-02-06,RS-00101,4K Monitor,MON-040,Displays,South,Tyre,Bob,Online,5,380,0.05,1805.0,240,605.0
+2025-10-07,RS-00102,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Elie,Online,1,950,0.1,855.0,650,205.0
+2025-11-14,RS-00103,27-inch Monitor,MON-027,Displays,South,Tyre,Elie,Store,10,220,0.05,2090.0,135,740.0
+2025-10-24,RS-00104,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Maya,Store,16,220,0,3520,135,1360
+2025-11-11,RS-00105,Gaming Laptop X,LAP-220,Computers,South,Tyre,Elie,Online,1,1250,0,1250,850,400
+2025-10-23,RS-00106,Gaming Laptop X,LAP-220,Computers,North,Batroun,Bob,B2B,11,1250,0.1,12375.0,850,3025.0
+2026-02-16,RS-00107,27-inch Monitor,MON-027,Displays,North,Tripoli,David,Store,13,220,0,2860,135,1105
+2025-10-14,RS-00108,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Elie,Store,2,1250,0.05,2375.0,850,675.0
+2025-11-01,RS-00109,Laptop Pro 14,LAP-140,Computers,South,Saida,Carla,Store,7,950,0,6650,650,2100
+2025-10-30,RS-00110,27-inch Monitor,MON-027,Displays,Beirut,Beirut,Carla,Store,21,220,0.05,4389.0,135,1554.0
+2026-02-08,RS-00111,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Rami,B2B,43,28,0.1,1083.6,11,610.6
+2025-10-18,RS-00112,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Maya,B2B,15,1250,0.1,16875.0,850,4125.0
+2025-12-12,RS-00113,Wireless Mouse,MOU-014,Accessories,South,Tyre,Carla,Store,29,28,0.1,730.8,11,411.8
+2026-01-05,RS-00114,27-inch Monitor,MON-027,Displays,North,Batroun,David,B2B,31,220,0.1,6138.0,135,1953.0
+2025-11-29,RS-00115,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Alice,Store,43,65,0,2795,32,1419
+2025-11-08,RS-00116,4K Monitor,MON-040,Displays,North,Tripoli,Carla,Store,7,380,0.05,2527.0,240,847.0
+2025-10-26,RS-00117,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Bob,Online,6,145,0,870,85,360
+2025-11-09,RS-00118,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Maya,Online,6,950,0,5700,650,1800
+2025-10-21,RS-00119,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Maya,Online,46,65,0.05,2840.5,32,1368.5
+2025-10-18,RS-00120,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,David,Online,2,1250,0,2500,850,800
+2025-10-26,RS-00121,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Rami,Store,17,120,0,2040,70,850
+2025-10-15,RS-00122,Gaming Laptop X,LAP-220,Computers,North,Batroun,Nour,Store,4,1250,0.05,4750.0,850,1350.0
+2025-11-16,RS-00123,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Nour,Online,5,950,0,4750,650,1500
+2026-01-27,RS-00124,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Elie,Online,30,55,0.1,1485.0,25,735.0
+2026-01-28,RS-00125,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Bob,Store,13,145,0.05,1790.75,85,685.75
+2026-01-17,RS-00126,Wireless Mouse,MOU-014,Accessories,South,Tyre,Elie,Store,27,28,0,756,11,459
+2026-02-01,RS-00127,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Maya,Online,8,950,0.15,6460.0,650,1260.0
+2026-01-10,RS-00128,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Rami,Online,4,1250,0.1,4500.0,850,1100.0
+2025-11-28,RS-00129,Mechanical Keyboard,KEY-022,Accessories,North,Batroun,David,Online,36,55,0.05,1881.0,25,981.0
+2025-11-05,RS-00130,Mechanical Keyboard,KEY-022,Accessories,North,Tripoli,Elie,Online,45,55,0,2475,25,1350
+2026-01-02,RS-00131,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Elie,Store,43,28,0.1,1083.6,11,610.6
+2026-01-02,RS-00132,4K Monitor,MON-040,Displays,Bekaa,Zahle,Carla,Store,5,380,0.1,1710.0,240,510.0
+2026-02-01,RS-00133,USB Cable,USB-001,Accessories,Bekaa,Zahle,Maya,Online,33,14,0.1,415.8,4,283.8
+2025-11-27,RS-00134,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Maya,Store,52,65,0,3380,32,1716
+2025-12-07,RS-00135,4K Monitor,MON-040,Displays,South,Tyre,Maya,Online,2,380,0.1,684.0,240,204.0
+2026-01-04,RS-00136,Laptop Pro 14,LAP-140,Computers,South,Saida,Rami,Store,1,950,0.1,855.0,650,205.0
+2025-12-23,RS-00137,Noise-Cancel Headset,HDS-033,Audio,South,Saida,Bob,Online,8,145,0.05,1102.0,85,422.0
+2025-10-30,RS-00138,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Elie,B2B,18,950,0.1,15390.0,650,3690.0
+2026-02-15,RS-00139,Laptop Pro 14,LAP-140,Computers,South,Tyre,Maya,Online,3,950,0,2850,650,900
+2025-11-09,RS-00140,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Rami,Online,11,145,0.15,1355.75,85,420.75
+2025-12-11,RS-00141,Laptop Pro 14,LAP-140,Computers,North,Batroun,David,Store,11,950,0,10450,650,3300
+2026-01-03,RS-00142,4K Monitor,MON-040,Displays,North,Batroun,Alice,Store,2,380,0,760,240,280
+2025-11-01,RS-00143,Tablet Air,TAB-080,Tablets,South,Tyre,Bob,Online,1,420,0,420,280,140
+2025-12-25,RS-00144,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,David,Store,1,1250,0.1,1125.0,850,275.0
+2025-11-23,RS-00145,Mechanical Keyboard,KEY-022,Accessories,South,Saida,Maya,Online,36,55,0,1980,25,1080
+2025-11-07,RS-00146,Laptop Sleeve,SLV-010,Accessories,Bekaa,Zahle,Carla,Store,35,25,0.1,787.5,8,507.5
+2025-11-03,RS-00147,Laptop Pro 14,LAP-140,Computers,South,Saida,Maya,Store,4,950,0,3800,650,1200
+2025-10-30,RS-00148,USB-C Dock,DOC-101,Accessories,South,Tyre,Rami,Online,11,120,0.05,1254.0,70,484.0
+2025-10-28,RS-00149,27-inch Monitor,MON-027,Displays,South,Saida,Alice,Online,16,220,0,3520,135,1360
+2025-10-08,RS-00150,Laptop Pro 14,LAP-140,Computers,South,Tyre,Nour,Store,1,950,0,950,650,300
+2026-01-22,RS-00151,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Maya,Online,9,950,0.05,8122.5,650,2272.5
+2025-12-23,RS-00152,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Rami,Store,15,220,0,3300,135,1275
+2025-10-30,RS-00153,Webcam HD,CAM-018,Accessories,South,Saida,Nour,Store,20,65,0,1300,32,660
+2026-01-15,RS-00154,Wireless Mouse,MOU-014,Accessories,North,Batroun,Nour,Store,28,28,0,784,11,476
+2025-11-09,RS-00155,Wireless Mouse,MOU-014,Accessories,South,Tyre,Bob,Store,28,28,0.05,744.8,11,436.8
+2026-01-04,RS-00156,Webcam HD,CAM-018,Accessories,North,Tripoli,Maya,Online,47,65,0,3055,32,1551
+2026-01-17,RS-00157,Webcam HD,CAM-018,Accessories,North,Tripoli,Elie,Online,38,65,0,2470,32,1254
+2026-02-01,RS-00158,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Maya,Online,10,1250,0,12500,850,4000
+2025-12-11,RS-00159,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Alice,Online,2,380,0,760,240,280
+2025-12-09,RS-00160,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Maya,Store,37,28,0,1036,11,629
+2025-11-06,RS-00161,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Bob,Store,3,380,0.05,1083.0,240,363.0
+2025-11-25,RS-00162,27-inch Monitor,MON-027,Displays,South,Tyre,Maya,Store,13,220,0,2860,135,1105
+2025-12-23,RS-00163,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Alice,Store,27,120,0,3240,70,1350
+2026-01-22,RS-00164,Wireless Mouse,MOU-014,Accessories,South,Tyre,Rami,Store,21,28,0,588,11,357
+2026-02-09,RS-00165,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Bob,Store,2,950,0.05,1805.0,650,505.0
+2025-10-12,RS-00166,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Alice,Store,1,1250,0.15,1062.5,850,212.5
+2025-11-05,RS-00167,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Maya,Store,14,120,0,1680,70,700
+2026-02-14,RS-00168,Wireless Mouse,MOU-014,Accessories,North,Batroun,Bob,Store,29,28,0.05,771.4,11,452.4
+2026-01-20,RS-00169,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Maya,Online,1,950,0,950,650,300
+2025-10-30,RS-00170,27-inch Monitor,MON-027,Displays,North,Batroun,Carla,Online,14,220,0.05,2926.0,135,1036.0
+2026-01-01,RS-00171,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,David,Store,4,950,0.1,3420.0,650,820.0
+2025-12-26,RS-00172,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Bob,Store,6,1250,0,7500,850,2400
+2026-02-08,RS-00173,Laptop Pro 14,LAP-140,Computers,North,Batroun,Maya,Online,7,950,0,6650,650,2100
+2025-11-07,RS-00174,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Carla,Online,2,1250,0.05,2375.0,850,675.0
+2025-11-15,RS-00175,Tablet Air,TAB-080,Tablets,South,Tyre,Rami,Online,3,420,0.1,1134.0,280,294.0
+2025-12-22,RS-00176,Webcam HD,CAM-018,Accessories,North,Batroun,Carla,Store,41,65,0,2665,32,1353
+2025-12-17,RS-00177,USB-C Dock,DOC-101,Accessories,North,Tripoli,Maya,Store,22,120,0,2640,70,1100
+2025-12-13,RS-00178,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Nour,Store,8,950,0.05,7220.0,650,2020.0
+2025-10-11,RS-00179,27-inch Monitor,MON-027,Displays,South,Saida,Maya,Online,6,220,0,1320,135,510
+2025-12-27,RS-00180,Laptop Sleeve,SLV-010,Accessories,Beirut,Beirut,Carla,Store,59,25,0.05,1401.25,8,929.25
+2026-01-21,RS-00181,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Maya,Store,4,380,0,1520,240,560
+2025-10-14,RS-00182,USB-C Dock,DOC-101,Accessories,North,Batroun,Bob,Store,15,120,0.05,1710.0,70,660.0
+2026-01-07,RS-00183,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Maya,Store,1,1250,0,1250,850,400
+2026-01-09,RS-00184,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Elie,Online,1,950,0.05,902.5,650,252.5
+2025-12-24,RS-00185,Webcam HD,CAM-018,Accessories,Beirut,Beirut,Nour,Store,45,65,0.15,2486.25,32,1046.25
+2025-12-27,RS-00186,Tablet Air,TAB-080,Tablets,South,Tyre,David,Store,3,420,0,1260,280,420
+2025-10-20,RS-00187,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Alice,Online,10,1250,0.05,11875.0,850,3375.0
+2025-11-09,RS-00188,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Rami,Store,1,950,0,950,650,300
+2025-11-30,RS-00189,USB Cable,USB-001,Accessories,Bekaa,Zahle,Rami,Store,34,14,0.1,428.4,4,292.4
+2025-11-19,RS-00190,27-inch Monitor,MON-027,Displays,South,Tyre,Rami,Online,18,220,0.1,3564.0,135,1134.0
+2026-02-06,RS-00191,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,David,Online,6,380,0.05,2166.0,240,726.0
+2026-01-04,RS-00192,4K Monitor,MON-040,Displays,Beirut,Beirut,Bob,Store,7,380,0.1,2394.0,240,714.0
+2025-12-09,RS-00193,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Nour,Store,22,220,0.1,4356.0,135,1386.0
+2025-10-07,RS-00194,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Maya,Store,14,220,0.15,2618.0,135,728.0
+2026-01-04,RS-00195,Gaming Laptop X,LAP-220,Computers,North,Batroun,Bob,Online,1,1250,0,1250,850,400
+2025-12-13,RS-00196,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Carla,Online,10,145,0,1450,85,600
+2025-10-02,RS-00197,Noise-Cancel Headset,HDS-033,Audio,North,Tripoli,Elie,Store,22,145,0.05,3030.5,85,1160.5
+2026-01-17,RS-00198,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,David,Store,8,950,0,7600,650,2400
+2026-01-16,RS-00199,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Bob,Store,23,55,0,1265,25,690
+2026-02-09,RS-00200,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Elie,Store,2,380,0.05,722.0,240,242.0
+2025-12-01,RS-00201,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Bob,Online,1,380,0.05,361.0,240,121.0
+2026-02-07,RS-00202,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Rami,Store,10,380,0,3800,240,1400
+2026-01-04,RS-00203,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Maya,Online,1,1250,0.05,1187.5,850,337.5
+2025-12-25,RS-00204,Laptop Pro 14,LAP-140,Computers,North,Batroun,Maya,Online,11,950,0,10450,650,3300
+2026-01-27,RS-00205,Laptop Sleeve,SLV-010,Accessories,South,Tyre,Carla,Online,30,25,0,750,8,510
+2025-12-15,RS-00206,Gaming Laptop X,LAP-220,Computers,South,Saida,Alice,Store,6,1250,0,7500,850,2400
+2026-01-10,RS-00207,Laptop Sleeve,SLV-010,Accessories,South,Tyre,Elie,Store,24,25,0.1,540.0,8,348.0
+2025-10-13,RS-00208,Webcam HD,CAM-018,Accessories,North,Batroun,Elie,Store,33,65,0,2145,32,1089
+2026-01-11,RS-00209,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Maya,B2B,26,120,0.1,2808.0,70,988.0
+2025-10-22,RS-00210,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Nour,Online,34,28,0.1,856.8,11,482.8
+2026-02-17,RS-00211,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Bob,Store,3,1250,0.05,3562.5,850,1012.5
+2025-11-12,RS-00212,Wireless Mouse,MOU-014,Accessories,North,Batroun,Rami,Store,41,28,0.1,1033.2,11,582.2
+2025-12-30,RS-00213,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Elie,Online,47,55,0.05,2455.75,25,1280.75
+2026-01-12,RS-00214,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Alice,Store,19,220,0.05,3971.0,135,1406.0
+2026-01-21,RS-00215,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,David,Online,2,950,0.05,1805.0,650,505.0
+2025-11-09,RS-00216,Wireless Mouse,MOU-014,Accessories,North,Batroun,Maya,Store,49,28,0,1372,11,833
+2025-11-05,RS-00217,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Maya,Online,6,380,0.05,2166.0,240,726.0
+2026-02-05,RS-00218,4K Monitor,MON-040,Displays,Beirut,Beirut,Elie,Online,7,380,0.05,2527.0,240,847.0
+2025-11-24,RS-00219,Laptop Sleeve,SLV-010,Accessories,Bekaa,Zahle,Rami,Store,34,25,0,850,8,578
+2026-01-22,RS-00220,Laptop Sleeve,SLV-010,Accessories,North,Batroun,Maya,Online,39,25,0.05,926.25,8,614.25
+2025-12-14,RS-00221,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Carla,Online,20,145,0,2900,85,1200
+2025-11-05,RS-00222,Gaming Laptop X,LAP-220,Computers,South,Tyre,Alice,Store,4,1250,0.05,4750.0,850,1350.0
+2026-01-28,RS-00223,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,Bob,Store,11,120,0,1320,70,550
+2026-01-14,RS-00224,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Carla,B2B,44,120,0.1,4752.0,70,1672.0
+2026-01-28,RS-00225,Wireless Mouse,MOU-014,Accessories,North,Batroun,Carla,Online,38,28,0,1064,11,646
+2025-11-03,RS-00226,27-inch Monitor,MON-027,Displays,North,Tripoli,Bob,Store,13,220,0,2860,135,1105
+2025-11-11,RS-00227,Gaming Laptop X,LAP-220,Computers,South,Saida,Maya,B2B,13,1250,0.1,14625.0,850,3575.0
+2025-12-10,RS-00228,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Bob,Store,4,950,0,3800,650,1200
+2025-11-09,RS-00229,Laptop Pro 14,LAP-140,Computers,North,Batroun,Alice,Online,7,950,0.05,6317.5,650,1767.5
+2025-12-07,RS-00230,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Alice,Store,54,55,0.05,2821.5,25,1471.5
+2025-12-14,RS-00231,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Rami,Store,34,55,0,1870,25,1020
+2025-10-16,RS-00232,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Rami,Store,1,950,0,950,650,300
+2025-11-06,RS-00233,Gaming Laptop X,LAP-220,Computers,North,Batroun,Maya,B2B,23,1250,0.1,25875.0,850,6325.0
+2025-12-01,RS-00234,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Rami,Store,16,220,0,3520,135,1360
+2025-12-14,RS-00235,Tablet Air,TAB-080,Tablets,Mount Lebanon,Byblos,David,B2B,25,420,0.15,8925.0,280,1925.0
+2025-11-18,RS-00236,USB-C Dock,DOC-101,Accessories,South,Tyre,Rami,Store,9,120,0,1080,70,450
+2025-10-06,RS-00237,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Rami,B2B,25,950,0.1,21375.0,650,5125.0
+2026-01-29,RS-00238,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Bob,Store,7,1250,0.1,7875.0,850,1925.0
+2026-01-02,RS-00239,USB-C Dock,DOC-101,Accessories,North,Batroun,Alice,Store,15,120,0.05,1710.0,70,660.0
+2025-10-19,RS-00240,27-inch Monitor,MON-027,Displays,South,Tyre,Elie,Online,10,220,0.05,2090.0,135,740.0
+2025-10-31,RS-00241,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Nour,Store,8,950,0,7600,650,2400
+2025-11-06,RS-00242,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Alice,Store,6,950,0,5700,650,1800
+2025-12-25,RS-00243,USB-C Dock,DOC-101,Accessories,South,Tyre,Carla,Online,11,120,0.05,1254.0,70,484.0
+2025-11-11,RS-00244,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Maya,Store,18,220,0.05,3762.0,135,1332.0
+2026-02-03,RS-00245,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Rami,Online,25,28,0.15,595.0,11,320.0
+2025-12-18,RS-00246,USB-C Dock,DOC-101,Accessories,North,Tripoli,Rami,Store,22,120,0.05,2508.0,70,968.0
+2025-11-28,RS-00247,Wireless Mouse,MOU-014,Accessories,South,Tyre,Carla,Online,31,28,0,868,11,527
+2025-12-02,RS-00248,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,David,Store,1,950,0,950,650,300
+2025-11-08,RS-00249,27-inch Monitor,MON-027,Displays,South,Saida,Nour,Store,8,220,0.1,1584.0,135,504.0
+2025-10-16,RS-00250,Wireless Mouse,MOU-014,Accessories,South,Saida,Maya,B2B,44,28,0.1,1108.8,11,624.8
+2025-12-20,RS-00251,Tablet Air,TAB-080,Tablets,South,Tyre,Maya,Online,1,420,0.05,399.0,280,119.0
+2025-12-07,RS-00252,Mechanical Keyboard,KEY-022,Accessories,South,Saida,David,Store,25,55,0,1375,25,750
+2025-12-16,RS-00253,USB-C Dock,DOC-101,Accessories,South,Saida,Rami,Store,9,120,0.1,972.0,70,342.0
+2025-12-10,RS-00254,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Nour,Online,10,1250,0.15,10625.0,850,2125.0
+2025-11-07,RS-00255,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Bob,Store,2,1250,0,2500,850,800
+2025-11-21,RS-00256,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Elie,Store,39,65,0.05,2408.25,32,1160.25
+2025-12-01,RS-00257,Gaming Laptop X,LAP-220,Computers,South,Saida,David,Store,1,1250,0,1250,850,400
+2025-11-05,RS-00258,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Nour,Online,7,950,0.1,5985.0,650,1435.0
+2026-01-30,RS-00259,27-inch Monitor,MON-027,Displays,South,Saida,Elie,Store,8,220,0,1760,135,680
+2025-11-29,RS-00260,4K Monitor,MON-040,Displays,North,Tripoli,Carla,Store,1,380,0.1,342.0,240,102.0
+2025-10-10,RS-00261,Laptop Sleeve,SLV-010,Accessories,Mount Lebanon,Byblos,Rami,Store,34,25,0,850,8,578
+2025-10-10,RS-00262,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Maya,Store,1,950,0.15,807.5,650,157.5
+2026-02-17,RS-00263,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Rami,Store,5,380,0.05,1805.0,240,605.0
+2025-12-05,RS-00264,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Maya,Online,49,28,0.05,1303.4,11,764.4
+2025-11-19,RS-00265,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Nour,Store,8,950,0,7600,650,2400
+2025-11-05,RS-00266,27-inch Monitor,MON-027,Displays,South,Saida,Alice,Store,18,220,0,3960,135,1530
+2025-12-08,RS-00267,Tablet Air,TAB-080,Tablets,Bekaa,Zahle,Alice,Store,4,420,0.05,1596.0,280,476.0
+2026-01-28,RS-00268,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Elie,Online,7,1250,0.05,8312.5,850,2362.5
+2025-12-15,RS-00269,27-inch Monitor,MON-027,Displays,South,Saida,David,B2B,26,220,0.15,4862.0,135,1352.0
+2026-01-15,RS-00270,Wireless Mouse,MOU-014,Accessories,South,Tyre,David,Online,23,28,0.05,611.8,11,358.8
+2025-10-21,RS-00271,4K Monitor,MON-040,Displays,North,Batroun,Bob,B2B,18,380,0.1,6156.0,240,1836.0
+2026-02-15,RS-00272,Laptop Pro 14,LAP-140,Computers,North,Batroun,Rami,Store,7,950,0,6650,650,2100
+2026-02-03,RS-00273,Laptop Pro 14,LAP-140,Computers,South,Tyre,Alice,Store,1,950,0,950,650,300
+2026-01-27,RS-00274,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Alice,Store,36,28,0.1,907.2,11,511.2
+2025-11-25,RS-00275,4K Monitor,MON-040,Displays,North,Tripoli,Nour,Store,14,380,0.15,4522.0,240,1162.0
+2025-10-18,RS-00276,Laptop Sleeve,SLV-010,Accessories,South,Tyre,Alice,Store,32,25,0,800,8,544
+2025-11-04,RS-00277,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Maya,B2B,33,120,0.1,3564.0,70,1254.0
+2025-10-21,RS-00278,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Maya,Store,52,28,0.15,1237.6,11,665.6
+2026-01-09,RS-00279,4K Monitor,MON-040,Displays,South,Saida,Alice,Online,6,380,0.05,2166.0,240,726.0
+2026-01-17,RS-00280,4K Monitor,MON-040,Displays,South,Saida,David,Store,3,380,0,1140,240,420
+2025-11-18,RS-00281,Tablet Air,TAB-080,Tablets,Beirut,Beirut,Alice,Online,2,420,0.1,756.0,280,196.0
+2025-10-05,RS-00282,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Bob,Online,7,1250,0,8750,850,2800
+2025-10-13,RS-00283,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Nour,Store,1,1250,0.1,1125.0,850,275.0
+2025-11-05,RS-00284,4K Monitor,MON-040,Displays,Bekaa,Zahle,David,Online,3,380,0.05,1083.0,240,363.0
+2025-12-21,RS-00285,4K Monitor,MON-040,Displays,North,Batroun,David,Store,8,380,0,3040,240,1120
+2025-12-16,RS-00286,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Nour,Online,8,1250,0,10000,850,3200
+2025-12-28,RS-00287,Tablet Air,TAB-080,Tablets,Mount Lebanon,Byblos,Maya,Online,3,420,0,1260,280,420
+2026-02-15,RS-00288,27-inch Monitor,MON-027,Displays,South,Saida,Elie,Online,12,220,0,2640,135,1020
+2026-01-27,RS-00289,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Byblos,Nour,Online,13,145,0,1885,85,780
+2025-10-21,RS-00290,Tablet Air,TAB-080,Tablets,North,Batroun,Bob,Online,5,420,0.1,1890.0,280,490.0
+2025-10-14,RS-00291,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Bob,Store,4,1250,0.05,4750.0,850,1350.0
+2026-01-31,RS-00292,Gaming Laptop X,LAP-220,Computers,North,Batroun,Elie,B2B,12,1250,0.1,13500.0,850,3300.0
+2025-10-31,RS-00293,USB-C Dock,DOC-101,Accessories,South,Tyre,David,Online,9,120,0,1080,70,450
+2025-12-22,RS-00294,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Rami,Online,14,120,0,1680,70,700
+2025-12-06,RS-00295,Gaming Laptop X,LAP-220,Computers,South,Tyre,Rami,Store,5,1250,0.1,5625.0,850,1375.0
+2025-11-22,RS-00296,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Alice,Online,23,220,0,5060,135,1955
+2025-11-07,RS-00297,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Elie,Store,4,950,0.1,3420.0,650,820.0
+2026-02-05,RS-00298,4K Monitor,MON-040,Displays,North,Batroun,Elie,Online,7,380,0.05,2527.0,240,847.0
+2026-02-03,RS-00299,27-inch Monitor,MON-027,Displays,North,Batroun,Carla,Store,14,220,0.1,2772.0,135,882.0
+2025-10-16,RS-00300,4K Monitor,MON-040,Displays,Beirut,Beirut,Alice,Online,4,380,0,1520,240,560
+2025-11-29,RS-00301,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Alice,Store,5,950,0.05,4512.5,650,1262.5
+2026-02-01,RS-00302,Mechanical Keyboard,KEY-022,Accessories,North,Tripoli,Alice,Online,46,55,0,2530,25,1380
+2025-10-05,RS-00303,4K Monitor,MON-040,Displays,Bekaa,Zahle,Elie,Store,5,380,0.1,1710.0,240,510.0
+2025-11-15,RS-00304,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Carla,Store,2,950,0.05,1805.0,650,505.0
+2025-12-04,RS-00305,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Nour,Store,31,65,0,2015,32,1023
+2025-11-27,RS-00306,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Alice,Store,5,1250,0,6250,850,2000
+2026-01-30,RS-00307,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Carla,Store,7,950,0,6650,650,2100
+2025-10-25,RS-00308,Noise-Cancel Headset,HDS-033,Audio,North,Tripoli,David,Store,12,145,0.1,1566.0,85,546.0
+2026-01-30,RS-00309,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Elie,B2B,19,1250,0.1,21375.0,850,5225.0
+2025-10-05,RS-00310,USB Cable,USB-001,Accessories,Mount Lebanon,Jounieh,Nour,B2B,43,14,0.1,541.8,4,369.8
+2026-01-08,RS-00311,Wireless Mouse,MOU-014,Accessories,North,Batroun,Nour,Online,30,28,0.05,798.0,11,468.0
+2026-02-06,RS-00312,USB-C Dock,DOC-101,Accessories,North,Batroun,Alice,Store,25,120,0,3000,70,1250
+2025-10-20,RS-00313,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Maya,Store,4,1250,0.05,4750.0,850,1350.0
+2025-12-31,RS-00314,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Nour,Store,13,380,0.05,4693.0,240,1573.0
+2026-01-06,RS-00315,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,David,Online,5,950,0.05,4512.5,650,1262.5
+2025-11-09,RS-00316,Wireless Mouse,MOU-014,Accessories,North,Batroun,Maya,Store,48,28,0,1344,11,816
+2025-12-18,RS-00317,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Bob,Store,15,220,0.05,3135.0,135,1110.0
+2026-01-13,RS-00318,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Maya,Online,10,950,0.05,9025.0,650,2525.0
+2025-12-23,RS-00319,Webcam HD,CAM-018,Accessories,North,Tripoli,Elie,Store,51,65,0.05,3149.25,32,1517.25
+2025-12-02,RS-00320,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Nour,Store,1,380,0,380,240,140
+2025-12-08,RS-00321,4K Monitor,MON-040,Displays,Beirut,Beirut,Carla,Store,2,380,0,760,240,280
+2025-12-04,RS-00322,Tablet Air,TAB-080,Tablets,South,Tyre,David,Store,5,420,0,2100,280,700
+2025-10-02,RS-00323,Tablet Air,TAB-080,Tablets,North,Batroun,Nour,Online,2,420,0.1,756.0,280,196.0
+2025-11-04,RS-00324,Gaming Laptop X,LAP-220,Computers,South,Saida,Rami,Store,5,1250,0.15,5312.5,850,1062.5
+2025-12-21,RS-00325,Gaming Laptop X,LAP-220,Computers,South,Tyre,David,Store,2,1250,0,2500,850,800
+2025-11-21,RS-00326,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Alice,B2B,78,55,0.1,3861.0,25,1911.0
+2026-01-21,RS-00327,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Nour,Online,17,120,0,2040,70,850
+2025-11-09,RS-00328,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Bob,Store,42,28,0.05,1117.2,11,655.2
+2026-01-11,RS-00329,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Alice,Online,1,380,0.05,361.0,240,121.0
+2025-10-22,RS-00330,Laptop Pro 14,LAP-140,Computers,South,Saida,Maya,Store,7,950,0.05,6317.5,650,1767.5
+2026-01-11,RS-00331,USB Cable,USB-001,Accessories,North,Batroun,Nour,Store,27,14,0.05,359.1,4,251.1
+2025-11-26,RS-00332,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Rami,Online,19,220,0.05,3971.0,135,1406.0
+2026-02-06,RS-00333,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Rami,Store,1,950,0,950,650,300
+2025-11-06,RS-00334,Gaming Laptop X,LAP-220,Computers,North,Batroun,Rami,Online,9,1250,0.05,10687.5,850,3037.5
+2025-12-29,RS-00335,27-inch Monitor,MON-027,Displays,South,Tyre,Rami,Store,10,220,0,2200,135,850
+2025-12-27,RS-00336,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,David,Store,54,55,0.05,2821.5,25,1471.5
+2025-12-24,RS-00337,4K Monitor,MON-040,Displays,South,Tyre,David,Online,2,380,0.05,722.0,240,242.0
+2026-01-10,RS-00338,Laptop Pro 14,LAP-140,Computers,South,Saida,Rami,Online,2,950,0,1900,650,600
+2025-11-24,RS-00339,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Bob,Online,1,1250,0,1250,850,400
+2025-10-30,RS-00340,Gaming Laptop X,LAP-220,Computers,South,Tyre,Maya,Online,2,1250,0.05,2375.0,850,675.0
+2025-10-30,RS-00341,Gaming Laptop X,LAP-220,Computers,South,Tyre,Carla,Online,2,1250,0.05,2375.0,850,675.0
+2025-10-22,RS-00342,Wireless Mouse,MOU-014,Accessories,North,Batroun,Bob,Store,28,28,0,784,11,476
+2026-01-04,RS-00343,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Nour,Online,26,28,0.05,691.6,11,405.6
+2026-02-15,RS-00344,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Carla,Store,43,28,0,1204,11,731
+2025-12-20,RS-00345,Webcam HD,CAM-018,Accessories,North,Tripoli,Maya,B2B,71,65,0.1,4153.5,32,1881.5
+2026-01-13,RS-00346,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Rami,Store,34,28,0,952,11,578
+2025-10-08,RS-00347,USB-C Dock,DOC-101,Accessories,South,Saida,Elie,Store,11,120,0.1,1188.0,70,418.0
+2026-02-04,RS-00348,4K Monitor,MON-040,Displays,Beirut,Beirut,Bob,Store,7,380,0.05,2527.0,240,847.0
+2026-01-02,RS-00349,4K Monitor,MON-040,Displays,North,Tripoli,Rami,Online,5,380,0.1,1710.0,240,510.0
+2025-12-03,RS-00350,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Rami,Store,5,1250,0.1,5625.0,850,1375.0
+2025-10-23,RS-00351,27-inch Monitor,MON-027,Displays,Beirut,Beirut,David,Store,18,220,0.1,3564.0,135,1134.0
+2026-01-18,RS-00352,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,David,Online,1,950,0.1,855.0,650,205.0
+2025-12-29,RS-00353,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Maya,B2B,13,380,0.15,4199.0,240,1079.0
+2025-11-04,RS-00354,USB Cable,USB-001,Accessories,Mount Lebanon,Byblos,Alice,B2B,69,14,0.1,869.4,4,593.4
+2025-11-03,RS-00355,Gaming Laptop X,LAP-220,Computers,North,Batroun,David,Online,2,1250,0.05,2375.0,850,675.0
+2025-12-08,RS-00356,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Rami,Store,38,55,0.1,1881.0,25,931.0
+2025-10-24,RS-00357,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Maya,Store,11,220,0.1,2178.0,135,693.0
+2025-10-24,RS-00358,Wireless Mouse,MOU-014,Accessories,South,Tyre,Maya,Online,27,28,0.1,680.4,11,383.4
+2026-01-10,RS-00359,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,Store,3,1250,0.05,3562.5,850,1012.5
+2025-11-03,RS-00360,4K Monitor,MON-040,Displays,South,Tyre,Maya,B2B,12,380,0.1,4104.0,240,1224.0
+2025-10-26,RS-00361,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Alice,Store,30,55,0,1650,25,900
+2026-01-18,RS-00362,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Elie,Store,1,1250,0.15,1062.5,850,212.5
+2025-12-10,RS-00363,Laptop Pro 14,LAP-140,Computers,North,Batroun,Elie,Store,2,950,0,1900,650,600
+2025-12-18,RS-00364,Wireless Mouse,MOU-014,Accessories,South,Saida,Nour,Online,21,28,0.05,558.6,11,327.6
+2025-10-01,RS-00365,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Carla,Online,1,1250,0,1250,850,400
+2025-12-27,RS-00366,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Carla,Store,49,65,0,3185,32,1617
+2025-10-23,RS-00367,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Bob,Store,40,28,0.1,1008.0,11,568.0
+2025-11-04,RS-00368,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Bob,Online,42,55,0,2310,25,1260
+2025-11-12,RS-00369,27-inch Monitor,MON-027,Displays,South,Saida,Carla,B2B,21,220,0.1,4158.0,135,1323.0
+2025-11-05,RS-00370,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Maya,B2B,28,120,0.1,3024.0,70,1064.0
+2025-12-03,RS-00371,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,David,Online,1,1250,0.1,1125.0,850,275.0
+2025-10-07,RS-00372,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,David,Store,27,65,0.05,1667.25,32,803.25
+2026-01-09,RS-00373,Gaming Laptop X,LAP-220,Computers,North,Tripoli,David,Store,7,1250,0.05,8312.5,850,2362.5
+2026-02-13,RS-00374,Noise-Cancel Headset,HDS-033,Audio,North,Tripoli,Maya,B2B,40,145,0.1,5220.0,85,1820.0
+2026-01-02,RS-00375,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Rami,B2B,17,380,0.1,5814.0,240,1734.0
+2025-11-25,RS-00376,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Nour,Store,3,950,0.05,2707.5,650,757.5
+2026-02-06,RS-00377,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Nour,Store,9,120,0,1080,70,450
+2025-12-19,RS-00378,Laptop Pro 14,LAP-140,Computers,South,Saida,Carla,Online,3,950,0,2850,650,900
+2025-10-17,RS-00379,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,Store,7,1250,0,8750,850,2800
+2025-10-15,RS-00380,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Bob,Store,6,1250,0,7500,850,2400
+2025-10-03,RS-00381,Laptop Pro 14,LAP-140,Computers,North,Batroun,Elie,Store,8,950,0,7600,650,2400
+2025-10-31,RS-00382,USB-C Dock,DOC-101,Accessories,North,Tripoli,Maya,Online,24,120,0,2880,70,1200
+2025-10-17,RS-00383,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Rami,Store,2,1250,0.05,2375.0,850,675.0
+2026-01-03,RS-00384,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Bob,Store,8,950,0.05,7220.0,650,2020.0
+2025-10-12,RS-00385,Webcam HD,CAM-018,Accessories,North,Tripoli,David,Store,33,65,0,2145,32,1089
+2025-10-10,RS-00386,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,David,Store,9,380,0,3420,240,1260
+2025-12-21,RS-00387,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Maya,Store,7,1250,0,8750,850,2800
+2026-02-10,RS-00388,Laptop Sleeve,SLV-010,Accessories,Mount Lebanon,Byblos,Bob,Online,31,25,0.1,697.5,8,449.5
+2025-12-19,RS-00389,Gaming Laptop X,LAP-220,Computers,South,Tyre,Alice,Store,3,1250,0.05,3562.5,850,1012.5
+2025-12-02,RS-00390,27-inch Monitor,MON-027,Displays,South,Tyre,David,Online,16,220,0.05,3344.0,135,1184.0
+2025-12-02,RS-00391,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Alice,Store,2,950,0.1,1710.0,650,410.0
+2025-12-25,RS-00392,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Elie,Store,12,950,0.05,10830.0,650,3030.0
+2025-11-30,RS-00393,27-inch Monitor,MON-027,Displays,North,Tripoli,Carla,Online,31,220,0.1,6138.0,135,1953.0
+2026-02-11,RS-00394,27-inch Monitor,MON-027,Displays,North,Batroun,Rami,B2B,25,220,0.1,4950.0,135,1575.0
+2026-02-07,RS-00395,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Bob,Online,7,950,0,6650,650,2100
+2025-12-14,RS-00396,Gaming Laptop X,LAP-220,Computers,North,Batroun,Nour,Online,5,1250,0.05,5937.5,850,1687.5
+2025-12-21,RS-00397,27-inch Monitor,MON-027,Displays,South,Saida,Bob,B2B,22,220,0.1,4356.0,135,1386.0
+2025-11-12,RS-00398,27-inch Monitor,MON-027,Displays,North,Batroun,Nour,Store,17,220,0,3740,135,1445
+2025-11-23,RS-00399,27-inch Monitor,MON-027,Displays,South,Tyre,Elie,Online,17,220,0,3740,135,1445
+2025-10-11,RS-00400,Gaming Laptop X,LAP-220,Computers,North,Batroun,Carla,Store,7,1250,0,8750,850,2800
+2025-12-31,RS-00401,27-inch Monitor,MON-027,Displays,North,Tripoli,Elie,Store,23,220,0,5060,135,1955
+2026-01-24,RS-00402,4K Monitor,MON-040,Displays,South,Saida,Bob,Store,3,380,0.1,1026.0,240,306.0
+2025-11-05,RS-00403,Laptop Pro 14,LAP-140,Computers,North,Tripoli,David,Store,6,950,0.05,5415.0,650,1515.0
+2025-10-22,RS-00404,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Bob,Store,24,55,0,1320,25,720
+2026-01-22,RS-00405,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Maya,Store,23,120,0.1,2484.0,70,874.0
+2026-01-19,RS-00406,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Rami,Store,34,65,0.05,2099.5,32,1011.5
+2025-11-14,RS-00407,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Elie,Store,7,1250,0.05,8312.5,850,2362.5
+2025-12-02,RS-00408,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Nour,B2B,29,55,0.1,1435.5,25,710.5
+2025-12-11,RS-00409,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,David,Online,20,220,0.15,3740.0,135,1040.0
+2026-02-17,RS-00410,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Maya,Store,16,120,0.1,1728.0,70,608.0
+2025-12-28,RS-00411,Noise-Cancel Headset,HDS-033,Audio,North,Batroun,Nour,Store,17,145,0,2465,85,1020
+2025-12-11,RS-00412,Laptop Pro 14,LAP-140,Computers,South,Tyre,Maya,Online,5,950,0.15,4037.5,650,787.5
+2025-11-10,RS-00413,Laptop Pro 14,LAP-140,Computers,South,Saida,Elie,Online,5,950,0.1,4275.0,650,1025.0
+2025-11-26,RS-00414,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Maya,B2B,11,380,0.15,3553.0,240,913.0
+2025-11-15,RS-00415,Gaming Laptop X,LAP-220,Computers,North,Batroun,Maya,B2B,21,1250,0.15,22312.5,850,4462.5
+2025-11-18,RS-00416,Webcam HD,CAM-018,Accessories,South,Tyre,Elie,Store,31,65,0,2015,32,1023
+2025-10-15,RS-00417,Gaming Laptop X,LAP-220,Computers,South,Saida,Alice,Online,10,1250,0,12500,850,4000
+2025-11-03,RS-00418,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Maya,Store,6,1250,0,7500,850,2400
+2025-11-06,RS-00419,USB-C Dock,DOC-101,Accessories,North,Batroun,Bob,Store,18,120,0,2160,70,900
+2025-12-17,RS-00420,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Nour,Online,3,1250,0.15,3187.5,850,637.5
+2025-12-21,RS-00421,Laptop Pro 14,LAP-140,Computers,North,Batroun,David,Online,6,950,0.05,5415.0,650,1515.0
+2025-12-15,RS-00422,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Nour,Online,1,950,0.1,855.0,650,205.0
+2025-10-09,RS-00423,Laptop Pro 14,LAP-140,Computers,North,Batroun,David,Online,6,950,0,5700,650,1800
+2025-10-20,RS-00424,Gaming Laptop X,LAP-220,Computers,North,Batroun,Carla,Online,6,1250,0.15,6375.0,850,1275.0
+2025-12-25,RS-00425,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,David,Store,17,220,0,3740,135,1445
+2025-10-01,RS-00426,Laptop Pro 14,LAP-140,Computers,South,Tyre,Nour,B2B,23,950,0.1,19665.0,650,4715.0
+2026-01-05,RS-00427,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Bob,Online,5,1250,0.1,5625.0,850,1375.0
+2025-11-27,RS-00428,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Alice,Store,2,950,0,1900,650,600
+2025-10-27,RS-00429,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Nour,Store,9,950,0.15,7267.5,650,1417.5
+2025-12-26,RS-00430,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Alice,Store,38,55,0.05,1985.5,25,1035.5
+2026-01-20,RS-00431,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Maya,Store,9,950,0.05,8122.5,650,2272.5
+2026-02-16,RS-00432,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Elie,Store,7,1250,0,8750,850,2800
+2026-02-03,RS-00433,Laptop Pro 14,LAP-140,Computers,North,Batroun,Alice,Store,3,950,0.05,2707.5,650,757.5
+2025-11-21,RS-00434,Laptop Pro 14,LAP-140,Computers,South,Saida,Carla,Online,8,950,0.15,6460.0,650,1260.0
+2026-01-30,RS-00435,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Nour,Store,25,65,0.05,1543.75,32,743.75
+2026-01-08,RS-00436,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Maya,Store,4,950,0,3800,650,1200
+2026-01-21,RS-00437,27-inch Monitor,MON-027,Displays,South,Saida,Elie,Online,14,220,0,3080,135,1190
+2025-12-28,RS-00438,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,David,Online,23,120,0.1,2484.0,70,874.0
+2026-02-11,RS-00439,27-inch Monitor,MON-027,Displays,South,Tyre,David,Store,14,220,0.05,2926.0,135,1036.0
+2026-02-06,RS-00440,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Bob,B2B,17,380,0.1,5814.0,240,1734.0
+2025-11-24,RS-00441,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,Alice,Store,30,120,0.15,3060.0,70,960.0
+2025-11-07,RS-00442,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Maya,B2B,49,65,0.1,2866.5,32,1298.5
+2025-10-23,RS-00443,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Maya,Online,10,220,0,2200,135,850
+2026-02-11,RS-00444,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Nour,Store,14,120,0.05,1596.0,70,616.0
+2025-10-26,RS-00445,Tablet Air,TAB-080,Tablets,Beirut,Beirut,Elie,Online,10,420,0,4200,280,1400
+2026-02-02,RS-00446,4K Monitor,MON-040,Displays,South,Tyre,Alice,Store,1,380,0,380,240,140
+2026-01-11,RS-00447,Laptop Pro 14,LAP-140,Computers,North,Batroun,David,Store,2,950,0,1900,650,600
+2025-12-26,RS-00448,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Elie,Store,38,65,0.05,2346.5,32,1130.5
+2025-10-26,RS-00449,USB Cable,USB-001,Accessories,South,Saida,Carla,Store,28,14,0,392,4,280
+2026-01-15,RS-00450,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,David,Store,36,55,0.1,1782.0,25,882.0
+2026-01-13,RS-00451,USB-C Dock,DOC-101,Accessories,North,Batroun,Alice,Store,18,120,0.05,2052.0,70,792.0
+2025-11-04,RS-00452,USB-C Dock,DOC-101,Accessories,North,Tripoli,Carla,Store,25,120,0.1,2700.0,70,950.0
+2025-10-15,RS-00453,Gaming Laptop X,LAP-220,Computers,South,Tyre,Alice,B2B,19,1250,0.1,21375.0,850,5225.0
+2025-11-01,RS-00454,Wireless Mouse,MOU-014,Accessories,South,Saida,Maya,Store,33,28,0,924,11,561
+2026-01-30,RS-00455,Mechanical Keyboard,KEY-022,Accessories,North,Batroun,Maya,Store,43,55,0.05,2246.75,25,1171.75
+2025-12-12,RS-00456,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Carla,Online,1,950,0.1,855.0,650,205.0
+2025-11-24,RS-00457,Webcam HD,CAM-018,Accessories,South,Saida,David,Store,29,65,0.1,1696.5,32,768.5
+2025-10-03,RS-00458,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Carla,Online,19,220,0,4180,135,1615
+2025-12-04,RS-00459,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Elie,Store,36,55,0,1980,25,1080
+2026-01-28,RS-00460,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Bob,Store,6,1250,0.15,6375.0,850,1275.0
+2026-01-04,RS-00461,4K Monitor,MON-040,Displays,Bekaa,Zahle,Elie,Online,1,380,0,380,240,140
+2025-12-23,RS-00462,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Elie,Store,38,65,0.05,2346.5,32,1130.5
+2025-12-01,RS-00463,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Byblos,Maya,Online,21,145,0.15,2588.25,85,803.25
+2025-12-06,RS-00464,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Byblos,Nour,Online,11,145,0.05,1515.25,85,580.25
+2025-11-18,RS-00465,Gaming Laptop X,LAP-220,Computers,South,Saida,Rami,B2B,12,1250,0.1,13500.0,850,3300.0
+2025-12-15,RS-00466,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Elie,Online,1,950,0.05,902.5,650,252.5
+2025-11-16,RS-00467,Tablet Air,TAB-080,Tablets,North,Batroun,Bob,Store,5,420,0,2100,280,700
+2025-12-24,RS-00468,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Rami,Online,20,220,0,4400,135,1700
+2025-10-19,RS-00469,27-inch Monitor,MON-027,Displays,South,Saida,Bob,Online,8,220,0,1760,135,680
+2025-11-08,RS-00470,Laptop Pro 14,LAP-140,Computers,South,Saida,Maya,Store,6,950,0.05,5415.0,650,1515.0
+2026-01-26,RS-00471,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Bob,Store,3,950,0.05,2707.5,650,757.5
+2025-10-02,RS-00472,27-inch Monitor,MON-027,Displays,South,Saida,Carla,Online,11,220,0,2420,135,935
+2025-10-23,RS-00473,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Nour,Store,6,950,0,5700,650,1800
+2025-11-21,RS-00474,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Maya,Online,52,28,0.05,1383.2,11,811.2
+2025-10-05,RS-00475,Wireless Mouse,MOU-014,Accessories,South,Saida,David,Online,24,28,0,672,11,408
+2025-12-18,RS-00476,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Elie,B2B,22,950,0.1,18810.0,650,4510.0
+2026-01-20,RS-00477,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Maya,B2B,30,145,0.1,3915.0,85,1365.0
+2025-10-05,RS-00478,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,David,Online,4,1250,0.05,4750.0,850,1350.0
+2025-11-13,RS-00479,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Nour,Online,4,950,0,3800,650,1200
+2025-10-13,RS-00480,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Alice,Online,51,28,0,1428,11,867
+2026-01-06,RS-00481,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Rami,Online,4,950,0,3800,650,1200
+2026-01-16,RS-00482,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Carla,Store,36,28,0.1,907.2,11,511.2
+2026-02-08,RS-00483,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Elie,Store,49,28,0,1372,11,833
+2025-12-07,RS-00484,Webcam HD,CAM-018,Accessories,South,Saida,Maya,Online,36,65,0,2340,32,1188
+2025-10-11,RS-00485,4K Monitor,MON-040,Displays,South,Saida,Rami,Store,5,380,0.1,1710.0,240,510.0
+2026-02-04,RS-00486,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Bob,Online,4,950,0,3800,650,1200
+2025-12-05,RS-00487,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Elie,Store,35,55,0.1,1732.5,25,857.5
+2025-12-14,RS-00488,27-inch Monitor,MON-027,Displays,North,Batroun,Nour,Online,15,220,0,3300,135,1275
+2025-10-12,RS-00489,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Carla,Store,13,950,0,12350,650,3900
+2025-10-24,RS-00490,27-inch Monitor,MON-027,Displays,North,Batroun,Carla,Store,10,220,0,2200,135,850
+2026-01-25,RS-00491,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Rami,Online,1,1250,0,1250,850,400
+2025-10-16,RS-00492,Laptop Sleeve,SLV-010,Accessories,Mount Lebanon,Jounieh,Bob,Store,31,25,0.05,736.25,8,488.25
+2026-01-21,RS-00493,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Maya,Online,10,950,0.05,9025.0,650,2525.0
+2025-11-03,RS-00494,4K Monitor,MON-040,Displays,South,Tyre,Bob,B2B,8,380,0.1,2736.0,240,816.0
+2025-12-06,RS-00495,Mechanical Keyboard,KEY-022,Accessories,North,Tripoli,David,B2B,52,55,0.1,2574.0,25,1274.0
+2026-01-19,RS-00496,Wireless Mouse,MOU-014,Accessories,South,Saida,Rami,Store,22,28,0.05,585.2,11,343.2
+2026-01-07,RS-00497,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Alice,Online,9,950,0.1,7695.0,650,1845.0
+2025-11-12,RS-00498,Laptop Pro 14,LAP-140,Computers,South,Tyre,Maya,Store,9,950,0.15,7267.5,650,1417.5
+2025-10-13,RS-00499,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Nour,Online,6,380,0.05,2166.0,240,726.0
+2025-10-23,RS-00500,Webcam HD,CAM-018,Accessories,South,Tyre,Maya,Store,29,65,0.05,1790.75,32,862.75
+2025-10-05,RS-00501,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Alice,Online,6,950,0.05,5415.0,650,1515.0
+2025-12-17,RS-00502,Noise-Cancel Headset,HDS-033,Audio,South,Saida,Rami,B2B,18,145,0.1,2349.0,85,819.0
+2025-11-27,RS-00503,Webcam HD,CAM-018,Accessories,North,Batroun,Rami,Online,35,65,0,2275,32,1155
+2025-11-26,RS-00504,Laptop Pro 14,LAP-140,Computers,North,Batroun,Elie,Online,7,950,0,6650,650,2100
+2025-10-28,RS-00505,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Rami,Store,3,950,0,2850,650,900
+2025-11-20,RS-00506,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,David,Store,1,950,0.1,855.0,650,205.0
+2025-12-26,RS-00507,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Alice,B2B,28,950,0.1,23940.0,650,5740.0
+2026-01-26,RS-00508,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Rami,Store,34,55,0.05,1776.5,25,926.5
+2026-01-19,RS-00509,Webcam HD,CAM-018,Accessories,South,Tyre,Carla,Online,28,65,0,1820,32,924
+2025-12-22,RS-00510,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Nour,B2B,21,380,0.1,7182.0,240,2142.0
+2025-12-10,RS-00511,27-inch Monitor,MON-027,Displays,North,Batroun,Elie,Store,21,220,0.05,4389.0,135,1554.0
+2026-02-09,RS-00512,Gaming Laptop X,LAP-220,Computers,North,Batroun,David,Store,5,1250,0.05,5937.5,850,1687.5
+2025-12-14,RS-00513,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Carla,Store,52,28,0,1456,11,884
+2025-12-30,RS-00514,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Elie,Online,3,380,0,1140,240,420
+2025-10-04,RS-00515,4K Monitor,MON-040,Displays,North,Tripoli,Nour,Store,3,380,0.1,1026.0,240,306.0
+2025-11-11,RS-00516,Laptop Sleeve,SLV-010,Accessories,Bekaa,Zahle,Carla,Online,38,25,0.05,902.5,8,598.5
+2025-12-15,RS-00517,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Maya,Online,14,1250,0.05,16625.0,850,4725.0
+2025-11-27,RS-00518,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,David,Store,23,120,0.1,2484.0,70,874.0
+2025-12-13,RS-00519,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Nour,Store,45,28,0,1260,11,765
+2025-10-14,RS-00520,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,David,Online,2,950,0.1,1710.0,650,410.0
+2026-01-22,RS-00521,Webcam HD,CAM-018,Accessories,North,Batroun,David,Online,34,65,0,2210,32,1122
+2025-10-20,RS-00522,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Bob,Store,3,950,0,2850,650,900
+2025-12-07,RS-00523,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Alice,Store,5,950,0,4750,650,1500
+2025-12-22,RS-00524,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Rami,Online,31,55,0.05,1619.75,25,844.75
+2025-10-19,RS-00525,USB-C Dock,DOC-101,Accessories,North,Batroun,David,B2B,26,120,0.1,2808.0,70,988.0
+2025-10-24,RS-00526,Gaming Laptop X,LAP-220,Computers,South,Saida,Maya,Store,2,1250,0,2500,850,800
+2026-02-13,RS-00527,27-inch Monitor,MON-027,Displays,North,Tripoli,Bob,Online,9,220,0.05,1881.0,135,666.0
+2025-12-02,RS-00528,Tablet Air,TAB-080,Tablets,North,Batroun,Nour,B2B,22,420,0.15,7854.0,280,1694.0
+2025-12-05,RS-00529,4K Monitor,MON-040,Displays,Bekaa,Zahle,Alice,B2B,25,380,0.1,8550.0,240,2550.0
+2026-02-02,RS-00530,Laptop Pro 14,LAP-140,Computers,South,Saida,Maya,Store,1,950,0.15,807.5,650,157.5
+2025-11-12,RS-00531,USB Cable,USB-001,Accessories,North,Tripoli,Bob,Store,40,14,0.05,532.0,4,372.0
+2025-10-27,RS-00532,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Bob,Online,2,1250,0,2500,850,800
+2026-01-26,RS-00533,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Bob,Store,35,28,0,980,11,595
+2025-11-28,RS-00534,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Byblos,Nour,Store,17,145,0,2465,85,1020
+2025-12-20,RS-00535,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Alice,Online,2,950,0.05,1805.0,650,505.0
+2025-10-19,RS-00536,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Elie,Online,1,1250,0,1250,850,400
+2025-10-23,RS-00537,Gaming Laptop X,LAP-220,Computers,South,Tyre,Nour,Store,1,1250,0.05,1187.5,850,337.5
+2025-11-04,RS-00538,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Carla,Store,14,120,0.1,1512.0,70,532.0
+2026-01-04,RS-00539,Tablet Air,TAB-080,Tablets,North,Tripoli,Carla,Store,10,420,0.05,3990.0,280,1190.0
+2025-10-22,RS-00540,Gaming Laptop X,LAP-220,Computers,North,Batroun,David,Store,4,1250,0.05,4750.0,850,1350.0
+2026-02-09,RS-00541,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,David,Online,4,950,0.05,3610.0,650,1010.0
+2025-10-14,RS-00542,Webcam HD,CAM-018,Accessories,South,Tyre,Bob,Store,22,65,0,1430,32,726
+2025-10-26,RS-00543,Laptop Pro 14,LAP-140,Computers,South,Tyre,Maya,Store,2,950,0,1900,650,600
+2025-10-18,RS-00544,Noise-Cancel Headset,HDS-033,Audio,North,Batroun,Rami,Store,11,145,0.05,1515.25,85,580.25
+2025-12-18,RS-00545,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Maya,Online,60,28,0,1680,11,1020
+2025-11-26,RS-00546,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Elie,Online,47,28,0,1316,11,799
+2025-12-24,RS-00547,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Rami,Store,11,145,0,1595,85,660
+2025-10-21,RS-00548,Webcam HD,CAM-018,Accessories,Mount Lebanon,Jounieh,David,Store,43,65,0.1,2515.5,32,1139.5
+2025-10-20,RS-00549,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Alice,Online,40,28,0,1120,11,680
+2025-10-10,RS-00550,4K Monitor,MON-040,Displays,South,Tyre,Carla,Store,1,380,0,380,240,140
+2025-12-14,RS-00551,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Nour,Store,7,950,0.15,5652.5,650,1102.5
+2025-11-12,RS-00552,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,Rami,Store,19,120,0.05,2166.0,70,836.0
+2025-11-07,RS-00553,Wireless Mouse,MOU-014,Accessories,South,Tyre,Maya,Store,33,28,0,924,11,561
+2025-11-29,RS-00554,Laptop Pro 14,LAP-140,Computers,South,Saida,Maya,Store,2,950,0.1,1710.0,650,410.0
+2025-10-12,RS-00555,Laptop Pro 14,LAP-140,Computers,North,Batroun,Bob,Online,1,950,0.1,855.0,650,205.0
+2025-12-07,RS-00556,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Nour,Online,3,380,0,1140,240,420
+2025-10-20,RS-00557,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,David,Store,1,380,0.05,361.0,240,121.0
+2026-02-01,RS-00558,Noise-Cancel Headset,HDS-033,Audio,North,Tripoli,Carla,Store,24,145,0,3480,85,1440
+2026-02-09,RS-00559,Mechanical Keyboard,KEY-022,Accessories,South,Saida,Carla,Store,25,55,0,1375,25,750
+2025-11-28,RS-00560,27-inch Monitor,MON-027,Displays,North,Batroun,Bob,Store,19,220,0,4180,135,1615
+2025-11-23,RS-00561,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Alice,Store,58,55,0,3190,25,1740
+2026-02-09,RS-00562,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Alice,Store,10,950,0.1,8550.0,650,2050.0
+2026-02-10,RS-00563,Tablet Air,TAB-080,Tablets,North,Tripoli,Elie,B2B,26,420,0.1,9828.0,280,2548.0
+2025-11-13,RS-00564,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Carla,Online,11,1250,0.1,12375.0,850,3025.0
+2025-11-16,RS-00565,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Carla,Online,38,55,0.05,1985.5,25,1035.5
+2025-11-28,RS-00566,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Bob,Store,22,220,0.05,4598.0,135,1628.0
+2026-02-07,RS-00567,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Bob,Store,38,28,0.1,957.6,11,539.6
+2026-02-14,RS-00568,4K Monitor,MON-040,Displays,Beirut,Beirut,Bob,Store,2,380,0,760,240,280
+2026-02-16,RS-00569,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Nour,Store,32,65,0,2080,32,1056
+2026-02-01,RS-00570,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Maya,Online,19,120,0.05,2166.0,70,836.0
+2025-10-26,RS-00571,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Rami,Online,13,220,0.05,2717.0,135,962.0
+2026-02-17,RS-00572,27-inch Monitor,MON-027,Displays,South,Saida,Alice,Online,12,220,0.1,2376.0,135,756.0
+2026-02-11,RS-00573,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Nour,Online,3,950,0,2850,650,900
+2025-11-09,RS-00574,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Elie,Online,14,220,0,3080,135,1190
+2026-01-02,RS-00575,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,David,Store,36,55,0,1980,25,1080
+2026-02-01,RS-00576,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Maya,Online,1,1250,0,1250,850,400
+2025-11-05,RS-00577,Webcam HD,CAM-018,Accessories,Beirut,Beirut,David,Store,50,65,0,3250,32,1650
+2026-01-11,RS-00578,USB-C Dock,DOC-101,Accessories,North,Tripoli,Carla,Store,16,120,0.05,1824.0,70,704.0
+2025-10-24,RS-00579,Webcam HD,CAM-018,Accessories,South,Tyre,Nour,Store,19,65,0.05,1173.25,32,565.25
+2026-01-07,RS-00580,Tablet Air,TAB-080,Tablets,Mount Lebanon,Byblos,Elie,Online,8,420,0.05,3192.0,280,952.0
+2025-11-14,RS-00581,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Alice,Store,32,55,0,1760,25,960
+2025-10-09,RS-00582,USB-C Dock,DOC-101,Accessories,South,Saida,Carla,Online,8,120,0,960,70,400
+2025-10-01,RS-00583,USB Cable,USB-001,Accessories,Beirut,Beirut,Elie,Online,43,14,0.05,571.9,4,399.9
+2026-02-10,RS-00584,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Bob,Online,7,950,0.05,6317.5,650,1767.5
+2025-12-29,RS-00585,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,David,Online,6,1250,0.05,7125.0,850,2025.0
+2025-12-06,RS-00586,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Bob,Store,13,950,0,12350,650,3900
+2025-10-30,RS-00587,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Elie,Online,17,120,0.1,1836.0,70,646.0
+2025-12-26,RS-00588,USB Cable,USB-001,Accessories,South,Tyre,Rami,B2B,46,14,0.1,579.6,4,395.6
+2025-10-30,RS-00589,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,Online,4,1250,0.15,4250.0,850,850.0
+2026-02-10,RS-00590,4K Monitor,MON-040,Displays,Bekaa,Zahle,David,Store,6,380,0,2280,240,840
+2025-12-27,RS-00591,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Rami,Store,6,950,0,5700,650,1800
+2025-11-18,RS-00592,4K Monitor,MON-040,Displays,South,Saida,David,Online,7,380,0.1,2394.0,240,714.0
+2025-11-22,RS-00593,Gaming Laptop X,LAP-220,Computers,South,Saida,Maya,Store,9,1250,0.05,10687.5,850,3037.5
+2026-02-04,RS-00594,Mechanical Keyboard,KEY-022,Accessories,North,Tripoli,Rami,Store,39,55,0,2145,25,1170
+2025-12-10,RS-00595,4K Monitor,MON-040,Displays,Bekaa,Zahle,Nour,Store,2,380,0.1,684.0,240,204.0
+2026-01-31,RS-00596,Tablet Air,TAB-080,Tablets,North,Tripoli,Maya,Store,5,420,0.05,1995.0,280,595.0
+2025-11-14,RS-00597,27-inch Monitor,MON-027,Displays,Beirut,Beirut,Rami,Store,27,220,0,5940,135,2295
+2025-10-26,RS-00598,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Carla,Online,4,1250,0,5000,850,1600
+2026-01-29,RS-00599,Tablet Air,TAB-080,Tablets,North,Batroun,Maya,Store,1,420,0.1,378.0,280,98.0
+2026-01-02,RS-00600,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Rami,Store,28,65,0,1820,32,924
+2025-11-28,RS-00601,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,David,Online,36,65,0.1,2106.0,32,954.0
+2025-11-08,RS-00602,27-inch Monitor,MON-027,Displays,North,Tripoli,Carla,Store,19,220,0,4180,135,1615
+2026-02-10,RS-00603,4K Monitor,MON-040,Displays,North,Batroun,Rami,Store,1,380,0,380,240,140
+2025-11-11,RS-00604,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Rami,Online,3,950,0,2850,650,900
+2025-12-25,RS-00605,Gaming Laptop X,LAP-220,Computers,North,Batroun,Elie,Store,2,1250,0.05,2375.0,850,675.0
+2025-11-20,RS-00606,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Elie,Store,7,380,0.05,2527.0,240,847.0
+2026-02-02,RS-00607,USB-C Dock,DOC-101,Accessories,South,Tyre,Bob,Store,8,120,0,960,70,400
+2025-11-12,RS-00608,Mechanical Keyboard,KEY-022,Accessories,North,Batroun,Nour,Online,35,55,0.05,1828.75,25,953.75
+2025-10-19,RS-00609,Laptop Pro 14,LAP-140,Computers,North,Batroun,David,Store,1,950,0.05,902.5,650,252.5
+2026-01-10,RS-00610,Gaming Laptop X,LAP-220,Computers,South,Tyre,Maya,Online,1,1250,0.05,1187.5,850,337.5
+2026-01-24,RS-00611,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Alice,Store,21,220,0.05,4389.0,135,1554.0
+2025-10-21,RS-00612,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Bob,Store,6,1250,0.15,6375.0,850,1275.0
+2026-01-30,RS-00613,4K Monitor,MON-040,Displays,North,Tripoli,Nour,Online,4,380,0.05,1444.0,240,484.0
+2025-10-22,RS-00614,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Elie,Store,39,55,0.05,2037.75,25,1062.75
+2026-01-22,RS-00615,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Carla,Store,40,55,0,2200,25,1200
+2026-01-30,RS-00616,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Rami,Store,8,220,0.15,1496.0,135,416.0
+2026-02-16,RS-00617,Laptop Pro 14,LAP-140,Computers,South,Tyre,Nour,Online,1,950,0,950,650,300
+2026-02-16,RS-00618,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Rami,Store,2,1250,0,2500,850,800
+2025-11-09,RS-00619,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Carla,Store,6,1250,0.1,6750.0,850,1650.0
+2026-01-31,RS-00620,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Elie,Online,4,1250,0.1,4500.0,850,1100.0
+2026-01-04,RS-00621,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Nour,Store,2,950,0.1,1710.0,650,410.0
+2025-11-26,RS-00622,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,Store,1,1250,0.1,1125.0,850,275.0
+2025-12-09,RS-00623,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Nour,Store,4,1250,0,5000,850,1600
+2026-01-25,RS-00624,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Rami,Store,28,55,0,1540,25,840
+2025-10-13,RS-00625,USB Cable,USB-001,Accessories,North,Tripoli,Carla,B2B,47,14,0.1,592.2,4,404.2
+2025-11-29,RS-00626,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Rami,Store,7,950,0,6650,650,2100
+2026-02-05,RS-00627,Laptop Sleeve,SLV-010,Accessories,South,Tyre,Alice,Store,32,25,0,800,8,544
+2026-01-09,RS-00628,Laptop Pro 14,LAP-140,Computers,South,Tyre,Carla,Store,1,950,0.1,855.0,650,205.0
+2026-01-06,RS-00629,Webcam HD,CAM-018,Accessories,Beirut,Beirut,David,Store,44,65,0.15,2431.0,32,1023.0
+2025-11-20,RS-00630,27-inch Monitor,MON-027,Displays,Beirut,Beirut,David,Store,22,220,0.05,4598.0,135,1628.0
+2025-12-19,RS-00631,Tablet Air,TAB-080,Tablets,Mount Lebanon,Jounieh,Alice,Online,5,420,0.05,1995.0,280,595.0
+2025-12-16,RS-00632,Laptop Pro 14,LAP-140,Computers,North,Tripoli,David,B2B,23,950,0.1,19665.0,650,4715.0
+2025-12-23,RS-00633,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Bob,Store,4,950,0.05,3610.0,650,1010.0
+2026-01-30,RS-00634,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Maya,Online,57,28,0,1596,11,969
+2026-02-05,RS-00635,Laptop Pro 14,LAP-140,Computers,North,Batroun,Alice,Store,1,950,0.1,855.0,650,205.0
+2025-11-02,RS-00636,4K Monitor,MON-040,Displays,North,Batroun,Maya,Online,1,380,0,380,240,140
+2025-11-19,RS-00637,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Maya,Online,6,950,0.05,5415.0,650,1515.0
+2025-12-15,RS-00638,4K Monitor,MON-040,Displays,South,Tyre,David,Online,4,380,0.05,1444.0,240,484.0
+2025-12-22,RS-00639,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Carla,Store,41,28,0,1148,11,697
+2026-01-02,RS-00640,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Carla,B2B,36,220,0.1,7128.0,135,2268.0
+2025-12-01,RS-00641,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Nour,Store,2,1250,0,2500,850,800
+2025-12-12,RS-00642,Gaming Laptop X,LAP-220,Computers,North,Batroun,Bob,Store,1,1250,0.05,1187.5,850,337.5
+2025-10-12,RS-00643,Webcam HD,CAM-018,Accessories,Mount Lebanon,Jounieh,Carla,Online,46,65,0,2990,32,1518
+2026-01-08,RS-00644,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Alice,Store,39,55,0.05,2037.75,25,1062.75
+2025-10-19,RS-00645,Laptop Pro 14,LAP-140,Computers,South,Saida,Rami,B2B,20,950,0.1,17100.0,650,4100.0
+2026-01-15,RS-00646,Webcam HD,CAM-018,Accessories,North,Tripoli,Elie,Online,37,65,0.05,2284.75,32,1100.75
+2025-12-17,RS-00647,Laptop Pro 14,LAP-140,Computers,South,Saida,Bob,Store,3,950,0,2850,650,900
+2025-12-03,RS-00648,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Nour,Online,8,380,0.1,2736.0,240,816.0
+2025-12-31,RS-00649,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Bob,Store,41,28,0,1148,11,697
+2025-11-10,RS-00650,4K Monitor,MON-040,Displays,South,Tyre,Maya,B2B,22,380,0.1,7524.0,240,2244.0
+2026-01-04,RS-00651,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Maya,Online,16,220,0.1,3168.0,135,1008.0
+2025-12-05,RS-00652,27-inch Monitor,MON-027,Displays,South,Tyre,Rami,B2B,17,220,0.1,3366.0,135,1071.0
+2025-12-12,RS-00653,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Elie,Store,55,55,0,3025,25,1650
+2025-12-10,RS-00654,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Bob,Store,19,145,0,2755,85,1140
+2025-11-05,RS-00655,Gaming Laptop X,LAP-220,Computers,South,Saida,David,Store,3,1250,0.05,3562.5,850,1012.5
+2025-11-25,RS-00656,Wireless Mouse,MOU-014,Accessories,North,Batroun,Rami,Store,42,28,0.1,1058.4,11,596.4
+2025-10-25,RS-00657,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Alice,Online,35,55,0,1925,25,1050
+2025-12-25,RS-00658,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Nour,B2B,15,1250,0.1,16875.0,850,4125.0
+2025-10-03,RS-00659,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Alice,Store,49,55,0,2695,25,1470
+2026-02-06,RS-00660,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Alice,Online,50,28,0.15,1190.0,11,640.0
+2026-01-23,RS-00661,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,David,Store,18,120,0,2160,70,900
+2026-01-30,RS-00662,4K Monitor,MON-040,Displays,North,Tripoli,Nour,Store,2,380,0,760,240,280
+2026-01-20,RS-00663,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,Carla,Store,20,120,0.05,2280.0,70,880.0
+2026-02-12,RS-00664,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Elie,Online,9,1250,0,11250,850,3600
+2025-10-23,RS-00665,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Nour,Store,4,950,0.05,3610.0,650,1010.0
+2025-12-18,RS-00666,Laptop Pro 14,LAP-140,Computers,North,Batroun,Rami,Online,7,950,0,6650,650,2100
+2025-11-29,RS-00667,Laptop Pro 14,LAP-140,Computers,North,Batroun,Carla,Online,6,950,0,5700,650,1800
+2025-11-07,RS-00668,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Alice,Store,42,65,0.1,2457.0,32,1113.0
+2025-12-18,RS-00669,27-inch Monitor,MON-027,Displays,North,Tripoli,Maya,Store,20,220,0.05,4180.0,135,1480.0
+2025-12-06,RS-00670,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Alice,Store,7,380,0.1,2394.0,240,714.0
+2026-02-12,RS-00671,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Alice,Store,7,950,0,6650,650,2100
+2025-10-03,RS-00672,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Maya,Online,1,950,0,950,650,300
+2026-01-07,RS-00673,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Bob,B2B,12,1250,0.1,13500.0,850,3300.0
+2026-02-06,RS-00674,USB Cable,USB-001,Accessories,North,Tripoli,Alice,Store,46,14,0.05,611.8,4,427.8
+2025-12-25,RS-00675,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Alice,Store,2,380,0,760,240,280
+2026-02-06,RS-00676,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Elie,Online,8,1250,0.1,9000.0,850,2200.0
+2025-10-08,RS-00677,Tablet Air,TAB-080,Tablets,Bekaa,Zahle,David,Store,7,420,0,2940,280,980
+2026-01-06,RS-00678,4K Monitor,MON-040,Displays,South,Saida,Nour,Store,1,380,0,380,240,140
+2025-12-19,RS-00679,Noise-Cancel Headset,HDS-033,Audio,North,Batroun,Rami,Online,16,145,0.05,2204.0,85,844.0
+2025-11-21,RS-00680,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Carla,Store,42,65,0.1,2457.0,32,1113.0
+2025-11-07,RS-00681,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Maya,Store,48,55,0,2640,25,1440
+2025-11-07,RS-00682,Wireless Mouse,MOU-014,Accessories,North,Batroun,Nour,B2B,44,28,0.1,1108.8,11,624.8
+2025-11-08,RS-00683,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Carla,Store,25,120,0,3000,70,1250
+2025-11-29,RS-00684,Mechanical Keyboard,KEY-022,Accessories,South,Saida,Alice,Store,33,55,0.05,1724.25,25,899.25
+2026-01-31,RS-00685,Laptop Pro 14,LAP-140,Computers,South,Tyre,Maya,Store,1,950,0,950,650,300
+2025-11-27,RS-00686,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Elie,B2B,19,950,0.1,16245.0,650,3895.0
+2025-11-22,RS-00687,Laptop Pro 14,LAP-140,Computers,South,Tyre,Rami,Online,6,950,0,5700,650,1800
+2025-10-11,RS-00688,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Maya,Store,36,55,0.15,1683.0,25,783.0
+2026-02-15,RS-00689,4K Monitor,MON-040,Displays,North,Tripoli,Bob,Store,4,380,0.15,1292.0,240,332.0
+2026-02-10,RS-00690,4K Monitor,MON-040,Displays,North,Tripoli,Nour,Store,3,380,0.05,1083.0,240,363.0
+2025-10-13,RS-00691,Laptop Pro 14,LAP-140,Computers,South,Tyre,Nour,B2B,16,950,0.1,13680.0,650,3280.0
+2025-10-14,RS-00692,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Rami,Online,35,28,0,980,11,595
+2026-02-06,RS-00693,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Nour,Store,2,950,0.05,1805.0,650,505.0
+2025-11-21,RS-00694,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Elie,Store,26,145,0.05,3581.5,85,1371.5
+2025-11-11,RS-00695,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Bob,Store,43,28,0.05,1143.8,11,670.8
+2026-01-07,RS-00696,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Nour,Online,32,28,0,896,11,544
+2025-11-13,RS-00697,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Carla,Online,26,145,0,3770,85,1560
+2025-12-19,RS-00698,Wireless Mouse,MOU-014,Accessories,South,Tyre,Elie,Online,34,28,0,952,11,578
+2025-11-03,RS-00699,USB Cable,USB-001,Accessories,North,Tripoli,Elie,Store,44,14,0.1,554.4,4,378.4
+2026-02-04,RS-00700,Gaming Laptop X,LAP-220,Computers,South,Tyre,Rami,Store,3,1250,0,3750,850,1200
+2025-10-02,RS-00701,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,David,Store,6,1250,0,7500,850,2400
+2025-10-09,RS-00702,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Maya,B2B,56,28,0.1,1411.2,11,795.2
+2025-11-15,RS-00703,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Carla,B2B,19,950,0.1,16245.0,650,3895.0
+2025-12-22,RS-00704,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Bob,Online,14,220,0.1,2772.0,135,882.0
+2025-10-17,RS-00705,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Bob,Online,3,1250,0.05,3562.5,850,1012.5
+2025-11-23,RS-00706,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,Bob,Store,52,55,0.05,2717.0,25,1417.0
+2025-12-13,RS-00707,27-inch Monitor,MON-027,Displays,North,Batroun,Elie,Online,22,220,0,4840,135,1870
+2026-02-05,RS-00708,4K Monitor,MON-040,Displays,South,Tyre,Rami,Online,3,380,0.1,1026.0,240,306.0
+2025-11-29,RS-00709,Wireless Mouse,MOU-014,Accessories,South,Saida,Alice,Store,32,28,0.05,851.2,11,499.2
+2025-11-23,RS-00710,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Nour,Store,16,120,0,1920,70,800
+2025-11-24,RS-00711,Laptop Pro 14,LAP-140,Computers,South,Saida,Elie,Store,6,950,0.05,5415.0,650,1515.0
+2025-10-02,RS-00712,Laptop Pro 14,LAP-140,Computers,North,Batroun,Maya,Store,5,950,0.05,4512.5,650,1262.5
+2025-10-08,RS-00713,Webcam HD,CAM-018,Accessories,South,Saida,Maya,Online,31,65,0,2015,32,1023
+2025-10-10,RS-00714,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Carla,Online,25,55,0.1,1237.5,25,612.5
+2026-02-15,RS-00715,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Nour,B2B,25,145,0.1,3262.5,85,1137.5
+2026-02-15,RS-00716,Laptop Pro 14,LAP-140,Computers,North,Batroun,Maya,Store,5,950,0,4750,650,1500
+2025-10-08,RS-00717,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Carla,Online,1,1250,0.1,1125.0,850,275.0
+2025-12-18,RS-00718,Wireless Mouse,MOU-014,Accessories,North,Batroun,Alice,Store,53,28,0,1484,11,901
+2025-11-30,RS-00719,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,David,Online,16,220,0,3520,135,1360
+2025-11-21,RS-00720,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Alice,Online,18,145,0.1,2349.0,85,819.0
+2025-11-09,RS-00721,Laptop Pro 14,LAP-140,Computers,South,Tyre,Elie,Online,7,950,0.1,5985.0,650,1435.0
+2026-02-10,RS-00722,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,David,Online,44,28,0,1232,11,748
+2026-02-11,RS-00723,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Alice,Online,3,950,0,2850,650,900
+2025-10-12,RS-00724,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Alice,Online,3,950,0,2850,650,900
+2025-11-23,RS-00725,Gaming Laptop X,LAP-220,Computers,South,Saida,Elie,Store,3,1250,0,3750,850,1200
+2025-11-08,RS-00726,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Alice,B2B,21,950,0.1,17955.0,650,4305.0
+2025-11-22,RS-00727,4K Monitor,MON-040,Displays,North,Batroun,Elie,Store,4,380,0,1520,240,560
+2025-10-19,RS-00728,Gaming Laptop X,LAP-220,Computers,North,Batroun,Rami,Store,2,1250,0,2500,850,800
+2025-10-13,RS-00729,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Bob,Store,6,950,0.05,5415.0,650,1515.0
+2026-01-23,RS-00730,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Maya,Online,38,55,0.05,1985.5,25,1035.5
+2026-02-14,RS-00731,Laptop Pro 14,LAP-140,Computers,South,Tyre,Carla,Store,4,950,0,3800,650,1200
+2025-12-19,RS-00732,Wireless Mouse,MOU-014,Accessories,South,Tyre,Rami,Store,24,28,0,672,11,408
+2025-12-06,RS-00733,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Byblos,Carla,Online,17,145,0.1,2218.5,85,773.5
+2026-01-25,RS-00734,4K Monitor,MON-040,Displays,Beirut,Beirut,Rami,Store,1,380,0,380,240,140
+2025-11-13,RS-00735,Gaming Laptop X,LAP-220,Computers,North,Batroun,Carla,Store,1,1250,0,1250,850,400
+2025-10-19,RS-00736,USB-C Dock,DOC-101,Accessories,South,Tyre,Nour,Online,10,120,0,1200,70,500
+2025-12-02,RS-00737,4K Monitor,MON-040,Displays,South,Tyre,Nour,Store,3,380,0,1140,240,420
+2026-01-20,RS-00738,4K Monitor,MON-040,Displays,North,Batroun,David,Store,7,380,0.05,2527.0,240,847.0
+2026-02-02,RS-00739,Laptop Pro 14,LAP-140,Computers,South,Tyre,Maya,Online,4,950,0.15,3230.0,650,630.0
+2025-10-18,RS-00740,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Maya,Store,40,55,0.05,2090.0,25,1090.0
+2025-10-24,RS-00741,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Alice,Online,3,1250,0,3750,850,1200
+2026-01-23,RS-00742,Laptop Pro 14,LAP-140,Computers,North,Batroun,Elie,Online,1,950,0.1,855.0,650,205.0
+2025-12-17,RS-00743,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Byblos,Maya,B2B,25,145,0.1,3262.5,85,1137.5
+2025-12-15,RS-00744,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Alice,Online,3,950,0.1,2565.0,650,615.0
+2025-12-31,RS-00745,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Alice,Store,4,950,0,3800,650,1200
+2026-01-06,RS-00746,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,David,Online,12,220,0,2640,135,1020
+2025-11-18,RS-00747,4K Monitor,MON-040,Displays,North,Batroun,Nour,Store,7,380,0,2660,240,980
+2025-10-19,RS-00748,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Rami,Online,37,55,0.15,1729.75,25,804.75
+2025-11-04,RS-00749,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Rami,B2B,21,950,0.1,17955.0,650,4305.0
+2026-02-08,RS-00750,27-inch Monitor,MON-027,Displays,South,Tyre,Nour,Store,4,220,0,880,135,340
+2025-10-02,RS-00751,4K Monitor,MON-040,Displays,South,Saida,Elie,Store,1,380,0.15,323.0,240,83.0
+2026-02-01,RS-00752,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Rami,B2B,52,28,0.1,1310.4,11,738.4
+2026-01-28,RS-00753,4K Monitor,MON-040,Displays,Beirut,Beirut,David,Store,5,380,0,1900,240,700
+2026-02-16,RS-00754,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Alice,B2B,12,120,0.1,1296.0,70,456.0
+2026-01-29,RS-00755,27-inch Monitor,MON-027,Displays,South,Tyre,Maya,Store,16,220,0,3520,135,1360
+2025-10-10,RS-00756,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Elie,Store,30,28,0,840,11,510
+2025-11-13,RS-00757,4K Monitor,MON-040,Displays,Bekaa,Zahle,Alice,Store,9,380,0.1,3078.0,240,918.0
+2025-12-11,RS-00758,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Elie,Online,7,1250,0,8750,850,2800
+2025-10-29,RS-00759,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Rami,Store,39,55,0,2145,25,1170
+2025-11-16,RS-00760,USB-C Dock,DOC-101,Accessories,North,Tripoli,Maya,B2B,40,120,0.15,4080.0,70,1280.0
+2026-02-04,RS-00761,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Nour,Store,9,120,0,1080,70,450
+2025-12-28,RS-00762,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Bob,Store,5,950,0,4750,650,1500
+2026-01-30,RS-00763,Gaming Laptop X,LAP-220,Computers,South,Saida,Nour,Online,1,1250,0.05,1187.5,850,337.5
+2026-01-20,RS-00764,Laptop Pro 14,LAP-140,Computers,South,Tyre,Nour,Online,3,950,0.15,2422.5,650,472.5
+2025-10-11,RS-00765,Laptop Pro 14,LAP-140,Computers,North,Batroun,Nour,Online,2,950,0,1900,650,600
+2025-10-26,RS-00766,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Rami,Online,2,1250,0.05,2375.0,850,675.0
+2025-11-19,RS-00767,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Maya,Online,2,380,0,760,240,280
+2025-10-26,RS-00768,4K Monitor,MON-040,Displays,South,Tyre,Maya,Store,1,380,0,380,240,140
+2025-11-19,RS-00769,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Alice,B2B,10,950,0.15,8075.0,650,1575.0
+2025-10-31,RS-00770,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Nour,Online,1,950,0.1,855.0,650,205.0
+2025-11-17,RS-00771,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Elie,Store,21,145,0,3045,85,1260
+2025-12-10,RS-00772,USB-C Dock,DOC-101,Accessories,North,Batroun,Elie,Store,17,120,0,2040,70,850
+2025-10-16,RS-00773,27-inch Monitor,MON-027,Displays,North,Batroun,Alice,Store,18,220,0,3960,135,1530
+2025-11-21,RS-00774,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Rami,Store,43,55,0.05,2246.75,25,1171.75
+2026-01-19,RS-00775,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Rami,Online,6,1250,0.05,7125.0,850,2025.0
+2025-12-04,RS-00776,USB-C Dock,DOC-101,Accessories,North,Tripoli,Rami,Store,20,120,0.05,2280.0,70,880.0
+2025-10-10,RS-00777,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Carla,Online,36,28,0.05,957.6,11,561.6
+2026-02-03,RS-00778,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Bob,Online,12,220,0,2640,135,1020
+2026-02-01,RS-00779,Laptop Pro 14,LAP-140,Computers,North,Batroun,Maya,Online,1,950,0.15,807.5,650,157.5
+2025-10-24,RS-00780,27-inch Monitor,MON-027,Displays,North,Batroun,Bob,Online,14,220,0.1,2772.0,135,882.0
+2025-12-14,RS-00781,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Alice,B2B,65,55,0.1,3217.5,25,1592.5
+2025-12-31,RS-00782,4K Monitor,MON-040,Displays,South,Tyre,David,Store,2,380,0,760,240,280
+2025-12-01,RS-00783,4K Monitor,MON-040,Displays,Beirut,Beirut,Elie,Store,14,380,0.15,4522.0,240,1162.0
+2025-10-05,RS-00784,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Maya,Online,4,950,0,3800,650,1200
+2025-10-31,RS-00785,Gaming Laptop X,LAP-220,Computers,South,Tyre,Carla,Online,3,1250,0.05,3562.5,850,1012.5
+2026-02-03,RS-00786,Mechanical Keyboard,KEY-022,Accessories,South,Tyre,Alice,Store,29,55,0.05,1515.25,25,790.25
+2025-10-04,RS-00787,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Elie,Online,8,950,0.1,6840.0,650,1640.0
+2025-10-17,RS-00788,Webcam HD,CAM-018,Accessories,Beirut,Beirut,Bob,Store,41,65,0.1,2398.5,32,1086.5
+2025-11-26,RS-00789,Laptop Pro 14,LAP-140,Computers,South,Saida,Nour,Store,5,950,0,4750,650,1500
+2025-10-31,RS-00790,USB Cable,USB-001,Accessories,Mount Lebanon,Jounieh,Maya,Online,41,14,0.1,516.6,4,352.6
+2025-10-12,RS-00791,Mechanical Keyboard,KEY-022,Accessories,North,Batroun,Bob,Store,31,55,0.05,1619.75,25,844.75
+2025-11-12,RS-00792,27-inch Monitor,MON-027,Displays,North,Tripoli,Carla,Store,25,220,0.1,4950.0,135,1575.0
+2026-01-05,RS-00793,USB-C Dock,DOC-101,Accessories,North,Tripoli,Rami,Store,22,120,0.05,2508.0,70,968.0
+2025-12-12,RS-00794,27-inch Monitor,MON-027,Displays,South,Tyre,Carla,Store,14,220,0.05,2926.0,135,1036.0
+2026-02-11,RS-00795,27-inch Monitor,MON-027,Displays,South,Saida,Carla,Online,13,220,0.05,2717.0,135,962.0
+2025-10-23,RS-00796,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Maya,Store,34,55,0.05,1776.5,25,926.5
+2025-11-19,RS-00797,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Maya,Online,14,950,0,13300,650,4200
+2025-11-23,RS-00798,Gaming Laptop X,LAP-220,Computers,South,Saida,Bob,Online,3,1250,0.05,3562.5,850,1012.5
+2026-01-30,RS-00799,4K Monitor,MON-040,Displays,Mount Lebanon,Jounieh,Alice,Store,4,380,0,1520,240,560
+2026-01-25,RS-00800,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Carla,Store,7,950,0,6650,650,2100
+2026-02-09,RS-00801,Laptop Pro 14,LAP-140,Computers,South,Saida,Rami,Online,2,950,0.05,1805.0,650,505.0
+2025-12-23,RS-00802,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Maya,Store,11,1250,0,13750,850,4400
+2026-01-14,RS-00803,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,David,Store,34,65,0,2210,32,1122
+2025-11-25,RS-00804,Tablet Air,TAB-080,Tablets,South,Tyre,Carla,Store,3,420,0,1260,280,420
+2025-11-19,RS-00805,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,David,Store,39,55,0,2145,25,1170
+2025-10-29,RS-00806,Webcam HD,CAM-018,Accessories,South,Tyre,Nour,Store,19,65,0,1235,32,627
+2025-12-15,RS-00807,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,David,Store,50,55,0.15,2337.5,25,1087.5
+2026-01-30,RS-00808,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Alice,Online,33,65,0.05,2037.75,32,981.75
+2025-12-03,RS-00809,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,B2B,9,1250,0.1,10125.0,850,2475.0
+2026-01-15,RS-00810,Laptop Sleeve,SLV-010,Accessories,North,Tripoli,Rami,Online,34,25,0.05,807.5,8,535.5
+2026-01-17,RS-00811,4K Monitor,MON-040,Displays,South,Tyre,Bob,Store,2,380,0,760,240,280
+2026-01-13,RS-00812,Tablet Air,TAB-080,Tablets,Mount Lebanon,Jounieh,Maya,Store,11,420,0.05,4389.0,280,1309.0
+2025-10-24,RS-00813,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Carla,Online,7,950,0,6650,650,2100
+2026-01-25,RS-00814,27-inch Monitor,MON-027,Displays,Mount Lebanon,Jounieh,Nour,Store,10,220,0.1,1980.0,135,630.0
+2026-01-27,RS-00815,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Bob,Store,33,28,0,924,11,561
+2025-12-09,RS-00816,Wireless Mouse,MOU-014,Accessories,South,Saida,Bob,Online,25,28,0,700,11,425
+2025-10-15,RS-00817,4K Monitor,MON-040,Displays,North,Batroun,Alice,Store,1,380,0,380,240,140
+2025-11-14,RS-00818,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,David,Store,56,55,0,3080,25,1680
+2026-02-16,RS-00819,Laptop Pro 14,LAP-140,Computers,South,Tyre,David,Online,3,950,0.1,2565.0,650,615.0
+2026-02-06,RS-00820,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Alice,Store,33,28,0,924,11,561
+2026-02-02,RS-00821,4K Monitor,MON-040,Displays,Beirut,Beirut,Rami,Online,2,380,0,760,240,280
+2026-01-03,RS-00822,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,David,B2B,21,120,0.1,2268.0,70,798.0
+2026-01-09,RS-00823,Noise-Cancel Headset,HDS-033,Audio,Bekaa,Zahle,Bob,Store,10,145,0.05,1377.5,85,527.5
+2025-11-22,RS-00824,4K Monitor,MON-040,Displays,North,Tripoli,Elie,Store,13,380,0.05,4693.0,240,1573.0
+2025-11-03,RS-00825,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Rami,Online,20,220,0,4400,135,1700
+2025-11-29,RS-00826,Webcam HD,CAM-018,Accessories,North,Batroun,Nour,Online,32,65,0.05,1976.0,32,952.0
+2025-12-23,RS-00827,4K Monitor,MON-040,Displays,South,Tyre,Rami,Store,6,380,0,2280,240,840
+2025-12-06,RS-00828,Gaming Laptop X,LAP-220,Computers,North,Batroun,Elie,Online,10,1250,0,12500,850,4000
+2025-12-30,RS-00829,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Carla,Online,3,1250,0.1,3375.0,850,825.0
+2025-11-09,RS-00830,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Alice,B2B,41,950,0.1,35055.0,650,8405.0
+2025-12-06,RS-00831,27-inch Monitor,MON-027,Displays,South,Saida,Alice,Online,18,220,0,3960,135,1530
+2025-11-11,RS-00832,4K Monitor,MON-040,Displays,Beirut,Beirut,Alice,Store,7,380,0.05,2527.0,240,847.0
+2025-11-07,RS-00833,Tablet Air,TAB-080,Tablets,North,Batroun,Carla,Store,4,420,0,1680,280,560
+2025-12-15,RS-00834,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Carla,Online,8,220,0.05,1672.0,135,592.0
+2026-01-22,RS-00835,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Rami,B2B,24,1250,0.1,27000.0,850,6600.0
+2025-11-26,RS-00836,27-inch Monitor,MON-027,Displays,Beirut,Beirut,Maya,Store,32,220,0.05,6688.0,135,2368.0
+2026-02-12,RS-00837,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,David,Store,1,1250,0.05,1187.5,850,337.5
+2025-10-23,RS-00838,USB Cable,USB-001,Accessories,Mount Lebanon,Byblos,David,Store,34,14,0.05,452.2,4,316.2
+2026-02-08,RS-00839,Tablet Air,TAB-080,Tablets,North,Batroun,Nour,Store,4,420,0,1680,280,560
+2025-12-12,RS-00840,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Rami,Online,2,1250,0,2500,850,800
+2026-01-22,RS-00841,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Rami,Store,17,120,0,2040,70,850
+2026-01-15,RS-00842,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Carla,Store,1,950,0,950,650,300
+2026-02-12,RS-00843,Laptop Sleeve,SLV-010,Accessories,Beirut,Beirut,Nour,Store,28,25,0,700,8,476
+2026-01-27,RS-00844,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,David,Store,43,28,0,1204,11,731
+2026-02-03,RS-00845,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Elie,Store,4,950,0.1,3420.0,650,820.0
+2025-11-09,RS-00846,Gaming Laptop X,LAP-220,Computers,South,Tyre,Bob,Online,1,1250,0.1,1125.0,850,275.0
+2026-01-15,RS-00847,Laptop Pro 14,LAP-140,Computers,South,Saida,Alice,Store,2,950,0,1900,650,600
+2026-01-01,RS-00848,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Elie,Online,50,55,0,2750,25,1500
+2025-10-31,RS-00849,27-inch Monitor,MON-027,Displays,North,Tripoli,Elie,Store,20,220,0.1,3960.0,135,1260.0
+2025-11-04,RS-00850,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Elie,Store,7,1250,0.05,8312.5,850,2362.5
+2025-12-31,RS-00851,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Bob,Store,4,950,0,3800,650,1200
+2025-11-12,RS-00852,4K Monitor,MON-040,Displays,North,Batroun,Elie,Store,2,380,0.05,722.0,240,242.0
+2026-01-01,RS-00853,Laptop Pro 14,LAP-140,Computers,North,Batroun,Carla,Store,1,950,0.05,902.5,650,252.5
+2025-12-27,RS-00854,Tablet Air,TAB-080,Tablets,Mount Lebanon,Jounieh,Bob,Store,5,420,0.05,1995.0,280,595.0
+2025-11-18,RS-00855,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Nour,Store,24,120,0.1,2592.0,70,912.0
+2026-01-31,RS-00856,Gaming Laptop X,LAP-220,Computers,North,Batroun,Carla,Online,7,1250,0.1,7875.0,850,1925.0
+2026-02-11,RS-00857,USB-C Dock,DOC-101,Accessories,North,Batroun,Carla,Online,21,120,0,2520,70,1050
+2025-11-06,RS-00858,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Carla,Store,41,28,0.15,975.8,11,524.8
+2026-01-17,RS-00859,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Bob,Store,35,28,0,980,11,595
+2025-10-09,RS-00860,USB-C Dock,DOC-101,Accessories,North,Tripoli,Rami,Store,15,120,0,1800,70,750
+2025-10-17,RS-00861,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Bob,Online,6,1250,0.1,6750.0,850,1650.0
+2025-11-17,RS-00862,Wireless Mouse,MOU-014,Accessories,North,Tripoli,Bob,Store,40,28,0.05,1064.0,11,624.0
+2025-12-11,RS-00863,Tablet Air,TAB-080,Tablets,North,Batroun,Maya,Store,1,420,0,420,280,140
+2025-10-18,RS-00864,Laptop Pro 14,LAP-140,Computers,North,Tripoli,David,Online,4,950,0.15,3230.0,650,630.0
+2025-11-13,RS-00865,Noise-Cancel Headset,HDS-033,Audio,North,Tripoli,Bob,B2B,34,145,0.1,4437.0,85,1547.0
+2026-01-21,RS-00866,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Carla,Online,44,28,0.15,1047.2,11,563.2
+2026-01-17,RS-00867,Gaming Laptop X,LAP-220,Computers,South,Saida,Nour,Store,3,1250,0,3750,850,1200
+2025-11-04,RS-00868,4K Monitor,MON-040,Displays,North,Batroun,Elie,Online,5,380,0,1900,240,700
+2025-12-23,RS-00869,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Elie,Store,5,380,0.1,1710.0,240,510.0
+2025-11-27,RS-00870,4K Monitor,MON-040,Displays,Bekaa,Zahle,Nour,Store,1,380,0,380,240,140
+2026-01-30,RS-00871,Tablet Air,TAB-080,Tablets,North,Batroun,Carla,Store,2,420,0,840,280,280
+2026-02-11,RS-00872,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,Bob,Store,34,55,0,1870,25,1020
+2025-10-27,RS-00873,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,Bob,Store,16,120,0.1,1728.0,70,608.0
+2026-01-12,RS-00874,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Rami,Store,6,950,0.05,5415.0,650,1515.0
+2025-12-09,RS-00875,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Byblos,Maya,Store,19,120,0.05,2166.0,70,836.0
+2025-12-11,RS-00876,Laptop Pro 14,LAP-140,Computers,South,Tyre,Bob,Store,1,950,0.05,902.5,650,252.5
+2025-11-29,RS-00877,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Alice,Store,61,55,0.05,3187.25,25,1662.25
+2025-11-15,RS-00878,27-inch Monitor,MON-027,Displays,North,Batroun,Carla,Store,19,220,0.05,3971.0,135,1406.0
+2025-10-20,RS-00879,Wireless Mouse,MOU-014,Accessories,South,Tyre,Rami,Store,21,28,0,588,11,357
+2025-12-27,RS-00880,USB-C Dock,DOC-101,Accessories,North,Tripoli,Alice,B2B,27,120,0.1,2916.0,70,1026.0
+2026-01-07,RS-00881,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Rami,Store,18,220,0.1,3564.0,135,1134.0
+2025-12-17,RS-00882,Noise-Cancel Headset,HDS-033,Audio,Mount Lebanon,Jounieh,Rami,Store,21,145,0,3045,85,1260
+2026-01-08,RS-00883,4K Monitor,MON-040,Displays,Beirut,Beirut,Rami,Online,2,380,0,760,240,280
+2025-11-10,RS-00884,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Elie,Store,1,380,0.15,323.0,240,83.0
+2025-12-30,RS-00885,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Maya,Store,17,120,0,2040,70,850
+2025-10-07,RS-00886,USB-C Dock,DOC-101,Accessories,North,Batroun,Nour,Store,10,120,0,1200,70,500
+2025-12-31,RS-00887,27-inch Monitor,MON-027,Displays,North,Tripoli,David,Store,17,220,0.1,3366.0,135,1071.0
+2025-10-17,RS-00888,Webcam HD,CAM-018,Accessories,Beirut,Beirut,Maya,Store,46,65,0.05,2840.5,32,1368.5
+2025-10-10,RS-00889,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Nour,Store,11,220,0.15,2057.0,135,572.0
+2026-01-05,RS-00890,4K Monitor,MON-040,Displays,North,Batroun,Bob,Online,1,380,0,380,240,140
+2025-11-22,RS-00891,Gaming Laptop X,LAP-220,Computers,North,Batroun,Carla,Online,3,1250,0.05,3562.5,850,1012.5
+2025-10-20,RS-00892,Webcam HD,CAM-018,Accessories,South,Saida,Elie,Store,28,65,0,1820,32,924
+2026-01-11,RS-00893,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Bob,Online,15,120,0.05,1710.0,70,660.0
+2026-01-18,RS-00894,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Elie,Store,10,1250,0,12500,850,4000
+2026-02-16,RS-00895,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Nour,Store,1,1250,0.05,1187.5,850,337.5
+2025-10-05,RS-00896,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Jounieh,Rami,Store,37,55,0.15,1729.75,25,804.75
+2026-01-28,RS-00897,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Alice,Online,4,1250,0,5000,850,1600
+2025-12-16,RS-00898,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Maya,Online,53,65,0.1,3100.5,32,1404.5
+2025-11-22,RS-00899,Webcam HD,CAM-018,Accessories,Bekaa,Zahle,Elie,Online,38,65,0,2470,32,1254
+2025-10-30,RS-00900,Laptop Pro 14,LAP-140,Computers,North,Tripoli,David,Online,8,950,0,7600,650,2400
+2026-02-02,RS-00901,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Nour,Online,5,380,0,1900,240,700
+2025-12-06,RS-00902,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Carla,Online,17,120,0,2040,70,850
+2026-02-02,RS-00903,USB-C Dock,DOC-101,Accessories,North,Tripoli,Bob,Store,15,120,0.15,1530.0,70,480.0
+2026-01-02,RS-00904,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Nour,B2B,44,28,0.1,1108.8,11,624.8
+2025-11-30,RS-00905,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Elie,Store,11,950,0.1,9405.0,650,2255.0
+2025-12-20,RS-00906,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,David,B2B,15,1250,0.1,16875.0,850,4125.0
+2025-11-14,RS-00907,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Rami,Store,5,1250,0.05,5937.5,850,1687.5
+2025-10-29,RS-00908,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Rami,Online,3,1250,0.15,3187.5,850,637.5
+2025-11-07,RS-00909,27-inch Monitor,MON-027,Displays,North,Batroun,Elie,Store,23,220,0.1,4554.0,135,1449.0
+2025-10-14,RS-00910,Wireless Mouse,MOU-014,Accessories,South,Saida,Elie,Online,26,28,0,728,11,442
+2026-01-01,RS-00911,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,David,Online,12,145,0,1740,85,720
+2025-12-05,RS-00912,Gaming Laptop X,LAP-220,Computers,South,Saida,Elie,Store,7,1250,0.1,7875.0,850,1925.0
+2026-01-21,RS-00913,Mechanical Keyboard,KEY-022,Accessories,Mount Lebanon,Byblos,Alice,Store,50,55,0.05,2612.5,25,1362.5
+2026-01-14,RS-00914,Tablet Air,TAB-080,Tablets,North,Batroun,Nour,Online,5,420,0.1,1890.0,280,490.0
+2025-11-11,RS-00915,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Maya,Store,61,28,0,1708,11,1037
+2025-10-08,RS-00916,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,Rami,Online,12,120,0,1440,70,600
+2026-01-11,RS-00917,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Maya,Online,6,1250,0.05,7125.0,850,2025.0
+2025-11-03,RS-00918,Webcam HD,CAM-018,Accessories,Mount Lebanon,Byblos,Maya,Store,53,65,0.1,3100.5,32,1404.5
+2025-11-04,RS-00919,Gaming Laptop X,LAP-220,Computers,North,Batroun,Elie,Store,2,1250,0.1,2250.0,850,550.0
+2025-11-27,RS-00920,Laptop Pro 14,LAP-140,Computers,North,Tripoli,David,B2B,17,950,0.15,13727.5,650,2677.5
+2025-12-07,RS-00921,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Alice,Store,56,28,0,1568,11,952
+2026-01-03,RS-00922,Laptop Pro 14,LAP-140,Computers,Beirut,Beirut,Alice,Online,8,950,0,7600,650,2400
+2026-01-25,RS-00923,Webcam HD,CAM-018,Accessories,South,Tyre,Bob,Store,22,65,0.1,1287.0,32,583.0
+2025-12-08,RS-00924,Gaming Laptop X,LAP-220,Computers,South,Tyre,Nour,Store,7,1250,0.1,7875.0,850,1925.0
+2025-11-25,RS-00925,Laptop Sleeve,SLV-010,Accessories,Bekaa,Zahle,David,Store,34,25,0,850,8,578
+2025-12-07,RS-00926,Gaming Laptop X,LAP-220,Computers,South,Tyre,David,Store,4,1250,0.05,4750.0,850,1350.0
+2026-01-26,RS-00927,Laptop Pro 14,LAP-140,Computers,South,Tyre,Carla,Online,5,950,0,4750,650,1500
+2026-01-07,RS-00928,Wireless Mouse,MOU-014,Accessories,Bekaa,Zahle,Bob,Store,26,28,0,728,11,442
+2025-12-25,RS-00929,Tablet Air,TAB-080,Tablets,South,Tyre,Maya,B2B,16,420,0.1,6048.0,280,1568.0
+2025-10-02,RS-00930,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Elie,B2B,10,1250,0.1,11250.0,850,2750.0
+2025-10-11,RS-00931,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Carla,Store,38,55,0,2090,25,1140
+2025-12-21,RS-00932,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Carla,Store,45,28,0,1260,11,765
+2025-11-02,RS-00933,4K Monitor,MON-040,Displays,Bekaa,Zahle,Maya,B2B,17,380,0.1,5814.0,240,1734.0
+2026-02-10,RS-00934,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Maya,Online,13,1250,0.05,15437.5,850,4387.5
+2025-11-08,RS-00935,4K Monitor,MON-040,Displays,South,Tyre,Alice,Store,6,380,0,2280,240,840
+2025-11-11,RS-00936,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Byblos,Bob,B2B,47,28,0.1,1184.4,11,667.4
+2026-01-22,RS-00937,Gaming Laptop X,LAP-220,Computers,South,Tyre,Rami,Store,4,1250,0,5000,850,1600
+2025-10-24,RS-00938,Gaming Laptop X,LAP-220,Computers,Bekaa,Zahle,Carla,Online,1,1250,0.05,1187.5,850,337.5
+2025-12-09,RS-00939,4K Monitor,MON-040,Displays,South,Saida,Alice,Online,1,380,0,380,240,140
+2026-02-05,RS-00940,Wireless Mouse,MOU-014,Accessories,North,Batroun,Alice,Store,39,28,0.15,928.2,11,499.2
+2025-11-01,RS-00941,27-inch Monitor,MON-027,Displays,Beirut,Beirut,Maya,Store,35,220,0.05,7315.0,135,2590.0
+2026-01-25,RS-00942,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Alice,Store,39,55,0,2145,25,1170
+2026-01-24,RS-00943,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,David,Online,6,1250,0.1,6750.0,850,1650.0
+2025-10-19,RS-00944,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Bob,Store,2,380,0,760,240,280
+2026-01-11,RS-00945,Laptop Pro 14,LAP-140,Computers,South,Saida,Carla,Store,1,950,0.15,807.5,650,157.5
+2025-11-09,RS-00946,Laptop Pro 14,LAP-140,Computers,South,Tyre,Nour,Online,4,950,0.1,3420.0,650,820.0
+2025-11-03,RS-00947,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Maya,Store,2,1250,0,2500,850,800
+2026-01-17,RS-00948,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Maya,Online,5,950,0,4750,650,1500
+2026-01-18,RS-00949,Laptop Pro 14,LAP-140,Computers,North,Batroun,Rami,Online,1,950,0.15,807.5,650,157.5
+2026-02-12,RS-00950,Mechanical Keyboard,KEY-022,Accessories,Beirut,Beirut,Elie,Store,41,55,0,2255,25,1230
+2026-01-31,RS-00951,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Elie,Online,2,1250,0,2500,850,800
+2025-10-20,RS-00952,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Nour,Store,15,145,0,2175,85,900
+2025-12-04,RS-00953,Gaming Laptop X,LAP-220,Computers,Beirut,Beirut,Alice,Store,5,1250,0,6250,850,2000
+2026-01-09,RS-00954,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Elie,Store,2,950,0.05,1805.0,650,505.0
+2026-01-24,RS-00955,Mechanical Keyboard,KEY-022,Accessories,Bekaa,Zahle,Maya,B2B,48,55,0.1,2376.0,25,1176.0
+2025-10-28,RS-00956,27-inch Monitor,MON-027,Displays,North,Tripoli,Alice,Store,18,220,0,3960,135,1530
+2026-01-31,RS-00957,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Rami,Store,16,220,0.05,3344.0,135,1184.0
+2026-01-10,RS-00958,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Carla,Store,15,120,0,1800,70,750
+2025-10-05,RS-00959,Wireless Mouse,MOU-014,Accessories,South,Saida,Alice,Store,28,28,0,784,11,476
+2026-02-15,RS-00960,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,Rami,Store,1,950,0,950,650,300
+2025-10-30,RS-00961,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Jounieh,Rami,B2B,12,950,0.1,10260.0,650,2460.0
+2025-12-15,RS-00962,4K Monitor,MON-040,Displays,Mount Lebanon,Byblos,Alice,Store,8,380,0,3040,240,1120
+2026-01-19,RS-00963,USB Cable,USB-001,Accessories,South,Tyre,Elie,Store,23,14,0.05,305.9,4,213.9
+2026-02-02,RS-00964,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Alice,Store,8,1250,0,10000,850,3200
+2025-10-17,RS-00965,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Rami,Store,1,1250,0,1250,850,400
+2026-01-20,RS-00966,Laptop Pro 14,LAP-140,Computers,Bekaa,Zahle,David,Store,1,950,0,950,650,300
+2026-02-07,RS-00967,Gaming Laptop X,LAP-220,Computers,North,Batroun,Rami,Store,3,1250,0.15,3187.5,850,637.5
+2026-01-01,RS-00968,USB-C Dock,DOC-101,Accessories,Mount Lebanon,Jounieh,David,Store,22,120,0.05,2508.0,70,968.0
+2026-02-01,RS-00969,Laptop Pro 14,LAP-140,Computers,South,Saida,Carla,Online,6,950,0.15,4845.0,650,945.0
+2025-12-17,RS-00970,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Alice,Store,10,1250,0,12500,850,4000
+2025-11-10,RS-00971,Laptop Pro 14,LAP-140,Computers,North,Tripoli,Bob,Store,7,950,0.05,6317.5,650,1767.5
+2026-02-02,RS-00972,Gaming Laptop X,LAP-220,Computers,North,Batroun,Maya,Online,5,1250,0.1,5625.0,850,1375.0
+2025-12-08,RS-00973,Noise-Cancel Headset,HDS-033,Audio,Beirut,Beirut,Alice,B2B,30,145,0.1,3915.0,85,1365.0
+2025-10-28,RS-00974,USB-C Dock,DOC-101,Accessories,Beirut,Beirut,Alice,Store,24,120,0,2880,70,1200
+2025-10-31,RS-00975,Noise-Cancel Headset,HDS-033,Audio,North,Batroun,Carla,Online,15,145,0.05,2066.25,85,791.25
+2025-10-26,RS-00976,Laptop Pro 14,LAP-140,Computers,North,Batroun,Maya,Online,1,950,0,950,650,300
+2025-11-21,RS-00977,27-inch Monitor,MON-027,Displays,Mount Lebanon,Byblos,Alice,Store,25,220,0.05,5225.0,135,1850.0
+2025-10-22,RS-00978,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Byblos,Maya,Online,1,1250,0,1250,850,400
+2026-02-13,RS-00979,27-inch Monitor,MON-027,Displays,South,Saida,Carla,Online,10,220,0,2200,135,850
+2026-02-10,RS-00980,USB-C Dock,DOC-101,Accessories,North,Batroun,Alice,Store,19,120,0.1,2052.0,70,722.0
+2026-02-10,RS-00981,Tablet Air,TAB-080,Tablets,Beirut,Beirut,Maya,Store,9,420,0,3780,280,1260
+2025-10-10,RS-00982,Wireless Mouse,MOU-014,Accessories,Mount Lebanon,Jounieh,Alice,B2B,62,28,0.15,1475.6,11,793.6
+2026-01-16,RS-00983,27-inch Monitor,MON-027,Displays,Bekaa,Zahle,Maya,B2B,26,220,0.1,5148.0,135,1638.0
+2026-01-12,RS-00984,27-inch Monitor,MON-027,Displays,South,Saida,Rami,Online,10,220,0.1,1980.0,135,630.0
+2026-01-12,RS-00985,USB-C Dock,DOC-101,Accessories,Bekaa,Zahle,Bob,Store,10,120,0.05,1140.0,70,440.0
+2025-11-02,RS-00986,4K Monitor,MON-040,Displays,Bekaa,Zahle,David,Store,8,380,0.05,2888.0,240,968.0
+2026-02-11,RS-00987,Gaming Laptop X,LAP-220,Computers,Mount Lebanon,Jounieh,Alice,Store,7,1250,0,8750,850,2800
+2025-12-17,RS-00988,Wireless Mouse,MOU-014,Accessories,Beirut,Beirut,Alice,Online,57,28,0,1596,11,969
+2026-02-07,RS-00989,Gaming Laptop X,LAP-220,Computers,North,Tripoli,Bob,Store,4,1250,0,5000,850,1600
+2025-11-30,RS-00990,USB-C Dock,DOC-101,Accessories,South,Saida,Maya,Store,15,120,0.05,1710.0,70,660.0
+2025-11-05,RS-00991,Wireless Mouse,MOU-014,Accessories,South,Saida,Bob,Store,23,28,0,644,11,391
+2025-10-26,RS-00992,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Nour,Store,1,950,0,950,650,300
+2025-11-03,RS-00993,27-inch Monitor,MON-027,Displays,South,Tyre,Bob,Store,8,220,0.05,1672.0,135,592.0
+2026-01-10,RS-00994,Noise-Cancel Headset,HDS-033,Audio,South,Tyre,Nour,B2B,27,145,0.1,3523.5,85,1228.5
+2026-01-15,RS-00995,Webcam HD,CAM-018,Accessories,Mount Lebanon,Jounieh,Carla,Store,34,65,0.05,2099.5,32,1011.5
+2026-02-13,RS-00996,Laptop Pro 14,LAP-140,Computers,South,Saida,Rami,Store,4,950,0.05,3610.0,650,1010.0
+2026-01-03,RS-00997,Tablet Air,TAB-080,Tablets,Beirut,Beirut,Nour,Store,2,420,0.05,798.0,280,238.0
+2025-10-31,RS-00998,27-inch Monitor,MON-027,Displays,North,Batroun,Elie,Store,17,220,0,3740,135,1445
+2025-11-06,RS-00999,Laptop Pro 14,LAP-140,Computers,Mount Lebanon,Byblos,Alice,B2B,25,950,0.1,21375.0,650,5125.0
+2025-10-01,RS-01000,Laptop Pro 14,LAP-140,Computers,North,Batroun,Bob,Online,5,950,0,4750,650,1500

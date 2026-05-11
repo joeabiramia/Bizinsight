@@ -75,3 +75,6 @@ export const fetchInsights = (fileId: string) =>
 
 export const askAiQuestion = (fileId: string, question: string) =>
   api.post(`/ai-chat/${fileId}`, { question });
+
+export const fetchAiSuggestions = (fileId: string) =>
+  api.get(`/ai-chat/suggestions/${fileId}`);

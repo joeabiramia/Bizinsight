@@ -21,6 +21,8 @@ def safe_number(value):
 
 
 def load_dataframe(filepath: str) -> pd.DataFrame:
+    if not os.path.exists(filepath):
+        raise HTTPException(status_code=404, detail="Dataset file not found. It may have been removed.")
     lower = filepath.lower()
     if lower.endswith(".csv"):
         return pd.read_csv(filepath)

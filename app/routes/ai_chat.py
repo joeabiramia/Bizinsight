@@ -26,18 +26,35 @@ _REVENUE_SYNS = [
 ]
 _PRODUCT_SYNS = ["product", "item", "sku", "category"]
 _REGION_SYNS = ["region", "territory", "area", "country", "state", "city", "zone", "district"]
-_QUANTITY_SYNS = ["quantity", "qty", "units", "volume"]
+_QUANTITY_SYNS = [
+    "quantity", "qty", "units", "volume",
+    "visits", "bookings", "trips", "orders", "customers", "count",
+]
+
+# Keywords that appear in question text to trigger region intent
+_REGION_QUESTION_KEYWORDS = _REGION_SYNS  # same set
 
 
 def _normalize(name: str) -> str:
     return str(name).lower().replace(" ", "_").replace("-", "_")
 
 
+def _word_in(word: str, text: str) -> bool:
+    """True if `word` appears as a whole word inside `text`."""
+    import re
+    return bool(re.search(r"\b" + re.escape(word) + r"\b", text))
+
+
 def find_column_by_synonyms(df: pd.DataFrame, synonyms: list) -> str | None:
-    """Iterate synonyms in priority order; return the first matching column."""
+    """Iterate synonyms in priority order; return the first matching column.
+
+    Uses word-part matching (split on '_') to avoid false positives like
+    'count' matching 'destination_country' or 'rep' matching 'package_revenue'.
+    """
     for syn in synonyms:
         for col in df.columns:
-            if syn in _normalize(col):
+            parts = _normalize(col).split("_")
+            if syn in parts or _normalize(col) == syn:
                 return col
     return None
 
@@ -143,10 +160,10 @@ def answer_business_question(df: pd.DataFrame, question: str) -> dict | None:
 
     # ── List unique values ────────────────────────────────────────────────────
     if any(k in lower for k in ["list all", "show all", "all unique", "unique values"]):
-        if region_col and any(k in lower for k in ["region", "territory", "area"]):
+        if region_col and any(_word_in(k, lower) for k in _REGION_QUESTION_KEYWORDS):
             unique_vals = df[region_col].dropna().unique().tolist()
             return {
-                "answer": f"All regions: {', '.join(str(v) for v in unique_vals)}.",
+                "answer": f"All {region_col} values: {', '.join(str(v) for v in unique_vals)}.",
                 "intent": "list_unique",
                 "dimension_column": region_col,
             }
@@ -189,40 +206,85 @@ def answer_business_question(df: pd.DataFrame, question: str) -> dict | None:
                     }
 
     # ── Region ────────────────────────────────────────────────────────────────
-    if any(k in lower for k in ["region", "territory", "area", "zone", "district"]):
-        if region_col:
-            # "list all regions" — no best/worst qualifier
-            if any(k in lower for k in ["list", "all", "show"]) and not is_best and not is_worst:
-                unique_vals = df[region_col].dropna().unique().tolist()
-                return {
-                    "answer": f"All regions: {', '.join(str(v) for v in unique_vals)}.",
-                    "intent": "list_unique",
-                    "dimension_column": region_col,
-                }
-            if revenue_col:
+    matched_region_kw = next((k for k in _REGION_QUESTION_KEYWORDS if _word_in(k, lower)), None)
+    if matched_region_kw:
+        # Prefer the column that contains the exact keyword the user mentioned
+        # e.g. "country" → Destination_Country rather than Region
+        specific_col = find_column_by_synonyms(df, [matched_region_kw])
+        dim_col = specific_col or region_col
+    else:
+        dim_col = region_col
+
+    if dim_col and matched_region_kw:
+        # "list all ..." — no best/worst qualifier
+        if any(k in lower for k in ["list", "all", "show"]) and not is_best and not is_worst:
+            unique_vals = df[dim_col].dropna().unique().tolist()
+            return {
+                "answer": f"All {dim_col} values: {', '.join(str(v) for v in unique_vals)}.",
+                "intent": "list_unique",
+                "dimension_column": dim_col,
+            }
+
+        # Detect count/frequency intent: user wants most-visited, not highest revenue
+        _count_intent_kws = ["visits", "visited", "popular", "bookings", "trips", "orders", "times", "records", "frequently", "often"]
+        wants_count = any(_word_in(k, lower) for k in _count_intent_kws)
+
+        if wants_count and not quantity_col:
+            # No dedicated numeric column — count rows per group
+            grouped = df.groupby(dim_col, dropna=False).size().sort_values(ascending=False)
+            if not grouped.empty:
                 if is_worst:
-                    result = _bottom_entry(df, region_col, revenue_col)
+                    label = str(grouped.index[-1])
+                    val = int(grouped.iloc[-1])
+                    return {
+                        "answer": f"The {dim_col} with the fewest visits is '{label}' with {val:,} records.",
+                        "intent": "worst_region",
+                        "dimension_column": dim_col,
+                    }
+                else:
+                    label = str(grouped.index[0])
+                    val = int(grouped.iloc[0])
+                    return {
+                        "answer": f"The {dim_col} with the most visits is '{label}' with {val:,} records.",
+                        "intent": "best_region",
+                        "dimension_column": dim_col,
+                    }
+        else:
+            # Sum a metric column
+            if wants_count and quantity_col:
+                metric_col = quantity_col
+            else:
+                metric_col = revenue_col or quantity_col
+            if not metric_col:
+                from app.ai.insight_generator import _classify_columns
+                num_cols, _, _ = _classify_columns(df)
+                metric_col = num_cols[0] if num_cols else None
+            if metric_col:
+                is_currency = any(k in metric_col.lower() for k in ["revenue", "sales", "amount", "price", "income"])
+                fmt = lambda v: f"${v:,.2f}" if is_currency else f"{v:,.0f}"
+                if is_worst:
+                    result = _bottom_entry(df, dim_col, metric_col)
                     if result:
                         return {
                             "answer": (
-                                f"The lowest performing region is {result[0]} "
-                                f"with total sales of ${result[1]:,.2f}."
+                                f"The lowest {dim_col} by {metric_col} is '{result[0]}' "
+                                f"with {fmt(result[1])}."
                             ),
                             "intent": "worst_region",
-                            "dimension_column": region_col,
-                            "metric_column": revenue_col,
+                            "dimension_column": dim_col,
+                            "metric_column": metric_col,
                         }
                 else:
-                    result = _top_entry(df, region_col, revenue_col)
+                    result = _top_entry(df, dim_col, metric_col)
                     if result:
                         return {
                             "answer": (
-                                f"The top performing region is {result[0]} "
-                                f"with total sales of ${result[1]:,.2f}."
+                                f"The top {dim_col} by {metric_col} is '{result[0]}' "
+                                f"with {fmt(result[1])}."
                             ),
                             "intent": "best_region",
-                            "dimension_column": region_col,
-                            "metric_column": revenue_col,
+                            "dimension_column": dim_col,
+                            "metric_column": metric_col,
                         }
 
     # ── Product ───────────────────────────────────────────────────────────────
@@ -274,22 +336,23 @@ def answer_business_question(df: pd.DataFrame, question: str) -> dict | None:
             return {"answer": f"Total revenue is ${total:,.2f}.", "intent": "total_revenue", "metric_column": revenue_col}
 
     # ── Quantity aggregates ───────────────────────────────────────────────────
-    if any(k in lower for k in ["quantity", "units", "qty"]) and quantity_col:
+    _quantity_question_keywords = ["quantity", "units", "qty", "visits", "bookings", "trips", "orders"]
+    if any(_word_in(k, lower) for k in _quantity_question_keywords) and quantity_col:
         if any(k in lower for k in ["total", "sum"]):
             total = _total(df, quantity_col)
             if total is not None:
-                return {"answer": f"Total quantity sold is {int(total):,} units.", "intent": "total_quantity", "metric_column": quantity_col}
+                return {"answer": f"Total {quantity_col} is {int(total):,}.", "intent": "total_quantity", "metric_column": quantity_col}
         if any(k in lower for k in ["average", "avg", "mean"]):
             avg = _average(df, quantity_col)
             if avg is not None:
-                return {"answer": f"Average quantity per record is {avg:,.2f} units.", "intent": "avg_quantity", "metric_column": quantity_col}
-        # Default: average
-        avg = _average(df, quantity_col)
-        if avg is not None:
-            return {"answer": f"Average quantity per record is {avg:,.2f} units.", "intent": "avg_quantity", "metric_column": quantity_col}
+                return {"answer": f"Average {quantity_col} per record is {avg:,.2f}.", "intent": "avg_quantity", "metric_column": quantity_col}
+        # Default: total
+        total = _total(df, quantity_col)
+        if total is not None:
+            return {"answer": f"Total {quantity_col} is {int(total):,}.", "intent": "total_quantity", "metric_column": quantity_col}
 
-    # ── Row count fallback ────────────────────────────────────────────────────
-    if any(k in lower for k in ["how many", "count", "total number", "number of rows"]):
+    # ── Row count fallback (whole-word match to avoid "country" → "count") ────
+    if any(k in lower for k in ["how many", "total number", "number of rows"]) or _word_in("count", lower):
         return {"answer": f"The dataset contains {len(df):,} rows.", "intent": "row_count"}
 
     # ── Profit/margin → redirect to revenue ──────────────────────────────────
@@ -353,3 +416,60 @@ def ai_ask(
     current_user: dict = Depends(get_current_user),
 ):
     return ai_chat(file_id, q, current_user)
+
+
+# ── Dynamic suggestions ───────────────────────────────────────────────────────
+
+def _generate_suggestions(df: pd.DataFrame) -> list[str]:
+    """Return 6-8 questions tailored to the actual columns present."""
+    suggestions: list[str] = []
+
+    revenue_col = find_column_by_synonyms(df, _REVENUE_SYNS)
+    quantity_col = find_column_by_synonyms(df, _QUANTITY_SYNS)
+    product_col = find_column_by_synonyms(df, _PRODUCT_SYNS)
+    region_col = find_column_by_synonyms(df, _REGION_SYNS)
+    salesman_col = find_column_by_synonyms(df, _SALESMAN_SYNS)
+
+    if revenue_col:
+        suggestions.append(f"What is the total {revenue_col}?")
+    if salesman_col and revenue_col:
+        suggestions.append(f"Who is the best {salesman_col} by {revenue_col}?")
+        suggestions.append(f"Who is the lowest performing {salesman_col}?")
+    if region_col and revenue_col:
+        suggestions.append(f"Which {region_col} has the highest {revenue_col}?")
+        suggestions.append(f"What is the lowest performing {region_col}?")
+    if product_col and revenue_col:
+        suggestions.append(f"Which {product_col} is selling the most?")
+    if quantity_col:
+        suggestions.append(f"What is the average {quantity_col}?")
+    if revenue_col:
+        suggestions.append(f"What is the average {revenue_col} per record?")
+
+    # Always include meta questions
+    suggestions.append("How many rows are in this dataset?")
+    suggestions.append("What columns does this dataset have?")
+
+    # If almost no domain columns found, generate generic numeric suggestions
+    if len(suggestions) <= 3:
+        from app.ai.insight_generator import _classify_columns
+        numeric_cols, categorical_cols, _ = _classify_columns(df)
+        for num in numeric_cols[:2]:
+            suggestions.insert(0, f"What is the total {num}?")
+        for cat in categorical_cols[:1]:
+            if numeric_cols:
+                suggestions.insert(0, f"Which {cat} has the highest {numeric_cols[0]}?")
+
+    return suggestions[:8]
+
+
+@router.get("/ai-chat/suggestions/{file_id}")
+def ai_chat_suggestions(
+    file_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    if not file_doc:
+        raise HTTPException(status_code=404, detail="File not found")
+
+    df = load_dataframe(file_doc["path"])
+    return {"suggestions": _generate_suggestions(df)}

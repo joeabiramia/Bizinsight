@@ -309,6 +309,12 @@ a {
   font-weight: 700;
 }
 
+.kpi-sub {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -396,6 +402,12 @@ a {
 .chat-sidebar-title {
   margin: 0 0 18px;
   font-weight: 700;
+}
+
+.chat-sidebar-empty {
+  font-size: 0.85rem;
+  color: var(--text-muted, #94a3b8);
+  margin: 0;
 }
 
 .chip {
