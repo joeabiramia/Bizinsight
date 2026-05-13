@@ -11,14 +11,14 @@ SECRET_KEY = os.getenv("JWT_SECRET", "bizinsight-demo-secret-xK9mQ2wR7pL3nV6j-ch
 
 def hash_password(password: str) -> str:
     salt = secrets.token_hex(16)
-    hashed = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 100_000)
+    hashed = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 50_000)
     return f"{salt}:{hashed.hex()}"
 
 
 def verify_password(password: str, stored_hash: str) -> bool:
     try:
         salt, hashed = stored_hash.split(":", 1)
-        check = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 100_000)
+        check = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 50_000)
         return hmac.compare_digest(check.hex(), hashed)
     except Exception:
         return False

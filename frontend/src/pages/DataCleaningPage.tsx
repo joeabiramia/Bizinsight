@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, RotateCcw, CheckSquare, Database, Bot } from "lucide-react";
 import {
   PieChart, Pie, Cell, Tooltip as ReTooltip, ResponsiveContainer,
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
 } from "recharts";
 import MainLayout from "../components/layout/MainLayout";
+import EmptyState from "../components/ui/EmptyState";
 import { analyzeDataQuality, applyDataFixes } from "../services/api";
 import type { DataQualityIssue, DataQualityReport } from "../types";
 
@@ -558,8 +560,8 @@ function IssueCard({ issue, index, selected, onToggle, onIgnore }: IssueCardProp
                 border: "1px solid rgba(99,102,241,0.15)",
                 borderRadius: 10, padding: "12px 14px",
               }}>
-                <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#818cf8", marginBottom: 6 }}>
-                  🤖 AI Explanation
+                <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#818cf8", marginBottom: 6, display: "flex", alignItems: "center", gap: 5 }}>
+                  <Bot size={12} /> AI Explanation
                 </p>
                 <p style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.6, margin: 0 }}>
                   {issue.description}{" "}
@@ -839,32 +841,17 @@ export default function DataCleaningPage() {
   if (!fileId) {
     return (
       <MainLayout>
-        <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-min-h-64 tw-gap-6" style={{ marginTop: 48 }}>
-          <div style={{
-            width: 72, height: 72, borderRadius: 20,
-            background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-            display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32,
-            boxShadow: "0 0 32px rgba(99,102,241,0.4)",
-          }}>
-            🧹
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <h2 style={{ margin: "0 0 8px", fontSize: 22, fontWeight: 800 }}>No Dataset Selected</h2>
-            <p style={{ color: "#64748b", margin: "0 0 24px" }}>Select a dataset to run the AI data quality analysis.</p>
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate("/datasets")}
-              style={{
-                background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-                color: "#fff", border: "none", borderRadius: 12,
-                padding: "12px 28px", fontSize: 14, fontWeight: 700, cursor: "pointer",
-                boxShadow: "0 0 20px rgba(99,102,241,0.35)",
-              }}
-            >
-              Browse Datasets
-            </motion.button>
-          </div>
+        <div style={{ maxWidth: 520, margin: "80px auto" }}>
+          <EmptyState
+            icon={<Sparkles size={26} />}
+            title="Data Quality Center"
+            description="Select a dataset to run the AI-powered data quality analysis. Detect missing values, duplicates, outliers, and more."
+            action={
+              <button type="button" className="button button-primary" onClick={() => navigate("/datasets")}>
+                <Database size={15} /> Browse Datasets
+              </button>
+            }
+          />
         </div>
       </MainLayout>
     );
@@ -881,64 +868,36 @@ export default function DataCleaningPage() {
 
       {/* ── Page header ──────────────────────────────────────────── */}
       <motion.div
+        className="page-hero"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="tw-flex tw-flex-wrap tw-items-start tw-justify-between tw-gap-4 tw-mb-6"
+        transition={{ duration: 0.3 }}
       >
         <div>
-          <div className="tw-flex tw-items-center tw-gap-3 tw-mb-1">
-            <div style={{
-              width: 38, height: 38, borderRadius: 11,
-              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18,
-              boxShadow: "0 0 16px rgba(99,102,241,0.4)",
-            }}>
-              🧹
-            </div>
-            <div>
-              <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6366f1", margin: 0 }}>
-                AI Data Cleaning
-              </p>
-              <h1 style={{ margin: 0, fontSize: 24, fontWeight: 900, lineHeight: 1.2 }}>Data Quality Analysis</h1>
-            </div>
-          </div>
-          <p style={{ color: "#64748b", fontSize: 13, margin: 0, paddingLeft: 50 }}>
-            Detect, understand, and fix data issues — powered by real statistical analysis
-          </p>
+          <p className="eyebrow">AI Data Quality</p>
+          <h1>Data Quality Center</h1>
+          <p className="section-description">Detect, understand, and fix data issues — powered by real statistical analysis.</p>
         </div>
-
-        <div className="tw-flex tw-gap-3">
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
+        <div className="hero-actions">
+          <button
+            type="button"
+            className="button button-secondary button-sm"
             onClick={runAnalysis}
             disabled={loading}
-            style={{
-              padding: "10px 20px", borderRadius: 11, fontSize: 13, fontWeight: 600,
-              background: "rgba(255,255,255,0.05)", color: "#94a3b8",
-              border: "1px solid rgba(148,163,184,0.15)", cursor: "pointer",
-              display: "flex", alignItems: "center", gap: 8,
-            }}
           >
-            {loading ? <span className="tw-animate-spin">⟳</span> : "⟳"} Re-analyze
-          </motion.button>
+            <RotateCcw size={13} /> Re-analyze
+          </button>
           {report && report.total_issues > 0 && (
-            <motion.button
-              whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(99,102,241,0.45)" }}
-              whileTap={{ scale: 0.97 }}
+            <button
+              type="button"
+              className="button button-primary button-sm"
               onClick={() => {
                 if (!report) return;
                 setSelectedFixes(new Set(report.issues.map((_, i) => i)));
               }}
-              style={{
-                padding: "10px 20px", borderRadius: 11, fontSize: 13, fontWeight: 700,
-                background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-                color: "#fff", border: "none", cursor: "pointer",
-                boxShadow: "0 0 12px rgba(99,102,241,0.35)",
-              }}
             >
-              Select All Fixes
-            </motion.button>
+              <CheckSquare size={13} /> Select All Fixes
+            </button>
           )}
         </div>
       </motion.div>

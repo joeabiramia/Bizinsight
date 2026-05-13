@@ -3,6 +3,8 @@ from uuid import uuid4
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
+import os
+
 from app.dataframe_utils import allowed_filename, load_dataframe, safe_upload_name
 from app.dependencies import get_current_user
 from app.storage import (
@@ -10,6 +12,7 @@ from app.storage import (
     get_file_record_for_user,
     insert_file_record,
     list_file_records_for_user,
+    delete_file_record,
 )
 
 router = APIRouter()
@@ -72,6 +75,26 @@ def serialize_dataset(entry):
 def list_datasets(current_user: dict = Depends(get_current_user)):
     records = list_file_records_for_user(current_user["user_id"])
     return {"datasets": [serialize_dataset(item) for item in records]}
+
+
+@router.delete("/upload/{file_id}")
+def delete_dataset(file_id: str, current_user: dict = Depends(get_current_user)):
+    """Delete a dataset and its associated file."""
+    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    if not file_doc:
+        raise HTTPException(status_code=404, detail="File not found")
+
+    # Remove from disk
+    filepath = file_doc.get("path", "")
+    if filepath and os.path.exists(filepath):
+        try:
+            os.remove(filepath)
+        except OSError:
+            pass  # File already deleted
+
+    # Remove from storage
+    delete_file_record(file_id, current_user["user_id"])
+    return {"success": True, "file_id": file_id}
 
 
 @router.get("/dataset-preview/{file_id}")

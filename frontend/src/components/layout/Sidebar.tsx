@@ -1,17 +1,53 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import {
+  LayoutDashboard, Upload, Database, Bot, LayoutTemplate,
+  GitCompare, Target, Plug, FileSpreadsheet, ShoppingBag,
+  Mail, Bell, Settings, Map, Shield, ClipboardList,
+  BarChart2, FileText, TrendingUp, Wand2, Sparkles,
+  Globe, LogOut, ChevronRight, Users, Palette,
+  TrendingDown, BookOpen,
+} from "lucide-react";
 
-const staticLinks = [
-  { to: "/dashboard",  label: "Overview",        icon: "⬛" },
-  { to: "/upload",     label: "Upload",          icon: "📤" },
-  { to: "/datasets",   label: "Datasets",        icon: "🗂️" },
-  { to: "/ai-chat",    label: "AI Copilot",      icon: "🤖" },
-  { to: "/goals",      label: "Goals",           icon: "🎯" },
-  { to: "/automation", label: "Automation",      icon: "⚙️" },
-  { to: "/strategy",   label: "Strategy",        icon: "🗺️" },
-  { to: "/fraud",      label: "Fraud Detection", icon: "🔍" },
-  { to: "/audit",      label: "Audit Logs",      icon: "📋" },
+type NavLink = { to: string; label: string; icon: React.ReactNode; section?: string };
+
+const staticLinks: NavLink[] = [
+  { to: "/dashboard",         label: "Overview",          icon: <LayoutDashboard size={16} /> },
+  { to: "/upload",            label: "Upload",            icon: <Upload size={16} /> },
+  { to: "/datasets",          label: "Datasets",          icon: <Database size={16} /> },
+  { to: "/ai-chat",           label: "AI Copilot",        icon: <Bot size={16} /> },
+  { to: "/dashboard-builder", label: "Dashboard Builder", icon: <LayoutTemplate size={16} />, section: "Analytics" },
+  { to: "/compare",           label: "Compare Datasets",  icon: <GitCompare size={16} /> },
+  { to: "/benchmark",         label: "Benchmarks",        icon: <TrendingDown size={16} /> },
+  { to: "/goal-forecast",     label: "Goal Forecast",     icon: <Target size={16} /> },
+  { to: "/integrations",      label: "Integrations",      icon: <Plug size={16} />, section: "Live Data" },
+  { to: "/google-sheets",     label: "Google Sheets",     icon: <FileSpreadsheet size={16} /> },
+  { to: "/excel-online",      label: "Excel Online",      icon: <FileSpreadsheet size={16} /> },
+  { to: "/shopify",           label: "Shopify",           icon: <ShoppingBag size={16} /> },
+  { to: "/schedules",         label: "Email Schedules",   icon: <Mail size={16} />, section: "Automation" },
+  { to: "/digest",            label: "Weekly Digest",     icon: <BookOpen size={16} /> },
+  { to: "/alert-channels",    label: "Alert Channels",    icon: <Bell size={16} /> },
+  { to: "/goals",             label: "Goals",             icon: <Target size={16} /> },
+  { to: "/automation",        label: "Automation Rules",  icon: <Settings size={16} /> },
+  { to: "/strategy",          label: "Strategy",          icon: <Map size={16} /> },
+  { to: "/fraud",             label: "Fraud Detection",   icon: <Shield size={16} /> },
+  { to: "/audit",             label: "Audit Logs",        icon: <ClipboardList size={16} /> },
+  { to: "/workspace",         label: "Team",              icon: <Users size={16} />, section: "Workspace" },
+  { to: "/white-label",       label: "White Label",       icon: <Palette size={16} /> },
 ];
+
+const contextualIconMap: Record<string, React.ReactNode> = {
+  analysis:      <BarChart2 size={16} />,
+  reports:       <FileText size={16} />,
+  predictions:   <TrendingUp size={16} />,
+  scenarios:     <Wand2 size={16} />,
+  "ai-chat":     <Bot size={16} />,
+  "data-cleaning": <Sparkles size={16} />,
+  fraud:         <Shield size={16} />,
+  goals:         <Target size={16} />,
+  strategy:      <Map size={16} />,
+  "market-intel": <Globe size={16} />,
+};
 
 function useFileId(): string | null {
   const params = useParams<{ fileId: string }>();
@@ -34,23 +70,26 @@ export default function Sidebar() {
     navigate("/", { replace: true });
   };
 
-  const contextualLinks = fileId
+  const contextualLinks: NavLink[] = fileId
     ? [
-        { to: `/analysis/${fileId}`,       label: "Analysis",       icon: "📊" },
-        { to: `/reports/${fileId}`,         label: "Reports",        icon: "📄" },
-        { to: `/predictions/${fileId}`,     label: "Predictions",    icon: "🔮" },
-        { to: `/scenarios/${fileId}`,       label: "Scenarios",      icon: "🎯" },
-        { to: `/ai-chat/${fileId}`,         label: "AI Copilot",     icon: "🤖" },
-        { to: `/data-cleaning/${fileId}`,   label: "Data Cleaning",  icon: "🧹" },
-        { to: `/fraud/${fileId}`,           label: "Fraud Scan",     icon: "🔍" },
-        { to: `/goals/${fileId}`,           label: "Goals Progress", icon: "📈" },
-        { to: `/strategy/${fileId}`,        label: "Strategy",       icon: "🗺️" },
-        { to: `/market-intel/${fileId}`,    label: "Market Intel",   icon: "🌐" },
+        { to: `/analysis/${fileId}`,       label: "Analysis",        icon: contextualIconMap["analysis"] },
+        { to: `/reports/${fileId}`,         label: "Reports",         icon: contextualIconMap["reports"] },
+        { to: `/predictions/${fileId}`,     label: "Predictions",     icon: contextualIconMap["predictions"] },
+        { to: `/scenarios/${fileId}`,       label: "Scenarios",       icon: contextualIconMap["scenarios"] },
+        { to: `/ai-chat/${fileId}`,         label: "AI Copilot",      icon: contextualIconMap["ai-chat"] },
+        { to: `/data-cleaning/${fileId}`,   label: "Data Cleaning",   icon: contextualIconMap["data-cleaning"] },
+        { to: `/fraud/${fileId}`,           label: "Fraud Scan",      icon: contextualIconMap["fraud"] },
+        { to: `/goals/${fileId}`,           label: "Goals Progress",  icon: contextualIconMap["goals"] },
+        { to: `/strategy/${fileId}`,        label: "Strategy",        icon: contextualIconMap["strategy"] },
+        { to: `/market-intel/${fileId}`,    label: "Market Intel",    icon: contextualIconMap["market-intel"] },
       ]
     : [];
 
+  const firstName = user?.name?.split(" ")[0] || user?.email?.split("@")[0] || "User";
+
   return (
     <aside className="sidebar-shell">
+      {/* Brand */}
       <div className="sidebar-brand">
         <div className="brand-mark">BI</div>
         <div>
@@ -60,29 +99,33 @@ export default function Sidebar() {
       </div>
 
       <nav className="sidebar-nav">
-        {/* Static links — hide file-level duplicates when in file context */}
         {staticLinks
           .filter((l) => {
             if (!fileId) return true;
-            // Hide global links that are replaced by contextual ones
             const contextualPaths = ["/ai-chat", "/fraud", "/strategy"];
             return !contextualPaths.some((p) => l.to.startsWith(p));
           })
           .map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`sidebar-link${isActive(link.to) ? " sidebar-link--active" : ""}`}
-            >
-              <span className="sidebar-link-icon">{link.icon}</span>
-              {link.label}
-            </Link>
+            <span key={link.to}>
+              {link.section && (
+                <div className="sidebar-section-label">{link.section}</div>
+              )}
+              <Link
+                to={link.to}
+                className={`sidebar-link${isActive(link.to) ? " sidebar-link--active" : ""}`}
+              >
+                <span className="sidebar-link-icon">{link.icon}</span>
+                <span>{link.label}</span>
+              </Link>
+            </span>
           ))}
 
-        {/* Dataset-contextual links */}
         {contextualLinks.length > 0 && (
           <>
-            <div className="sidebar-section-label">Current Dataset</div>
+            <div className="sidebar-section-label" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span>Current Dataset</span>
+              <ChevronRight size={10} style={{ opacity: 0.5 }} />
+            </div>
             {contextualLinks.map((link) => (
               <Link
                 key={link.to}
@@ -90,7 +133,7 @@ export default function Sidebar() {
                 className={`sidebar-link${location.pathname === link.to ? " sidebar-link--active" : ""}`}
               >
                 <span className="sidebar-link-icon">{link.icon}</span>
-                {link.label}
+                <span>{link.label}</span>
               </Link>
             ))}
           </>
@@ -100,18 +143,19 @@ export default function Sidebar() {
       {user && (
         <div className="sidebar-user-panel">
           <div className="sidebar-user-info">
-            <div className="sidebar-user-avatar">
-              {(user.name || user.email)[0].toUpperCase()}
-            </div>
+            <div className="sidebar-user-avatar">{firstName[0].toUpperCase()}</div>
             <div className="sidebar-user-details">
-              <p className="sidebar-user-name">{user.name || "User"}</p>
+              <p className="sidebar-user-name">{user.name || firstName}</p>
               <p className="sidebar-user-email">{user.email}</p>
             </div>
           </div>
+
           {user.onboarding_data?.business_type && (
             <div className="sidebar-industry-badge">{user.onboarding_data.business_type}</div>
           )}
+
           <button type="button" className="sidebar-logout-btn" onClick={handleLogout}>
+            <LogOut size={13} />
             Sign out
           </button>
         </div>

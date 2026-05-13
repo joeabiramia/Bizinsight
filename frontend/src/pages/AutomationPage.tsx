@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import {
@@ -9,6 +9,7 @@ import {
   fetchAutomationHistory,
   fetchAutomationRules,
   triggerAutomation,
+  updateAutomationRule,
 } from "../services/api";
 import type {
   AutomationAction,
@@ -17,6 +18,24 @@ import type {
   AutomationResult,
   AutomationRule,
 } from "../types";
+
+type FormState = {
+  name: string;
+  condition_id: string;
+  threshold_pct: number;
+  action_id: string;
+  action_message: string;
+  active: boolean;
+};
+
+const EMPTY_FORM: FormState = {
+  name: "",
+  condition_id: "",
+  threshold_pct: 15,
+  action_id: "create_notification",
+  action_message: "",
+  active: true,
+};
 
 export default function AutomationPage() {
   const { fileId: paramFileId } = useParams();
@@ -27,40 +46,66 @@ export default function AutomationPage() {
   const [actions, setActions] = useState<AutomationAction[]>([]);
   const [history, setHistory] = useState<AutomationHistoryEntry[]>([]);
   const [triggerResults, setTriggerResults] = useState<AutomationResult[]>([]);
+
   const [loading, setLoading] = useState(false);
   const [triggering, setTriggering] = useState(false);
   const [error, setError] = useState("");
-  const [showForm, setShowForm] = useState(false);
   const [activeTab, setActiveTab] = useState<"rules" | "history">("rules");
 
-  // Form state
-  const [form, setForm] = useState({
-    name: "",
-    condition_id: "",
-    threshold_pct: 15,
-    action_id: "create_notification",
-    action_message: "",
-  });
+  // create / edit form
+  const [mode, setMode] = useState<"idle" | "create" | "edit">("idle");
+  const [editingRuleId, setEditingRuleId] = useState<string | null>(null);
+  const [form, setForm] = useState<FormState>(EMPTY_FORM);
 
-  useEffect(() => {
+  const loadAll = () =>
     Promise.all([
       fetchAutomationRules(),
       fetchAutomationConditions(),
       fetchAutomationActions(),
       fetchAutomationHistory(),
-    ])
-      .then(([rulesRes, condRes, actRes, histRes]) => {
-        setRules(rulesRes.data.rules || []);
-        setConditions(condRes.data.conditions || []);
-        setActions(actRes.data.actions || []);
-        setHistory(histRes.data.history || []);
-      })
-      .catch(() => setError("Failed to load automation data"));
-  }, []);
+    ]).then(([rulesRes, condRes, actRes, histRes]) => {
+      setRules(rulesRes.data.rules || []);
+      setConditions(condRes.data.conditions || []);
+      setActions(actRes.data.actions || []);
+      setHistory(histRes.data.history || []);
+    }).catch(() => setError("Failed to load automation data"));
 
+  useEffect(() => { loadAll(); }, []);
+
+  // â”€â”€ open create form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  const openCreate = () => {
+    setForm(EMPTY_FORM);
+    setEditingRuleId(null);
+    setMode("create");
+    setError("");
+  };
+
+  // â”€â”€ open edit form pre-filled with existing rule â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  const openEdit = (rule: AutomationRule) => {
+    setForm({
+      name: rule.name,
+      condition_id: rule.condition_id,
+      threshold_pct: rule.params?.threshold_pct ?? 15,
+      action_id: rule.action_id,
+      action_message: rule.action_message || "",
+      active: rule.active,
+    });
+    setEditingRuleId(rule.rule_id);
+    setMode("edit");
+    setError("");
+  };
+
+  const closeForm = () => {
+    setMode("idle");
+    setEditingRuleId(null);
+    setForm(EMPTY_FORM);
+    setError("");
+  };
+
+  // â”€â”€ create â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleCreate = async () => {
     if (!form.name || !form.condition_id) {
-      setError("Rule name and condition are required");
+      setError("Rule name and condition are required.");
       return;
     }
     setLoading(true);
@@ -72,15 +117,53 @@ export default function AutomationPage() {
         params: { threshold_pct: form.threshold_pct },
         action_id: form.action_id,
         action_message: form.action_message,
+        active: form.active,
       });
-      const res = await fetchAutomationRules();
-      setRules(res.data.rules || []);
-      setShowForm(false);
-      setForm({ name: "", condition_id: "", threshold_pct: 15, action_id: "create_notification", action_message: "" });
+      await loadAll();
+      closeForm();
     } catch {
-      setError("Failed to create rule");
+      setError("Failed to create rule.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // â”€â”€ save edit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  const handleSaveEdit = async () => {
+    if (!editingRuleId) return;
+    if (!form.name || !form.condition_id) {
+      setError("Rule name and condition are required.");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    try {
+      await updateAutomationRule(editingRuleId, {
+        name: form.name,
+        condition_id: form.condition_id,
+        params: { threshold_pct: form.threshold_pct },
+        action_id: form.action_id,
+        action_message: form.action_message,
+        active: form.active,
+      });
+      await loadAll();
+      closeForm();
+    } catch {
+      setError("Failed to update rule.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // â”€â”€ quick toggle active without opening the form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  const handleToggleActive = async (rule: AutomationRule) => {
+    try {
+      await updateAutomationRule(rule.rule_id, { active: !rule.active });
+      setRules((prev) =>
+        prev.map((r) => r.rule_id === rule.rule_id ? { ...r, active: !r.active } : r)
+      );
+    } catch {
+      setError("Failed to toggle rule.");
     }
   };
 
@@ -88,16 +171,14 @@ export default function AutomationPage() {
     try {
       await deleteAutomationRule(ruleId);
       setRules((prev) => prev.filter((r) => r.rule_id !== ruleId));
+      if (editingRuleId === ruleId) closeForm();
     } catch {
-      setError("Failed to delete rule");
+      setError("Failed to delete rule.");
     }
   };
 
   const handleTrigger = async () => {
-    if (!fileId) {
-      setError("No dataset selected. Please open a dataset first.");
-      return;
-    }
+    if (!fileId) { setError("No dataset selected. Please open a dataset first."); return; }
     setTriggering(true);
     setError("");
     setTriggerResults([]);
@@ -107,13 +188,122 @@ export default function AutomationPage() {
       const histRes = await fetchAutomationHistory();
       setHistory(histRes.data.history || []);
     } catch {
-      setError("Failed to trigger automation");
+      setError("Failed to trigger automation.");
     } finally {
       setTriggering(false);
     }
   };
 
   const selectedCondition = conditions.find((c) => c.id === form.condition_id);
+  const isFormOpen = mode !== "idle";
+
+  // â”€â”€ shared form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  const RuleForm = () => (
+    <div className="section-card" style={{ marginBottom: 24 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
+        <h3 style={{ margin: 0, fontSize: "0.9rem", fontWeight: 700, color: "var(--text)" }} style={{ margin: 0 }}>
+          {mode === "edit" ? "Edit Rule" : "Create Automation Rule"}
+        </h3>
+        <button type="button" className="button button-secondary" style={{ padding: "4px 14px", fontSize: "0.82rem" }} onClick={closeForm}>
+          Cancel
+        </button>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+        {/* Name */}
+        <div>
+          <label className="form-label">Rule Name *</label>
+          <input
+            className="form-input"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            placeholder="e.g. Alert on revenue drop"
+          />
+        </div>
+
+        {/* Condition */}
+        <div>
+          <label className="form-label">Condition *</label>
+          <select
+            className="form-input"
+            title="Rule condition"
+            value={form.condition_id}
+            onChange={(e) => setForm({ ...form, condition_id: e.target.value })}
+          >
+            <option value="">Select a conditionâ€¦</option>
+            {conditions.map((c) => (
+              <option key={c.id} value={c.id}>{c.icon} {c.label}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Threshold param */}
+        {selectedCondition && selectedCondition.params.length > 0 && (
+          <div>
+            <label className="form-label">{selectedCondition.params[0].label}</label>
+            <input
+              type="number"
+              className="form-input"
+              value={form.threshold_pct}
+              onChange={(e) => setForm({ ...form, threshold_pct: Number(e.target.value) })}
+              min={1}
+              max={100}
+            />
+          </div>
+        )}
+
+        {/* Action */}
+        <div>
+          <label className="form-label">Action</label>
+          <select
+            className="form-input"
+            title="Rule action"
+            value={form.action_id}
+            onChange={(e) => setForm({ ...form, action_id: e.target.value })}
+          >
+            {actions.map((a) => (
+              <option key={a.id} value={a.id}>{a.icon} {a.label}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Active toggle */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, paddingTop: 24 }}>
+          <button
+            type="button"
+            title={form.active ? "Pause rule" : "Activate rule"}
+            onClick={() => setForm(f => ({ ...f, active: !f.active }))}
+            style={{
+              width: 44, height: 24, borderRadius: 12, border: "none", cursor: "pointer",
+              background: form.active ? "#22c55e" : "#475569",
+              position: "relative", transition: "background 0.2s", flexShrink: 0,
+            }}
+          >
+            <span style={{
+              position: "absolute", top: 2,
+              left: form.active ? "calc(100% - 22px)" : 2,
+              width: 20, height: 20, borderRadius: "50%", background: "#fff",
+              transition: "left 0.2s",
+            }} />
+          </button>
+          <span style={{ fontSize: "0.85rem", color: "var(--text)" }}>
+            {form.active ? "Active" : "Paused"}
+          </span>
+        </div>
+      </div>
+
+      {error && <div className="alert alert-error" style={{ marginBottom: 12 }}>{error}</div>}
+
+      <button
+        type="button"
+        className="button button-primary"
+        onClick={mode === "edit" ? handleSaveEdit : handleCreate}
+        disabled={loading}
+      >
+        {loading ? "Savingâ€¦" : mode === "edit" ? "Save Changes" : "Create Rule"}
+      </button>
+    </div>
+  );
 
   return (
     <MainLayout>
@@ -122,88 +312,39 @@ export default function AutomationPage() {
           <p className="eyebrow">Workflow Automation Engine</p>
           <h1>Automation Rules</h1>
           <p className="section-description">
-            Create rule-based automations that trigger alerts and actions when your data meets defined conditions.
+            Create rule-based automations that trigger alerts when your data meets defined conditions.
           </p>
         </div>
         <div className="hero-actions">
-          <button className="button button-secondary" onClick={() => setShowForm(!showForm)}>
-            {showForm ? "Cancel" : "+ New Rule"}
+          <button
+            type="button"
+            className="button button-secondary"
+            onClick={isFormOpen ? closeForm : openCreate}
+          >
+            {isFormOpen ? "Cancel" : "+ New Rule"}
           </button>
           {fileId && (
-            <button className="button button-primary" onClick={handleTrigger} disabled={triggering || rules.length === 0}>
-              {triggering ? "Running…" : "Run All Rules"}
+            <button
+              type="button"
+              className="button button-primary"
+              onClick={handleTrigger}
+              disabled={triggering || rules.length === 0}
+            >
+              {triggering ? "Runningâ€¦" : "Run All Rules"}
             </button>
           )}
         </div>
       </div>
 
-      {error && <div className="alert alert-error">{error}</div>}
+      {error && mode === "idle" && <div className="alert alert-error">{error}</div>}
 
-      {/* New Rule Form */}
-      {showForm && (
-        <div className="section-card" style={{ marginBottom: 24 }}>
-          <h3 className="section-title">Create Automation Rule</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-            <div>
-              <label className="form-label">Rule Name</label>
-              <input
-                className="form-input"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="e.g. Alert on revenue drop"
-              />
-            </div>
-            <div>
-              <label className="form-label">Condition</label>
-              <select
-                className="form-input"
-                value={form.condition_id}
-                onChange={(e) => setForm({ ...form, condition_id: e.target.value })}
-              >
-                <option value="">Select a condition…</option>
-                {conditions.map((c) => (
-                  <option key={c.id} value={c.id}>{c.icon} {c.label}</option>
-                ))}
-              </select>
-            </div>
-            {selectedCondition && selectedCondition.params.length > 0 && (
-              <div>
-                <label className="form-label">
-                  {selectedCondition.params[0].label}
-                </label>
-                <input
-                  type="number"
-                  className="form-input"
-                  value={form.threshold_pct}
-                  onChange={(e) => setForm({ ...form, threshold_pct: Number(e.target.value) })}
-                  min={1}
-                  max={100}
-                />
-              </div>
-            )}
-            <div>
-              <label className="form-label">Action</label>
-              <select
-                className="form-input"
-                value={form.action_id}
-                onChange={(e) => setForm({ ...form, action_id: e.target.value })}
-              >
-                {actions.map((a) => (
-                  <option key={a.id} value={a.id}>{a.icon} {a.label}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <button className="button button-primary" onClick={handleCreate} disabled={loading}>
-            {loading ? "Creating…" : "Create Rule"}
-          </button>
-        </div>
-      )}
+      {/* Form (create or edit) */}
+      {isFormOpen && <RuleForm />}
 
-      {/* Trigger Results */}
+      {/* Trigger results */}
       {triggerResults.length > 0 && (
         <div className="section-card" style={{ marginBottom: 24 }}>
-          <h3 className="section-title">Evaluation Results</h3>
+          <h3 style={{ margin: "0 0 14px", fontSize: "0.9rem", fontWeight: 700, color: "var(--text)" }}>Evaluation Results</h3>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {triggerResults.map((r, i) => (
               <div
@@ -213,8 +354,8 @@ export default function AutomationPage() {
               >
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <strong>{r.rule_name}</strong>
-                  <span className="tag" style={{ background: r.triggered ? "#ef4444" : "#22c55e", color: "#fff" }}>
-                    {r.triggered ? "TRIGGERED" : "OK"}
+                  <span className={r.triggered ? "badge badge-danger" : "badge badge-success"}>
+                    {r.triggered ? "Triggered" : "OK"}
                   </span>
                 </div>
                 <p style={{ color: "var(--text-secondary)", fontSize: 13, marginTop: 4 }}>{r.reason}</p>
@@ -229,6 +370,7 @@ export default function AutomationPage() {
         {(["rules", "history"] as const).map((tab) => (
           <button
             key={tab}
+            type="button"
             className={`chip${activeTab === tab ? " chip--active" : ""}`}
             onClick={() => setActiveTab(tab)}
             style={activeTab === tab ? { background: "var(--accent)", color: "#fff" } : {}}
@@ -238,45 +380,84 @@ export default function AutomationPage() {
         ))}
       </div>
 
-      {/* Rules Tab */}
+      {/* Rules tab */}
       {activeTab === "rules" && (
         <div className="section-card">
           {rules.length === 0 ? (
-            <div className="empty-state-card">
-              <p>No automation rules yet. Create your first rule above.</p>
+            <div className="empty-state">
+              <p style={{ margin: 0, color: "var(--text-secondary)", fontSize: "0.875rem" }}>No automation rules yet. Create your first rule above.</p>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {rules.map((rule) => {
                 const cond = conditions.find((c) => c.id === rule.condition_id);
                 const act = actions.find((a) => a.id === rule.action_id);
+                const isBeingEdited = editingRuleId === rule.rule_id;
+
                 return (
-                  <div key={rule.rule_id} className="insight-card insight-card--performance">
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                      <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div
+                    key={rule.rule_id}
+                    className="insight-card insight-card--performance"
+                    style={{
+                      borderLeft: `4px solid ${isBeingEdited ? "#6366f1" : rule.active ? "#22c55e" : "#475569"}`,
+                      background: isBeingEdited ? "rgba(99,102,241,0.04)" : undefined,
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                      {/* Rule info */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                           <strong>{rule.name}</strong>
-                          <span className="tag" style={{ background: rule.active ? "#22c55e" : "#6b7280", color: "#fff", fontSize: 11 }}>
-                            {rule.active ? "Active" : "Disabled"}
+                          <span className={rule.active ? "badge badge-success" : "badge badge-neutral"}>
+                            {rule.active ? "Active" : "Paused"}
                           </span>
+                          {isBeingEdited && (
+                            <span style={{ fontSize: 11, color: "#6366f1", fontWeight: 700 }}>EDITING</span>
+                          )}
                         </div>
                         <p style={{ color: "var(--text-secondary)", fontSize: 13, marginTop: 4 }}>
-                          {cond?.icon} IF: {cond?.label.replace("X%", `${rule.params?.threshold_pct || ""}%`)}
+                          {cond?.icon} IF: {cond?.label.replace("X%", `${rule.params?.threshold_pct ?? ""}%`)}
                         </p>
                         <p style={{ color: "var(--text-secondary)", fontSize: 13 }}>
                           {act?.icon} THEN: {act?.label}
                         </p>
                         <p style={{ color: "var(--text-tertiary, #9ca3af)", fontSize: 11, marginTop: 4 }}>
-                          Created {new Date(rule.created_at).toLocaleDateString()} · Triggered {rule.trigger_count}×
+                          Created {new Date(rule.created_at).toLocaleDateString()} Â· Triggered {rule.trigger_count}Ã—
                         </p>
                       </div>
-                      <button
-                        className="button button-danger-ghost"
-                        onClick={() => handleDelete(rule.rule_id)}
-                        style={{ padding: "4px 12px", fontSize: 13 }}
-                      >
-                        Delete
-                      </button>
+
+                      {/* Actions */}
+                      <div style={{ display: "flex", gap: 6, flexShrink: 0, alignItems: "center" }}>
+                        <button
+                          type="button"
+                          className="button button-secondary"
+                          onClick={() => handleToggleActive(rule)}
+                          style={{ padding: "4px 12px", fontSize: 12 }}
+                          title={rule.active ? "Pause rule" : "Activate rule"}
+                        >
+                          {rule.active ? "Pause" : "Activate"}
+                        </button>
+                        <button
+                          type="button"
+                          className="button button-secondary"
+                          onClick={() => isBeingEdited ? closeForm() : openEdit(rule)}
+                          style={{
+                            padding: "4px 12px", fontSize: 12,
+                            borderColor: isBeingEdited ? "#6366f1" : undefined,
+                            color: isBeingEdited ? "#6366f1" : undefined,
+                          }}
+                        >
+                          {isBeingEdited ? "Cancel Edit" : "Edit"}
+                        </button>
+                        <button
+                          type="button"
+                          className="button button-danger-ghost"
+                          onClick={() => handleDelete(rule.rule_id)}
+                          style={{ padding: "4px 12px", fontSize: 12 }}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
@@ -286,12 +467,12 @@ export default function AutomationPage() {
         </div>
       )}
 
-      {/* History Tab */}
+      {/* History tab */}
       {activeTab === "history" && (
         <div className="section-card">
           {history.length === 0 ? (
-            <div className="empty-state-card">
-              <p>No automation history yet. Run rules against a dataset to see results.</p>
+            <div className="empty-state">
+              <p style={{ margin: 0, color: "var(--text-secondary)", fontSize: "0.875rem" }}>No automation history yet. Run rules against a dataset to see results.</p>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -307,7 +488,7 @@ export default function AutomationPage() {
                       <p style={{ color: "var(--text-secondary)", fontSize: 13 }}>{h.reason}</p>
                     </div>
                     <div style={{ textAlign: "right", flexShrink: 0 }}>
-                      <span className="tag" style={{ background: h.triggered ? "#ef4444" : "#22c55e", color: "#fff" }}>
+                      <span className={h.triggered ? "badge badge-danger" : "badge badge-success"}>
                         {h.triggered ? "Triggered" : "OK"}
                       </span>
                       <p style={{ color: "var(--text-tertiary, #9ca3af)", fontSize: 11, marginTop: 4 }}>

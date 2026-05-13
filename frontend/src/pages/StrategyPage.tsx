@@ -1,10 +1,12 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Map, Database, Sparkles, RotateCcw } from "lucide-react";
 import {
   LineChart, Line, ResponsiveContainer, Tooltip as ReTooltip,
 } from "recharts";
 import MainLayout from "../components/layout/MainLayout";
+import EmptyState from "../components/ui/EmptyState";
 import { generateStrategy, fetchStrategyExamples, fetchAnalysis } from "../services/api";
 import type { StrategyPlan, AnalysisData, NumericColumnSummary } from "../types";
 
@@ -678,55 +680,17 @@ export default function StrategyPage() {
   if (!fileId) {
     return (
       <MainLayout>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: 400,
-            gap: 20,
-            padding: 48,
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              width: 72,
-              height: 72,
-              borderRadius: 20,
-              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 32,
-              boxShadow: "0 0 32px rgba(99,102,241,0.4)",
-            }}
-          >
-            🗺️
-          </div>
-          <div>
-            <h2 style={{ margin: "0 0 8px", fontSize: 22, fontWeight: 800 }}>Strategy Generator</h2>
-            <p style={{ color: "#64748b", margin: "0 0 24px" }}>Open a dataset to generate AI-grounded strategy plans.</p>
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate("/datasets")}
-              style={{
-                background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-                color: "#fff",
-                border: "none",
-                borderRadius: 12,
-                padding: "12px 28px",
-                fontSize: 14,
-                fontWeight: 700,
-                cursor: "pointer",
-              }}
-            >
-              Browse Datasets
-            </motion.button>
-          </div>
+        <div style={{ maxWidth: 520, margin: "80px auto" }}>
+          <EmptyState
+            icon={<Map size={26} />}
+            title="Strategy Generator"
+            description="Open a dataset to generate AI-grounded strategy plans with real metrics from your data."
+            action={
+              <button type="button" className="button button-primary" onClick={() => navigate("/datasets")}>
+                <Database size={15} /> Browse Datasets
+              </button>
+            }
+          />
         </div>
       </MainLayout>
     );
@@ -743,34 +707,15 @@ export default function StrategyPage() {
 
       {/* Page header */}
       <motion.div
+        className="page-hero"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 24 }}
+        transition={{ duration: 0.3 }}
       >
-        <div
-          style={{
-            width: 42,
-            height: 42,
-            borderRadius: 12,
-            background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 20,
-            flexShrink: 0,
-            boxShadow: "0 0 18px rgba(99,102,241,0.4)",
-          }}
-        >
-          🗺️
-        </div>
         <div>
-          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6366f1", margin: 0 }}>
-            AI Business Strategy Generator
-          </p>
-          <h1 style={{ margin: "2px 0 4px", fontSize: 24, fontWeight: 900, lineHeight: 1.2 }}>Strategy Builder</h1>
-          <p style={{ color: "#64748b", fontSize: 13, margin: 0 }}>
-            Ask a strategic question — get an AI-grounded plan with real KPIs from your data
-          </p>
+          <p className="eyebrow">AI Business Strategy</p>
+          <h1>Strategy Builder</h1>
+          <p className="section-description">Ask a strategic question — get an AI-grounded plan with real KPIs from your data.</p>
         </div>
       </motion.div>
 
@@ -778,18 +723,11 @@ export default function StrategyPage() {
       <AnimatePresence>
         {error && (
           <motion.div
+            className="alert alert-error"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            style={{
-              padding: "12px 16px",
-              background: "rgba(239,68,68,0.08)",
-              border: "1px solid rgba(239,68,68,0.3)",
-              borderRadius: 12,
-              color: "#fca5a5",
-              fontSize: 13,
-              marginBottom: 16,
-            }}
+            style={{ marginBottom: 16 }}
           >
             {error}
           </motion.div>
@@ -798,17 +736,11 @@ export default function StrategyPage() {
 
       {/* Input card */}
       <motion.div
+        className="section-card"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        style={{
-          background: "linear-gradient(145deg,rgba(30,41,59,0.85),rgba(15,23,42,0.9))",
-          border: "1px solid rgba(148,163,184,0.1)",
-          borderRadius: 20,
-          padding: "24px",
-          marginBottom: 24,
-          backdropFilter: "blur(12px)",
-        }}
+        style={{ marginBottom: 24 }}
       >
         <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#64748b", marginBottom: 12 }}>
           Ask a strategic question
@@ -860,11 +792,13 @@ export default function StrategyPage() {
           >
             {loading ? (
               <>
-                <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}>⟳</motion.span>
+                <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }} style={{ display: "flex" }}>
+                  <RotateCcw size={14} />
+                </motion.span>
                 Generating…
               </>
             ) : (
-              "Generate Strategy →"
+              <><Sparkles size={14} /> Generate Strategy</>
             )}
           </motion.button>
         </div>

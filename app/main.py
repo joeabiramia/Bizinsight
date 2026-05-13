@@ -8,19 +8,34 @@ from fastapi.responses import JSONResponse
 from app.routes.ai_chat import router as ai_router
 from app.routes.analyze import router as analyze_router
 from app.routes.anomalies import router as anomalies_router
+from app.routes.anomaly_explain import router as anomaly_explain_router
+from app.routes.workspace import router as workspace_router
+from app.routes.digest import router as digest_router
 from app.routes.audit import router as audit_router
 from app.routes.auth import router as auth_router
 from app.routes.automation import router as automation_router
+from app.routes.chart_ai import router as chart_ai_router
 from app.routes.charts import router as charts_router
 from app.routes.chat import router as chat_router
+from app.routes.chat_history import router as chat_history_router
+from app.routes.compare import router as compare_router
 from app.routes.data_cleaning import router as data_cleaning_router
 from app.routes.fraud import router as fraud_router
+from app.routes.goal_forecast import router as goal_forecast_router
 from app.routes.goals import router as goals_router
 from app.routes.health import router as health_router
 from app.routes.insights import router as insights_router
 from app.routes.market_intel import router as market_intel_router
 from app.routes.notifications import router as notifications_router
 from app.routes.predictions import router as predictions_router
+from app.routes.alerts import router as alerts_router
+from app.routes.alert_channels import router as alert_channels_router
+from app.routes.business_monitor import router as business_monitor_router
+from app.routes.excel_online import router as excel_online_router
+from app.routes.live_sources import router as live_sources_router
+from app.routes.schedules import router as schedules_router
+from app.routes.share import router as share_router
+from app.routes.shopify_connect import router as shopify_router
 from app.routes.realtime import router as realtime_router
 from app.routes.reports import router as reports_router
 from app.routes.scenarios import router as scenarios_router
@@ -30,7 +45,7 @@ from app.storage import storage_status
 
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="BizInsight AI", version="2.0.0")
+app = FastAPI(title="BizInsight AI", version="3.0.0")
 
 allowed_origins = os.getenv(
     "CORS_ORIGINS",
@@ -49,13 +64,10 @@ app.add_middleware(
 @app.exception_handler(Exception)
 async def unhandled_exception_handler(request: Request, exc: Exception):
     logger.exception("Unhandled error on %s %s", request.method, request.url.path)
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "An unexpected server error occurred."},
-    )
+    return JSONResponse(status_code=500, content={"detail": "An unexpected server error occurred."})
 
 
-# ── Phase 1 routers ───────────────────────────────────────────────────────────
+# ── Phase 1 ───────────────────────────────────────────────────────────────────
 app.include_router(auth_router)
 app.include_router(upload_router)
 app.include_router(analyze_router)
@@ -70,7 +82,7 @@ app.include_router(health_router)
 app.include_router(scenarios_router)
 app.include_router(anomalies_router)
 
-# ── Phase 2 routers ───────────────────────────────────────────────────────────
+# ── Phase 2 ───────────────────────────────────────────────────────────────────
 app.include_router(data_cleaning_router)
 app.include_router(automation_router)
 app.include_router(strategy_router)
@@ -79,6 +91,25 @@ app.include_router(fraud_router)
 app.include_router(market_intel_router)
 app.include_router(audit_router)
 app.include_router(realtime_router)
+app.include_router(live_sources_router)
+app.include_router(excel_online_router)
+app.include_router(shopify_router)
+app.include_router(alerts_router)
+app.include_router(business_monitor_router)
+
+# ── Phase 3 — New features ────────────────────────────────────────────────────
+app.include_router(schedules_router)
+app.include_router(share_router)
+app.include_router(chat_history_router)
+app.include_router(compare_router)
+app.include_router(alert_channels_router)
+app.include_router(chart_ai_router)
+app.include_router(goal_forecast_router)
+app.include_router(anomaly_explain_router)
+
+# ── Phase 5 — Team, Digest, Benchmark ─────────────────────────────────────────
+app.include_router(workspace_router)
+app.include_router(digest_router)
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
@@ -98,9 +129,22 @@ def _get_pg_engine():
     return _pg_engine
 
 
+@app.on_event("startup")
+async def startup_event():
+    from app.services.scheduler_service import start_scheduler, load_all_schedules
+    start_scheduler()
+    load_all_schedules()
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    from app.services.scheduler_service import stop_scheduler
+    stop_scheduler()
+
+
 @app.get("/")
 def root():
-    return {"message": "BizInsight AI backend running", "version": "2.0.0"}
+    return {"message": "BizInsight AI backend running", "version": "3.0.0"}
 
 
 @app.get("/health")

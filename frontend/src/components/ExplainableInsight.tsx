@@ -67,14 +67,9 @@ export default function ExplainableInsight({ insight, index, fileId, mode = "" }
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
             <span style={{ fontSize: 18 }}>{TYPE_ICONS[insight.type] || "📌"}</span>
             <strong style={{ fontSize: 15 }}>{insight.title}</strong>
-            <span
-              className="tag"
-              style={{ background: pStyle.bg, color: pStyle.color, border: `1px solid ${pStyle.color}`, fontSize: 11 }}
-            >
-              {priority.toUpperCase()}
-            </span>
+            <span className={`priority-badge priority-badge--${priority}`}>{priority}</span>
             {insight.confidence && (
-              <span className="tag" style={{ fontSize: 11 }}>
+              <span className="badge badge-neutral" style={{ fontSize: "0.65rem" }}>
                 {insight.confidence} confidence
               </span>
             )}
@@ -136,7 +131,7 @@ export default function ExplainableInsight({ insight, index, fileId, mode = "" }
           </h4>
 
           {loadingExplain ? (
-            <div className="loading-pulse" style={{ height: 80 }} />
+            <div className="loading-skeleton"><div className="loading-row" style={{ height: 80 }} /></div>
           ) : explainData ? (
             <>
               <p style={{ color: "var(--text-secondary)", fontSize: 13, marginBottom: 12 }}>

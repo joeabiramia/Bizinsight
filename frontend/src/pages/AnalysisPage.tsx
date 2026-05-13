@@ -1,14 +1,28 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  ArrowLeft, FileText, TrendingUp, Target, Bot,
+  Share2, RefreshCw, Download, Upload,
+  BarChart2, Plug,
+} from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
 import SectionCard from "../components/ui/SectionCard";
 import LoadingSkeleton from "../components/ui/LoadingSkeleton";
+import PageHeader from "../components/ui/PageHeader";
+import EmptyState from "../components/ui/EmptyState";
+import ProactiveInsights from "../components/ProactiveInsights";
 import KPICards from "../components/KPICards";
 import Charts from "../components/Charts";
 import Insights from "../components/Insights";
 import HealthScoreCard from "../components/HealthScoreCard";
-import { fetchAnalysis } from "../services/api";
+import LiveKPIStream from "../components/LiveKPIStream";
+import AlertsPanel from "../components/AlertsPanel";
+import BusinessPulseCard from "../components/BusinessPulseCard";
+import { fetchAnalysis, api } from "../services/api";
 import type { AnalysisReport } from "../types";
+
+const LIVE_REFRESH_INTERVAL = 30;
 
 export default function AnalysisPage() {
   const { fileId } = useParams();
@@ -16,20 +30,59 @@ export default function AnalysisPage() {
   const [report, setReport] = useState<AnalysisReport | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [liveMode, setLiveMode] = useState(true);
+  const [shareUrl, setShareUrl] = useState("");
+  const [sharing, setSharing] = useState(false);
+  const [secondsAgo, setSecondsAgo] = useState(0);
+  const [refreshing, setRefreshing] = useState(false);
+  const lastFetchRef = useRef<Date | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resolvedId = fileId || localStorage.getItem("lastDatasetId") || "";
+
+  const loadAnalysis = useCallback(
+    (silent = false) => {
+      if (!resolvedId) return;
+      if (!silent) setLoading(true);
+      else setRefreshing(true);
+      fetchAnalysis(resolvedId)
+        .then((res) => {
+          setReport(res.data as AnalysisReport);
+          lastFetchRef.current = new Date();
+          setSecondsAgo(0);
+          setError("");
+        })
+        .catch(() => {
+          if (!silent) setError("Failed to load analysis. The file may have been removed.");
+        })
+        .finally(() => {
+          setLoading(false);
+          setRefreshing(false);
+        });
+    },
+    [resolvedId]
+  );
 
   useEffect(() => {
-    const id = fileId || localStorage.getItem("lastDatasetId");
-    if (!id) {
+    if (!resolvedId) {
       setError("No dataset selected. Please choose a dataset from history.");
       setLoading(false);
       return;
     }
-    localStorage.setItem("lastDatasetId", id);
-    fetchAnalysis(id)
-      .then((res) => setReport(res.data as AnalysisReport))
-      .catch(() => setError("Failed to load analysis. The file may have been removed."))
-      .finally(() => setLoading(false));
-  }, [fileId]);
+    localStorage.setItem("lastDatasetId", resolvedId);
+    loadAnalysis();
+  }, [resolvedId]);
+
+  useEffect(() => {
+    if (!liveMode || !resolvedId) return;
+    timerRef.current = setInterval(() => loadAnalysis(true), LIVE_REFRESH_INTERVAL * 1000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [liveMode, resolvedId, loadAnalysis]);
+
+  useEffect(() => {
+    const tick = setInterval(() => setSecondsAgo((s) => s + 1), 1000);
+    return () => clearInterval(tick);
+  }, []);
 
   const handleExport = () => {
     if (!report) return;
@@ -50,105 +103,190 @@ export default function AnalysisPage() {
     URL.revokeObjectURL(url);
   };
 
-  const id = report?.file_id || fileId || "";
+  const id = report?.file_id || resolvedId;
+
+  const nextSteps = [
+    { icon: <FileText size={18} />, label: "Export Report",   desc: "PDF / PPTX / Excel",      to: `/reports/${id}` },
+    { icon: <TrendingUp size={18} />, label: "Predictions",   desc: "ML Forecasting",           to: `/predictions/${id}` },
+    { icon: <Target size={18} />,  label: "Scenarios",        desc: "What-If Simulation",       to: `/scenarios/${id}` },
+    { icon: <Bot size={18} />,     label: "AI Copilot",       desc: "Ask Your Data",            to: `/ai-chat/${id}` },
+    { icon: <Plug size={18} />,    label: "Live Sheets",      desc: "Connect Google Sheets",    to: "/google-sheets" },
+  ];
 
   return (
     <MainLayout>
-      <div className="page-hero">
-        <div>
-          <p className="eyebrow">Analysis dashboard</p>
-          <h1>Dataset Intelligence</h1>
-          <p className="section-description">
-            KPIs, charts, business insights, health scores, and AI-powered analytics.
-          </p>
-        </div>
-        <div className="hero-actions">
-          <button type="button" className="button button-secondary" onClick={() => navigate("/datasets")}>
-            ← Datasets
-          </button>
-          {id && (
-            <button type="button" className="button button-secondary" onClick={() => navigate(`/reports/${id}`)}>
-              📄 Export Report
+      <PageHeader
+        eyebrow="Analysis Dashboard"
+        title="Dataset Intelligence"
+        description="KPIs, charts, business insights, health scores, and AI-powered analytics."
+        actions={
+          <>
+            <button type="button" className="button button-secondary button-sm" onClick={() => navigate("/datasets")}>
+              <ArrowLeft size={14} /> Datasets
             </button>
-          )}
-          {id && (
-            <button type="button" className="button button-secondary" onClick={() => navigate(`/predictions/${id}`)}>
-              🔮 Predictions
-            </button>
-          )}
-          {id && (
-            <button type="button" className="button button-secondary" onClick={() => navigate(`/scenarios/${id}`)}>
-              🎯 Scenarios
-            </button>
-          )}
-          {id && (
-            <button type="button" className="button button-primary" onClick={() => navigate(`/ai-chat/${id}`)}>
-              🤖 AI Copilot
-            </button>
-          )}
-        </div>
-      </div>
+            {id && (
+              <>
+                <button type="button" className="button button-secondary button-sm" onClick={() => navigate(`/reports/${id}`)}>
+                  <FileText size={14} /> Report
+                </button>
+                <button type="button" className="button button-secondary button-sm" onClick={() => navigate(`/predictions/${id}`)}>
+                  <TrendingUp size={14} /> Predictions
+                </button>
+                <button type="button" className="button button-primary button-sm" onClick={() => navigate(`/ai-chat/${id}`)}>
+                  <Bot size={14} /> AI Copilot
+                </button>
+              </>
+            )}
+          </>
+        }
+      />
 
       {loading ? (
-        <LoadingSkeleton rows={6} />
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <LoadingSkeleton variant="metric" rows={4} cols={4} />
+          <LoadingSkeleton rows={5} />
+        </div>
       ) : error ? (
-        <div className="alert alert-error">{error}</div>
+        <EmptyState
+          icon={<BarChart2 size={24} />}
+          title="Analysis unavailable"
+          description={error}
+          action={
+            <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
+              <Upload size={15} /> Upload Dataset
+            </button>
+          }
+        />
       ) : report ? (
         <>
-          {/* Action row */}
-          <div className="analysis-actions">
-            {report.analysis.industry && (
-              <span className="industry-badge">{report.analysis.industry}</span>
-            )}
-            <button type="button" className="button button-secondary" style={{ padding: "8px 16px", fontSize: "0.85rem" }} onClick={handleExport}>
-              Export JSON
-            </button>
-          </div>
+          {/* Toolbar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              flexWrap: "wrap",
+              gap: 10,
+              padding: "10px 16px",
+              borderRadius: 12,
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+              {report.analysis.industry && (
+                <span className="industry-badge">{report.analysis.industry}</span>
+              )}
+              <button
+                type="button"
+                onClick={() => setLiveMode((m) => !m)}
+                className={liveMode ? "live-indicator" : "badge badge-neutral"}
+                style={{ border: "none", cursor: "pointer", fontFamily: "inherit" }}
+              >
+                <span className={liveMode ? "live-dot" : undefined} />
+                {liveMode ? "Live" : "Paused"}
+              </button>
+              {liveMode && lastFetchRef.current && (
+                <span style={{ fontSize: "0.75rem", color: "var(--muted)" }}>
+                  {refreshing ? "Refreshing…" : secondsAgo < 5 ? "Just updated" : `Updated ${secondsAgo}s ago`}
+                </span>
+              )}
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <button
+                type="button"
+                className="button button-secondary button-sm"
+                onClick={async () => {
+                  if (shareUrl) { navigator.clipboard?.writeText(window.location.origin + shareUrl); return; }
+                  setSharing(true);
+                  try {
+                    const r = await api.post(`/share/create/${id}`, {});
+                    setShareUrl(r.data.share_url);
+                    navigator.clipboard?.writeText(window.location.origin + r.data.share_url);
+                  } catch { /* silent */ } finally { setSharing(false); }
+                }}
+                disabled={sharing}
+              >
+                <Share2 size={13} />
+                {sharing ? "Sharing…" : shareUrl ? "Copy link" : "Share"}
+              </button>
+              <button
+                type="button"
+                className="button button-secondary button-sm"
+                onClick={() => loadAnalysis(true)}
+                disabled={refreshing}
+              >
+                <RefreshCw size={13} className={refreshing ? "spin" : ""} />
+                Refresh
+              </button>
+              <button type="button" className="button button-secondary button-sm" onClick={handleExport}>
+                <Download size={13} /> Export JSON
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Proactive AI Insights */}
+          {id && (
+            <ProactiveInsights
+              fileId={id}
+              analysisData={report.analysis as unknown as Record<string, unknown>}
+            />
+          )}
+
+          {/* Business Pulse */}
+          {id && <BusinessPulseCard fileId={id} />}
+
+          {/* Alerts */}
+          {id && <AlertsPanel fileId={id} refreshInterval={60} />}
+
+          {/* Live KPI Stream */}
+          {id && (
+            <LiveKPIStream fileId={id} refreshInterval={liveMode ? LIVE_REFRESH_INTERVAL : 999999} />
+          )}
 
           {/* Summary + KPI grid */}
-          <div className="overview-grid">
-            <SectionCard title="Dataset Summary">
-              <div className="summary-grid">
-                <div className="summary-tile">
-                  <span>Rows</span>
-                  <strong>{report.analysis.shape.rows.toLocaleString()}</strong>
-                </div>
-                <div className="summary-tile">
-                  <span>Columns</span>
-                  <strong>{report.analysis.shape.columns}</strong>
-                </div>
-                {(() => {
-                  const numericEntries = Object.entries(report.analysis.numeric_summary ?? {});
-                  const mainEntry = numericEntries.find(([k]) =>
-                    /revenue|sales|amount|total|price|value/i.test(k)
-                  ) ?? numericEntries[0];
-                  const qtyEntry = numericEntries.find(([k]) =>
-                    /quantity|qty|units|count/i.test(k)
-                  ) ?? numericEntries[1];
-                  return (
-                    <>
-                      <div className="summary-tile">
-                        <span>{mainEntry ? mainEntry[0] : "Total"}</span>
-                        <strong>
-                          {mainEntry
-                            ? mainEntry[1].total.toLocaleString(undefined, { maximumFractionDigits: 0 })
-                            : "N/A"}
-                        </strong>
-                      </div>
-                      <div className="summary-tile">
-                        <span>{qtyEntry ? `Avg ${qtyEntry[0]}` : "Avg"}</span>
-                        <strong>
-                          {qtyEntry ? qtyEntry[1].mean.toFixed(1) : "N/A"}
-                        </strong>
-                      </div>
-                    </>
-                  );
-                })()}
+          <div className="overview-grid" style={{ marginBottom: 20 }}>
+            <SectionCard title="Dataset Summary" index={0}>
+              <div className="summary-grid" style={{ marginBottom: 16 }}>
+                {[
+                  { label: "Rows",    value: report.analysis.shape.rows.toLocaleString() },
+                  { label: "Columns", value: report.analysis.shape.columns },
+                  (() => {
+                    const entries = Object.entries(report.analysis.numeric_summary ?? {});
+                    const main = entries.find(([k]) => /revenue|sales|amount|total|price|value/i.test(k)) ?? entries[0];
+                    return {
+                      label: main ? main[0] : "Total",
+                      value: main ? main[1].total.toLocaleString(undefined, { maximumFractionDigits: 0 }) : "N/A",
+                    };
+                  })(),
+                  (() => {
+                    const entries = Object.entries(report.analysis.numeric_summary ?? {});
+                    const qty = entries.find(([k]) => /quantity|qty|units|count/i.test(k)) ?? entries[1];
+                    return {
+                      label: qty ? `Avg ${qty[0]}` : "Average",
+                      value: qty ? qty[1].mean.toFixed(1) : "N/A",
+                    };
+                  })(),
+                ].map((item, i) => (
+                  <div key={i} className="summary-tile" style={{ display: "flex", flexDirection: "column", gap: 4, padding: "16px 18px" }}>
+                    <span style={{ fontSize: "0.72rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--muted)" }}>
+                      {item.label}
+                    </span>
+                    <strong style={{ fontSize: "1.4rem", fontWeight: 700, color: "var(--text)", lineHeight: 1 }}>
+                      {item.value}
+                    </strong>
+                  </div>
+                ))}
               </div>
 
               {report.analysis.columns.length > 0 && (
-                <div style={{ marginTop: 18 }}>
-                  <p style={{ margin: "0 0 8px", fontSize: "0.88rem", color: "var(--muted)" }}>
+                <div>
+                  <p style={{ margin: "0 0 8px", fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--muted)" }}>
                     Detected columns
                   </p>
                   <div className="column-tags">
@@ -160,55 +298,54 @@ export default function AnalysisPage() {
               )}
             </SectionCard>
 
-            <SectionCard title="Key Metrics">
+            <SectionCard title="Key Metrics" index={1}>
               <KPICards data={report.analysis.numeric_summary} />
             </SectionCard>
           </div>
 
-          {/* Business Health Score */}
+          {/* Health Score */}
           {id && <HealthScoreCard fileId={id} />}
 
-          <SectionCard title="Business Charts">
-            <Charts data={report.analysis.chart_data} />
+          {/* Charts */}
+          <SectionCard title="Business Charts" description="Visual breakdown of your dataset metrics." index={2}>
+            <Charts data={report.analysis.chart_data} fileId={id} />
           </SectionCard>
 
-          <SectionCard title="Actionable Insights">
+          {/* Insights */}
+          <SectionCard title="Actionable Insights" description="AI-generated observations and recommendations." index={3}>
             <Insights analysis={report.analysis} filename={report.filename} fileId={report.file_id} />
           </SectionCard>
 
-          {/* Quick navigation to new features */}
-          <div className="section-card" style={{ padding: "20px 24px" }}>
-            <h3 style={{ margin: "0 0 16px" }}>Continue Your Analysis</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
-              {[
-                { icon: "📄", label: "Export Report", desc: "PDF / PPTX / Excel", to: `/reports/${id}` },
-                { icon: "🔮", label: "Predictions",   desc: "ML Forecasting",      to: `/predictions/${id}` },
-                { icon: "🎯", label: "Scenarios",     desc: "What-If Simulation",  to: `/scenarios/${id}` },
-                { icon: "🤖", label: "AI Copilot",    desc: "Ask Your Data",       to: `/ai-chat/${id}` },
-              ].map(item => (
+          {/* Next steps nav */}
+          <SectionCard title="Continue Your Analysis" description="Explore more capabilities for this dataset." index={4}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12 }}>
+              {nextSteps.map((item) => (
                 <button
                   key={item.to}
-                  className="button button-secondary"
-                  style={{ flexDirection: "column", gap: 4, padding: "16px", height: "auto", textAlign: "center" }}
-                  onClick={() => navigate(item.to)}
                   type="button"
+                  className="button button-secondary"
+                  style={{ flexDirection: "column", gap: 8, padding: "18px 14px", height: "auto", alignItems: "center" }}
+                  onClick={() => navigate(item.to)}
                 >
-                  <span style={{ fontSize: "1.4rem" }}>{item.icon}</span>
-                  <strong style={{ fontSize: "0.93rem" }}>{item.label}</strong>
-                  <span style={{ fontSize: "0.8rem", color: "var(--muted)", fontWeight: 400 }}>{item.desc}</span>
+                  <span style={{ color: "var(--primary-light)" }}>{item.icon}</span>
+                  <strong style={{ fontSize: "0.875rem" }}>{item.label}</strong>
+                  <span style={{ fontSize: "0.75rem", color: "var(--muted)", fontWeight: 400 }}>{item.desc}</span>
                 </button>
               ))}
             </div>
-          </div>
+          </SectionCard>
         </>
       ) : (
-        <div className="no-dataset-state">
-          <h3>No analysis available</h3>
-          <p>Upload a dataset to generate your first analysis.</p>
-          <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
-            Upload Dataset
-          </button>
-        </div>
+        <EmptyState
+          icon={<BarChart2 size={24} />}
+          title="No analysis available"
+          description="Upload a dataset to generate your first AI-powered analysis."
+          action={
+            <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
+              <Upload size={15} /> Upload Dataset
+            </button>
+          }
+        />
       )}
     </MainLayout>
   );

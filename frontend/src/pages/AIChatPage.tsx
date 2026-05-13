@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Bot, ArrowLeft, Trash2, Database, Send, Sparkles, Zap, CheckCircle2 } from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
 import VoiceAssistant from "../components/VoiceAssistant";
+import EmptyState from "../components/ui/EmptyState";
+import NLChart, { detectChartRequest, buildChartFromResponse, type NLChartData } from "../components/NLChart";
 import { askAiQuestion, fetchAiSuggestions, fetchDatasetPreview } from "../services/api";
 import type { AIResponse, PreviewData } from "../types";
 
@@ -277,7 +280,17 @@ function DatasetIntelligencePanel({
 
 // ─── Chat message bubble ───────────────────────────────────────────────────────
 
-function ChatBubble({ item, index }: { item: AIResponse; index: number }) {
+function ChatBubble({ item, index, chartData }: { item: AIResponse; index: number; chartData?: Record<string, Array<{name:string;value:number}>> }) {
+  const [chart, setChart] = useState<NLChartData | null>(null);
+  const [showChart, setShowChart] = useState(false);
+
+  useEffect(() => {
+    if (detectChartRequest(item.question) && chartData) {
+      const c = buildChartFromResponse(item.question, chartData);
+      if (c) { setChart(c); setShowChart(true); }
+    }
+  }, [item.question, chartData]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -316,11 +329,11 @@ function ChatBubble({ item, index }: { item: AIResponse; index: number }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 16,
             flexShrink: 0,
+            color: "#a5b4fc",
           }}
         >
-          🤖
+          <Bot size={16} />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div
@@ -335,48 +348,18 @@ function ChatBubble({ item, index }: { item: AIResponse; index: number }) {
             {/* Source badges */}
             <div style={{ display: "flex", gap: 6, marginBottom: 8, flexWrap: "wrap" }}>
               {item.source === "rag_openai" && (
-                <span
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 700,
-                    padding: "2px 8px",
-                    borderRadius: 99,
-                    background: "rgba(99,102,241,0.15)",
-                    color: "#818cf8",
-                    border: "1px solid rgba(99,102,241,0.3)",
-                  }}
-                >
-                  🧠 GPT-4o
+                <span className="badge badge-primary" style={{ fontSize: "0.65rem" }}>
+                  <Sparkles size={9} /> GPT-4o
                 </span>
               )}
               {item.source === "structured_query" && (
-                <span
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 700,
-                    padding: "2px 8px",
-                    borderRadius: 99,
-                    background: "rgba(34,197,94,0.1)",
-                    color: "#4ade80",
-                    border: "1px solid rgba(34,197,94,0.25)",
-                  }}
-                >
-                  ⚡ Instant
+                <span className="badge badge-success" style={{ fontSize: "0.65rem" }}>
+                  <Zap size={9} /> Instant
                 </span>
               )}
               {item.grounded && (
-                <span
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 700,
-                    padding: "2px 8px",
-                    borderRadius: 99,
-                    background: "rgba(34,197,94,0.08)",
-                    color: "#86efac",
-                    border: "1px solid rgba(34,197,94,0.15)",
-                  }}
-                >
-                  ✓ Grounded
+                <span className="badge badge-success" style={{ fontSize: "0.65rem" }}>
+                  <CheckCircle2 size={9} /> Grounded
                 </span>
               )}
             </div>
@@ -412,7 +395,28 @@ function ChatBubble({ item, index }: { item: AIResponse; index: number }) {
                 ))}
               </div>
             )}
+
+            {/* Chart toggle */}
+            {chart && (
+              <button
+                type="button"
+                style={{
+                  marginTop: 10, padding: "5px 12px", borderRadius: 8,
+                  background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.2)",
+                  color: "#a5b4fc", fontSize: "0.75rem", fontWeight: 600, cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 5,
+                }}
+                onClick={() => setShowChart(!showChart)}
+              >
+                📊 {showChart ? "Hide chart" : "Show chart"}
+              </button>
+            )}
           </div>
+
+          {/* NL Chart */}
+          {chart && showChart && (
+            <NLChart chart={chart} onClose={() => setShowChart(false)} />
+          )}
         </div>
       </div>
     </motion.div>
@@ -468,77 +472,86 @@ function ThinkingBubble() {
 
 function EmptyChatState({ onPromptClick }: { onPromptClick: (q: string) => void }) {
   const STARTER_PROMPTS = [
-    { icon: "💰", text: "What is the total revenue?" },
-    { icon: "📈", text: "Who is the top performing salesperson?" },
-    { icon: "🌍", text: "Which region has the highest sales?" },
-    { icon: "📦", text: "What is the best selling product?" },
-    { icon: "⚠️", text: "Are there any anomalies in the data?" },
-    { icon: "📊", text: "Summarize the dataset for me" },
+    "What is the total revenue?",
+    "Who is the top performing salesperson?",
+    "Which region has the highest sales?",
+    "What is the best selling product?",
+    "Are there any anomalies in the data?",
+    "Summarize the dataset for me",
   ];
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
       style={{ padding: "40px 24px", textAlign: "center" }}
     >
       <div
         style={{
-          width: 64,
-          height: 64,
-          borderRadius: 20,
+          width: 56,
+          height: 56,
+          borderRadius: 16,
           background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 30,
-          margin: "0 auto 20px",
-          boxShadow: "0 0 32px rgba(99,102,241,0.35)",
+          margin: "0 auto 18px",
+          boxShadow: "0 0 24px rgba(99,102,241,0.3)",
+          color: "white",
         }}
       >
-        💬
+        <Bot size={26} />
       </div>
-      <h3 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 800 }}>Ask anything about your data</h3>
-      <p style={{ color: "#64748b", fontSize: 13, margin: "0 0 28px" }}>
+      <h3 style={{ margin: "0 0 6px", fontSize: 17, fontWeight: 700, color: "var(--text)" }}>
+        Ask anything about your data
+      </h3>
+      <p style={{ color: "var(--text-secondary)", fontSize: "0.84rem", margin: "0 0 24px" }}>
         Type a question, click a suggestion, or use your voice
       </p>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: 10,
+          gap: 8,
           textAlign: "left",
-          maxWidth: 560,
+          maxWidth: 520,
           margin: "0 auto",
         }}
       >
-        {STARTER_PROMPTS.map((p) => (
+        {STARTER_PROMPTS.map((text) => (
           <motion.button
-            key={p.text}
+            key={text}
             type="button"
-            whileHover={{ scale: 1.03, borderColor: "rgba(99,102,241,0.4)" }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => onPromptClick(p.text)}
+            onClick={() => onPromptClick(text)}
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 10,
-              padding: "12px 14px",
-              borderRadius: 12,
-              background: "rgba(30,41,59,0.7)",
-              border: "1px solid rgba(148,163,184,0.1)",
-              color: "#cbd5e1",
-              fontSize: 12,
+              gap: 8,
+              padding: "10px 14px",
+              borderRadius: 10,
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid var(--border)",
+              color: "var(--text-secondary)",
+              fontSize: "0.82rem",
               fontWeight: 500,
               cursor: "pointer",
               textAlign: "left",
-              backdropFilter: "blur(8px)",
-              transition: "border-color 0.15s",
+              transition: "border-color 0.15s, color 0.15s",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = "rgba(99,102,241,0.4)";
+              e.currentTarget.style.color = "var(--text)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--text-secondary)";
             }}
           >
-            <span style={{ fontSize: 18, flexShrink: 0 }}>{p.icon}</span>
-            {p.text}
+            <Sparkles size={12} style={{ color: "var(--primary-light)", flexShrink: 0 }} />
+            {text}
           </motion.button>
         ))}
       </div>
@@ -559,6 +572,7 @@ export default function AIChatPage() {
   const [preview, setPreview] = useState<PreviewData | null>(null);
   const [speakAnswers, setSpeakAnswers] = useState(false);
   const [lastAnswer, setLastAnswer] = useState("");
+  const [chartData, setChartData] = useState<Record<string, Array<{name:string;value:number}>> | undefined>(undefined);
   const historyEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -579,7 +593,11 @@ export default function AIChatPage() {
       .then((res) => setSuggestions(res.data.suggestions ?? []))
       .catch(() => setSuggestions([]));
     fetchDatasetPreview(resolvedId)
-      .then((res) => setPreview(res.data))
+      .then((res) => {
+        setPreview(res.data);
+        // Try to get chart data for NL chart rendering
+        if (res.data?.chart_data) setChartData(res.data.chart_data as Record<string, Array<{name:string;value:number}>>);
+      })
       .catch(() => {});
   }, [resolvedId]);
 
@@ -615,56 +633,22 @@ export default function AIChatPage() {
   if (!resolvedId) {
     return (
       <MainLayout>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: 400,
-            gap: 20,
-            padding: 48,
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              width: 72,
-              height: 72,
-              borderRadius: 20,
-              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 32,
-              boxShadow: "0 0 32px rgba(99,102,241,0.4)",
-            }}
-          >
-            🤖
-          </div>
-          <div>
-            <h2 style={{ margin: "0 0 8px", fontSize: 22, fontWeight: 800 }}>AI Copilot</h2>
-            <p style={{ color: "#64748b", margin: "0 0 24px" }}>Select a dataset to start your AI-powered business conversation.</p>
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate("/datasets")}
-              style={{
-                background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-                color: "#fff",
-                border: "none",
-                borderRadius: 12,
-                padding: "12px 28px",
-                fontSize: 14,
-                fontWeight: 700,
-                cursor: "pointer",
-                boxShadow: "0 0 20px rgba(99,102,241,0.35)",
-              }}
-            >
-              Browse Datasets
-            </motion.button>
-          </div>
+        <div style={{ maxWidth: 520, margin: "80px auto" }}>
+          <EmptyState
+            icon={<Bot size={26} />}
+            title="AI Copilot"
+            description="Select a dataset to start your AI-powered business conversation. Upload a CSV or Excel file, then come back here to ask questions."
+            action={
+              <div style={{ display: "flex", gap: 10 }}>
+                <button type="button" className="button button-primary" onClick={() => navigate("/datasets")}>
+                  <Database size={15} /> Browse Datasets
+                </button>
+                <button type="button" className="button button-secondary" onClick={() => navigate("/upload")}>
+                  Upload Data
+                </button>
+              </div>
+            }
+          />
         </div>
       </MainLayout>
     );
@@ -682,78 +666,24 @@ export default function AIChatPage() {
 
       {/* Page header */}
       <motion.div
+        className="page-hero"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          flexWrap: "wrap",
-          gap: 12,
-        }}
+        transition={{ duration: 0.3 }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 11,
-              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 18,
-              boxShadow: "0 0 16px rgba(99,102,241,0.4)",
-            }}
-          >
-            🤖
-          </div>
-          <div>
-            <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6366f1", margin: 0 }}>
-              AI Copilot
-            </p>
-            <h1 style={{ margin: 0, fontSize: 22, fontWeight: 900, lineHeight: 1.2 }}>Business Intelligence Chat</h1>
-          </div>
+        <div>
+          <p className="eyebrow">AI Copilot</p>
+          <h1>Business Intelligence Chat</h1>
+          <p className="section-description">Ask plain-English questions about your data and get instant AI-powered answers.</p>
         </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => navigate(-1)}
-            style={{
-              padding: "8px 18px",
-              borderRadius: 10,
-              fontSize: 13,
-              fontWeight: 600,
-              background: "rgba(255,255,255,0.05)",
-              color: "#94a3b8",
-              border: "1px solid rgba(148,163,184,0.15)",
-              cursor: "pointer",
-            }}
-          >
-            ← Back
-          </motion.button>
+        <div className="hero-actions">
+          <button type="button" className="button button-secondary button-sm" onClick={() => navigate(-1)}>
+            <ArrowLeft size={14} /> Back
+          </button>
           {history.length > 0 && (
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => setHistory([])}
-              style={{
-                padding: "8px 18px",
-                borderRadius: 10,
-                fontSize: 13,
-                fontWeight: 600,
-                background: "rgba(255,255,255,0.05)",
-                color: "#94a3b8",
-                border: "1px solid rgba(148,163,184,0.15)",
-                cursor: "pointer",
-              }}
-            >
-              Clear
-            </motion.button>
+            <button type="button" className="button button-secondary button-sm" onClick={() => setHistory([])}>
+              <Trash2 size={14} /> Clear chat
+            </button>
           )}
         </div>
       </motion.div>
@@ -799,7 +729,7 @@ export default function AIChatPage() {
           ) : (
             <>
               {history.map((item, i) => (
-                <ChatBubble key={i} item={item} index={i} />
+                <ChatBubble key={i} item={item} index={i} chartData={chartData} />
               ))}
               <AnimatePresence>
                 {loading && <ThinkingBubble />}
@@ -901,13 +831,13 @@ export default function AIChatPage() {
           >
             {loading ? (
               <>
-                <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}>
-                  ⟳
+                <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }} style={{ display: "flex" }}>
+                  <Send size={14} />
                 </motion.span>
-                Thinking
+                Thinking…
               </>
             ) : (
-              <>Send ↵</>
+              <><Send size={14} /> Send</>
             )}
           </motion.button>
         </div>

@@ -120,10 +120,84 @@ def list_file_records_for_user(user_id: str) -> List[Dict]:
     return sorted(user_records, key=lambda item: item.get("created_at") or "", reverse=True)
 
 
+def delete_file_record(file_id: str, user_id: str) -> bool:
+    """Delete a file record for the given user. Returns True if deleted."""
+    if _mongo_available():
+        result = _collection.delete_one({"file_id": file_id, "user_id": user_id})
+        return result.deleted_count > 0
+
+    records = _load_local_records()
+    original_len = len(records)
+    records = [r for r in records if not (r.get("file_id") == file_id and r.get("user_id") == user_id)]
+    if len(records) < original_len:
+        _save_local_records(records)
+        return True
+    return False
+
+
 def storage_status() -> Dict[str, str]:
     if _mongo_available():
         return {"metadata_storage": "mongodb", "mongo": "connected"}
     return {"metadata_storage": "local_json", "mongo": "not connected - using local fallback"}
+
+
+# ── Generic key-value store (local JSON, used by workspace/digest/etc.) ────────
+
+_KV_FILE = os.path.join(UPLOAD_FOLDER, "kv_store.json")
+_kv_collection = _client[MONGO_DB]["kv_store"]
+
+
+def _load_kv() -> Dict:
+    if not os.path.exists(_KV_FILE):
+        return {}
+    try:
+        with open(_KV_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_kv(data: Dict) -> None:
+    with open(_KV_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, default=_json_default)
+
+
+def kv_get(key: str):
+    if _mongo_available():
+        try:
+            doc = _kv_collection.find_one({"key": key}, {"_id": 0})
+            return doc.get("value") if doc else None
+        except Exception:
+            pass
+    return _load_kv().get(key)
+
+
+def kv_set(key: str, value) -> None:
+    if _mongo_available():
+        try:
+            _kv_collection.update_one(
+                {"key": key},
+                {"$set": {"key": key, "value": value}},
+                upsert=True,
+            )
+            return
+        except Exception:
+            pass
+    data = _load_kv()
+    data[key] = value
+    _save_kv(data)
+
+
+def kv_delete(key: str) -> None:
+    if _mongo_available():
+        try:
+            _kv_collection.delete_one({"key": key})
+            return
+        except Exception:
+            pass
+    data = _load_kv()
+    data.pop(key, None)
+    _save_kv(data)
 
 
 # ── User storage (always local JSON; MongoDB optional) ─────────────────────
@@ -434,6 +508,43 @@ def get_automation_rules_for_user(user_id: str) -> List[Dict]:
     return [r for r in rules if r.get("user_id") == user_id]
 
 
+def get_automation_rule(rule_id: str, user_id: str) -> Optional[Dict]:
+    if _mongo_available():
+        try:
+            doc = _automation_rules_collection.find_one(
+                {"rule_id": rule_id, "user_id": user_id}, {"_id": 0}
+            )
+            if doc:
+                return doc
+        except Exception:
+            pass
+    for r in _load_json(_AUTOMATION_RULES_FILE):
+        if r.get("rule_id") == rule_id and r.get("user_id") == user_id:
+            return r
+    return None
+
+
+def update_automation_rule(rule_id: str, user_id: str, data: Dict) -> bool:
+    if _mongo_available():
+        try:
+            result = _automation_rules_collection.update_one(
+                {"rule_id": rule_id, "user_id": user_id}, {"$set": data}
+            )
+            return result.matched_count > 0
+        except Exception:
+            pass
+    rules = _load_json(_AUTOMATION_RULES_FILE)
+    found = False
+    for r in rules:
+        if r.get("rule_id") == rule_id and r.get("user_id") == user_id:
+            r.update({k: _json_default(v) for k, v in data.items()})
+            found = True
+            break
+    if found:
+        _save_json(_AUTOMATION_RULES_FILE, rules)
+    return found
+
+
 def delete_automation_rule(rule_id: str, user_id: str) -> bool:
     if _mongo_available():
         try:
@@ -509,6 +620,80 @@ def get_audit_logs_for_user(user_id: str, limit: int = 100) -> List[Dict]:
     return sorted(user_logs, key=lambda l: l.get("created_at", ""), reverse=True)[:limit]
 
 
+# ── Data Sources storage (Google Sheets / Live Connectors) ───────────────────
+
+_data_sources_collection = _client[MONGO_DB]["data_sources"]
+_DATA_SOURCES_FILE = os.path.join(UPLOAD_FOLDER, "data_sources.json")
+
+
+def insert_data_source(source: Dict) -> None:
+    if _mongo_available():
+        try:
+            _data_sources_collection.insert_one(source.copy())
+            return
+        except Exception:
+            pass
+    sources = _load_json(_DATA_SOURCES_FILE)
+    clean = {k: _json_default(v) for k, v in source.items() if k != "_id"}
+    sources = [s for s in sources if s.get("source_id") != clean.get("source_id")]
+    sources.append(clean)
+    _save_json(_DATA_SOURCES_FILE, sources)
+
+
+def get_data_source(source_id: str, user_id: str) -> Optional[Dict]:
+    if _mongo_available():
+        try:
+            doc = _data_sources_collection.find_one(
+                {"source_id": source_id, "user_id": user_id}, {"_id": 0}
+            )
+            if doc:
+                return doc
+        except Exception:
+            pass
+    for s in _load_json(_DATA_SOURCES_FILE):
+        if s.get("source_id") == source_id and s.get("user_id") == user_id:
+            return s
+    return None
+
+
+def list_data_sources_for_user(user_id: str) -> List[Dict]:
+    if _mongo_available():
+        try:
+            return list(
+                _data_sources_collection.find({"user_id": user_id}, {"_id": 0})
+                .sort("created_at", -1)
+            )
+        except Exception:
+            pass
+    sources = _load_json(_DATA_SOURCES_FILE)
+    return sorted(
+        [s for s in sources if s.get("user_id") == user_id],
+        key=lambda s: s.get("created_at", ""),
+        reverse=True,
+    )
+
+
+def update_data_source(source_id: str, user_id: str, data: Dict) -> bool:
+    if _mongo_available():
+        try:
+            result = _data_sources_collection.update_one(
+                {"source_id": source_id, "user_id": user_id}, {"$set": data}
+            )
+            return result.matched_count > 0
+        except Exception:
+            pass
+    sources = _load_json(_DATA_SOURCES_FILE)
+    found = False
+    for s in sources:
+        if s.get("source_id") == source_id and s.get("user_id") == user_id:
+            s.update({k: _json_default(v) for k, v in data.items()})
+            found = True
+            break
+    if found:
+        _save_json(_DATA_SOURCES_FILE, sources)
+    return found
+
+
 # ── Real-time data storage ────────────────────────────────────────────────────
 
 _realtime_collection = _client[MONGO_DB]["realtime_data"]
@@ -540,3 +725,288 @@ def get_realtime_data(user_id: str, file_id: str, limit: int = 100) -> List[Dict
     data = _load_json(_REALTIME_FILE)
     filtered = [d for d in data if d.get("user_id") == user_id and d.get("file_id") == file_id]
     return sorted(filtered, key=lambda d: d.get("timestamp", ""), reverse=True)[:limit]
+
+
+# ── get_file_record (no user filter — used by share/scheduler) ────────────────
+
+def get_file_record(file_id: str) -> Optional[Dict]:
+    if _mongo_available():
+        doc = _collection.find_one({"file_id": file_id}, {"_id": 0})
+        return doc
+    for item in _load_local_records():
+        if item.get("file_id") == file_id:
+            return item
+    return None
+
+
+# ── Schedules ─────────────────────────────────────────────────────────────────
+
+_schedules_col = _client[MONGO_DB]["schedules"]
+_SCHEDULES_FILE = os.path.join(UPLOAD_FOLDER, "schedules.json")
+
+
+def insert_schedule(s: Dict) -> None:
+    if _mongo_available():
+        try:
+            _schedules_col.insert_one(s.copy()); return
+        except Exception:
+            pass
+    items = _load_json(_SCHEDULES_FILE)
+    clean = {k: _json_default(v) for k, v in s.items() if k != "_id"}
+    items = [i for i in items if i.get("schedule_id") != clean.get("schedule_id")]
+    items.append(clean); _save_json(_SCHEDULES_FILE, items)
+
+
+def get_schedule(schedule_id: str) -> Optional[Dict]:
+    if _mongo_available():
+        try:
+            doc = _schedules_col.find_one({"schedule_id": schedule_id}, {"_id": 0})
+            if doc: return doc
+        except Exception:
+            pass
+    for i in _load_json(_SCHEDULES_FILE):
+        if i.get("schedule_id") == schedule_id:
+            return i
+    return None
+
+
+def get_schedule_for_user(schedule_id: str, user_id: str) -> Optional[Dict]:
+    if _mongo_available():
+        try:
+            doc = _schedules_col.find_one({"schedule_id": schedule_id, "user_id": user_id}, {"_id": 0})
+            if doc: return doc
+        except Exception:
+            pass
+    for i in _load_json(_SCHEDULES_FILE):
+        if i.get("schedule_id") == schedule_id and i.get("user_id") == user_id:
+            return i
+    return None
+
+
+def list_schedules_for_user(user_id: str) -> List[Dict]:
+    if _mongo_available():
+        try:
+            return list(_schedules_col.find({"user_id": user_id}, {"_id": 0}).sort("created_at", -1))
+        except Exception:
+            pass
+    return sorted([i for i in _load_json(_SCHEDULES_FILE) if i.get("user_id") == user_id],
+                  key=lambda x: x.get("created_at", ""), reverse=True)
+
+
+def list_all_schedules() -> List[Dict]:
+    if _mongo_available():
+        try:
+            return list(_schedules_col.find({}, {"_id": 0}))
+        except Exception:
+            pass
+    return _load_json(_SCHEDULES_FILE)
+
+
+def update_schedule(schedule_id: str, data: Dict) -> bool:
+    if _mongo_available():
+        try:
+            r = _schedules_col.update_one({"schedule_id": schedule_id}, {"$set": data})
+            return r.matched_count > 0
+        except Exception:
+            pass
+    items = _load_json(_SCHEDULES_FILE)
+    found = False
+    for i in items:
+        if i.get("schedule_id") == schedule_id:
+            i.update({k: _json_default(v) for k, v in data.items()}); found = True; break
+    if found: _save_json(_SCHEDULES_FILE, items)
+    return found
+
+
+def delete_schedule(schedule_id: str, user_id: str) -> bool:
+    if _mongo_available():
+        try:
+            r = _schedules_col.delete_one({"schedule_id": schedule_id, "user_id": user_id})
+            return r.deleted_count > 0
+        except Exception:
+            pass
+    items = _load_json(_SCHEDULES_FILE)
+    new = [i for i in items if not (i.get("schedule_id") == schedule_id and i.get("user_id") == user_id)]
+    deleted = len(items) != len(new)
+    if deleted: _save_json(_SCHEDULES_FILE, new)
+    return deleted
+
+
+# ── Share tokens ──────────────────────────────────────────────────────────────
+
+_share_col = _client[MONGO_DB]["share_tokens"]
+_SHARE_FILE = os.path.join(UPLOAD_FOLDER, "share_tokens.json")
+
+
+def insert_share_token(r: Dict) -> None:
+    if _mongo_available():
+        try:
+            _share_col.insert_one(r.copy()); return
+        except Exception:
+            pass
+    items = _load_json(_SHARE_FILE)
+    clean = {k: _json_default(v) for k, v in r.items() if k != "_id"}
+    items = [i for i in items if i.get("token") != clean.get("token")]
+    items.append(clean); _save_json(_SHARE_FILE, items)
+
+
+def get_share_token(token: str) -> Optional[Dict]:
+    if _mongo_available():
+        try:
+            doc = _share_col.find_one({"token": token}, {"_id": 0})
+            if doc: return doc
+        except Exception:
+            pass
+    for i in _load_json(_SHARE_FILE):
+        if i.get("token") == token:
+            return i
+    return None
+
+
+def list_share_tokens_for_user(user_id: str) -> List[Dict]:
+    if _mongo_available():
+        try:
+            return list(_share_col.find({"user_id": user_id}, {"_id": 0}).sort("created_at", -1))
+        except Exception:
+            pass
+    return [i for i in _load_json(_SHARE_FILE) if i.get("user_id") == user_id]
+
+
+def delete_share_token(token: str, user_id: str) -> bool:
+    if _mongo_available():
+        try:
+            r = _share_col.delete_one({"token": token, "user_id": user_id})
+            return r.deleted_count > 0
+        except Exception:
+            pass
+    items = _load_json(_SHARE_FILE)
+    new = [i for i in items if not (i.get("token") == token and i.get("user_id") == user_id)]
+    deleted = len(items) != len(new)
+    if deleted: _save_json(_SHARE_FILE, new)
+    return deleted
+
+
+def increment_share_views(token: str) -> None:
+    if _mongo_available():
+        try:
+            _share_col.update_one({"token": token}, {"$inc": {"views": 1}}); return
+        except Exception:
+            pass
+    items = _load_json(_SHARE_FILE)
+    for i in items:
+        if i.get("token") == token:
+            i["views"] = i.get("views", 0) + 1; break
+    _save_json(_SHARE_FILE, items)
+
+
+# ── Chat history ──────────────────────────────────────────────────────────────
+
+_chat_col = _client[MONGO_DB]["chat_history"]
+_CHAT_FILE = os.path.join(UPLOAD_FOLDER, "chat_history.json")
+
+
+def insert_chat_message(msg: Dict) -> None:
+    if _mongo_available():
+        try:
+            _chat_col.insert_one(msg.copy()); return
+        except Exception:
+            pass
+    items = _load_json(_CHAT_FILE)
+    clean = {k: _json_default(v) for k, v in msg.items() if k != "_id"}
+    items.append(clean)
+    _save_json(_CHAT_FILE, items[-5000:])
+
+
+def list_chat_history(user_id: str, file_id: str, limit: int = 50) -> List[Dict]:
+    if _mongo_available():
+        try:
+            return list(
+                _chat_col.find({"user_id": user_id, "file_id": file_id}, {"_id": 0})
+                .sort("timestamp", 1).limit(limit)
+            )
+        except Exception:
+            pass
+    items = _load_json(_CHAT_FILE)
+    filtered = [i for i in items if i.get("user_id") == user_id and i.get("file_id") == file_id]
+    return sorted(filtered, key=lambda x: x.get("timestamp", ""))[-limit:]
+
+
+def clear_chat_history(user_id: str, file_id: str) -> None:
+    if _mongo_available():
+        try:
+            _chat_col.delete_many({"user_id": user_id, "file_id": file_id}); return
+        except Exception:
+            pass
+    items = _load_json(_CHAT_FILE)
+    new = [i for i in items if not (i.get("user_id") == user_id and i.get("file_id") == file_id)]
+    _save_json(_CHAT_FILE, new)
+
+
+# ── Alert channels ────────────────────────────────────────────────────────────
+
+_alert_ch_col = _client[MONGO_DB]["alert_channels"]
+_ALERT_CH_FILE = os.path.join(UPLOAD_FOLDER, "alert_channels.json")
+
+
+def insert_alert_channel(ch: Dict) -> None:
+    if _mongo_available():
+        try:
+            _alert_ch_col.insert_one(ch.copy()); return
+        except Exception:
+            pass
+    items = _load_json(_ALERT_CH_FILE)
+    clean = {k: _json_default(v) for k, v in ch.items() if k != "_id"}
+    items = [i for i in items if i.get("channel_id") != clean.get("channel_id")]
+    items.append(clean); _save_json(_ALERT_CH_FILE, items)
+
+
+def get_alert_channel(channel_id: str, user_id: str) -> Optional[Dict]:
+    if _mongo_available():
+        try:
+            doc = _alert_ch_col.find_one({"channel_id": channel_id, "user_id": user_id}, {"_id": 0})
+            if doc: return doc
+        except Exception:
+            pass
+    for i in _load_json(_ALERT_CH_FILE):
+        if i.get("channel_id") == channel_id and i.get("user_id") == user_id:
+            return i
+    return None
+
+
+def list_alert_channels_for_user(user_id: str) -> List[Dict]:
+    if _mongo_available():
+        try:
+            return list(_alert_ch_col.find({"user_id": user_id}, {"_id": 0}))
+        except Exception:
+            pass
+    return [i for i in _load_json(_ALERT_CH_FILE) if i.get("user_id") == user_id]
+
+
+def update_alert_channel(channel_id: str, user_id: str, data: Dict) -> bool:
+    if _mongo_available():
+        try:
+            r = _alert_ch_col.update_one({"channel_id": channel_id, "user_id": user_id}, {"$set": data})
+            return r.matched_count > 0
+        except Exception:
+            pass
+    items = _load_json(_ALERT_CH_FILE)
+    found = False
+    for i in items:
+        if i.get("channel_id") == channel_id and i.get("user_id") == user_id:
+            i.update({k: _json_default(v) for k, v in data.items()}); found = True; break
+    if found: _save_json(_ALERT_CH_FILE, items)
+    return found
+
+
+def delete_alert_channel(channel_id: str, user_id: str) -> bool:
+    if _mongo_available():
+        try:
+            r = _alert_ch_col.delete_one({"channel_id": channel_id, "user_id": user_id})
+            return r.deleted_count > 0
+        except Exception:
+            pass
+    items = _load_json(_ALERT_CH_FILE)
+    new = [i for i in items if not (i.get("channel_id") == channel_id and i.get("user_id") == user_id)]
+    deleted = len(items) != len(new)
+    if deleted: _save_json(_ALERT_CH_FILE, new)
+    return deleted

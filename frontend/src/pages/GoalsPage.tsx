@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Target, Plus, Trash2, TrendingUp, Database, Calendar, CheckCircle2 } from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
+import PageHeader from "../components/ui/PageHeader";
+import EmptyState from "../components/ui/EmptyState";
+import LoadingSkeleton from "../components/ui/LoadingSkeleton";
 import {
-  createGoal,
-  deleteGoal,
-  fetchAllGoalsProgress,
-  fetchGoalTypes,
-  fetchGoals,
+  createGoal, deleteGoal, fetchAllGoalsProgress, fetchGoalTypes, fetchGoals,
 } from "../services/api";
 import type { GoalProgress, GoalType, GoalWithProgress } from "../types";
 
-const STATUS_STYLES: Record<string, { color: string; label: string; bg: string }> = {
-  achieved:  { color: "#22c55e", label: "Achieved", bg: "#dcfce7" },
-  on_track:  { color: "#3b82f6", label: "On Track", bg: "#dbeafe" },
-  at_risk:   { color: "#f59e0b", label: "At Risk",  bg: "#fef3c7" },
-  behind:    { color: "#ef4444", label: "Behind",   bg: "#fee2e2" },
-  no_target: { color: "#6b7280", label: "No Target", bg: "#f3f4f6" },
+const STATUS_META: Record<string, { color: string; label: string; badgeClass: string }> = {
+  achieved:  { color: "#4ade80", label: "Achieved",  badgeClass: "badge badge-success" },
+  on_track:  { color: "#60a5fa", label: "On Track",  badgeClass: "badge badge-info" },
+  at_risk:   { color: "#fbbf24", label: "At Risk",   badgeClass: "badge badge-warning" },
+  behind:    { color: "#f87171", label: "Behind",    badgeClass: "badge badge-danger" },
+  no_target: { color: "var(--muted)", label: "No Target", badgeClass: "badge badge-neutral" },
 };
 
 export default function GoalsPage() {
@@ -23,229 +24,281 @@ export default function GoalsPage() {
   const navigate = useNavigate();
   const fileId = paramFileId || localStorage.getItem("lastDatasetId") || "";
 
-  const [goals, setGoals] = useState<GoalWithProgress[]>([]);
+  const [goals, setGoals]         = useState<GoalWithProgress[]>([]);
   const [goalTypes, setGoalTypes] = useState<GoalType[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: "", goal_type: "revenue", target_value: "", description: "", deadline: "" });
+  const [loading, setLoading]     = useState(false);
+  const [error, setError]         = useState("");
+  const [showForm, setShowForm]   = useState(false);
+  const [form, setForm]           = useState({
+    name: "", goal_type: "revenue", target_value: "", description: "", deadline: "",
+  });
 
   useEffect(() => {
-    fetchGoalTypes().then((res) => setGoalTypes(res.data.goal_types || [])).catch(() => {});
+    fetchGoalTypes().then(r => setGoalTypes(r.data.goal_types || [])).catch(() => {});
     loadGoals();
   }, [fileId]);
 
   const loadGoals = async () => {
     setLoading(true);
     try {
-      if (fileId) {
-        const res = await fetchAllGoalsProgress(fileId);
-        setGoals(res.data.goals || []);
-      } else {
-        const res = await fetchGoals();
-        setGoals(res.data.goals || []);
-      }
+      const res = fileId ? await fetchAllGoalsProgress(fileId) : await fetchGoals();
+      setGoals(res.data.goals || []);
     } catch {
-      setError("Failed to load goals");
+      setError("Failed to load goals.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleCreate = async () => {
-    if (!form.name || !form.target_value) {
-      setError("Name and target value are required");
-      return;
-    }
+    if (!form.name || !form.target_value) { setError("Name and target value are required."); return; }
+    setError("");
     try {
       await createGoal({
-        name: form.name,
-        goal_type: form.goal_type,
+        name: form.name, goal_type: form.goal_type,
         target_value: parseFloat(form.target_value),
-        description: form.description,
-        deadline: form.deadline,
+        description: form.description, deadline: form.deadline,
       });
       setForm({ name: "", goal_type: "revenue", target_value: "", description: "", deadline: "" });
       setShowForm(false);
       loadGoals();
     } catch {
-      setError("Failed to create goal");
+      setError("Failed to create goal.");
     }
   };
 
   const handleDelete = async (goalId: string) => {
     try {
       await deleteGoal(goalId);
-      setGoals((prev) => prev.filter((g) => g.goal_id !== goalId));
+      setGoals(prev => prev.filter(g => g.goal_id !== goalId));
     } catch {
-      setError("Failed to delete goal");
+      setError("Failed to delete goal.");
     }
   };
 
-  const selectedType = goalTypes.find((t) => t.id === form.goal_type);
+  const selectedType = goalTypes.find(t => t.id === form.goal_type);
 
   return (
     <MainLayout>
-      <div className="page-hero">
-        <div>
-          <p className="eyebrow">AI Goal Tracking</p>
-          <h1>Business Goals</h1>
-          <p className="section-description">
-            Set revenue, sales, and performance targets. AI tracks real progress from your data.
-          </p>
-        </div>
-        <div className="hero-actions">
-          <button className="button button-secondary" onClick={() => setShowForm(!showForm)}>
-            {showForm ? "Cancel" : "+ New Goal"}
-          </button>
-          {!fileId && (
-            <button className="button button-primary" onClick={() => navigate("/datasets")}>Select Dataset</button>
-          )}
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="AI Goal Tracking"
+        title="Business Goals"
+        description="Set revenue, sales, and performance targets. AI tracks real progress from your data."
+        actions={
+          <>
+            <button type="button" className="button button-secondary" onClick={() => setShowForm(s => !s)}>
+              {showForm ? "Cancel" : <><Plus size={15} /> New Goal</>}
+            </button>
+            {!fileId && (
+              <button type="button" className="button button-primary" onClick={() => navigate("/datasets")}>
+                <Database size={15} /> Select Dataset
+              </button>
+            )}
+          </>
+        }
+      />
 
-      {error && <div className="alert alert-error">{error}</div>}
+      {error && <div className="alert alert-error" style={{ marginBottom: 20 }}>{error}</div>}
 
       {!fileId && (
-        <div className="alert" style={{ marginBottom: 16, background: "#fef3c7", borderColor: "#f59e0b", color: "#92400e" }}>
-          Select a dataset to see real progress tracking against your goals.
+        <div className="alert alert-warning" style={{ marginBottom: 20 }}>
+          Select a dataset to see real AI-tracked progress against your goals.
         </div>
       )}
 
+      {/* Create goal form */}
       {showForm && (
-        <div className="section-card" style={{ marginBottom: 24 }}>
-          <h3 className="section-title">Create New Goal</h3>
+        <motion.div
+          className="section-card"
+          style={{ marginBottom: 24 }}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className="section-card-header">
+            <h2>Create New Goal</h2>
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div>
               <label className="form-label">Goal Name</label>
-              <input className="form-input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. Q1 Revenue Target" />
+              <input className="form-input" value={form.name}
+                onChange={e => setForm({ ...form, name: e.target.value })}
+                placeholder="e.g. Q1 Revenue Target" />
             </div>
             <div>
               <label className="form-label">Goal Type</label>
-              <select className="form-input" value={form.goal_type} onChange={(e) => setForm({ ...form, goal_type: e.target.value })}>
-                {goalTypes.map((t) => <option key={t.id} value={t.id}>{t.icon} {t.label}</option>)}
+              <select title="Goal type" aria-label="Goal type" className="form-input" value={form.goal_type}
+                onChange={e => setForm({ ...form, goal_type: e.target.value })}>
+                {goalTypes.map(t => <option key={t.id} value={t.id}>{t.icon} {t.label}</option>)}
               </select>
             </div>
             <div>
               <label className="form-label">
                 Target Value {selectedType?.unit ? `(${selectedType.unit})` : ""}
               </label>
-              <input type="number" className="form-input" value={form.target_value} onChange={(e) => setForm({ ...form, target_value: e.target.value })} placeholder="e.g. 100000" />
+              <input type="number" className="form-input" value={form.target_value}
+                onChange={e => setForm({ ...form, target_value: e.target.value })}
+                placeholder="e.g. 100000" />
             </div>
             <div>
               <label className="form-label">Deadline (optional)</label>
-              <input type="date" className="form-input" value={form.deadline} onChange={(e) => setForm({ ...form, deadline: e.target.value })} />
+              <input type="date" className="form-input" value={form.deadline}
+                onChange={e => setForm({ ...form, deadline: e.target.value })} />
             </div>
             <div style={{ gridColumn: "1 / -1" }}>
               <label className="form-label">Description (optional)</label>
-              <input className="form-input" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Describe this goal…" />
+              <input className="form-input" value={form.description}
+                onChange={e => setForm({ ...form, description: e.target.value })}
+                placeholder="Describe this goal…" />
             </div>
           </div>
-          <div style={{ marginTop: 16 }}>
-            <button className="button button-primary" onClick={handleCreate}>Create Goal</button>
+          <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
+            <button type="button" className="button button-primary" onClick={handleCreate}>
+              <CheckCircle2 size={15} /> Create Goal
+            </button>
+            <button type="button" className="button button-secondary" onClick={() => setShowForm(false)}>
+              Cancel
+            </button>
           </div>
-        </div>
+        </motion.div>
       )}
 
+      {/* Goals list */}
       {loading ? (
-        <div className="section-card"><div className="loading-pulse" style={{ height: 150 }} /></div>
+        <LoadingSkeleton variant="cards" rows={3} cols={2} />
       ) : goals.length === 0 ? (
-        <div className="section-card">
-          <div className="empty-state-card">
-            <p style={{ fontSize: 32, marginBottom: 8 }}>🎯</p>
-            <p><strong>No goals set yet.</strong> Create your first business goal above.</p>
-          </div>
-        </div>
+        <EmptyState
+          icon={<Target size={24} />}
+          title="No goals set yet"
+          description="Create your first business goal to track AI-powered progress against your targets."
+          action={
+            <button type="button" className="button button-primary" onClick={() => setShowForm(true)}>
+              <Plus size={15} /> Create First Goal
+            </button>
+          }
+        />
       ) : (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 16 }}>
-          {goals.map((goal) => {
+          {goals.map((goal, i) => {
             const progress: GoalProgress | null | undefined = goal.progress;
             const status = progress?.status || "no_target";
-            const style = STATUS_STYLES[status] || STATUS_STYLES.no_target;
-            const pct = progress?.progress_pct || 0;
-            const type = goalTypes.find((t) => t.id === goal.goal_type);
+            const meta   = STATUS_META[status] || STATUS_META.no_target;
+            const pct    = Math.min(progress?.progress_pct || 0, 100);
+            const type   = goalTypes.find(t => t.id === goal.goal_type);
 
             return (
-              <div key={goal.goal_id} className="section-card" style={{ position: "relative" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 20 }}>{type?.icon || "🎯"}</span>
-                      <strong style={{ fontSize: 16 }}>{goal.name}</strong>
-                    </div>
-                    <p style={{ color: "var(--text-secondary)", fontSize: 13, marginTop: 4 }}>{type?.label}</p>
+              <motion.div
+                key={goal.goal_id}
+                className="section-card"
+                style={{ position: "relative" }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07 }}
+              >
+                {/* Delete button */}
+                <button
+                  type="button"
+                  className="button button-ghost button-sm"
+                  onClick={() => handleDelete(goal.goal_id)}
+                  style={{ position: "absolute", top: 14, right: 14, padding: "5px 7px", color: "var(--muted)" }}
+                  title="Delete goal"
+                >
+                  <Trash2 size={13} />
+                </button>
+
+                {/* Header */}
+                <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 14, paddingRight: 36 }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 12,
+                    background: "var(--primary-dim)", border: "1px solid rgba(99,102,241,0.2)",
+                    display: "grid", placeItems: "center", fontSize: "1.3rem", flexShrink: 0,
+                  }}>
+                    {type?.icon || "🎯"}
                   </div>
-                  <span
-                    className="tag"
-                    style={{ background: style.bg, color: style.color, border: `1px solid ${style.color}`, flexShrink: 0 }}
-                  >
-                    {style.label}
-                  </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                      <strong style={{ fontSize: "0.95rem", color: "var(--text)" }}>{goal.name}</strong>
+                      <span className={meta.badgeClass}>{meta.label}</span>
+                    </div>
+                    {type?.label && (
+                      <p style={{ margin: "3px 0 0", fontSize: "0.78rem", color: "var(--text-secondary)" }}>{type.label}</p>
+                    )}
+                  </div>
                 </div>
 
                 {progress ? (
                   <>
                     {/* Progress bar */}
-                    <div style={{ marginBottom: 12 }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 4 }}>
+                    <div style={{ marginBottom: 14 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", marginBottom: 6 }}>
                         <span style={{ color: "var(--text-secondary)" }}>Progress</span>
-                        <strong style={{ color: style.color }}>{pct.toFixed(1)}%</strong>
+                        <strong style={{ color: meta.color }}>{progress.progress_pct?.toFixed(1)}%</strong>
                       </div>
-                      <div style={{ background: "#e5e7eb", borderRadius: 8, height: 10, overflow: "hidden" }}>
-                        <div
-                          style={{
-                            background: style.color,
-                            height: "100%",
-                            width: `${Math.min(pct, 100)}%`,
-                            borderRadius: 8,
-                            transition: "width 0.5s ease",
-                          }}
+                      <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: 999, height: 8, overflow: "hidden" }}>
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${pct}%` }}
+                          transition={{ duration: 0.8, ease: "easeOut" }}
+                          style={{ background: meta.color, height: "100%", borderRadius: 999 }}
                         />
                       </div>
                     </div>
 
+                    {/* Current vs Target */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
-                      <div style={{ background: "#f9fafb", borderRadius: 8, padding: "8px 12px" }}>
-                        <p style={{ fontSize: 12, color: "var(--text-secondary)" }}>Current</p>
-                        <p style={{ fontWeight: 700, color: style.color }}>
-                          {type?.unit === "$" ? `$${progress.current_value.toLocaleString()}` : progress.current_value.toLocaleString()}
-                        </p>
-                      </div>
-                      <div style={{ background: "#f9fafb", borderRadius: 8, padding: "8px 12px" }}>
-                        <p style={{ fontSize: 12, color: "var(--text-secondary)" }}>Target</p>
-                        <p style={{ fontWeight: 700 }}>
-                          {type?.unit === "$" ? `$${progress.target_value.toLocaleString()}` : progress.target_value.toLocaleString()}
-                        </p>
-                      </div>
+                      {[
+                        { label: "Current", value: progress.current_value, colored: true },
+                        { label: "Target",  value: progress.target_value,  colored: false },
+                      ].map(item => (
+                        <div key={item.label} style={{
+                          padding: "10px 14px", borderRadius: 10,
+                          background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
+                        }}>
+                          <p style={{ margin: "0 0 4px", fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                            {item.label}
+                          </p>
+                          <p style={{ margin: 0, fontWeight: 700, fontSize: "1rem", color: item.colored ? meta.color : "var(--text)" }}>
+                            {type?.unit === "$"
+                              ? `$${item.value.toLocaleString()}`
+                              : item.value.toLocaleString()}
+                          </p>
+                        </div>
+                      ))}
                     </div>
 
-                    <p style={{ fontSize: 13, color: "var(--text-secondary)", marginBottom: 8 }}>
-                      {progress.ai_recommendation}
-                    </p>
+                    {progress.ai_recommendation && (
+                      <p style={{ margin: 0, fontSize: "0.8rem", color: "var(--text-secondary)", lineHeight: 1.5, padding: "10px 12px", borderRadius: 8, background: "rgba(99,102,241,0.05)", border: "1px solid rgba(99,102,241,0.12)" }}>
+                        💡 {progress.ai_recommendation}
+                      </p>
+                    )}
                   </>
                 ) : (
                   <div style={{ marginBottom: 12 }}>
-                    <p style={{ color: "var(--text-secondary)", fontSize: 13 }}>
-                      Target: {type?.unit === "$" ? `$${goal.target_value.toLocaleString()}` : `${goal.target_value.toLocaleString()} ${type?.unit || ""}`}
+                    <p style={{ color: "var(--text-secondary)", fontSize: "0.84rem", margin: "0 0 4px" }}>
+                      Target:{" "}
+                      <strong>
+                        {type?.unit === "$"
+                          ? `$${goal.target_value.toLocaleString()}`
+                          : `${goal.target_value.toLocaleString()} ${type?.unit || ""}`}
+                      </strong>
                     </p>
-                    {goal.description && <p style={{ fontSize: 13, color: "var(--text-secondary)" }}>{goal.description}</p>}
+                    {goal.description && (
+                      <p style={{ fontSize: "0.8rem", color: "var(--text-secondary)", margin: "4px 0 0" }}>{goal.description}</p>
+                    )}
+                    {!fileId && (
+                      <p style={{ fontSize: "0.78rem", color: "var(--muted)", marginTop: 8, display: "flex", alignItems: "center", gap: 4 }}>
+                        <Database size={11} /> Connect a dataset to track real progress
+                      </p>
+                    )}
                   </div>
                 )}
 
                 {goal.deadline && (
-                  <p style={{ fontSize: 12, color: "var(--text-tertiary, #9ca3af)" }}>
-                    Deadline: {new Date(goal.deadline).toLocaleDateString()}
-                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, fontSize: "0.75rem", color: "var(--muted)" }}>
+                    <Calendar size={11} />
+                    Deadline: {new Date(goal.deadline).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  </div>
                 )}
-
-                <button
-                  className="button button-danger-ghost"
-                  onClick={() => handleDelete(goal.goal_id)}
-                  style={{ position: "absolute", top: 12, right: 12, padding: "2px 10px", fontSize: 12 }}
-                >
-                  Delete
-                </button>
-              </div>
+              </motion.div>
             );
           })}
         </div>

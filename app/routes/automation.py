@@ -11,10 +11,12 @@ from app.dependencies import get_current_user
 from app.storage import (
     delete_automation_rule,
     get_automation_history_for_user,
+    get_automation_rule,
     get_automation_rules_for_user,
     get_file_record_for_user,
     insert_automation_history,
     insert_automation_rule,
+    update_automation_rule,
 )
 from app.services.audit_service import log_action
 
@@ -29,6 +31,15 @@ class CreateRuleRequest(BaseModel):
     action_id: str
     action_message: str = ""
     active: bool = True
+
+
+class UpdateRuleRequest(BaseModel):
+    name: str | None = None
+    condition_id: str | None = None
+    params: dict | None = None
+    action_id: str | None = None
+    action_message: str | None = None
+    active: bool | None = None
 
 
 @router.get("/conditions")
@@ -71,6 +82,22 @@ def create_rule(
     insert_automation_rule(rule)
     log_action(current_user["user_id"], "rule_created", "rule", rule["rule_id"], {"name": body.name})
     return {"rule": rule, "message": "Automation rule created successfully"}
+
+
+@router.put("/rules/{rule_id}")
+def update_rule(
+    rule_id: str,
+    body: UpdateRuleRequest,
+    current_user: dict = Depends(get_current_user),
+):
+    existing = get_automation_rule(rule_id, current_user["user_id"])
+    if not existing:
+        raise HTTPException(status_code=404, detail="Rule not found")
+    patch = {k: v for k, v in body.model_dump().items() if v is not None}
+    update_automation_rule(rule_id, current_user["user_id"], patch)
+    updated = {**existing, **patch}
+    log_action(current_user["user_id"], "rule_updated", "rule", rule_id, patch)
+    return {"rule": updated, "message": "Rule updated successfully"}
 
 
 @router.delete("/rules/{rule_id}")

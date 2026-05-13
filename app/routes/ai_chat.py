@@ -1,3 +1,6 @@
+import uuid
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 import pandas as pd
@@ -5,7 +8,7 @@ import pandas as pd
 from app.ai.insight_generator import generate_insights
 from app.dataframe_utils import load_dataframe, safe_number
 from app.dependencies import get_current_user
-from app.storage import get_file_record_for_user
+from app.storage import get_file_record_for_user, insert_chat_message
 
 router = APIRouter()
 
@@ -374,6 +377,13 @@ def answer_business_question(df: pd.DataFrame, question: str) -> dict | None:
 
 # ── Route ─────────────────────────────────────────────────────────────────────
 
+def _save_messages(user_id: str, file_id: str, question: str, answer: str, intent: str = "", source: str = "") -> None:
+    now = datetime.now(timezone.utc).isoformat()
+    base = {"user_id": user_id, "file_id": file_id, "timestamp": now}
+    insert_chat_message({**base, "message_id": str(uuid.uuid4()), "role": "user", "content": question})
+    insert_chat_message({**base, "message_id": str(uuid.uuid4()), "role": "assistant", "content": answer, "intent": intent, "source": source})
+
+
 @router.post("/ai-chat/{file_id}")
 def ai_chat(
     file_id: str,
@@ -388,13 +398,12 @@ def ai_chat(
     result = answer_business_question(df, q.question)
 
     if result is None:
-        # Escalate to RAG AI Copilot for complex / open-ended questions
         try:
             from app.services.rag_service import answer_with_rag
             from app.analysis.analyzer import analyze_dataframe
             analysis = analyze_dataframe(df)
             rag_result = answer_with_rag(df, q.question, analysis)
-            return {
+            response = {
                 "question": q.question,
                 "supported": True,
                 "answer": rag_result["answer"],
@@ -403,18 +412,23 @@ def ai_chat(
                 "grounded": rag_result.get("grounded", True),
                 "model": rag_result.get("model"),
             }
+            _save_messages(current_user["user_id"], file_id, q.question, rag_result["answer"], "rag_ai", rag_result.get("source", "rag"))
+            return response
         except Exception:
+            fallback_answer = (
+                "I could not confidently identify the metric. "
+                "Try asking: top salesman, lowest region, total revenue, "
+                "best product, average quantity, how many rows."
+            )
+            _save_messages(current_user["user_id"], file_id, q.question, fallback_answer, "fallback", "error")
             return {
                 "question": q.question,
                 "supported": False,
-                "answer": (
-                    "I could not confidently identify the metric. "
-                    "Try asking: top salesman, lowest region, total revenue, "
-                    "best product, average quantity, how many rows."
-                ),
+                "answer": fallback_answer,
                 "insights": generate_insights(df),
             }
 
+    _save_messages(current_user["user_id"], file_id, q.question, result["answer"], result.get("intent", ""), "structured_query")
     return {
         "question": q.question,
         "supported": True,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import { fetchContextualMarketInsights } from "../services/api";
@@ -34,17 +34,17 @@ export default function MarketIntelPage() {
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}
-      {loading && <div className="section-card"><div className="loading-pulse" style={{ height: 200 }} /></div>}
+      {loading && <div className="section-card"><div className="loading-row" style={{ height: 200 }} /></div>}
 
       {data && (
         <>
           <div className="section-card" style={{ marginBottom: 20 }}>
             <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-              <span style={{ fontSize: 20 }}>🌐</span>
+              <span style={{ fontSize: 20 }}>ðŸŒ</span>
               <div>
                 <strong>{data.industry} Market Intelligence</strong>
                 <p style={{ fontSize: 13, color: "var(--text-secondary)", margin: "2px 0 0" }}>
-                  As of {data.as_of_date} · {data.integration_note}
+                  As of {data.as_of_date} Â· {data.integration_note}
                 </p>
               </div>
             </div>
@@ -53,7 +53,7 @@ export default function MarketIntelPage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             {/* Trends */}
             <div className="section-card">
-              <h3 className="section-title" style={{ marginBottom: 12 }}>Market Trends</h3>
+              <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>Market Trends</h3>
               {data.market_trends.map((t, i) => (
                 <div
                   key={i}
@@ -65,17 +65,10 @@ export default function MarketIntelPage() {
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
                     <span style={{ fontSize: 16 }}>
-                      {t.direction === "positive" ? "📈" : t.direction === "negative" ? "📉" : "➡️"}
+                      {t.direction === "positive" ? "ðŸ“ˆ" : t.direction === "negative" ? "ðŸ“‰" : "âž¡ï¸"}
                     </span>
                     <strong>{t.title}</strong>
-                    <span
-                      className="tag"
-                      style={{
-                        background: t.impact === "high" ? "rgba(239,68,68,0.12)" : t.impact === "medium" ? "rgba(245,158,11,0.12)" : "rgba(34,197,94,0.12)",
-                        color: t.impact === "high" ? "#ef4444" : t.impact === "medium" ? "#f59e0b" : "#22c55e",
-                        fontSize: 11,
-                      }}
-                    >
+                    <span className={t.impact === "high" ? "badge badge-danger" : t.impact === "medium" ? "badge badge-warning" : "badge badge-success"}>
                       {t.impact} impact
                     </span>
                   </div>
@@ -90,7 +83,7 @@ export default function MarketIntelPage() {
             <div>
               {/* Benchmarks */}
               <div className="section-card" style={{ marginBottom: 16 }}>
-                <h3 className="section-title" style={{ marginBottom: 12 }}>Industry Benchmarks</h3>
+                <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>Industry Benchmarks</h3>
                 {Object.keys(data.industry_benchmarks).length === 0 ? (
                   <p style={{ color: "var(--text-secondary)", fontSize: 13 }}>No benchmarks available.</p>
                 ) : (
@@ -123,7 +116,7 @@ export default function MarketIntelPage() {
 
               {/* Currency Rates */}
               <div className="section-card">
-                <h3 className="section-title" style={{ marginBottom: 12 }}>Currency Rates</h3>
+                <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>Currency Rates</h3>
                 {Object.entries(data.currency_rates)
                   .filter(([k]) => k !== "note")
                   .map(([k, v]) => (
@@ -151,7 +144,7 @@ export default function MarketIntelPage() {
           {/* Contextual recommendations */}
           {data.contextual_recommendations && data.contextual_recommendations.length > 0 && (
             <div className="section-card" style={{ marginTop: 16 }}>
-              <h3 className="section-title" style={{ marginBottom: 12 }}>AI Recommendations Based on Market Conditions</h3>
+              <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>AI Recommendations Based on Market Conditions</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {data.contextual_recommendations.map((rec, i) => (
                   <div
@@ -163,7 +156,7 @@ export default function MarketIntelPage() {
                   >
                     <strong>{rec.title}</strong>
                     <p style={{ color: "var(--text-secondary)", fontSize: 13, marginTop: 4 }}>{rec.insight}</p>
-                    <p style={{ color: "#6366f1", fontSize: 13, marginTop: 6 }}>💡 {rec.action}</p>
+                    <p style={{ color: "#6366f1", fontSize: 13, marginTop: 6 }}>ðŸ’¡ {rec.action}</p>
                     <p style={{ fontSize: 11, color: "var(--text-tertiary, #9ca3af)", marginTop: 4 }}>
                       Source: {rec.source_label}
                     </p>
@@ -177,3 +170,4 @@ export default function MarketIntelPage() {
     </MainLayout>
   );
 }
+

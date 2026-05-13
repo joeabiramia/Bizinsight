@@ -47,13 +47,12 @@ export default function AuditPage() {
       </div>
 
       {loading ? (
-        <div className="section-card"><div className="loading-pulse" style={{ height: 200 }} /></div>
+        <div className="section-card"><div className="loading-skeleton"><div className="loading-row" style={{ height: 200 }} /></div></div>
       ) : (
         <div className="section-card">
           {filtered.length === 0 ? (
-            <div className="empty-state-card">
-              <p style={{ fontSize: 28, marginBottom: 8 }}>📋</p>
-              <p>
+            <div className="empty-state">
+              <p style={{ margin: 0, color: "var(--text-secondary)", fontSize: "0.875rem" }}>
                 {filter
                   ? "No audit logs match your filter."
                   : "No audit logs yet. Actions will appear here as you use the platform."}

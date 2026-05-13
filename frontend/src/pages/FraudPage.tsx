@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import { detectFraud } from "../services/api";
@@ -18,11 +18,11 @@ const SEVERITY_COLORS: Record<string, string> = {
 };
 
 const TYPE_ICONS: Record<string, string> = {
-  high_discount: "💸",
-  abnormal_amount: "💰",
-  high_frequency_customer: "👤",
-  performance_spike: "📈",
-  off_hours_activity: "🕐",
+  high_discount: "ðŸ’¸",
+  abnormal_amount: "ðŸ’°",
+  high_frequency_customer: "ðŸ‘¤",
+  performance_spike: "ðŸ“ˆ",
+  off_hours_activity: "ðŸ•",
 };
 
 export default function FraudPage() {
@@ -85,7 +85,7 @@ export default function FraudPage() {
         </div>
         <div className="hero-actions">
           <button className="button button-secondary" onClick={runScan} disabled={loading}>
-            {loading ? "Scanning…" : "Re-scan"}
+            {loading ? "Scanningâ€¦" : "Re-scan"}
           </button>
         </div>
       </div>
@@ -95,7 +95,7 @@ export default function FraudPage() {
       {loading && (
         <div className="section-card" style={{ textAlign: "center", padding: "48px 0" }}>
           <div className="loading-spinner" style={{ margin: "0 auto 16px" }} />
-          <p style={{ color: "var(--text-secondary)" }}>Scanning for suspicious patterns…</p>
+          <p style={{ color: "var(--text-secondary)" }}>Scanning for suspicious patternsâ€¦</p>
         </div>
       )}
 
@@ -149,7 +149,7 @@ export default function FraudPage() {
           {/* Filter + Alerts */}
           <div className="section-card">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-              <h2 className="section-title">{report.total_alerts} Suspicious Patterns</h2>
+              <h2 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>{report.total_alerts} Suspicious Patterns</h2>
               <div style={{ display: "flex", gap: 8 }}>
                 {(["all", "high", "medium", "low"] as const).map((f) => (
                   <button
@@ -165,8 +165,8 @@ export default function FraudPage() {
             </div>
 
             {filteredAlerts.length === 0 ? (
-              <div className="empty-state-card">
-                <p style={{ fontSize: 32, marginBottom: 8 }}>✅</p>
+              <div className="empty-state">
+                <p style={{ fontSize: 32, marginBottom: 8 }}>âœ…</p>
                 <p>
                   <strong>No suspicious patterns detected</strong> at the selected severity level.{" "}
                   {filter !== "all" && "Try showing 'All' alerts."}
@@ -183,26 +183,23 @@ export default function FraudPage() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                          <span style={{ fontSize: 20 }}>{TYPE_ICONS[alert.type] || "⚠️"}</span>
+                          <span style={{ fontSize: 20 }}>{TYPE_ICONS[alert.type] || "âš ï¸"}</span>
                           <strong>{alert.title}</strong>
-                          <span
-                            className="tag"
-                            style={{ background: SEVERITY_COLORS[alert.severity], color: "#fff", fontSize: 11 }}
-                          >
-                            {alert.severity.toUpperCase()}
+                          <span className={`severity-badge severity-badge--${alert.severity === "high" ? "critical" : alert.severity === "medium" ? "high" : "low"}`}>
+                            {alert.severity}
                           </span>
                         </div>
                         <p style={{ color: "var(--text-secondary)", fontSize: 14, marginBottom: 6 }}>{alert.description}</p>
                         {alert.value !== null && alert.value !== undefined && (
                           <p style={{ fontSize: 13 }}>
                             <strong>Value:</strong> {String(alert.value)}
-                            {typeof alert.transaction_count === "number" && ` · ${alert.transaction_count} transactions`}
-                            {typeof alert.total_amount === "number" && ` · $${alert.total_amount.toLocaleString()} total`}
-                            {typeof alert.z_score === "number" && ` · Z-score: ${alert.z_score}`}
+                            {typeof alert.transaction_count === "number" && ` Â· ${alert.transaction_count} transactions`}
+                            {typeof alert.total_amount === "number" && ` Â· $${alert.total_amount.toLocaleString()} total`}
+                            {typeof alert.z_score === "number" && ` Â· Z-score: ${alert.z_score}`}
                           </p>
                         )}
                         <p style={{ color: "#6366f1", fontSize: 13, marginTop: 6 }}>
-                          💡 {alert.recommendation}
+                          ðŸ’¡ {alert.recommendation}
                         </p>
                       </div>
                     </div>
@@ -216,3 +213,4 @@ export default function FraudPage() {
     </MainLayout>
   );
 }
+

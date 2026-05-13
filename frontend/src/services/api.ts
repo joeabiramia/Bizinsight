@@ -156,6 +156,18 @@ export const createAutomationRule = (rule: {
 }) => api.post("/automation/rules", rule);
 export const deleteAutomationRule = (ruleId: string) =>
   api.delete(`/automation/rules/${ruleId}`);
+
+export const updateAutomationRule = (
+  ruleId: string,
+  data: {
+    name?: string;
+    condition_id?: string;
+    params?: Record<string, number>;
+    action_id?: string;
+    action_message?: string;
+    active?: boolean;
+  }
+) => api.put(`/automation/rules/${ruleId}`, data);
 export const triggerAutomation = (fileId: string) =>
   api.post(`/automation/trigger/${fileId}`);
 export const fetchAutomationHistory = () => api.get("/automation/history");
@@ -216,3 +228,127 @@ export const pushRealtimePoint = (data: {
 }) => api.post("/realtime/push", data);
 
 export const fetchLiveKPIs = (fileId: string) => api.get(`/realtime/kpis/${fileId}`);
+
+// ── Phase 3: Live Sources (Google Sheets) ─────────────────────────────────────
+
+export const connectGoogleSheet = (data: {
+  sheet_url: string;
+  source_name?: string;
+  refresh_interval?: number;
+}) => api.post("/connect/google-sheets", data);
+
+export const listSources = () => api.get("/sources");
+
+export const getSyncStatus = (sourceId: string) =>
+  api.get(`/sync-status/${sourceId}`);
+
+export const refreshSource = (sourceId: string) =>
+  api.post(`/refresh-source/${sourceId}`);
+
+// ── Excel Online / OneDrive ───────────────────────────────────────────────────
+
+export const getExcelAuthUrl = (state = "") =>
+  api.get("/excel/auth-url", { params: state ? { state } : {} });
+
+export const exchangeExcelCode = (code: string, state = "") =>
+  api.post("/excel/callback", { code, state });
+
+export const listOneDriveFiles = (tokens: {
+  access_token: string;
+  refresh_token?: string;
+  expires_at?: string;
+}) => api.post("/excel/files", tokens);
+
+export const connectExcelOnline = (data: {
+  item_id: string;
+  file_name: string;
+  source_name?: string;
+  access_token: string;
+  refresh_token?: string;
+  expires_at?: string;
+  refresh_interval?: number;
+}) => api.post("/connect/excel-online", data);
+
+export const syncExcel = (sourceId: string) =>
+  api.post(`/sync/excel/${sourceId}`);
+
+// ── Shopify ───────────────────────────────────────────────────────────────────
+
+export const getShopifyStoreInfo = (shopDomain: string, accessToken: string) =>
+  api.get("/shopify/store-info", { params: { shop_domain: shopDomain, access_token: accessToken } });
+
+export const connectShopify = (data: {
+  shop_domain: string;
+  access_token: string;
+  source_name?: string;
+  refresh_interval?: number;
+}) => api.post("/connect/shopify", data);
+
+export const syncShopify = (sourceId: string) =>
+  api.post(`/sync/shopify/${sourceId}`);
+
+export const getShopifyStatus = (sourceId: string) =>
+  api.get(`/shopify/status/${sourceId}`);
+
+// ── Phase 4: Real-Time Alerts ─────────────────────────────────────────────────
+
+export const fetchAlerts = (fileId: string) => api.get(`/alerts/${fileId}`);
+
+// ── Phase 5: AI Business Monitor ──────────────────────────────────────────────
+
+export const fetchBusinessMonitor = (fileId: string) =>
+  api.get(`/business-monitor/${fileId}`);
+
+// ── Scheduled Email Reports ────────────────────────────────────────────────────
+
+export const fetchSchedules = () => api.get("/schedules");
+export const createSchedule = (data: object) => api.post("/schedules", data);
+export const updateScheduleApi = (id: string, data: object) => api.put(`/schedules/${id}`, data);
+export const deleteScheduleApi = (id: string) => api.delete(`/schedules/${id}`);
+export const sendScheduleNow = (id: string) => api.post(`/schedules/${id}/send-now`);
+
+// ── Shareable Dashboard Links ─────────────────────────────────────────────────
+
+export const createShareLink = (fileId: string, label = "") =>
+  api.post(`/share/create/${fileId}`, { label });
+export const listShareLinks = () => api.get("/share/links");
+export const revokeShareLink = (token: string) => api.delete(`/share/${token}`);
+export const getPublicDashboard = (token: string) => api.get(`/public/dashboard/${token}`);
+
+// ── AI Chat History ────────────────────────────────────────────────────────────
+
+export const fetchChatHistory = (fileId: string) =>
+  api.get(`/ai-chat/history/${fileId}`);
+export const clearChatHistoryApi = (fileId: string) =>
+  api.delete(`/ai-chat/history/${fileId}`);
+
+// ── Dataset Comparison ────────────────────────────────────────────────────────
+
+export const compareDatasets = (fileIdA: string, fileIdB: string) =>
+  api.post("/compare", { file_id_a: fileIdA, file_id_b: fileIdB });
+
+// ── Alert Channels ────────────────────────────────────────────────────────────
+
+export const fetchAlertChannels = () => api.get("/alert-channels");
+export const addAlertChannel = (data: object) => api.post("/alert-channels", data);
+export const updateAlertChannel = (id: string, data: object) => api.put(`/alert-channels/${id}`, data);
+export const deleteAlertChannelApi = (id: string) => api.delete(`/alert-channels/${id}`);
+export const testAlertChannel = (id: string) => api.post(`/alert-channels/test/${id}`);
+export const dispatchAlerts = (fileId: string) => api.post(`/alert-channels/dispatch/${fileId}`);
+
+// ── Ask Your Chart ─────────────────────────────────────────────────────────────
+
+export const explainChartSegment = (fileId: string, data: {
+  chart_type: string; segment_label: string; segment_value?: number; metric?: string; context?: string;
+}) => api.post(`/ai-chat/${fileId}/chart-explain`, data);
+
+// ── Goal-Based Forecasting ────────────────────────────────────────────────────
+
+export const fetchGoalForecast = (fileId: string, target: number, column = "") =>
+  api.get(`/goal-forecast/${fileId}`, { params: { target, ...(column ? { column } : {}) } });
+
+// ── Anomaly Explanation ───────────────────────────────────────────────────────
+
+export const explainAnomaly = (fileId: string, data: {
+  column: string; value: number; row_index?: number; context?: string; z_score?: number;
+}) => api.post(`/anomalies/${fileId}/explain`, data);
