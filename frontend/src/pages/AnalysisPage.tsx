@@ -6,8 +6,9 @@ import LoadingSkeleton from "../components/ui/LoadingSkeleton";
 import KPICards from "../components/KPICards";
 import Charts from "../components/Charts";
 import Insights from "../components/Insights";
+import HealthScoreCard from "../components/HealthScoreCard";
 import { fetchAnalysis } from "../services/api";
-import { AnalysisReport } from "../types";
+import type { AnalysisReport } from "../types";
 
 export default function AnalysisPage() {
   const { fileId } = useParams();
@@ -15,8 +16,6 @@ export default function AnalysisPage() {
   const [report, setReport] = useState<AnalysisReport | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  const resolvedId = fileId || localStorage.getItem("lastDatasetId") || "";
 
   useEffect(() => {
     const id = fileId || localStorage.getItem("lastDatasetId");
@@ -51,23 +50,40 @@ export default function AnalysisPage() {
     URL.revokeObjectURL(url);
   };
 
+  const id = report?.file_id || fileId || "";
+
   return (
     <MainLayout>
       <div className="page-hero">
         <div>
           <p className="eyebrow">Analysis dashboard</p>
-          <h1>Dataset intelligence</h1>
+          <h1>Dataset Intelligence</h1>
           <p className="section-description">
-            KPIs, charts, and business insights generated automatically from your file.
+            KPIs, charts, business insights, health scores, and AI-powered analytics.
           </p>
         </div>
         <div className="hero-actions">
           <button type="button" className="button button-secondary" onClick={() => navigate("/datasets")}>
-            Back to datasets
+            ← Datasets
           </button>
-          {report && (
-            <button type="button" className="button button-primary" onClick={() => navigate(`/ai-chat/${report.file_id}`)}>
-              Open AI chat
+          {id && (
+            <button type="button" className="button button-secondary" onClick={() => navigate(`/reports/${id}`)}>
+              📄 Export Report
+            </button>
+          )}
+          {id && (
+            <button type="button" className="button button-secondary" onClick={() => navigate(`/predictions/${id}`)}>
+              🔮 Predictions
+            </button>
+          )}
+          {id && (
+            <button type="button" className="button button-secondary" onClick={() => navigate(`/scenarios/${id}`)}>
+              🎯 Scenarios
+            </button>
+          )}
+          {id && (
+            <button type="button" className="button button-primary" onClick={() => navigate(`/ai-chat/${id}`)}>
+              🤖 AI Copilot
             </button>
           )}
         </div>
@@ -82,18 +98,16 @@ export default function AnalysisPage() {
           {/* Action row */}
           <div className="analysis-actions">
             {report.analysis.industry && (
-              <span className="industry-badge">
-                {report.analysis.industry}
-              </span>
+              <span className="industry-badge">{report.analysis.industry}</span>
             )}
-            <button type="button" className="button button-secondary" onClick={handleExport}>
-              Export summary JSON
+            <button type="button" className="button button-secondary" style={{ padding: "8px 16px", fontSize: "0.85rem" }} onClick={handleExport}>
+              Export JSON
             </button>
           </div>
 
           {/* Summary + KPI grid */}
           <div className="overview-grid">
-            <SectionCard title="Dataset summary">
+            <SectionCard title="Dataset Summary">
               <div className="summary-grid">
                 <div className="summary-tile">
                   <span>Rows</span>
@@ -146,25 +160,53 @@ export default function AnalysisPage() {
               )}
             </SectionCard>
 
-            <SectionCard title="Key metrics">
+            <SectionCard title="Key Metrics">
               <KPICards data={report.analysis.numeric_summary} />
             </SectionCard>
           </div>
 
-          <SectionCard title="Business charts">
+          {/* Business Health Score */}
+          {id && <HealthScoreCard fileId={id} />}
+
+          <SectionCard title="Business Charts">
             <Charts data={report.analysis.chart_data} />
           </SectionCard>
 
-          <SectionCard title="Actionable insights">
+          <SectionCard title="Actionable Insights">
             <Insights analysis={report.analysis} filename={report.filename} fileId={report.file_id} />
           </SectionCard>
+
+          {/* Quick navigation to new features */}
+          <div className="section-card" style={{ padding: "20px 24px" }}>
+            <h3 style={{ margin: "0 0 16px" }}>Continue Your Analysis</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
+              {[
+                { icon: "📄", label: "Export Report", desc: "PDF / PPTX / Excel", to: `/reports/${id}` },
+                { icon: "🔮", label: "Predictions",   desc: "ML Forecasting",      to: `/predictions/${id}` },
+                { icon: "🎯", label: "Scenarios",     desc: "What-If Simulation",  to: `/scenarios/${id}` },
+                { icon: "🤖", label: "AI Copilot",    desc: "Ask Your Data",       to: `/ai-chat/${id}` },
+              ].map(item => (
+                <button
+                  key={item.to}
+                  className="button button-secondary"
+                  style={{ flexDirection: "column", gap: 4, padding: "16px", height: "auto", textAlign: "center" }}
+                  onClick={() => navigate(item.to)}
+                  type="button"
+                >
+                  <span style={{ fontSize: "1.4rem" }}>{item.icon}</span>
+                  <strong style={{ fontSize: "0.93rem" }}>{item.label}</strong>
+                  <span style={{ fontSize: "0.8rem", color: "var(--muted)", fontWeight: 400 }}>{item.desc}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </>
       ) : (
         <div className="no-dataset-state">
           <h3>No analysis available</h3>
           <p>Upload a dataset to generate your first analysis.</p>
           <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
-            Upload dataset
+            Upload Dataset
           </button>
         </div>
       )}

@@ -388,16 +388,32 @@ def ai_chat(
     result = answer_business_question(df, q.question)
 
     if result is None:
-        return {
-            "question": q.question,
-            "supported": False,
-            "answer": (
-                "I could not confidently identify the metric. "
-                "Try asking: top salesman, lowest region, total revenue, "
-                "best product, average quantity, how many rows."
-            ),
-            "insights": generate_insights(df),
-        }
+        # Escalate to RAG AI Copilot for complex / open-ended questions
+        try:
+            from app.services.rag_service import answer_with_rag
+            from app.analysis.analyzer import analyze_dataframe
+            analysis = analyze_dataframe(df)
+            rag_result = answer_with_rag(df, q.question, analysis)
+            return {
+                "question": q.question,
+                "supported": True,
+                "answer": rag_result["answer"],
+                "intent": "rag_ai",
+                "source": rag_result.get("source", "rag"),
+                "grounded": rag_result.get("grounded", True),
+                "model": rag_result.get("model"),
+            }
+        except Exception:
+            return {
+                "question": q.question,
+                "supported": False,
+                "answer": (
+                    "I could not confidently identify the metric. "
+                    "Try asking: top salesman, lowest region, total revenue, "
+                    "best product, average quantity, how many rows."
+                ),
+                "insights": generate_insights(df),
+            }
 
     return {
         "question": q.question,
@@ -406,6 +422,8 @@ def ai_chat(
         "intent": result.get("intent"),
         "metric_column": result.get("metric_column"),
         "dimension_column": result.get("dimension_column"),
+        "source": "structured_query",
+        "grounded": True,
     }
 
 

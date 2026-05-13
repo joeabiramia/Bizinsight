@@ -43,7 +43,7 @@ const TYPE_CONFIG: Record<
 };
 
 function buildFallbackInsights(analysis: AnalysisData): BusinessInsight[] {
-  const s = analysis.top_summary || {};
+  const s = (analysis as any).top_summary || {};
   const shape = analysis.shape;
   const insights: BusinessInsight[] = [];
 
@@ -107,7 +107,7 @@ function buildFallbackInsights(analysis: AnalysisData): BusinessInsight[] {
     for (const c2 of Object.keys(corr[c1] || {})) {
       const pair = [c1, c2].sort().join("|");
       if (c1 !== c2 && !reported.has(pair)) {
-        const r = corr[c1][c2];
+        const r = (corr[c1] as any)[c2];
         if (typeof r === "number" && Math.abs(r) > 0.6) {
           reported.add(pair);
           const dir = r > 0 ? "positively" : "negatively";

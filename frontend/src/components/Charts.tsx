@@ -47,7 +47,7 @@ const BarCard = ({ title, data }: { title: string; data: { name: string; value: 
       <BarChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
         <XAxis dataKey="name" tick={{ fontSize: 11 }} interval={0} width={60} />
         <YAxis tick={{ fontSize: 11 }} tickFormatter={formatAxis} width={54} />
-        <Tooltip formatter={formatTooltipValue} />
+        <Tooltip formatter={formatTooltipValue as any} />
         <Bar dataKey="value" fill="#4f46e5" radius={[6, 6, 0, 0]} maxBarSize={48} />
       </BarChart>
     </ResponsiveContainer>
@@ -71,7 +71,7 @@ const PieCard = ({ title, data }: { title: string; data: { name: string; value: 
             <Cell key={`cell-${i}`} fill={PALETTE[i % PALETTE.length]} />
           ))}
         </Pie>
-        <Tooltip formatter={formatTooltipValue} />
+        <Tooltip formatter={formatTooltipValue as any} />
         <Legend verticalAlign="bottom" height={36} wrapperStyle={{ fontSize: 11 }} />
       </PieChart>
     </ResponsiveContainer>
@@ -85,7 +85,7 @@ const LineCard = ({ title, data }: { title: string; data: { name: string; value:
       <LineChart data={data} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
         <XAxis dataKey="name" tick={{ fontSize: 10 }} />
         <YAxis tick={{ fontSize: 11 }} tickFormatter={formatAxis} width={54} />
-        <Tooltip formatter={formatTooltipValue} />
+        <Tooltip formatter={formatTooltipValue as any} />
         <Line type="monotone" dataKey="value" stroke="#4f46e5" dot={false} strokeWidth={2} />
       </LineChart>
     </ResponsiveContainer>
