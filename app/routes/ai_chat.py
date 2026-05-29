@@ -395,50 +395,35 @@ def ai_chat(
         raise HTTPException(status_code=404, detail="File not found")
 
     df = load_dataframe(file_doc["path"])
-    result = answer_business_question(df, q.question)
 
-    if result is None:
-        try:
-            from app.services.rag_service import answer_with_rag
-            from app.analysis.analyzer import analyze_dataframe
-            analysis = analyze_dataframe(df)
-            rag_result = answer_with_rag(df, q.question, analysis)
-            response = {
-                "question": q.question,
-                "supported": True,
-                "answer": rag_result["answer"],
-                "intent": "rag_ai",
-                "source": rag_result.get("source", "rag"),
-                "grounded": rag_result.get("grounded", True),
-                "model": rag_result.get("model"),
-            }
-            _save_messages(current_user["user_id"], file_id, q.question, rag_result["answer"], "rag_ai", rag_result.get("source", "rag"))
-            return response
-        except Exception:
-            fallback_answer = (
-                "I could not confidently identify the metric. "
-                "Try asking: top salesman, lowest region, total revenue, "
-                "best product, average quantity, how many rows."
-            )
-            _save_messages(current_user["user_id"], file_id, q.question, fallback_answer, "fallback", "error")
-            return {
-                "question": q.question,
-                "supported": False,
-                "answer": fallback_answer,
-                "insights": generate_insights(df),
-            }
+    try:
+        from app.services.rag_service import answer_with_rag
+        from app.analysis.analyzer import analyze_dataframe
+        analysis = analyze_dataframe(df)
+        rag_result = answer_with_rag(df, q.question, analysis)
+        response = {
+            "question": q.question,
+            "supported": True,
+            "answer": rag_result["answer"],
+            "intent": "rag_ai",
+            "source": rag_result.get("source", "rag_openai"),
+            "grounded": rag_result.get("grounded", True),
+            "model": rag_result.get("model"),
+        }
+        _save_messages(current_user["user_id"], file_id, q.question, rag_result["answer"], "rag_ai", response["source"])
 
-    _save_messages(current_user["user_id"], file_id, q.question, result["answer"], result.get("intent", ""), "structured_query")
-    return {
-        "question": q.question,
-        "supported": True,
-        "answer": result["answer"],
-        "intent": result.get("intent"),
-        "metric_column": result.get("metric_column"),
-        "dimension_column": result.get("dimension_column"),
-        "source": "structured_query",
-        "grounded": True,
-    }
+        return response
+    except Exception:
+        fallback_answer = (
+            "AI processing error. Please try again or ask a simpler business question."
+        )
+        _save_messages(current_user["user_id"], file_id, q.question, fallback_answer, "fallback", "error")
+        return {
+            "question": q.question,
+            "supported": False,
+            "answer": fallback_answer,
+            "insights": generate_insights(df),
+        }
 
 
 @router.post("/ai-ask/{file_id}")

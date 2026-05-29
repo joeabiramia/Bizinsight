@@ -347,14 +347,9 @@ function ChatBubble({ item, index, chartData }: { item: AIResponse; index: numbe
           >
             {/* Source badges */}
             <div style={{ display: "flex", gap: 6, marginBottom: 8, flexWrap: "wrap" }}>
-              {item.source === "rag_openai" && (
+              {item.source && (
                 <span className="badge badge-primary" style={{ fontSize: "0.65rem" }}>
-                  <Sparkles size={9} /> GPT-4o
-                </span>
-              )}
-              {item.source === "structured_query" && (
-                <span className="badge badge-success" style={{ fontSize: "0.65rem" }}>
-                  <Zap size={9} /> Instant
+                  <Sparkles size={9} /> ChatGPT
                 </span>
               )}
               {item.grounded && (

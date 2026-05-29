@@ -133,7 +133,7 @@ export const DEMO_CHAT_HISTORY = [
   {
     question: "What is our total revenue this year?",
     answer: "Your total revenue for 2024 is **$4,287,450** across 2,600 bookings. Your best month was July at $512,800, and your average booking value is $1,649.",
-    source: "structured_query",
+    source: "rag_openai",
     grounded: true,
     insights: ["July alone accounts for 12% of annual revenue", "Average booking value grew 8% vs 2023"],
   },
