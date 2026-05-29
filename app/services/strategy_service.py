@@ -140,7 +140,12 @@ def generate_strategy(df: pd.DataFrame, question: str) -> dict:
 
     if client:
         system_prompt = (
-            "You are a senior business strategy consultant. "
+            "You are a senior business strategy consultant tasked with analyzing business datasets.\n\n"
+            "**YOUR SCOPE:** Generate strategies based ONLY on the provided real business data.\n\n"
+            "**RESTRICTIONS:**\n"
+            "- ONLY answer business strategy questions related to the dataset.\n"
+            "- REFUSE off-topic or non-business questions.\n"
+            "- Never invent numbers. Ground all recommendations in the real data.\n\n"
             "Generate a concise, actionable strategy grounded ONLY in the provided real data. "
             "Never invent numbers. Respond as valid JSON with keys: "
             "strategy, analysis, priority_actions (list), expected_impact, risks (list), "

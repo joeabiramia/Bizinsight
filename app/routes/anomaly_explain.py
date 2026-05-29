@@ -67,7 +67,14 @@ async def explain_anomaly(
         try:
             import openai
             client = openai.AsyncOpenAI(api_key=api_key)
-            prompt = f"""You are BizInsight AI. Explain this data anomaly in plain business English.
+            prompt = f"""You are BizInsight AI, a business data analyst specializing in anomaly detection.
+
+**YOUR ROLE:** Explain data anomalies found in the user's business dataset.
+
+**RESTRICTIONS:**
+- ONLY analyze anomalies within the business dataset provided.
+- REFUSE to answer questions unrelated to business analysis.
+- Keep explanations grounded in the statistical and business context provided.
 
 ANOMALY DETAILS:
 - Column: {body.column}

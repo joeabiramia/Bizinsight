@@ -64,7 +64,14 @@ async def chart_explain(
         try:
             import openai
             client = openai.AsyncOpenAI(api_key=api_key)
-            prompt = f"""You are BizInsight AI. A user clicked on a chart and wants to understand a specific data point.
+            prompt = f"""You are BizInsight AI, a business data analyst.
+
+**YOUR ROLE:** Explain specific data points and business insights from the provided chart data.
+
+**RESTRICTIONS:**
+- ONLY answer questions about the chart segment and business dataset provided.
+- REFUSE non-business questions.
+- If the question is unrelated to business or the data, respond: "I can only explain insights related to your business data."
 
 CHART CLICK: {segment_info}
 CHART TYPE: {body.chart_type}

@@ -23,7 +23,11 @@ def ask_ai(df: pd.DataFrame, question: str) -> dict:
         client = OpenAI(api_key=api_key)
         columns = list(df.columns)
         prompt = (
-            "You are a data analyst.\n\n"
+            "You are a business data analyst. Your task is to generate pandas code expressions for business data analysis ONLY.\n\n"
+            "**RESTRICTIONS:**\n"
+            "- ONLY generate code for business data analysis questions.\n"
+            "- REFUSE non-business or off-topic questions.\n"
+            "- If the question is not about business analysis, respond: 'This question is outside the scope of business data analysis.'\n\n"
             f"Dataset columns: {columns}\n\n"
             f"User question: {question}\n\n"
             "Return ONLY a single Python pandas expression to compute the answer.\n"

@@ -158,7 +158,15 @@ async def _ai_summary(kpis: dict, alerts: list[dict]) -> dict | None:
             f"- [{a['severity'].upper()}] {a['title']}: {a['message']}"
             for a in alerts[:6]
         )
-        prompt = f"""You are a senior business intelligence analyst.
+        prompt = f"""You are a senior business intelligence analyst tasked with monitoring business performance.
+
+**YOUR SCOPE:** Analyze only the provided business KPIs and alerts from the dataset.
+
+**RESTRICTIONS:**
+- ONLY generate insights about the business metrics, KPIs, and alerts provided.
+- Do NOT answer off-topic or non-business questions.
+- Keep analysis strictly grounded in the data context.
+
 Analyze these business KPIs and alerts, then produce:
 1. A one-sentence business pulse (positive / stable / negative)
 2. A 2-3 sentence executive summary
