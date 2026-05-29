@@ -17,6 +17,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from app.ai.openai_config import get_openai_model
+
 from app.dataframe_utils import safe_number
 
 _OPENAI_CLIENT = None
@@ -201,7 +203,7 @@ Answer in 2-4 sentences. Be specific with numbers. End with one actionable busin
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=get_openai_model(),
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
@@ -215,7 +217,7 @@ Answer in 2-4 sentences. Be specific with numbers. End with one actionable busin
             "grounded": True,
             "source": "rag_openai",
             "data_context_used": True,
-            "model": "gpt-4o-mini",
+            "model": get_openai_model(),
         }
     except Exception as e:
         # Fallback to computed context

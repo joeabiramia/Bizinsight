@@ -3,6 +3,8 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 
+from app.ai.openai_config import get_openai_model
+
 load_dotenv()
 
 
@@ -28,7 +30,7 @@ def ask_ai(df: pd.DataFrame, question: str) -> dict:
             "Example: df[\"sales\"].mean()"
         )
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model=get_openai_model(),
             messages=[{"role": "user", "content": prompt}],
         )
         code = response.choices[0].message.content.strip()

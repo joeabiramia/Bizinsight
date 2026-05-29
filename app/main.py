@@ -1,9 +1,12 @@
 import logging
 import os
+from dotenv import load_dotenv
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+
+load_dotenv()
 
 from app.routes.ai_chat import router as ai_router
 from app.routes.analyze import router as analyze_router

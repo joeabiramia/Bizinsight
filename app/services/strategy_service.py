@@ -10,6 +10,8 @@ import os
 
 import pandas as pd
 
+from app.ai.openai_config import get_openai_model
+
 from app.dataframe_utils import safe_number
 
 _OPENAI_CLIENT = None
@@ -151,7 +153,7 @@ def generate_strategy(df: pd.DataFrame, question: str) -> dict:
         )
         try:
             response = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=get_openai_model(),
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt},

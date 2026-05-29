@@ -12,6 +12,8 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from app.ai.openai_config import get_openai_model
+
 from app.dataframe_utils import load_dataframe, safe_number
 from app.dependencies import get_current_user
 from app.services.rag_service import _build_data_context, _find_col, _num, _REVENUE_SYNS, _REGION_SYNS, _PRODUCT_SYNS
@@ -78,7 +80,7 @@ Explain in 2-3 sentences:
 Be concise, specific, and business-focused."""
 
             response = await client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=get_openai_model(),
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=250,
                 temperature=0.2,

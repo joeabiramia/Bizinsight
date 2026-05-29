@@ -10,6 +10,8 @@ import os
 import logging
 from typing import Any
 
+from app.ai.openai_config import get_openai_model
+
 import numpy as np
 import pandas as pd
 
@@ -176,7 +178,7 @@ Respond ONLY as valid JSON:
 }}"""
 
         response = await client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=get_openai_model(),
             messages=[{"role": "user", "content": prompt}],
             max_tokens=500,
             temperature=0.3,
