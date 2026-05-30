@@ -8,7 +8,7 @@ import pandas as pd
 from app.ai.insight_generator import generate_insights
 from app.dataframe_utils import load_dataframe, safe_number
 from app.dependencies import get_current_user, get_workspace_user, require_analyst
-from app.storage import get_file_record_for_user, insert_chat_message
+from app.storage import get_file_record_for_user, insert_chat_message, list_chat_history
 
 router = APIRouter()
 
@@ -377,11 +377,25 @@ def answer_business_question(df: pd.DataFrame, question: str) -> dict | None:
 
 # ── Route ─────────────────────────────────────────────────────────────────────
 
-def _save_messages(user_id: str, file_id: str, question: str, answer: str, intent: str = "", source: str = "") -> None:
+def _save_messages(
+    user_id: str, file_id: str, question: str, answer: str,
+    intent: str = "", source: str = "", ranking_result: dict | None = None,
+) -> None:
     now = datetime.now(timezone.utc).isoformat()
     base = {"user_id": user_id, "file_id": file_id, "timestamp": now}
     insert_chat_message({**base, "message_id": str(uuid.uuid4()), "role": "user", "content": question})
-    insert_chat_message({**base, "message_id": str(uuid.uuid4()), "role": "assistant", "content": answer, "intent": intent, "source": source})
+    assistant_msg = {
+        **base,
+        "message_id": str(uuid.uuid4()),
+        "role": "assistant",
+        "content": answer,
+        "intent": intent,
+        "source": source,
+    }
+    # Store ranking so follow-up questions can reuse the exact computed result
+    if ranking_result:
+        assistant_msg["ranking_result"] = ranking_result
+    insert_chat_message(assistant_msg)
 
 
 @router.post("/ai-chat/{file_id}")
@@ -397,28 +411,38 @@ def ai_chat(
 
     df = load_dataframe(file_doc["path"])
 
+    # Load recent history so follow-up ranking questions can reuse cached results
+    try:
+        recent_history = list_chat_history(wu["user_id"], file_id, limit=20)
+    except Exception:
+        recent_history = []
+
     try:
         from app.services.rag_service import answer_with_rag
         from app.analysis.analyzer import analyze_dataframe
         analysis = analyze_dataframe(df)
-        rag_result = answer_with_rag(df, q.question, analysis)
+        rag_result = answer_with_rag(df, q.question, analysis, chat_history=recent_history)
         response = {
             "question": q.question,
             "supported": True,
             "answer": rag_result["answer"],
-            "intent": "rag_ai",
-            "source": rag_result.get("source", "rag_openai"),
+            "intent":  rag_result.get("source", "rag_ai"),
+            "source":  rag_result.get("source", "rag_openai"),
             "grounded": rag_result.get("grounded", True),
-            "model": rag_result.get("model"),
+            "model":   rag_result.get("model"),
         }
-        _save_messages(current_user["user_id"], file_id, q.question, rag_result["answer"], "rag_ai", response["source"])
-
+        _save_messages(
+            wu["user_id"], file_id, q.question, rag_result["answer"],
+            intent=rag_result.get("source", "rag_ai"),
+            source=rag_result.get("source", "rag_openai"),
+            ranking_result=rag_result.get("ranking_result"),
+        )
         return response
     except Exception:
         fallback_answer = (
             "AI processing error. Please try again or ask a simpler business question."
         )
-        _save_messages(current_user["user_id"], file_id, q.question, fallback_answer, "fallback", "error")
+        _save_messages(wu["user_id"], file_id, q.question, fallback_answer, "fallback", "error")
         return {
             "question": q.question,
             "supported": False,
@@ -439,17 +463,14 @@ def ai_ask(
 # ── Dynamic suggestions ───────────────────────────────────────────────────────
 
 def _generate_suggestions(df: pd.DataFrame) -> list[str]:
-    """Return up to 8 questions strictly derived from the actual columns present.
-
-    Strategy
-    --------
-    1. Try domain synonym matching first (revenue, salesperson, region, product).
-    2. For every real (categorical × numeric) column pair, generate comparison
-       questions — this covers any domain (HR, logistics, finance, …).
-    3. Add standalone numeric-column totals / averages.
-    4. Never emit a question that references a column that does not exist.
     """
-    from app.ai.insight_generator import _classify_columns
+    Generate up to 8 dataset-specific questions using the analytics engine.
+    Uses dynamic column resolution so any schema is covered automatically.
+    """
+    from app.services.analytics_engine import (
+        _numeric_cols, _categorical_cols, _rank_cols,
+        ENTITY_VOCAB, METRIC_VOCAB,
+    )
 
     seen: set[str] = set()
     suggestions: list[str] = []
@@ -459,40 +480,36 @@ def _generate_suggestions(df: pd.DataFrame) -> list[str]:
             seen.add(q)
             suggestions.append(q)
 
-    numeric_cols, categorical_cols, _ = _classify_columns(df)
+    num_cols = _numeric_cols(df)
+    cat_cols = _categorical_cols(df)
 
-    # ── 1. Domain-specific via synonym matching ────────────────────────────────
-    revenue_col  = find_column_by_synonyms(df, _REVENUE_SYNS)
-    quantity_col = find_column_by_synonyms(df, _QUANTITY_SYNS)
-    product_col  = find_column_by_synonyms(df, _PRODUCT_SYNS)
-    region_col   = find_column_by_synonyms(df, _REGION_SYNS)
-    salesman_col = find_column_by_synonyms(df, _SALESMAN_SYNS)
+    # Find best entity and metric columns
+    entity_ranked = [(c, cn) for c, cn, _ in _rank_cols(df, ENTITY_VOCAB) if c in cat_cols]
+    metric_ranked = [(c, cn) for c, cn, _ in _rank_cols(df, METRIC_VOCAB, numeric_only=True) if c in num_cols]
 
-    if revenue_col:
-        add(f"What is the total {revenue_col}?")
-    if salesman_col and revenue_col:
-        add(f"Who is the best {salesman_col} by {revenue_col}?")
-        add(f"Who is the lowest performing {salesman_col}?")
-    if region_col and revenue_col:
-        add(f"Which {region_col} has the highest {revenue_col}?")
-    if product_col and (revenue_col or quantity_col):
-        metric = revenue_col or quantity_col
-        add(f"Which {product_col} has the highest {metric}?")
-    if quantity_col:
-        add(f"What is the total {quantity_col}?")
-    if revenue_col:
-        add(f"What is the average {revenue_col} per record?")
+    # Generate contextual questions from the top entity × metric pairs
+    for e_col, e_concept in entity_ranked[:3]:
+        for m_col, m_concept in metric_ranked[:3]:
+            add(f"Who has the highest {m_col}?")
+            add(f"Which {e_col} is performing best by {m_col}?")
+            add(f"Which {e_col} has the lowest {m_col}?")
+            add(f"What is the total {m_col}?")
+            add(f"What is the average {m_col}?")
 
-    # ── 2. Generic (categorical × numeric) pairs ───────────────────────────────
-    for cat_col in categorical_cols[:6]:
-        for num_col in numeric_cols[:4]:
-            add(f"Which {cat_col} has the highest {num_col}?")
-            add(f"Which {cat_col} has the lowest {num_col}?")
-
-    # ── 3. Standalone numeric totals / averages ────────────────────────────────
-    for num_col in numeric_cols[:4]:
+    # Standalone numeric questions for any remaining cols
+    for num_col in num_cols[:4]:
         add(f"What is the total {num_col}?")
         add(f"What is the average {num_col}?")
+
+    # Categorical distribution questions
+    for cat_col in cat_cols[:3]:
+        add(f"Show me the breakdown of {cat_col}.")
+
+    # Trend question if there's a date column
+    from app.services.analytics_engine import _date_col
+    d_col = _date_col(df)
+    if d_col and metric_ranked:
+        add(f"Show me the trend of {metric_ranked[0][0]} over time.")
 
     return suggestions[:8]
 

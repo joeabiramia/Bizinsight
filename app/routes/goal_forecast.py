@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.dataframe_utils import load_dataframe, safe_number
 from app.dependencies import get_workspace_user
-from app.services.rag_service import _find_col, _REVENUE_SYNS, _DATE_SYNS
+from app.services.analytics_engine import _date_col as _find_date_col, resolve_columns
 from app.storage import get_file_record_for_user
 
 router = APIRouter(tags=["goal-forecast"])
@@ -30,15 +30,16 @@ def goal_forecast(
 
     df = load_dataframe(file_doc["path"])
 
-    # Resolve column
-    col = column if column and column in df.columns else _find_col(df, _REVENUE_SYNS)
+    # Resolve column — use analytics engine for dynamic schema detection
+    resolved = resolve_columns(df, "revenue total forecast")
+    col = column if column and column in df.columns else (resolved["metric_col"] or "")
     if not col:
         numeric_cols = df.select_dtypes(include="number").columns.tolist()
         if not numeric_cols:
             raise HTTPException(status_code=422, detail="No numeric columns found.")
         col = numeric_cols[0]
 
-    date_col = _find_col(df, _DATE_SYNS)
+    date_col = _find_date_col(df)
     vals_raw = df[col].apply(safe_number).dropna()
 
     if len(vals_raw) < 4:
