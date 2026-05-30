@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DEFAULT_OPENAI_MODEL = "gpt-3.5-turbo"
+DEFAULT_OPENAI_MODEL = "gpt-4o"
 
 
 def get_openai_model() -> str:

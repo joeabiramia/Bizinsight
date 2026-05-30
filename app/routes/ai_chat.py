@@ -7,7 +7,7 @@ import pandas as pd
 
 from app.ai.insight_generator import generate_insights
 from app.dataframe_utils import load_dataframe, safe_number
-from app.dependencies import get_current_user
+from app.dependencies import get_current_user, get_workspace_user, require_analyst
 from app.storage import get_file_record_for_user, insert_chat_message
 
 router = APIRouter()
@@ -388,9 +388,10 @@ def _save_messages(user_id: str, file_id: str, question: str, answer: str, inten
 def ai_chat(
     file_id: str,
     q: Question,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(require_analyst),   # viewers cannot use AI chat
 ):
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    current_user = wu
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 
@@ -438,43 +439,60 @@ def ai_ask(
 # ── Dynamic suggestions ───────────────────────────────────────────────────────
 
 def _generate_suggestions(df: pd.DataFrame) -> list[str]:
-    """Return 6-8 questions tailored to the actual columns present."""
+    """Return up to 8 questions strictly derived from the actual columns present.
+
+    Strategy
+    --------
+    1. Try domain synonym matching first (revenue, salesperson, region, product).
+    2. For every real (categorical × numeric) column pair, generate comparison
+       questions — this covers any domain (HR, logistics, finance, …).
+    3. Add standalone numeric-column totals / averages.
+    4. Never emit a question that references a column that does not exist.
+    """
+    from app.ai.insight_generator import _classify_columns
+
+    seen: set[str] = set()
     suggestions: list[str] = []
 
-    revenue_col = find_column_by_synonyms(df, _REVENUE_SYNS)
+    def add(q: str) -> None:
+        if q not in seen and len(suggestions) < 8:
+            seen.add(q)
+            suggestions.append(q)
+
+    numeric_cols, categorical_cols, _ = _classify_columns(df)
+
+    # ── 1. Domain-specific via synonym matching ────────────────────────────────
+    revenue_col  = find_column_by_synonyms(df, _REVENUE_SYNS)
     quantity_col = find_column_by_synonyms(df, _QUANTITY_SYNS)
-    product_col = find_column_by_synonyms(df, _PRODUCT_SYNS)
-    region_col = find_column_by_synonyms(df, _REGION_SYNS)
+    product_col  = find_column_by_synonyms(df, _PRODUCT_SYNS)
+    region_col   = find_column_by_synonyms(df, _REGION_SYNS)
     salesman_col = find_column_by_synonyms(df, _SALESMAN_SYNS)
 
     if revenue_col:
-        suggestions.append(f"What is the total {revenue_col}?")
+        add(f"What is the total {revenue_col}?")
     if salesman_col and revenue_col:
-        suggestions.append(f"Who is the best {salesman_col} by {revenue_col}?")
-        suggestions.append(f"Who is the lowest performing {salesman_col}?")
+        add(f"Who is the best {salesman_col} by {revenue_col}?")
+        add(f"Who is the lowest performing {salesman_col}?")
     if region_col and revenue_col:
-        suggestions.append(f"Which {region_col} has the highest {revenue_col}?")
-        suggestions.append(f"What is the lowest performing {region_col}?")
-    if product_col and revenue_col:
-        suggestions.append(f"Which {product_col} is selling the most?")
+        add(f"Which {region_col} has the highest {revenue_col}?")
+    if product_col and (revenue_col or quantity_col):
+        metric = revenue_col or quantity_col
+        add(f"Which {product_col} has the highest {metric}?")
     if quantity_col:
-        suggestions.append(f"What is the average {quantity_col}?")
+        add(f"What is the total {quantity_col}?")
     if revenue_col:
-        suggestions.append(f"What is the average {revenue_col} per record?")
+        add(f"What is the average {revenue_col} per record?")
 
-    # Always include meta questions
-    suggestions.append("How many rows are in this dataset?")
-    suggestions.append("What columns does this dataset have?")
+    # ── 2. Generic (categorical × numeric) pairs ───────────────────────────────
+    for cat_col in categorical_cols[:6]:
+        for num_col in numeric_cols[:4]:
+            add(f"Which {cat_col} has the highest {num_col}?")
+            add(f"Which {cat_col} has the lowest {num_col}?")
 
-    # If almost no domain columns found, generate generic numeric suggestions
-    if len(suggestions) <= 3:
-        from app.ai.insight_generator import _classify_columns
-        numeric_cols, categorical_cols, _ = _classify_columns(df)
-        for num in numeric_cols[:2]:
-            suggestions.insert(0, f"What is the total {num}?")
-        for cat in categorical_cols[:1]:
-            if numeric_cols:
-                suggestions.insert(0, f"Which {cat} has the highest {numeric_cols[0]}?")
+    # ── 3. Standalone numeric totals / averages ────────────────────────────────
+    for num_col in numeric_cols[:4]:
+        add(f"What is the total {num_col}?")
+        add(f"What is the average {num_col}?")
 
     return suggestions[:8]
 
@@ -482,9 +500,9 @@ def _generate_suggestions(df: pd.DataFrame) -> list[str]:
 @router.get("/ai-chat/suggestions/{file_id}")
 def ai_chat_suggestions(
     file_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 

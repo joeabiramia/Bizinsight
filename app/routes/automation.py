@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import (
     delete_automation_rule,
     get_automation_history_for_user,
@@ -57,19 +57,19 @@ def list_actions():
 
 
 @router.get("/rules")
-def list_rules(current_user: dict = Depends(get_current_user)):
-    rules = get_automation_rules_for_user(current_user["user_id"])
+def list_rules(wu: dict = Depends(get_workspace_user)):
+    rules = get_automation_rules_for_user(wu["user_id"])
     return {"rules": rules, "total": len(rules)}
 
 
 @router.post("/rules")
 def create_rule(
     body: CreateRuleRequest,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     rule = {
         "rule_id": str(uuid.uuid4()),
-        "user_id": current_user["user_id"],
+        "user_id": wu["user_id"],
         "name": body.name,
         "condition_id": body.condition_id,
         "params": body.params,
@@ -80,7 +80,7 @@ def create_rule(
         "trigger_count": 0,
     }
     insert_automation_rule(rule)
-    log_action(current_user["user_id"], "rule_created", "rule", rule["rule_id"], {"name": body.name})
+    log_action(wu["user_id"], "rule_created", "rule", rule["rule_id"], {"name": body.name})
     return {"rule": rule, "message": "Automation rule created successfully"}
 
 
@@ -88,37 +88,37 @@ def create_rule(
 def update_rule(
     rule_id: str,
     body: UpdateRuleRequest,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    existing = get_automation_rule(rule_id, current_user["user_id"])
+    existing = get_automation_rule(rule_id, wu["user_id"])
     if not existing:
         raise HTTPException(status_code=404, detail="Rule not found")
     patch = {k: v for k, v in body.model_dump().items() if v is not None}
-    update_automation_rule(rule_id, current_user["user_id"], patch)
+    update_automation_rule(rule_id, wu["user_id"], patch)
     updated = {**existing, **patch}
-    log_action(current_user["user_id"], "rule_updated", "rule", rule_id, patch)
+    log_action(wu["user_id"], "rule_updated", "rule", rule_id, patch)
     return {"rule": updated, "message": "Rule updated successfully"}
 
 
 @router.delete("/rules/{rule_id}")
 def delete_rule(
     rule_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    deleted = delete_automation_rule(rule_id, current_user["user_id"])
+    deleted = delete_automation_rule(rule_id, wu["user_id"])
     if not deleted:
         raise HTTPException(status_code=404, detail="Rule not found")
-    log_action(current_user["user_id"], "rule_deleted", "rule", rule_id)
+    log_action(wu["user_id"], "rule_deleted", "rule", rule_id)
     return {"message": "Rule deleted"}
 
 
 @router.post("/trigger/{file_id}")
 def trigger_automation(
     file_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Evaluate all active rules against the dataset and execute triggered actions."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
     try:
@@ -126,7 +126,7 @@ def trigger_automation(
     except Exception as exc:
         raise HTTPException(status_code=422, detail=f"Could not load file: {exc}")
 
-    rules = get_automation_rules_for_user(current_user["user_id"])
+    rules = get_automation_rules_for_user(wu["user_id"])
     if not rules:
         return {"triggered_count": 0, "results": [], "message": "No automation rules configured"}
 
@@ -143,7 +143,7 @@ def trigger_automation(
                 severity = "critical" if action_id == "create_critical_alert" else "warning"
                 notif = {
                     "notification_id": str(uuid.uuid4()),
-                    "user_id": current_user["user_id"],
+                    "user_id": wu["user_id"],
                     "file_id": file_id,
                     "title": f"Automation: {result['rule_name']}",
                     "message": result["reason"],
@@ -160,7 +160,7 @@ def trigger_automation(
         # Record to history
         history_entry = {
             "history_id": str(uuid.uuid4()),
-            "user_id": current_user["user_id"],
+            "user_id": wu["user_id"],
             "file_id": file_id,
             "rule_id": result.get("rule_id"),
             "rule_name": result.get("rule_name"),
@@ -174,7 +174,7 @@ def trigger_automation(
 
     if triggered:
         log_action(
-            current_user["user_id"],
+            wu["user_id"],
             "automation_triggered",
             "file",
             file_id,
@@ -195,6 +195,6 @@ def trigger_automation(
 
 
 @router.get("/history")
-def get_history(current_user: dict = Depends(get_current_user)):
-    history = get_automation_history_for_user(current_user["user_id"])
+def get_history(wu: dict = Depends(get_workspace_user)):
+    history = get_automation_history_for_user(wu["user_id"])
     return {"history": history, "total": len(history)}

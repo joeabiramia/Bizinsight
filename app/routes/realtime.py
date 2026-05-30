@@ -14,7 +14,7 @@ from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisco
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe, safe_number
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import get_file_record_for_user, insert_realtime_point, get_realtime_data
 
 router = APIRouter(prefix="/realtime", tags=["realtime"])
@@ -35,13 +35,13 @@ class DataPoint(BaseModel):
 @router.post("/push")
 def push_data_point(
     point: DataPoint,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Ingest a single live data point."""
     ts = point.timestamp or datetime.utcnow().isoformat()
     record = {
         "point_id": str(uuid.uuid4()),
-        "user_id": current_user["user_id"],
+        "user_id": wu["user_id"],
         "file_id": point.file_id,
         "metric": point.metric,
         "value": point.value,
@@ -55,10 +55,10 @@ def push_data_point(
 @router.get("/kpis/{file_id}")
 def get_live_kpis(
     file_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Get current KPI snapshot from the dataset (polling endpoint)."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 
@@ -85,7 +85,7 @@ def get_live_kpis(
         })
 
     # Include any live-pushed points
-    live_points = get_realtime_data(current_user["user_id"], file_id, limit=20)
+    live_points = get_realtime_data(wu["user_id"], file_id, limit=20)
 
     return {
         "file_id": file_id,

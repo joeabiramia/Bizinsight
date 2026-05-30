@@ -15,7 +15,7 @@ from pydantic import BaseModel
 from app.ai.openai_config import get_openai_model
 
 from app.dataframe_utils import load_dataframe, safe_number
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.services.rag_service import _build_data_context, _find_col, _num, _REVENUE_SYNS, _REGION_SYNS, _PRODUCT_SYNS
 from app.storage import get_file_record_for_user
 
@@ -35,9 +35,9 @@ class ChartExplainRequest(BaseModel):
 async def chart_explain(
     file_id: str,
     body: ChartExplainRequest,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found.")
 

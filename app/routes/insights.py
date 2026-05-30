@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.ai.insight_generator import generate_business_insights
 from app.dataframe_utils import load_dataframe, safe_number
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import get_file_record_for_user
 from app.services.audit_service import log_action
 
@@ -188,10 +188,10 @@ def _build_explainability(df, insight: dict) -> dict:
 def get_insights(
     file_id: str,
     mode: str = "",
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Return prioritized, industry-mode-aware business insights."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 
@@ -204,7 +204,7 @@ def get_insights(
     # Attach industry mode context if available
     industry_context = _INDUSTRY_MODES.get(industry.lower(), {})
 
-    log_action(current_user["user_id"], "insight_created", "file", file_id, {"mode": industry})
+    log_action(wu["user_id"], "insight_created", "file", file_id, {"mode": industry})
 
     return {
         "insights": insights,
@@ -225,10 +225,10 @@ def explain_insight(
     file_id: str,
     insight_index: int,
     mode: str = "",
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Return full explainability data for a specific insight."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 

@@ -6,6 +6,7 @@ export interface User {
   name: string;
   onboarding_complete: boolean;
   onboarding_data?: OnboardingData;
+  email_verified: boolean;
 }
 
 export interface OnboardingData {
@@ -183,6 +184,7 @@ export interface HealthScoreDimension {
   color: "green" | "yellow" | "red";
   label: string;
   explanation: string;
+  delta?: number;
 }
 
 export interface HealthScores {
@@ -282,6 +284,8 @@ export interface ScenarioResponse {
   summary: string;
   confidence: "high" | "medium" | "low";
   disclaimer: string;
+  base_health?: HealthScores;
+  projected_health?: HealthScores;
 }
 
 // ── Phase 2: Data Cleaning ────────────────────────────────────────────────────

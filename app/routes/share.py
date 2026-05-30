@@ -16,7 +16,7 @@ from pydantic import BaseModel
 
 from app.analysis.analyzer import analyze_dataframe
 from app.dataframe_utils import load_dataframe
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import (
     get_file_record_for_user,
     get_file_record,
@@ -39,9 +39,9 @@ class ShareCreate(BaseModel):
 def create_share_link(
     file_id: str,
     body: ShareCreate,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found.")
 
@@ -50,7 +50,7 @@ def create_share_link(
     record = {
         "token": token,
         "file_id": file_id,
-        "user_id": current_user["user_id"],
+        "user_id": wu["user_id"],
         "filename": file_doc.get("filename", ""),
         "label": body.label or file_doc.get("filename", "Dashboard"),
         "created_at": now,
@@ -67,14 +67,14 @@ def create_share_link(
 
 
 @router.get("/share/links")
-def list_share_links(current_user: dict = Depends(get_current_user)):
-    tokens = list_share_tokens_for_user(current_user["user_id"])
+def list_share_links(wu: dict = Depends(get_workspace_user)):
+    tokens = list_share_tokens_for_user(wu["user_id"])
     return {"links": tokens}
 
 
 @router.delete("/share/{token}")
-def revoke_share_link(token: str, current_user: dict = Depends(get_current_user)):
-    deleted = delete_share_token(token, current_user["user_id"])
+def revoke_share_link(token: str, wu: dict = Depends(get_workspace_user)):
+    deleted = delete_share_token(token, wu["user_id"])
     if not deleted:
         raise HTTPException(status_code=404, detail="Share link not found.")
     return {"revoked": True}

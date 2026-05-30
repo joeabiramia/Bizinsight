@@ -5,6 +5,7 @@ import { simulateScenario } from "../services/api";
 
 interface Props {
   fileId: string;
+  onResult?: (result: ScenarioResponse) => void;
 }
 
 interface SliderInput {
@@ -32,7 +33,7 @@ const DEFAULT_SCENARIO = {
   cost_change_pct: 0,
 };
 
-export default function ScenarioSimulator({ fileId }: Props) {
+export default function ScenarioSimulator({ fileId, onResult }: Props) {
   const [scenario, setScenario] = useState({ ...DEFAULT_SCENARIO });
   const [result, setResult] = useState<ScenarioResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -47,6 +48,7 @@ export default function ScenarioSimulator({ fileId }: Props) {
     setScenario({ ...DEFAULT_SCENARIO });
     setResult(null);
     setError(null);
+    onResult?.(null as unknown as ScenarioResponse);
   };
 
   const handleSimulate = async () => {
@@ -55,6 +57,7 @@ export default function ScenarioSimulator({ fileId }: Props) {
     try {
       const res = await simulateScenario(fileId, scenario);
       setResult(res.data);
+      onResult?.(res.data);
     } catch {
       setError("Simulation failed. Ensure your dataset has numeric revenue data.");
     } finally {

@@ -85,7 +85,7 @@ export default function AutomationPage() {
     setForm({
       name: rule.name,
       condition_id: rule.condition_id,
-      threshold_pct: rule.params?.threshold_pct ?? 15,
+      threshold_pct: Number(rule.params?.threshold_pct ?? 15),
       action_id: rule.action_id,
       action_message: rule.action_message || "",
       active: rule.active,
@@ -201,7 +201,7 @@ export default function AutomationPage() {
   const RuleForm = () => (
     <div className="section-card" style={{ marginBottom: 24 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
-        <h3 style={{ margin: 0, fontSize: "0.9rem", fontWeight: 700, color: "var(--text)" }} style={{ margin: 0 }}>
+        <h3 style={{ margin: 0, fontSize: "0.9rem", fontWeight: 700, color: "var(--text)" }}>
           {mode === "edit" ? "Edit Rule" : "Create Automation Rule"}
         </h3>
         <button type="button" className="button button-secondary" style={{ padding: "4px 14px", fontSize: "0.82rem" }} onClick={closeForm}>

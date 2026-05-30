@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe, safe_number
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import get_file_record_for_user
 
 router = APIRouter(tags=["compare"])
@@ -56,9 +56,9 @@ def _diff_metric(a: float, b: float) -> dict:
 @router.post("/compare")
 def compare_datasets(
     body: CompareRequest,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    uid = current_user["user_id"]
+    uid = wu["user_id"]
     doc_a = get_file_record_for_user(body.file_id_a, uid)
     doc_b = get_file_record_for_user(body.file_id_b, uid)
     if not doc_a:

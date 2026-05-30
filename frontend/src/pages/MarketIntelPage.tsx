@@ -53,7 +53,7 @@ export default function MarketIntelPage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             {/* Trends */}
             <div className="section-card">
-              <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>Market Trends</h3>
+              <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>Market Trends</h3>
               {data.market_trends.map((t, i) => (
                 <div
                   key={i}
@@ -83,7 +83,7 @@ export default function MarketIntelPage() {
             <div>
               {/* Benchmarks */}
               <div className="section-card" style={{ marginBottom: 16 }}>
-                <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>Industry Benchmarks</h3>
+                <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>Industry Benchmarks</h3>
                 {Object.keys(data.industry_benchmarks).length === 0 ? (
                   <p style={{ color: "var(--text-secondary)", fontSize: 13 }}>No benchmarks available.</p>
                 ) : (
@@ -116,7 +116,7 @@ export default function MarketIntelPage() {
 
               {/* Currency Rates */}
               <div className="section-card">
-                <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>Currency Rates</h3>
+                <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>Currency Rates</h3>
                 {Object.entries(data.currency_rates)
                   .filter(([k]) => k !== "note")
                   .map(([k, v]) => (
@@ -144,7 +144,7 @@ export default function MarketIntelPage() {
           {/* Contextual recommendations */}
           {data.contextual_recommendations && data.contextual_recommendations.length > 0 && (
             <div className="section-card" style={{ marginTop: 16 }}>
-              <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }} style={{ marginBottom: 12 }}>AI Recommendations Based on Market Conditions</h3>
+              <h3 style={{ margin: "0 0 12px", fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>AI Recommendations Based on Market Conditions</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {data.contextual_recommendations.map((rec, i) => (
                   <div

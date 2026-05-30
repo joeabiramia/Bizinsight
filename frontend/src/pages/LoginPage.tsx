@@ -238,12 +238,17 @@ export default function LoginPage() {
             <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
           </div>
 
-          {/* Register link */}
-          <div style={{ textAlign: "center" }}>
+          {/* Register + forgot links */}
+          <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8 }}>
             <p style={{ margin: 0, fontSize: "0.875rem", color: "var(--text-secondary)" }}>
               Don't have an account?{" "}
               <Link to="/register" style={{ color: "var(--primary-light)", fontWeight: 600, textDecoration: "none" }}>
                 Create one free →
+              </Link>
+            </p>
+            <p style={{ margin: 0, fontSize: "0.875rem" }}>
+              <Link to="/forgot-password" style={{ color: "var(--text-secondary)", textDecoration: "none" }}>
+                Forgot your password?
               </Link>
             </p>
           </div>

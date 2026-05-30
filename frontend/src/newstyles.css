@@ -1,5 +1,89 @@
 
 /* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE / MOBILE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Sidebar: collapse to bottom nav on mobile */
+  .sidebar-shell {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    top: auto;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 0;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .sidebar-brand,
+  .sidebar-user-panel,
+  .sidebar-section-label { display: none !important; }
+  .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+  .sidebar-link {
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    border-radius: 0;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+  .sidebar-link--active {
+    border-left: none !important;
+    border-bottom: 2px solid var(--primary);
+  }
+  .sidebar-link-icon { margin: 0; }
+
+  /* Main content: account for bottom nav height */
+  .main-content-shell { padding-bottom: 72px !important; }
+
+  /* Two-column grids → single column */
+  [style*="gridTemplateColumns: \"1fr 360px\""],
+  [style*="gridTemplateColumns: '1fr 360px'"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Section cards: reduce padding */
+  .section-card { padding: 16px !important; }
+
+  /* Page hero: stack vertically */
+  .page-hero {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .hero-actions { flex-wrap: wrap; }
+
+  /* Scenario grid */
+  .scenario-grid { grid-template-columns: 1fr !important; }
+
+  /* Health dims grid */
+  .health-dims-grid { grid-template-columns: 1fr !important; }
+
+  /* Notif panel: full width */
+  .notif-panel { width: calc(100vw - 32px); right: -8px; }
+}
+
+@media (max-width: 480px) {
+  .section-card { padding: 12px !important; border-radius: 12px !important; }
+  h1 { font-size: 1.4rem !important; }
+  .health-overall-row { flex-direction: column !important; align-items: center !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    NOTIFICATION CENTER
    ═══════════════════════════════════════════════════════════════ */
 

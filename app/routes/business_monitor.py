@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.ai.business_monitor import run_business_monitor
 from app.dataframe_utils import load_dataframe
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import get_file_record_for_user
 
 router = APIRouter(tags=["business-monitor"])
@@ -17,10 +17,10 @@ router = APIRouter(tags=["business-monitor"])
 @router.get("/business-monitor/{file_id}")
 async def get_business_monitor(
     file_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Run AI business monitor and return pulse + recommendations."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found.")
 

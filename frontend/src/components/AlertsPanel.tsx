@@ -152,9 +152,6 @@ export default function AlertsPanel({ fileId, refreshInterval = 60 }: Props) {
       {/* Alert cards */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {visible.map((alert, i) => {
-          const realIndex = alerts.findIndex(
-            (a, j) => !dismissed.has(j) && a === alert
-          );
           const color = TYPE_COLORS[alert.type] ?? "#94a3b8";
           return (
             <div

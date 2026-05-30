@@ -10,7 +10,7 @@ import pandas as pd
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.dataframe_utils import load_dataframe, safe_number
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.services.rag_service import _find_col, _REVENUE_SYNS, _DATE_SYNS
 from app.storage import get_file_record_for_user
 
@@ -22,9 +22,9 @@ def goal_forecast(
     file_id: str,
     target: float = Query(..., description="Revenue/metric target to reach"),
     column: str = Query("", description="Column name (auto-detected if blank)"),
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found.")
 

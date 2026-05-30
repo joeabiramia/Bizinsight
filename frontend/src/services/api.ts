@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+// In development the Vite proxy forwards all API paths to FastAPI (same-origin,
+// no CORS preflight). In production set VITE_API_BASE_URL to the real backend URL.
+const baseURL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const api = axios.create({
   baseURL,
@@ -37,6 +39,27 @@ export const completeOnboarding = (data: {
   data_types: string[];
   user_role: string;
 }) => api.post("/auth/onboarding", data);
+
+export const updateProfile = (data: {
+  name?: string;
+  current_password?: string;
+  new_password?: string;
+}) => api.put("/auth/profile", data);
+
+export const refreshToken = () => api.post("/auth/refresh");
+
+export const deleteAccount = () => api.delete("/auth/account");
+
+export const forgotPassword = (email: string) =>
+  api.post("/auth/forgot-password", { email });
+
+export const resetPassword = (token: string, new_password: string) =>
+  api.post("/auth/reset-password", { token, new_password });
+
+export const resendVerification = () => api.post("/auth/resend-verification");
+
+export const verifyEmail = (token: string) =>
+  api.post(`/auth/verify-email?token=${token}`);
 
 // ── Datasets ──────────────────────────────────────────────────────────────────
 
@@ -299,14 +322,6 @@ export const fetchAlerts = (fileId: string) => api.get(`/alerts/${fileId}`);
 export const fetchBusinessMonitor = (fileId: string) =>
   api.get(`/business-monitor/${fileId}`);
 
-// ── Scheduled Email Reports ────────────────────────────────────────────────────
-
-export const fetchSchedules = () => api.get("/schedules");
-export const createSchedule = (data: object) => api.post("/schedules", data);
-export const updateScheduleApi = (id: string, data: object) => api.put(`/schedules/${id}`, data);
-export const deleteScheduleApi = (id: string) => api.delete(`/schedules/${id}`);
-export const sendScheduleNow = (id: string) => api.post(`/schedules/${id}/send-now`);
-
 // ── Shareable Dashboard Links ─────────────────────────────────────────────────
 
 export const createShareLink = (fileId: string, label = "") =>
@@ -327,15 +342,6 @@ export const clearChatHistoryApi = (fileId: string) =>
 export const compareDatasets = (fileIdA: string, fileIdB: string) =>
   api.post("/compare", { file_id_a: fileIdA, file_id_b: fileIdB });
 
-// ── Alert Channels ────────────────────────────────────────────────────────────
-
-export const fetchAlertChannels = () => api.get("/alert-channels");
-export const addAlertChannel = (data: object) => api.post("/alert-channels", data);
-export const updateAlertChannel = (id: string, data: object) => api.put(`/alert-channels/${id}`, data);
-export const deleteAlertChannelApi = (id: string) => api.delete(`/alert-channels/${id}`);
-export const testAlertChannel = (id: string) => api.post(`/alert-channels/test/${id}`);
-export const dispatchAlerts = (fileId: string) => api.post(`/alert-channels/dispatch/${fileId}`);
-
 // ── Ask Your Chart ─────────────────────────────────────────────────────────────
 
 export const explainChartSegment = (fileId: string, data: {
@@ -352,3 +358,30 @@ export const fetchGoalForecast = (fileId: string, target: number, column = "") =
 export const explainAnomaly = (fileId: string, data: {
   column: string; value: number; row_index?: number; context?: string; z_score?: number;
 }) => api.post(`/anomalies/${fileId}/explain`, data);
+
+// ── Dataset Classification ────────────────────────────────────────────────────
+
+export const classifyDataset = (fileId: string) => api.get(`/classify/${fileId}`);
+
+// ── Weekly Digest ─────────────────────────────────────────────────────────────
+
+export const getDigestSettings = () => api.get("/digest/settings");
+
+export const saveDigestSettings = (settings: object) => api.post("/digest/settings", settings);
+
+export const sendDigestNow = (data: {
+  recipient_email: string;
+  subject: string;
+  custom_message?: string | null;
+}) => api.post("/digest/send-now", data);
+
+export const scheduleDigest = (data: {
+  recipient_email: string;
+  subject: string;
+  custom_message?: string | null;
+  scheduled_at: string;
+}) => api.post("/digest/schedule", data);
+
+export const getDigestJobs = () => api.get("/digest/jobs");
+
+export const cancelDigestJob = (jobId: string) => api.delete(`/digest/jobs/${jobId}`);

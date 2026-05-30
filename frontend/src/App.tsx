@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { WorkspaceProvider } from "./context/WorkspaceContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./newstyles.css";
 
@@ -9,6 +10,13 @@ import DemoPage from "./pages/DemoPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import OnboardingPage from "./pages/OnboardingPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import VerifyEmailPage from "./pages/VerifyEmailPage";
+import JoinWorkspacePage from "./pages/JoinWorkspacePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import SettingsPage from "./pages/SettingsPage";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 // Core
 import DashboardPage from "./pages/DashboardPage";
@@ -34,11 +42,9 @@ import GoogleSheetsPage from "./pages/GoogleSheetsPage";
 import ExcelOnlinePage from "./pages/ExcelOnlinePage";
 import ShopifyPage from "./pages/ShopifyPage";
 import IntegrationsPage from "./pages/IntegrationsPage";
-import SchedulesPage from "./pages/SchedulesPage";
 import SharedDashboardPage from "./pages/SharedDashboardPage";
 import ComparisonPage from "./pages/ComparisonPage";
 import DashboardBuilderPage from "./pages/DashboardBuilderPage";
-import AlertChannelsPage from "./pages/AlertChannelsPage";
 import GoalForecastPage from "./pages/GoalForecastPage";
 
 // New feature pages
@@ -52,13 +58,19 @@ const P = ProtectedRoute;
 function App() {
   return (
     <AuthProvider>
+      <WorkspaceProvider>
       <BrowserRouter>
+        <ErrorBoundary>
         <Routes>
           {/* ── Public ─────────────────────────────────────────────── */}
           <Route path="/"      element={<LandingPage />} />
           <Route path="/demo"  element={<DemoPage />} />
           <Route path="/login"    element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password"  element={<ResetPasswordPage />} />
+          <Route path="/verify-email"    element={<VerifyEmailPage />} />
+          <Route path="/join"            element={<JoinWorkspacePage />} />
 
           {/* ── Onboarding ─────────────────────────────────────────── */}
           <Route path="/onboarding" element={<P requireOnboarding={false}><OnboardingPage /></P>} />
@@ -108,8 +120,6 @@ function App() {
           <Route path="/shopify"             element={<P><ShopifyPage /></P>} />
 
           {/* ── Automation & Alerts ────────────────────────────────── */}
-          <Route path="/schedules"           element={<P><SchedulesPage /></P>} />
-          <Route path="/alert-channels"      element={<P><AlertChannelsPage /></P>} />
           <Route path="/digest"              element={<P><DigestSettingsPage /></P>} />
 
           {/* ── Dashboards ─────────────────────────────────────────── */}
@@ -119,14 +129,17 @@ function App() {
           {/* ── Team & Settings ────────────────────────────────────── */}
           <Route path="/workspace"           element={<P><WorkspacePage /></P>} />
           <Route path="/white-label"         element={<P><WhiteLabelPage /></P>} />
+          <Route path="/settings"            element={<P><SettingsPage /></P>} />
 
           {/* ── Public/shared ──────────────────────────────────────── */}
           <Route path="/public/dashboard/:token" element={<SharedDashboardPage />} />
 
           {/* ── Fallback ───────────────────────────────────────────── */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        </ErrorBoundary>
       </BrowserRouter>
+      </WorkspaceProvider>
     </AuthProvider>
   );
 }

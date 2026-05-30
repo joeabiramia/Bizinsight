@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, ArrowLeft, Trash2, Database, Send, Sparkles, Zap, CheckCircle2 } from "lucide-react";
+import { Bot, Trash2, Database, Send, Sparkles, CheckCircle2, ChevronDown } from "lucide-react";
+import ConfirmModal from "../components/ConfirmModal";
 import MainLayout from "../components/layout/MainLayout";
 import VoiceAssistant from "../components/VoiceAssistant";
-import EmptyState from "../components/ui/EmptyState";
 import NLChart, { detectChartRequest, buildChartFromResponse, type NLChartData } from "../components/NLChart";
-import { askAiQuestion, fetchAiSuggestions, fetchDatasetPreview } from "../services/api";
+import { askAiQuestion, fetchAiSuggestions, fetchDatasetPreview, listDatasets, fetchChatHistory, clearChatHistoryApi } from "../services/api";
 import type { AIResponse, PreviewData } from "../types";
+
+interface Dataset { file_id: string; filename: string; }
 
 // ─── Dataset Intelligence Panel ───────────────────────────────────────────────
 
@@ -465,16 +467,13 @@ function ThinkingBubble() {
 
 // ─── Empty chat state ──────────────────────────────────────────────────────────
 
-function EmptyChatState({ onPromptClick }: { onPromptClick: (q: string) => void }) {
-  const STARTER_PROMPTS = [
-    "What is the total revenue?",
-    "Who is the top performing salesperson?",
-    "Which region has the highest sales?",
-    "What is the best selling product?",
-    "Are there any anomalies in the data?",
-    "Summarize the dataset for me",
-  ];
-
+function EmptyChatState({
+  onPromptClick,
+  suggestions,
+}: {
+  onPromptClick: (q: string) => void;
+  suggestions: string[];
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -514,41 +513,55 @@ function EmptyChatState({ onPromptClick }: { onPromptClick: (q: string) => void 
           margin: "0 auto",
         }}
       >
-        {STARTER_PROMPTS.map((text) => (
-          <motion.button
-            key={text}
-            type="button"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => onPromptClick(text)}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "10px 14px",
-              borderRadius: 10,
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid var(--border)",
-              color: "var(--text-secondary)",
-              fontSize: "0.82rem",
-              fontWeight: 500,
-              cursor: "pointer",
-              textAlign: "left",
-              transition: "border-color 0.15s, color 0.15s",
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = "rgba(99,102,241,0.4)";
-              e.currentTarget.style.color = "var(--text)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.color = "var(--text-secondary)";
-            }}
-          >
-            <Sparkles size={12} style={{ color: "var(--primary-light)", flexShrink: 0 }} />
-            {text}
-          </motion.button>
-        ))}
+        {suggestions.length === 0
+          ? /* loading shimmer slots */
+            [1, 2, 3, 4, 5, 6].map((i) => (
+              <div
+                key={i}
+                style={{
+                  height: 42,
+                  borderRadius: 10,
+                  background: "linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.04) 75%)",
+                  backgroundSize: "200% 100%",
+                  animation: "shimmerAnim 1.6s ease-in-out infinite",
+                }}
+              />
+            ))
+          : suggestions.map((text) => (
+              <motion.button
+                key={text}
+                type="button"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onPromptClick(text)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "10px 14px",
+                  borderRadius: 10,
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid var(--border)",
+                  color: "var(--text-secondary)",
+                  fontSize: "0.82rem",
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  textAlign: "left",
+                  transition: "border-color 0.15s, color 0.15s",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = "rgba(99,102,241,0.4)";
+                  e.currentTarget.style.color = "var(--text)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.color = "var(--text-secondary)";
+                }}
+              >
+                <Sparkles size={12} style={{ color: "var(--primary-light)", flexShrink: 0 }} />
+                {text}
+              </motion.button>
+            ))}
       </div>
     </motion.div>
   );
@@ -557,8 +570,17 @@ function EmptyChatState({ onPromptClick }: { onPromptClick: (q: string) => void 
 // ─── Main page ─────────────────────────────────────────────────────────────────
 
 export default function AIChatPage() {
-  const { fileId } = useParams();
+  const { fileId: paramFileId } = useParams();
   const navigate = useNavigate();
+
+  // Dataset list + active selection (persisted in localStorage, not the URL)
+  const [datasets, setDatasets] = useState<Dataset[]>([]);
+  const [activeFileId, setActiveFileId] = useState<string>(
+    paramFileId || localStorage.getItem("lastDatasetId") || ""
+  );
+  const [pickerOpen, setPickerOpen] = useState(false);
+
+  // Chat state
   const [question, setQuestion] = useState("");
   const [history, setHistory] = useState<AIResponse[]>([]);
   const [loading, setLoading] = useState(false);
@@ -568,33 +590,70 @@ export default function AIChatPage() {
   const [speakAnswers, setSpeakAnswers] = useState(false);
   const [lastAnswer, setLastAnswer] = useState("");
   const [chartData, setChartData] = useState<Record<string, Array<{name:string;value:number}>> | undefined>(undefined);
+  const [confirmClear, setConfirmClear] = useState(false);
   const historyEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const resolvedId = fileId || localStorage.getItem("lastDatasetId") || "";
-
+  // Load dataset list once; auto-select first if nothing saved
   useEffect(() => {
-    if (!fileId) {
-      const savedId = localStorage.getItem("lastDatasetId");
-      if (savedId) navigate(`/ai-chat/${savedId}`, { replace: true });
-    } else {
-      localStorage.setItem("lastDatasetId", fileId);
+    listDatasets().then((res) => {
+      const ds: Dataset[] = res.data.datasets ?? [];
+      setDatasets(ds);
+      if (!activeFileId && ds.length > 0) {
+        setActiveFileId(ds[0].file_id);
+      }
+    }).catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // When URL param arrives (e.g. navigating from Analysis page), honour it
+  useEffect(() => {
+    if (paramFileId && paramFileId !== activeFileId) {
+      setActiveFileId(paramFileId);
     }
-  }, [fileId, navigate]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paramFileId]);
 
+  // Persist selection + reload dataset data + restore chat history whenever activeFileId changes
   useEffect(() => {
-    if (!resolvedId) return;
-    fetchAiSuggestions(resolvedId)
+    if (!activeFileId) return;
+    localStorage.setItem("lastDatasetId", activeFileId);
+    setSuggestions([]);
+    setPreview(null);
+    setHistory([]);
+    setError("");
+
+    // Restore previous conversation from server
+    fetchChatHistory(activeFileId)
+      .then((res) => {
+        const msgs: Array<{ role: string; content: string }> = res.data ?? [];
+        // Pair up user + assistant messages into AIResponse objects
+        const restored: AIResponse[] = [];
+        for (let i = 0; i < msgs.length - 1; i++) {
+          if (msgs[i].role === "user" && msgs[i + 1].role === "assistant") {
+            restored.push({
+              question: msgs[i].content,
+              answer: msgs[i + 1].content,
+              supported: true,
+              source: "history",
+            } as AIResponse);
+            i++; // skip the assistant message we just consumed
+          }
+        }
+        if (restored.length) setHistory(restored);
+      })
+      .catch(() => {});
+
+    fetchAiSuggestions(activeFileId)
       .then((res) => setSuggestions(res.data.suggestions ?? []))
       .catch(() => setSuggestions([]));
-    fetchDatasetPreview(resolvedId)
+    fetchDatasetPreview(activeFileId)
       .then((res) => {
         setPreview(res.data);
-        // Try to get chart data for NL chart rendering
         if (res.data?.chart_data) setChartData(res.data.chart_data as Record<string, Array<{name:string;value:number}>>);
       })
       .catch(() => {});
-  }, [resolvedId]);
+  }, [activeFileId]);
 
   useEffect(() => {
     historyEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -602,12 +661,12 @@ export default function AIChatPage() {
 
   const submitQuestion = async (value?: string) => {
     const prompt = (value ?? question).trim();
-    if (!prompt || !resolvedId) return;
+    if (!prompt || !activeFileId) return;
     setLoading(true);
     setError("");
     if (!value) setQuestion("");
     try {
-      const response = await askAiQuestion(resolvedId, prompt);
+      const response = await askAiQuestion(activeFileId, prompt);
       const item = response.data as AIResponse;
       setHistory((prev) => [...prev, item]);
       if (speakAnswers && item.answer) setLastAnswer(item.answer);
@@ -624,32 +683,15 @@ export default function AIChatPage() {
     submitQuestion(text);
   };
 
-  // ── No dataset ──────────────────────────────────────────────────────────────
-  if (!resolvedId) {
-    return (
-      <MainLayout>
-        <div style={{ maxWidth: 520, margin: "80px auto" }}>
-          <EmptyState
-            icon={<Bot size={26} />}
-            title="AI Copilot"
-            description="Select a dataset to start your AI-powered business conversation. Upload a CSV or Excel file, then come back here to ask questions."
-            action={
-              <div style={{ display: "flex", gap: 10 }}>
-                <button type="button" className="button button-primary" onClick={() => navigate("/datasets")}>
-                  <Database size={15} /> Browse Datasets
-                </button>
-                <button type="button" className="button button-secondary" onClick={() => navigate("/upload")}>
-                  Upload Data
-                </button>
-              </div>
-            }
-          />
-        </div>
-      </MainLayout>
-    );
-  }
+  const handleClearConfirmed = async () => {
+    setConfirmClear(false);
+    setHistory([]);
+    setError("");
+    if (activeFileId) clearChatHistoryApi(activeFileId).catch(() => {});
+  };
 
-  // ── Main layout ─────────────────────────────────────────────────────────────
+  const activeDataset = datasets.find((d) => d.file_id === activeFileId);
+
   return (
     <MainLayout>
       <style>{`
@@ -669,174 +711,308 @@ export default function AIChatPage() {
         <div>
           <p className="eyebrow">AI Copilot</p>
           <h1>Business Intelligence Chat</h1>
-          <p className="section-description">Ask plain-English questions about your data and get instant AI-powered answers.</p>
+          <p className="section-description">
+            Ask plain-English questions about your data and get instant AI-powered answers.
+          </p>
         </div>
         <div className="hero-actions">
-          <button type="button" className="button button-secondary button-sm" onClick={() => navigate(-1)}>
-            <ArrowLeft size={14} /> Back
-          </button>
           {history.length > 0 && (
-            <button type="button" className="button button-secondary button-sm" onClick={() => setHistory([])}>
+            <button
+              type="button"
+              className="button button-secondary button-sm"
+              onClick={() => setConfirmClear(true)}
+            >
               <Trash2 size={14} /> Clear chat
             </button>
           )}
         </div>
       </motion.div>
 
-      {/* Dataset Intelligence Panel */}
-      <DatasetIntelligencePanel
-        preview={preview}
-        suggestions={suggestions}
-        speakAnswers={speakAnswers}
-        onSpeakToggle={setSpeakAnswers}
-        onSuggestionClick={(q) => submitQuestion(q)}
-        loading={loading}
-      />
+      {/* ── Dataset picker bar ─────────────────────────────────────────────── */}
+      <div style={{
+        marginBottom: 20,
+        padding: "12px 18px",
+        borderRadius: 14,
+        background: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(148,163,184,0.1)",
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        flexWrap: "wrap",
+      }}>
+        <Database size={15} style={{ color: "var(--primary-light)", flexShrink: 0 }} />
+        <span style={{ fontSize: 13, fontWeight: 600, color: "#94a3b8", flexShrink: 0 }}>Dataset</span>
 
-      {/* Chat area */}
-      <div
-        style={{
-          background: "linear-gradient(145deg,rgba(15,23,42,0.8),rgba(22,33,58,0.6))",
-          border: "1px solid rgba(148,163,184,0.1)",
-          borderRadius: 20,
-          overflow: "hidden",
-          backdropFilter: "blur(12px)",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* Messages */}
-        <div
-          style={{
-            minHeight: 360,
-            maxHeight: 520,
-            overflowY: "auto",
-            padding: "24px 24px 16px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 20,
-            scrollbarWidth: "thin",
-            scrollbarColor: "rgba(99,102,241,0.3) transparent",
-          }}
-        >
-          {history.length === 0 && !loading ? (
-            <EmptyChatState onPromptClick={(q) => submitQuestion(q)} />
-          ) : (
-            <>
-              {history.map((item, i) => (
-                <ChatBubble key={i} item={item} index={i} chartData={chartData} />
-              ))}
-              <AnimatePresence>
-                {loading && <ThinkingBubble />}
-              </AnimatePresence>
-            </>
-          )}
-          <div ref={historyEndRef} />
-        </div>
-
-        {/* Error */}
-        <AnimatePresence>
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+        {datasets.length === 0 ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
+            <span style={{ fontSize: 13, color: "#64748b" }}>No datasets uploaded yet.</span>
+            <button
+              type="button"
+              className="button button-primary button-sm"
+              onClick={() => navigate("/upload")}
+            >
+              Upload Data
+            </button>
+          </div>
+        ) : (
+          <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+            <button
+              type="button"
+              onClick={() => setPickerOpen((v) => !v)}
               style={{
-                margin: "0 16px",
-                padding: "10px 14px",
-                background: "rgba(239,68,68,0.08)",
-                border: "1px solid rgba(239,68,68,0.25)",
-                borderRadius: 10,
-                fontSize: 13,
-                color: "#fca5a5",
+                display: "flex", alignItems: "center", gap: 8,
+                background: "rgba(99,102,241,0.08)",
+                border: "1px solid rgba(99,102,241,0.2)",
+                borderRadius: 10, padding: "7px 14px",
+                color: "#e2e8f0", fontSize: 13, fontWeight: 600,
+                cursor: "pointer", maxWidth: 380,
               }}
             >
-              {error}
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <span style={{
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                flex: 1, textAlign: "left",
+              }}>
+                {activeDataset?.filename ?? "Select a dataset…"}
+              </span>
+              <ChevronDown
+                size={14}
+                style={{
+                  flexShrink: 0, color: "#818cf8",
+                  transform: pickerOpen ? "rotate(180deg)" : "none",
+                  transition: "transform 0.2s",
+                }}
+              />
+            </button>
 
-        {/* Input bar */}
-        <div
+            {pickerOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  position: "absolute", top: "calc(100% + 6px)", left: 0, zIndex: 50,
+                  minWidth: 260, maxWidth: 380,
+                  background: "#1e293b", border: "1px solid rgba(99,102,241,0.2)",
+                  borderRadius: 12, padding: 6,
+                  boxShadow: "0 12px 32px rgba(0,0,0,0.5)",
+                }}
+              >
+                {datasets.map((d) => (
+                  <button
+                    key={d.file_id}
+                    type="button"
+                    onClick={() => { setActiveFileId(d.file_id); setPickerOpen(false); }}
+                    style={{
+                      display: "block", width: "100%", textAlign: "left",
+                      padding: "9px 14px", borderRadius: 8, border: "none",
+                      background: d.file_id === activeFileId
+                        ? "rgba(99,102,241,0.15)" : "transparent",
+                      color: d.file_id === activeFileId ? "#a5b4fc" : "#94a3b8",
+                      fontSize: 13, fontWeight: d.file_id === activeFileId ? 700 : 400,
+                      cursor: "pointer",
+                      overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                    }}
+                  >
+                    {d.filename}
+                  </button>
+                ))}
+                <div style={{
+                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  marginTop: 4, paddingTop: 4,
+                }}>
+                  <button
+                    type="button"
+                    onClick={() => { setPickerOpen(false); navigate("/upload"); }}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      width: "100%", padding: "9px 14px", borderRadius: 8,
+                      border: "none", background: "transparent",
+                      color: "#6366f1", fontSize: 13, fontWeight: 600,
+                      cursor: "pointer",
+                    }}
+                  >
+                    + Upload new dataset
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* ── No dataset selected placeholder ───────────────────────────────── */}
+      {!activeFileId ? (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
           style={{
-            padding: "16px 20px",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
+            padding: "60px 24px", textAlign: "center",
+            background: "linear-gradient(145deg,rgba(15,23,42,0.8),rgba(22,33,58,0.6))",
+            border: "1px solid rgba(148,163,184,0.1)", borderRadius: 20,
           }}
         >
-          <input
-            ref={inputRef}
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                submitQuestion();
-              }
-            }}
-            placeholder="Ask about revenue, regions, products, trends…"
-            disabled={loading}
-            style={{
-              flex: 1,
-              minWidth: 0,
-              padding: "12px 18px",
-              borderRadius: 14,
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(148,163,184,0.15)",
-              color: "#e2e8f0",
-              fontSize: 14,
-              outline: "none",
-              transition: "border-color 0.2s",
-            }}
-            onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(99,102,241,0.5)"; }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(148,163,184,0.15)"; }}
+          <div style={{
+            width: 56, height: 56, borderRadius: 16, margin: "0 auto 18px",
+            background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 0 24px rgba(99,102,241,0.3)", color: "white",
+          }}>
+            <Bot size={26} />
+          </div>
+          <h3 style={{ margin: "0 0 8px", fontSize: 17, fontWeight: 700 }}>
+            Select a dataset to get started
+          </h3>
+          <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem", margin: "0 0 20px" }}>
+            Upload a CSV or Excel file and the AI Copilot will answer questions about your data instantly.
+          </p>
+          <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+            <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
+              Upload Data
+            </button>
+            <button type="button" className="button button-secondary" onClick={() => navigate("/datasets")}>
+              <Database size={14} /> Browse Datasets
+            </button>
+          </div>
+        </motion.div>
+      ) : (
+        <>
+          {/* Dataset Intelligence Panel */}
+          <DatasetIntelligencePanel
+            preview={preview}
+            suggestions={suggestions}
+            speakAnswers={speakAnswers}
+            onSpeakToggle={setSpeakAnswers}
+            onSuggestionClick={(q) => submitQuestion(q)}
+            loading={loading}
           />
-          <VoiceAssistant
-            onTranscript={handleVoiceTranscript}
-            disabled={loading}
-            readAnswer={speakAnswers ? lastAnswer : undefined}
-          />
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(99,102,241,0.45)" }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => submitQuestion()}
-            disabled={loading || !question.trim()}
-            style={{
-              padding: "12px 22px",
-              borderRadius: 14,
-              fontSize: 14,
-              fontWeight: 700,
-              background:
-                loading || !question.trim()
-                  ? "rgba(99,102,241,0.3)"
-                  : "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              color: "#fff",
-              border: "none",
-              cursor: loading || !question.trim() ? "not-allowed" : "pointer",
-              flexShrink: 0,
-              boxShadow: "0 0 12px rgba(99,102,241,0.3)",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              transition: "background 0.2s",
-            }}
-          >
-            {loading ? (
-              <>
-                <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }} style={{ display: "flex" }}>
-                  <Send size={14} />
-                </motion.span>
-                Thinking…
-              </>
-            ) : (
-              <><Send size={14} /> Send</>
-            )}
-          </motion.button>
-        </div>
-      </div>
+
+          {/* Chat area */}
+          <div style={{
+            background: "linear-gradient(145deg,rgba(15,23,42,0.8),rgba(22,33,58,0.6))",
+            border: "1px solid rgba(148,163,184,0.1)",
+            borderRadius: 20, overflow: "hidden",
+            backdropFilter: "blur(12px)", display: "flex", flexDirection: "column",
+          }}>
+            {/* Messages */}
+            <div style={{
+              minHeight: 360, maxHeight: 520, overflowY: "auto",
+              padding: "24px 24px 16px",
+              display: "flex", flexDirection: "column", gap: 20,
+              scrollbarWidth: "thin",
+              scrollbarColor: "rgba(99,102,241,0.3) transparent",
+            }}>
+              {history.length === 0 && !loading ? (
+                <EmptyChatState onPromptClick={(q) => submitQuestion(q)} suggestions={suggestions} />
+              ) : (
+                <>
+                  {history.map((item, i) => (
+                    <ChatBubble key={i} item={item} index={i} chartData={chartData} />
+                  ))}
+                  <AnimatePresence>
+                    {loading && <ThinkingBubble />}
+                  </AnimatePresence>
+                </>
+              )}
+              <div ref={historyEndRef} />
+            </div>
+
+            {/* Error */}
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  style={{
+                    margin: "0 16px", padding: "10px 14px",
+                    background: "rgba(239,68,68,0.08)",
+                    border: "1px solid rgba(239,68,68,0.25)",
+                    borderRadius: 10, fontSize: 13, color: "#fca5a5",
+                  }}
+                >
+                  {error}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Input bar */}
+            <div style={{
+              padding: "16px 20px",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+              display: "flex", alignItems: "center", gap: 10,
+            }}>
+              <input
+                ref={inputRef}
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    submitQuestion();
+                  }
+                }}
+                placeholder="Ask about revenue, regions, products, trends…"
+                disabled={loading}
+                style={{
+                  flex: 1, minWidth: 0, padding: "12px 18px",
+                  borderRadius: 14, background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(148,163,184,0.15)",
+                  color: "#e2e8f0", fontSize: 14, outline: "none",
+                  transition: "border-color 0.2s",
+                }}
+                onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(99,102,241,0.5)"; }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(148,163,184,0.15)"; }}
+              />
+              <VoiceAssistant
+                onTranscript={handleVoiceTranscript}
+                disabled={loading}
+                readAnswer={speakAnswers ? lastAnswer : undefined}
+              />
+              <motion.button
+                type="button"
+                whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(99,102,241,0.45)" }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => submitQuestion()}
+                disabled={loading || !question.trim()}
+                style={{
+                  padding: "12px 22px", borderRadius: 14,
+                  fontSize: 14, fontWeight: 700,
+                  background: loading || !question.trim()
+                    ? "rgba(99,102,241,0.3)"
+                    : "linear-gradient(135deg,#6366f1,#8b5cf6)",
+                  color: "#fff", border: "none",
+                  cursor: loading || !question.trim() ? "not-allowed" : "pointer",
+                  flexShrink: 0, boxShadow: "0 0 12px rgba(99,102,241,0.3)",
+                  display: "flex", alignItems: "center", gap: 8,
+                  transition: "background 0.2s",
+                }}
+              >
+                {loading ? (
+                  <>
+                    <motion.span
+                      animate={{ rotate: 360 }}
+                      transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                      style={{ display: "flex" }}
+                    >
+                      <Send size={14} />
+                    </motion.span>
+                    Thinking…
+                  </>
+                ) : (
+                  <><Send size={14} /> Send</>
+                )}
+              </motion.button>
+            </div>
+          </div>
+        </>
+      )}
+      <ConfirmModal
+        open={confirmClear}
+        title="Clear conversation?"
+        message="This will permanently delete all messages in this chat. This cannot be undone."
+        confirmLabel="Clear chat"
+        onConfirm={handleClearConfirmed}
+        onCancel={() => setConfirmClear(false)}
+      />
     </MainLayout>
   );
 }

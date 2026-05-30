@@ -116,28 +116,10 @@ def build_time_series(df: pd.DataFrame, dt_col: str, value_col: str) -> list:
 
 
 def detect_industry(df: pd.DataFrame) -> str:
-    col_str = " ".join(str(c).lower() for c in df.columns)
-    if any(k in col_str for k in ["patient", "diagnosis", "treatment", "hospital", "medication", "icd"]):
-        return "Healthcare"
-    if any(k in col_str for k in ["cart", "checkout", "wishlist", "basket", "shipping_cost"]):
-        return "E-commerce"
-    if any(k in col_str for k in ["employee", "salary", "department", "hire_date", "position", "headcount"]):
-        return "Human Resources"
-    if any(k in col_str for k in ["ticker", "portfolio", "stock", "fund", "dividend", "nav"]):
-        return "Finance / Investments"
-    if any(k in col_str for k in ["campaign", "impressions", "ctr", "clicks", "conversion", "ad_spend"]):
-        return "Marketing"
-    if any(k in col_str for k in ["shipment", "tracking", "warehouse", "delivery", "freight", "logistics"]):
-        return "Logistics / Supply Chain"
-    if any(k in col_str for k in ["flight", "hotel", "booking", "destination", "travel", "tour", "passenger"]):
-        return "Travel & Tourism"
-    if any(k in col_str for k in ["salesman", "salesperson", "rep", "quota", "territory"]):
-        return "Sales"
-    if any(k in col_str for k in ["product", "sku", "order", "customer", "item"]):
-        return "Retail / Sales"
-    if any(k in col_str for k in ["revenue", "profit", "expense", "budget", "forecast"]):
-        return "Business Finance"
-    return "General Business"
+    """Return the detected industry label using the confidence-scored classifier."""
+    from app.services.dataset_classifier import classify_dataset
+    result = classify_dataset(df)
+    return result.label
 
 
 def analyze_dataframe(df: pd.DataFrame) -> dict:

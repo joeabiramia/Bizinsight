@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import get_file_record_for_user
 
 router = APIRouter(prefix="/scenarios", tags=["scenarios"])
@@ -24,10 +24,10 @@ class ScenarioRequest(BaseModel):
 def simulate_scenario(
     file_id: str,
     scenario: ScenarioRequest,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Run a what-if scenario simulation against the dataset."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 

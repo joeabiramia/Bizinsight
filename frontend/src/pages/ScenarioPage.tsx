@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Wand2, Database, ArrowLeft } from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
@@ -5,9 +6,15 @@ import PageHeader from "../components/ui/PageHeader";
 import EmptyState from "../components/ui/EmptyState";
 import ScenarioSimulator from "../components/ScenarioSimulator";
 import HealthScoreCard from "../components/HealthScoreCard";
+import type { ScenarioResponse, HealthScores } from "../types";
 
 export default function ScenarioPage() {
   const { fileId } = useParams<{ fileId: string }>();
+  const [projectedScores, setProjectedScores] = useState<HealthScores | null>(null);
+
+  const handleSimulationResult = (result: ScenarioResponse | null) => {
+    setProjectedScores(result?.projected_health ?? null);
+  };
 
   if (!fileId) {
     return (
@@ -31,7 +38,7 @@ export default function ScenarioPage() {
       <PageHeader
         eyebrow="What-If Analysis"
         title="Scenario Simulation"
-        description="Model the revenue impact of changing prices, volumes, costs, and staffing."
+        description="Model the revenue impact of changing prices, volumes, costs, and staffing — and see how it affects your business health score."
         actions={
           <Link to={`/analysis/${fileId}`} className="button button-secondary button-sm">
             <ArrowLeft size={14} /> Back to Analysis
@@ -39,8 +46,8 @@ export default function ScenarioPage() {
         }
       />
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        <HealthScoreCard fileId={fileId} />
-        <ScenarioSimulator fileId={fileId} />
+        <HealthScoreCard fileId={fileId} projectedScores={projectedScores} />
+        <ScenarioSimulator fileId={fileId} onResult={handleSimulationResult} />
         <div style={{ display: "flex", gap: 12 }}>
           <Link to={`/analysis/${fileId}`} className="button button-secondary">
             <ArrowLeft size={14} /> Back to Analysis

@@ -212,7 +212,7 @@ export default function BusinessPulseCard({ fileId }: Props) {
             borderTop: `1px solid ${cfg.border}`,
           }}
         >
-          {kpis.total_revenue && (
+          {!!kpis.total_revenue && (
             <div>
               <p
                 style={{
@@ -270,7 +270,7 @@ export default function BusinessPulseCard({ fileId }: Props) {
               </p>
             </div>
           )}
-          {kpis.top_region && (
+          {!!kpis.top_region && (
             <div>
               <p
                 style={{
@@ -295,7 +295,7 @@ export default function BusinessPulseCard({ fileId }: Props) {
               </p>
             </div>
           )}
-          {kpis.top_product && (
+          {!!kpis.top_product && (
             <div>
               <p
                 style={{

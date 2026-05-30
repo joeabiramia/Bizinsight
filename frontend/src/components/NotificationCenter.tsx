@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Notification, NotificationSeverity } from "../types";
 import {
@@ -24,30 +25,41 @@ function timeAgo(iso: string): string {
   return `${Math.floor(hours / 24)}d ago`;
 }
 
+const PAGE = 25;
+
 export default function NotificationCenter() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const load = async () => {
+  const load = async (offset = 0, append = false) => {
     try {
-      setLoading(true);
+      if (offset === 0) setLoading(true); else setLoadingMore(true);
       const res = await fetchNotifications();
-      setNotifications(res.data.notifications);
-      setUnreadCount(res.data.unread_count);
+      const data = res.data;
+      // Backend already returns all; slice client-side for progressive loading
+      const all: Notification[] = data.notifications ?? [];
+      setUnreadCount(data.unread_count ?? 0);
+      setHasMore(all.length > offset + PAGE);
+      setNotifications(append ? prev => [...prev, ...all.slice(offset, offset + PAGE)] : all.slice(0, PAGE));
     } catch {
       // silently fail
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
 
   useEffect(() => {
     load();
-    const interval = setInterval(load, 30000);
+    const interval = setInterval(() => load(0, false), 30000);
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Close on outside click
@@ -150,10 +162,36 @@ export default function NotificationCenter() {
                       onClick={() => !n.read && handleRead(n.notification_id)}
                     >
                       <div className="notif-item-left">
-                        <span className="notif-sev-icon">{cfg.icon}</span>
+                        <span className="notif-sev-icon">
+                          {n.type === "workspace_invite" ? "👥" : cfg.icon}
+                        </span>
                         <div className="notif-item-body">
                           <div className="notif-item-title">{n.title}</div>
-                          <div className="notif-item-message">{n.message}</div>
+                          <div className="notif-item-message">
+                            {n.type === "workspace_invite"
+                              ? `You've been invited as ${String(n.metadata?.role ?? "Analyst")}. Click below to accept.`
+                              : n.message}
+                          </div>
+                          {n.type === "workspace_invite" && n.metadata?.invite_token && (
+                            <button
+                              type="button"
+                              onClick={e => {
+                                e.stopPropagation();
+                                handleRead(n.notification_id);
+                                setOpen(false);
+                                navigate(`/join?token=${n.metadata!.invite_token}`);
+                              }}
+                              style={{
+                                marginTop: 8, padding: "5px 14px",
+                                borderRadius: 8, border: "none",
+                                background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+                                color: "white", fontSize: "0.75rem", fontWeight: 700,
+                                cursor: "pointer",
+                              }}
+                            >
+                              Accept Invitation →
+                            </button>
+                          )}
                           <div className="notif-item-meta">
                             <span className={`notif-sev-badge ${cfg.badge}`}>{n.severity}</span>
                             <span className="notif-time">{timeAgo(n.created_at)}</span>
@@ -171,6 +209,21 @@ export default function NotificationCenter() {
                   );
                 })}
               </AnimatePresence>
+              {hasMore && (
+                <button
+                  type="button"
+                  style={{
+                    width: "100%", padding: "10px", border: "none",
+                    background: "rgba(99,102,241,0.06)",
+                    color: "var(--primary-light)", fontSize: "0.8rem",
+                    fontWeight: 600, cursor: "pointer",
+                  }}
+                  disabled={loadingMore}
+                  onClick={() => load(notifications.length, true)}
+                >
+                  {loadingMore ? "Loading…" : "Load more"}
+                </button>
+              )}
             </div>
           </motion.div>
         )}

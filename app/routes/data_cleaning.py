@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe
-from app.dependencies import get_current_user
+from app.dependencies import get_workspace_user
 from app.storage import get_file_record_for_user
 from app.services.audit_service import log_action
 
@@ -23,10 +23,10 @@ class ApplyFixRequest(BaseModel):
 @router.get("/{file_id}/analyze")
 def analyze_data_quality(
     file_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Detect all data quality issues in the dataset."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
     try:
@@ -37,7 +37,7 @@ def analyze_data_quality(
     try:
         from app.services.data_cleaning_service import analyze_data_quality as _analyze
         result = _analyze(df)
-        log_action(current_user["user_id"], "analysis_run", "file", file_id, {"type": "data_quality"})
+        log_action(wu["user_id"], "analysis_run", "file", file_id, {"type": "data_quality"})
         return {"file_id": file_id, **result}
     except Exception as exc:
         logger.exception("Data quality analysis failed for %s", file_id)
@@ -48,10 +48,10 @@ def analyze_data_quality(
 def apply_fixes(
     file_id: str,
     body: ApplyFixRequest,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
     """Apply a list of data quality fixes to the dataset and save the cleaned file."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
     try:
@@ -81,7 +81,7 @@ def apply_fixes(
         raise HTTPException(status_code=500, detail=f"Could not save cleaned file: {exc}")
 
     log_action(
-        current_user["user_id"],
+        wu["user_id"],
         "data_cleaning_applied",
         "file",
         file_id,

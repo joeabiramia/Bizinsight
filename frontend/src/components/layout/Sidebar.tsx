@@ -1,15 +1,17 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useTheme } from "../../hooks/useTheme";
+import { useWorkspace } from "../../context/WorkspaceContext";
 import {
   LayoutDashboard, Upload, Database, Bot, LayoutTemplate,
   GitCompare, Target, Plug, FileSpreadsheet, ShoppingBag,
-  Mail, Bell, Settings, Map, Shield, ClipboardList,
+  Settings, Map, Shield, ClipboardList,
   BarChart2, FileText, TrendingUp, Wand2, Sparkles,
   Globe, LogOut, ChevronRight, Users, Palette,
-  TrendingDown, BookOpen,
+  TrendingDown, BookOpen, Clock,
 } from "lucide-react";
 
-type NavLink = { to: string; label: string; icon: React.ReactNode; section?: string };
+type NavLink = { to: string; label: string; icon: React.ReactNode; section?: string; comingSoon?: boolean };
 
 const staticLinks: NavLink[] = [
   { to: "/dashboard",         label: "Overview",          icon: <LayoutDashboard size={16} /> },
@@ -20,13 +22,11 @@ const staticLinks: NavLink[] = [
   { to: "/compare",           label: "Compare Datasets",  icon: <GitCompare size={16} /> },
   { to: "/benchmark",         label: "Benchmarks",        icon: <TrendingDown size={16} /> },
   { to: "/goal-forecast",     label: "Goal Forecast",     icon: <Target size={16} /> },
-  { to: "/integrations",      label: "Integrations",      icon: <Plug size={16} />, section: "Live Data" },
-  { to: "/google-sheets",     label: "Google Sheets",     icon: <FileSpreadsheet size={16} /> },
-  { to: "/excel-online",      label: "Excel Online",      icon: <FileSpreadsheet size={16} /> },
-  { to: "/shopify",           label: "Shopify",           icon: <ShoppingBag size={16} /> },
-  { to: "/schedules",         label: "Email Schedules",   icon: <Mail size={16} />, section: "Automation" },
-  { to: "/digest",            label: "Weekly Digest",     icon: <BookOpen size={16} /> },
-  { to: "/alert-channels",    label: "Alert Channels",    icon: <Bell size={16} /> },
+  { to: "/integrations",      label: "Integrations",      icon: <Plug size={16} />, section: "Live Data", comingSoon: true },
+  { to: "/google-sheets",     label: "Google Sheets",     icon: <FileSpreadsheet size={16} />, comingSoon: true },
+  { to: "/excel-online",      label: "Excel Online",      icon: <FileSpreadsheet size={16} />, comingSoon: true },
+  { to: "/shopify",           label: "Shopify",           icon: <ShoppingBag size={16} />, comingSoon: true },
+  { to: "/digest",            label: "Weekly Digest",     icon: <BookOpen size={16} />, section: "Automation" },
   { to: "/goals",             label: "Goals",             icon: <Target size={16} /> },
   { to: "/automation",        label: "Automation Rules",  icon: <Settings size={16} /> },
   { to: "/strategy",          label: "Strategy",          icon: <Map size={16} /> },
@@ -34,6 +34,7 @@ const staticLinks: NavLink[] = [
   { to: "/audit",             label: "Audit Logs",        icon: <ClipboardList size={16} /> },
   { to: "/workspace",         label: "Team",              icon: <Users size={16} />, section: "Workspace" },
   { to: "/white-label",       label: "White Label",       icon: <Palette size={16} /> },
+  { to: "/settings",          label: "Account Settings",  icon: <ClipboardList size={16} /> },
 ];
 
 const contextualIconMap: Record<string, React.ReactNode> = {
@@ -59,6 +60,8 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const fileId = useFileId();
+  const { theme, toggleTheme } = useTheme();
+  const { workspace, role, isInWorkspace, can } = useWorkspace();
 
   const isActive = (to: string) => {
     if (to === "/dashboard") return location.pathname === "/dashboard";
@@ -101,8 +104,10 @@ export default function Sidebar() {
       <nav className="sidebar-nav">
         {staticLinks
           .filter((l) => {
+            // Hide upload for viewers
+            if (l.to === "/upload" && !can("upload")) return false;
             if (!fileId) return true;
-            const contextualPaths = ["/ai-chat", "/fraud", "/strategy"];
+            const contextualPaths = ["/fraud", "/strategy"];
             return !contextualPaths.some((p) => l.to.startsWith(p));
           })
           .map((link) => (
@@ -112,10 +117,16 @@ export default function Sidebar() {
               )}
               <Link
                 to={link.to}
-                className={`sidebar-link${isActive(link.to) ? " sidebar-link--active" : ""}`}
+                className={`sidebar-link${isActive(link.to) ? " sidebar-link--active" : ""}${link.comingSoon ? " sidebar-link--disabled" : ""}`}
+                style={link.comingSoon ? { opacity: 0.6 } : undefined}
               >
                 <span className="sidebar-link-icon">{link.icon}</span>
-                <span>{link.label}</span>
+                <span style={{ flex: 1 }}>{link.label}</span>
+                {link.comingSoon && (
+                  <span style={{ display: "flex", alignItems: "center", gap: 3, fontSize: "9px", fontWeight: 700, color: "#f59e0b", background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.3)", borderRadius: 4, padding: "1px 5px", letterSpacing: "0.04em" }}>
+                    <Clock size={8} />SOON
+                  </span>
+                )}
               </Link>
             </span>
           ))}
@@ -140,6 +151,25 @@ export default function Sidebar() {
         )}
       </nav>
 
+      {/* Workspace membership banner */}
+      {isInWorkspace && workspace && (
+        <div style={{
+          margin: "8px 12px",
+          padding: "10px 12px",
+          borderRadius: 10,
+          background: "rgba(99,102,241,0.10)",
+          border: "1px solid rgba(99,102,241,0.25)",
+          fontSize: "0.72rem",
+        }}>
+          <p style={{ margin: "0 0 2px", fontWeight: 700, color: "var(--primary-light)" }}>
+            👥 In {workspace.owner_name}'s workspace
+          </p>
+          <p style={{ margin: 0, color: "var(--text-secondary)", textTransform: "capitalize" }}>
+            Role: {role}
+          </p>
+        </div>
+      )}
+
       {user && (
         <div className="sidebar-user-panel">
           <div className="sidebar-user-info">
@@ -153,6 +183,17 @@ export default function Sidebar() {
           {user.onboarding_data?.business_type && (
             <div className="sidebar-industry-badge">{user.onboarding_data.business_type}</div>
           )}
+
+          <button
+            type="button"
+            className="sidebar-logout-btn"
+            onClick={toggleTheme}
+            style={{ marginBottom: 4 }}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+            {theme === "dark" ? "Light mode" : "Dark mode"}
+          </button>
 
           <button type="button" className="sidebar-logout-btn" onClick={handleLogout}>
             <LogOut size={13} />

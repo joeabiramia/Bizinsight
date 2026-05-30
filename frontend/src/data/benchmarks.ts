@@ -125,11 +125,26 @@ export const INDUSTRY_BENCHMARKS: Record<string, IndustryBenchmark> = {
       { name: "Revenue Growth (YoY)", industry_avg: 9, top_quartile: 22, unit: "%", higher_is_better: true, description: "Year-over-year revenue growth" },
     ],
   },
+  general: {
+    industry: "general",
+    label: "General Business",
+    icon: "📊",
+    color: "#6366f1",
+    insight: "Upload a dataset so BizInsight AI can detect your industry and show you relevant benchmarks.",
+    metrics: [
+      { name: "Revenue Growth (YoY)", industry_avg: 10, top_quartile: 25, unit: "%", higher_is_better: true, description: "Year-over-year revenue growth across industries" },
+      { name: "Gross Margin", industry_avg: 42, top_quartile: 65, unit: "%", higher_is_better: true, description: "Revenue minus cost of goods sold / services" },
+      { name: "Customer Retention Rate", industry_avg: 75, top_quartile: 92, unit: "%", higher_is_better: true, description: "% of customers retained year over year" },
+      { name: "Customer Acquisition Cost", industry_avg: 220, top_quartile: 90, unit: "$", higher_is_better: false, description: "Cost to acquire one new customer" },
+      { name: "Net Promoter Score", industry_avg: 32, top_quartile: 65, unit: "pts", higher_is_better: true, description: "Customer loyalty score (-100 to 100)" },
+      { name: "Operating Margin", industry_avg: 14, top_quartile: 28, unit: "%", higher_is_better: true, description: "Operating income as % of revenue" },
+    ],
+  },
 };
 
 export function getBenchmarkForIndustry(industry: string): IndustryBenchmark {
   const key = industry.toLowerCase().replace(/[^a-z]/g, "");
-  return INDUSTRY_BENCHMARKS[key] || INDUSTRY_BENCHMARKS["retail"];
+  return INDUSTRY_BENCHMARKS[key] ?? INDUSTRY_BENCHMARKS["general"];
 }
 
 export const ALL_INDUSTRIES = Object.values(INDUSTRY_BENCHMARKS);

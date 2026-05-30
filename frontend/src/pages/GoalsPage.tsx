@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Target, Plus, Trash2, TrendingUp, Database, Calendar, CheckCircle2 } from "lucide-react";
+import { Target, Plus, Trash2, Database, Calendar, CheckCircle2 } from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
 import PageHeader from "../components/ui/PageHeader";
 import EmptyState from "../components/ui/EmptyState";

@@ -176,6 +176,15 @@ def simulate_scenario(df: pd.DataFrame, scenario: dict) -> dict:
     projected_revenue = base_revenue * (1 + total_revenue_impact_pct / 100)
     revenue_delta = projected_revenue - base_revenue
 
+    # Compute base health scores, then project them from scenario impact
+    try:
+        from app.services.health_score_service import calculate_health_scores
+        base_health = calculate_health_scores(df)
+        projected_health = _project_health_scores(base_health, scenario, total_revenue_impact_pct)
+    except Exception:
+        base_health = None
+        projected_health = None
+
     return {
         "base_revenue": round(base_revenue, 2),
         "projected_revenue": round(projected_revenue, 2),
@@ -189,5 +198,95 @@ def simulate_scenario(df: pd.DataFrame, scenario: dict) -> dict:
             f"{total_revenue_impact_pct:+.1f}% from current baseline of ${base_revenue:,.2f})."
         ),
         "confidence": "medium" if len(results) >= 2 else "low",
-        "disclaimer": "Projections are estimates based on statistical patterns in your data. Actual results may vary."
+        "disclaimer": "Projections are estimates based on statistical patterns in your data. Actual results may vary.",
+        "base_health": base_health,
+        "projected_health": projected_health,
+    }
+
+
+def _project_health_scores(base_health: dict, scenario: dict, total_revenue_impact_pct: float) -> dict:
+    """
+    Derive projected health scores analytically from the simulation outputs.
+
+    Rather than re-running the scorer on a synthetic DataFrame, we apply
+    scenario-specific deltas to each health dimension so the result is
+    directly explainable in terms of what the user changed.
+    """
+    price_change     = float(scenario.get("price_change_pct", 0))
+    volume_change    = float(scenario.get("volume_change_pct", 0))
+    marketing_change = float(scenario.get("marketing_change_pct", 0))
+    staff_change     = float(scenario.get("staff_change_pct", 0))
+    cost_change      = float(scenario.get("cost_change_pct", 0))
+
+    base_overall    = base_health["overall"]["score"]
+    base_stability  = base_health["revenue_stability"]["score"]
+    base_growth     = base_health["growth"]["score"]
+    base_risk       = base_health["risk"]["score"]
+
+    # ── Growth: revenue impact is the primary driver ───────────────────────────
+    growth_delta = total_revenue_impact_pct * 1.5
+    projected_growth = max(0.0, min(100.0, base_growth + growth_delta))
+
+    # ── Stability: volume / marketing help; cost spikes and staff cuts hurt ────
+    stability_delta = volume_change * 0.10 + marketing_change * 0.05
+    if staff_change < 0:
+        stability_delta += staff_change * 0.10   # negative * 0.10 → negative delta
+    if cost_change > 0:
+        stability_delta -= cost_change * 0.10    # rising costs hurt stability
+    projected_stability = max(0.0, min(100.0, base_stability + stability_delta))
+
+    # ── Risk: cost reduction is the clearest risk reducer ─────────────────────
+    risk_delta = -cost_change * 0.30             # cut costs → lower risk; raise costs → higher risk
+    if staff_change < 0:
+        risk_delta += staff_change * 0.15        # headcount cuts add operational risk
+    if marketing_change > 0:
+        risk_delta += marketing_change * 0.03    # growth investment = small positive
+    projected_risk = max(0.0, min(100.0, base_risk + risk_delta))
+
+    # ── Overall: same weights as calculate_health_scores ──────────────────────
+    projected_overall = round(
+        projected_stability * 0.35 + projected_growth * 0.35 + projected_risk * 0.30, 1
+    )
+
+    def _grade(s: float) -> str:
+        if s >= 80: return "A"
+        if s >= 65: return "B"
+        if s >= 50: return "C"
+        if s >= 35: return "D"
+        return "F"
+
+    def _color(s: float) -> str:
+        if s >= 75: return "green"
+        if s >= 50: return "yellow"
+        return "red"
+
+    def _dim(label: str, score: float, base_score: float, explanation: str) -> dict:
+        return {
+            "score": round(score, 1),
+            "grade": _grade(score),
+            "color": _color(score),
+            "label": label,
+            "explanation": explanation,
+            "delta": round(score - base_score, 1),
+        }
+
+    rev_sign = "+" if total_revenue_impact_pct >= 0 else ""
+    return {
+        "overall": _dim(
+            "Overall Health (Projected)", projected_overall, base_overall,
+            f"Projected composite score under this scenario "
+            f"(revenue impact: {rev_sign}{total_revenue_impact_pct:.1f}%).",
+        ),
+        "revenue_stability": _dim(
+            "Revenue Stability (Projected)", projected_stability, base_stability,
+            "Reflects how volume, cost, and staffing changes affect revenue consistency.",
+        ),
+        "growth": _dim(
+            "Growth Score (Projected)", projected_growth, base_growth,
+            f"Driven by the estimated revenue change of {rev_sign}{total_revenue_impact_pct:.1f}%.",
+        ),
+        "risk": _dim(
+            "Risk Score (Projected)", projected_risk, base_risk,
+            "Reflects cost structure and operational risk changes under this scenario.",
+        ),
     }

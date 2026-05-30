@@ -11,6 +11,7 @@ import LoadingSkeleton from "../components/ui/LoadingSkeleton";
 import EmptyState from "../components/ui/EmptyState";
 import { listDatasets, api } from "../services/api";
 import type { DatasetRecord } from "../types";
+import { useWorkspace } from "../context/WorkspaceContext";
 
 type SortKey = "name" | "date";
 type SortDir = "asc" | "desc";
@@ -29,6 +30,7 @@ function timeAgo(dateStr: string): string {
 
 export default function DatasetsPage() {
   const navigate = useNavigate();
+  const { can, isInWorkspace, workspace } = useWorkspace();
   const [datasets, setDatasets] = useState<DatasetRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -87,12 +89,18 @@ export default function DatasetsPage() {
     <MainLayout>
       <PageHeader
         eyebrow="Data Library"
-        title="Your Datasets"
-        description={`${datasets.length} dataset${datasets.length !== 1 ? "s" : ""} uploaded. Click any row to open the analysis.`}
+        title={isInWorkspace && workspace ? `${workspace.owner_name}'s Datasets` : "Your Datasets"}
+        description={
+          isInWorkspace && workspace
+            ? `Viewing ${workspace.owner_name}'s shared workspace — ${datasets.length} dataset${datasets.length !== 1 ? "s" : ""} available.`
+            : `${datasets.length} dataset${datasets.length !== 1 ? "s" : ""} uploaded. Click any row to open the analysis.`
+        }
         actions={
-          <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
-            <Upload size={15} /> Upload New
-          </button>
+          can("upload") ? (
+            <button type="button" className="button button-primary" onClick={() => navigate("/upload")}>
+              <Upload size={15} /> Upload New
+            </button>
+          ) : undefined
         }
       />
 
@@ -202,21 +210,23 @@ export default function DatasetsPage() {
                     <Bot size={12} /> Ask AI
                   </button>
 
-                  {confirmDelete === ds.file_id ? (
-                    <div style={{ display: "flex", gap: 3 }}>
-                      <button type="button" className="button button-sm"
-                        style={{ background: "var(--danger-dim)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}
-                        onClick={() => handleDelete(ds.file_id)} disabled={deletingId === ds.file_id}>
-                        {deletingId === ds.file_id ? "…" : "Delete"}
+                  {can("delete_dataset") && (
+                    confirmDelete === ds.file_id ? (
+                      <div style={{ display: "flex", gap: 3 }}>
+                        <button type="button" className="button button-sm"
+                          style={{ background: "var(--danger-dim)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}
+                          onClick={() => handleDelete(ds.file_id)} disabled={deletingId === ds.file_id}>
+                          {deletingId === ds.file_id ? "…" : "Delete"}
+                        </button>
+                        <button type="button" className="button button-ghost button-sm" onClick={() => setConfirmDelete(null)}>✕</button>
+                      </div>
+                    ) : (
+                      <button type="button" className="button button-ghost button-sm"
+                        style={{ color: "var(--muted)", padding: "7px 7px" }}
+                        onClick={() => setConfirmDelete(ds.file_id)} title="Delete dataset">
+                        <Trash2 size={12} />
                       </button>
-                      <button type="button" className="button button-ghost button-sm" onClick={() => setConfirmDelete(null)}>✕</button>
-                    </div>
-                  ) : (
-                    <button type="button" className="button button-ghost button-sm"
-                      style={{ color: "var(--muted)", padding: "7px 7px" }}
-                      onClick={() => setConfirmDelete(ds.file_id)} title="Delete dataset">
-                      <Trash2 size={12} />
-                    </button>
+                    )
                   )}
                 </div>
               </motion.div>

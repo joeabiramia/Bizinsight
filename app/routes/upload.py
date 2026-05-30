@@ -6,7 +6,8 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 import os
 
 from app.dataframe_utils import allowed_filename, load_dataframe, safe_upload_name
-from app.dependencies import get_current_user
+from app.dependencies import get_current_user, get_workspace_user, require_analyst, require_admin
+from app.services.dataset_classifier import classify_dataset
 from app.storage import (
     UPLOAD_FOLDER,
     get_file_record_for_user,
@@ -27,8 +28,9 @@ def build_preview(filepath):
 @router.post("/upload-file")
 async def upload_file(
     file: UploadFile = File(...),
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(require_analyst),   # viewers blocked
 ):
+    current_user = wu
     if not file.filename or not allowed_filename(file.filename):
         raise HTTPException(status_code=415, detail="Only CSV, XLSX, and XLS files are supported")
 
@@ -40,23 +42,53 @@ async def upload_file(
     if not contents:
         raise HTTPException(status_code=400, detail="Uploaded file is empty")
 
+    MAX_BYTES = 50 * 1024 * 1024  # 50 MB
+    if len(contents) > MAX_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"File too large ({len(contents) / 1_048_576:.1f} MB). Maximum allowed size is 50 MB.",
+        )
+
     with open(filepath, "wb") as buffer:
         buffer.write(contents)
 
     preview = build_preview(filepath)
     now = datetime.utcnow()
 
+    # Classify industry immediately so the benchmark page can use it without
+    # requiring a separate API call after upload.
+    try:
+        df_for_classify = load_dataframe(filepath)
+        classification = classify_dataset(df_for_classify)
+        detected_industry = classification.industry
+        industry_confidence = classification.confidence
+    except Exception:
+        detected_industry = "general"
+        industry_confidence = 0.0
+
+    # Store under effective_owner_id so workspace members' uploads
+    # belong to the workspace owner's dataset pool
+    effective_owner = wu.get("effective_owner_id", wu["user_id"])
     insert_file_record({
         "file_id": file_id,
         "filename": clean_name,
         "path": filepath,
-        "user_id": current_user["user_id"],
+        "user_id": effective_owner,
+        "uploaded_by": wu["user_id"],
         "user_email": current_user.get("email", ""),
         "created_at": now,
         "updated_at": now,
+        "industry": detected_industry,
+        "industry_confidence": industry_confidence,
     })
 
-    return {"file_id": file_id, "filename": clean_name, "preview": preview}
+    return {
+        "file_id": file_id,
+        "filename": clean_name,
+        "preview": preview,
+        "industry": detected_industry,
+        "industry_confidence": industry_confidence,
+    }
 
 
 def serialize_dataset(entry):
@@ -72,15 +104,18 @@ def serialize_dataset(entry):
 
 
 @router.get("/datasets")
-def list_datasets(current_user: dict = Depends(get_current_user)):
-    records = list_file_records_for_user(current_user["user_id"])
+def list_datasets(wu: dict = Depends(get_workspace_user)):
+    effective_owner = wu.get("effective_owner_id", wu["user_id"])
+    records = list_file_records_for_user(effective_owner)
     return {"datasets": [serialize_dataset(item) for item in records]}
 
 
 @router.delete("/upload/{file_id}")
-def delete_dataset(file_id: str, current_user: dict = Depends(get_current_user)):
-    """Delete a dataset and its associated file."""
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+def delete_dataset(file_id: str, wu: dict = Depends(require_admin)):
+    """Delete a dataset and its associated file. Requires admin or owner role."""
+    current_user = wu
+    effective_owner = wu.get("effective_owner_id", wu["user_id"])
+    file_doc = get_file_record_for_user(file_id, effective_owner)
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
 
@@ -100,9 +135,9 @@ def delete_dataset(file_id: str, current_user: dict = Depends(get_current_user))
 @router.get("/dataset-preview/{file_id}")
 def get_dataset_preview(
     file_id: str,
-    current_user: dict = Depends(get_current_user),
+    wu: dict = Depends(get_workspace_user),
 ):
-    file_doc = get_file_record_for_user(file_id, current_user["user_id"])
+    file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
     df = load_dataframe(file_doc["path"])

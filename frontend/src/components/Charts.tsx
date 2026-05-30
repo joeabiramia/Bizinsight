@@ -119,7 +119,7 @@ function ClickableBarCard({ title, data, fileId, metric }: ClickableBarCardProps
           <YAxis tick={{ fontSize: 11 }} tickFormatter={formatAxis} width={54} />
           <Tooltip formatter={formatTooltipValue as never} />
           <Bar dataKey="value" radius={[6,6,0,0]} maxBarSize={48} cursor="pointer"
-            onClick={(d: { name: string; value: number }) => setActive(a => a?.name === d.name ? null : d)}>
+            onClick={(d) => { const name = String(d.name ?? ""); const val = Number(d.value ?? 0); setActive(a => a?.name === name ? null : { name, value: val }); }}>
             {data.map((entry, i) => (
               <Cell key={`cell-${i}`} fill={active?.name === entry.name ? "#8b5cf6" : "#4f46e5"} />
             ))}
@@ -142,7 +142,7 @@ function ClickablePieCard({ title, data, fileId, metric }: ClickableBarCardProps
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie data={data} dataKey="value" nameKey="name" innerRadius={52} outerRadius={88} paddingAngle={3}
-            onClick={(d: { name: string; value: number }) => setActive(a => a?.name === d.name ? null : d)}
+            onClick={(d) => { const name = String(d.name ?? ""); const val = Number(d.value ?? 0); setActive(a => a?.name === name ? null : { name, value: val }); }}
             cursor="pointer">
             {data.map((entry, i) => (
               <Cell key={`cell-${i}`} fill={active?.name === entry.name ? "#8b5cf6" : PALETTE[i % PALETTE.length]} />
