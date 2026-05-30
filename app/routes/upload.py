@@ -128,7 +128,7 @@ def delete_dataset(file_id: str, wu: dict = Depends(require_admin)):
             pass  # File already deleted
 
     # Remove from storage
-    delete_file_record(file_id, current_user["user_id"])
+    delete_file_record(file_id, effective_owner)
     return {"success": True, "file_id": file_id}
 
 

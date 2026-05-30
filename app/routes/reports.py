@@ -14,7 +14,7 @@ router = APIRouter(prefix="/reports", tags=["reports"])
 logger = logging.getLogger(__name__)
 
 
-def _get_df_analysis_insights(file_id: str, current_user: dict):
+def _get_df_analysis_insights(file_id: str, wu: dict):
     file_doc = get_file_record_for_user(file_id, wu.get("effective_owner_id", wu["user_id"]))
     if not file_doc:
         raise HTTPException(status_code=404, detail="File not found")
