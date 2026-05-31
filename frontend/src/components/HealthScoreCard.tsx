@@ -69,7 +69,7 @@ function ScoreRing({
     <div className="health-ring-wrapper">
       <svg width="110" height="110" viewBox="0 0 110 110">
         {/* Track */}
-        <circle cx="55" cy="55" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="9" />
+        <circle cx="55" cy="55" r={r} fill="none" stroke="var(--surface-alt)" strokeWidth="9" />
         {/* Baseline arc */}
         <motion.circle
           cx="55" cy="55" r={r}

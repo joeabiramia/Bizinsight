@@ -189,7 +189,7 @@ export default function WorkspacePage() {
                 {[1, 2].map(i => (
                   <div key={i} style={{
                     height: 56, borderRadius: 12,
-                    background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
+                    background: "var(--surface-alt)", border: "1px solid var(--border)",
                     animation: "pulse 1.5s ease-in-out infinite",
                   }} />
                 ))}
@@ -432,7 +432,7 @@ export default function WorkspacePage() {
               <div style={{ display: "flex", gap: 8 }}>
                 <div style={{
                   flex: 1, padding: "8px 12px", borderRadius: 10,
-                  background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
+                  background: "var(--surface-alt)", border: "1px solid var(--border)",
                   fontSize: "0.72rem", color: "var(--muted)",
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                 }}>

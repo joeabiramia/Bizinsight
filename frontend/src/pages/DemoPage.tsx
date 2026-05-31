@@ -159,7 +159,7 @@ export default function DemoPage() {
               <div className="section-card-header"><h2>Revenue by Month</h2></div>
               <ResponsiveContainer width="100%" height={220}>
                 <BarChart data={analysis.chart_data.revenue_by_month}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--surface-alt)" />
                   <XAxis dataKey="name" tick={{ fill: "var(--muted)", fontSize: 11 }} />
                   <YAxis tickFormatter={v => `$${(v/1000).toFixed(0)}K`} tick={{ fill: "var(--muted)", fontSize: 11 }} />
                   <Tooltip formatter={(v: unknown) => `$${((v as number)/1000).toFixed(1)}K`} contentStyle={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 10 }} />
@@ -219,7 +219,7 @@ export default function DemoPage() {
                           <span style={{ fontSize: "0.84rem", fontWeight: 600 }}>{agent.name}</span>
                           <span style={{ fontSize: "0.78rem", color: "var(--muted)" }}>{agent.value} bookings</span>
                         </div>
-                        <div style={{ height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 999, overflow: "hidden" }}>
+                        <div style={{ height: 5, background: "var(--border)", borderRadius: 999, overflow: "hidden" }}>
                           <div style={{ height: "100%", width: `${(agent.value / max) * 100}%`, background: COLORS[i % COLORS.length], borderRadius: 999 }} />
                         </div>
                       </div>
@@ -272,7 +272,7 @@ export default function DemoPage() {
                       <div style={{ width: 32, height: 32, borderRadius: 10, background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.3)", display: "grid", placeItems: "center", flexShrink: 0, color: "#a5b4fc" }}>
                         <Bot size={14} />
                       </div>
-                      <div style={{ flex: 1, padding: "12px 16px", borderRadius: "4px 18px 18px 18px", background: "rgba(255,255,255,0.04)", border: "1px solid var(--border)", fontSize: "0.875rem", lineHeight: 1.65, color: "var(--text)" }}>
+                      <div style={{ flex: 1, padding: "12px 16px", borderRadius: "4px 18px 18px 18px", background: "var(--surface-alt)", border: "1px solid var(--border)", fontSize: "0.875rem", lineHeight: 1.65, color: "var(--text)" }}>
                         <p style={{ margin: 0 }}>{item.answer}</p>
                         {item.insights?.map((ins, j) => (
                           <p key={j} style={{ margin: "8px 0 0", fontSize: "0.78rem", color: "var(--text-secondary)" }}>• {ins}</p>
@@ -330,7 +330,7 @@ export default function DemoPage() {
                         <span style={{ fontWeight: 800, color, fontSize: "0.9rem" }}>{dim.grade}</span>
                       </div>
                       <p style={{ margin: "0 0 10px", fontSize: "1.5rem", fontWeight: 800, color }}>{dim.score}</p>
-                      <div style={{ height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 999, overflow: "hidden", marginBottom: 10 }}>
+                      <div style={{ height: 5, background: "var(--border)", borderRadius: 999, overflow: "hidden", marginBottom: 10 }}>
                         <div style={{ height: "100%", width: `${dim.score}%`, background: color, borderRadius: 999 }} />
                       </div>
                       <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>{dim.explanation}</p>

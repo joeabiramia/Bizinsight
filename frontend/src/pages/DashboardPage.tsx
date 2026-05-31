@@ -193,7 +193,7 @@ export default function DashboardPage() {
                   gap: 14,
                   padding: "12px 14px",
                   borderRadius: 12,
-                  background: "rgba(255,255,255,0.03)",
+                  background: "var(--surface-alt)",
                   border: "1px solid var(--border)",
                   transition: "border-color 150ms",
                   cursor: latest ? "pointer" : "default",
@@ -260,7 +260,7 @@ export default function DashboardPage() {
                     cursor: "pointer", transition: "background 150ms",
                   }}
                   onClick={() => navigate(`/analysis/${ds.file_id}`)}
-                  onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                  onMouseEnter={e => (e.currentTarget.style.background = "var(--surface-alt)")}
                   onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
                 >
                   <Database size={14} style={{ color: "var(--primary-light)", flexShrink: 0 }} />

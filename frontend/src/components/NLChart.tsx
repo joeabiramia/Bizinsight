@@ -32,7 +32,7 @@ function ChartRenderer({ chart, height = 240 }: { chart: NLChartData; height?: n
     return (
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={chart.data} layout={isHorizontal ? "vertical" : "horizontal"}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--surface-alt)" />
           {isHorizontal ? (
             <>
               <XAxis type="number" tick={{ fill: "var(--muted)", fontSize: 11 }} />
@@ -59,7 +59,7 @@ function ChartRenderer({ chart, height = 240 }: { chart: NLChartData; height?: n
     return (
       <ResponsiveContainer width="100%" height={height}>
         <LineChart data={chart.data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--surface-alt)" />
           <XAxis dataKey="name" tick={{ fill: "var(--muted)", fontSize: 11 }} />
           <YAxis tick={{ fill: "var(--muted)", fontSize: 11 }} />
           <Tooltip contentStyle={TOOLTIP_STYLE} />
@@ -123,7 +123,7 @@ export default function NLChart({ chart, onClose }: NLChartProps) {
       animate={{ opacity: 1, y: 0 }}
       style={{
         marginTop: 14,
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--surface-alt)",
         border: "1px solid var(--border)",
         borderRadius: 16,
         overflow: "hidden",

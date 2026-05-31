@@ -33,7 +33,7 @@ export default function MetricCard({
             width: 32,
             height: 32,
             borderRadius: 8,
-            background: "rgba(255,255,255,0.05)",
+            background: "var(--surface-alt)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

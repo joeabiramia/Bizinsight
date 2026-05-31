@@ -121,7 +121,7 @@ export default function RegisterPage() {
           {/* Social proof */}
           <div style={{
             padding: "18px 20px", borderRadius: 16,
-            background: "rgba(255,255,255,0.04)", border: "1px solid var(--border)",
+            background: "var(--surface-alt)", border: "1px solid var(--border)",
             marginBottom: 24,
           }}>
             <div style={{ display: "flex", marginBottom: 10 }}>

@@ -72,7 +72,7 @@ function AskChartPanel({ fileId, chartType, segmentLabel, segmentValue, metric, 
   return (
     <div style={{
       position: "absolute", zIndex: 100, bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)",
-      background: "var(--surface,#1e1e2e)", border: "1px solid rgba(99,102,241,0.4)", borderRadius: 12,
+      background: "var(--surface)", border: "1px solid rgba(99,102,241,0.4)", borderRadius: 12,
       padding: "14px 16px", minWidth: 260, maxWidth: 340, boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>

@@ -170,7 +170,7 @@ export default function DatasetsPage() {
                   background: "rgba(255,255,255,0.02)", border: "1px solid var(--border)",
                   borderRadius: 14, transition: "border-color 0.15s, background 0.15s",
                 }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(99,102,241,0.3)"; el.style.background = "rgba(255,255,255,0.04)"; }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(99,102,241,0.3)"; el.style.background = "var(--surface-alt)"; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--border)"; el.style.background = "rgba(255,255,255,0.02)"; }}
               >
                 <div

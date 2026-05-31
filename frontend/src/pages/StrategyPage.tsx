@@ -756,7 +756,7 @@ export default function StrategyPage() {
               flex: 1,
               padding: "13px 18px",
               borderRadius: 14,
-              background: "rgba(255,255,255,0.05)",
+              background: "var(--surface-alt)",
               border: "1px solid rgba(148,163,184,0.15)",
               color: "#e2e8f0",
               fontSize: 14,

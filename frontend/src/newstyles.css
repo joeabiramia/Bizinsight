@@ -1,5 +1,121 @@
 
 /* ═══════════════════════════════════════════════════════════════
+   ENTERPRISE LIGHT THEME — component overrides
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Form inputs */
+[data-theme="light"] .form-input {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+  color: #0F172A;
+}
+[data-theme="light"] .form-input:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+[data-theme="light"] .form-input option {
+  background: #FFFFFF;
+  color: #0F172A;
+}
+[data-theme="light"] .form-label {
+  color: #374151;
+}
+
+/* Notification center */
+[data-theme="light"] .notif-bell-btn {
+  background: #F8FAFC;
+  border-color: #E2E8F0;
+}
+[data-theme="light"] .notif-bell-btn:hover {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #2563EB;
+}
+[data-theme="light"] .notif-panel {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+[data-theme="light"] .notif-panel-header {
+  background: #F8FAFC;
+  border-bottom-color: #E2E8F0;
+}
+[data-theme="light"] .notif-item {
+  border-bottom-color: #F1F5F9;
+}
+[data-theme="light"] .notif-item--unread {
+  background: #EFF6FF;
+}
+[data-theme="light"] .notif-item:hover {
+  background: #F8FAFC;
+}
+[data-theme="light"] .notif-empty {
+  color: #94A3B8;
+}
+[data-theme="light"] .notif-sev-badge {
+  border-color: transparent;
+}
+[data-theme="light"] .notif-badge-critical { background: #FEE2E2; color: #B91C1C; }
+[data-theme="light"] .notif-badge-warning  { background: #FEF3C7; color: #B45309; }
+[data-theme="light"] .notif-badge-info     { background: #E0F2FE; color: #0369A1; }
+
+/* Health score bar track */
+[data-theme="light"] .health-bar-track {
+  background: #E2E8F0;
+}
+
+/* Scenario slider */
+[data-theme="light"] .scenario-range::-webkit-slider-runnable-track {
+  background: #E2E8F0;
+}
+[data-theme="light"] .scenario-slider-item {
+  background: #F8FAFC;
+}
+[data-theme="light"] .scenario-slider-item:hover {
+  border-color: #CBD5E1;
+}
+[data-theme="light"] .scenario-impact-card {
+  background: #F8FAFC;
+}
+
+/* Priority badges */
+[data-theme="light"] .priority-badge--critical { background: #FEE2E2; color: #B91C1C; border-color: #FECACA; }
+[data-theme="light"] .priority-badge--high     { background: #FEF3C7; color: #B45309; border-color: #FDE68A; }
+[data-theme="light"] .priority-badge--medium   { background: #FFFBEB; color: #D97706; border-color: #FDE68A; }
+[data-theme="light"] .priority-badge--low      { background: #DCFCE7; color: #15803D; border-color: #BBF7D0; }
+
+/* Chips */
+[data-theme="light"] .chip {
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+  color: #475569;
+}
+[data-theme="light"] .chip:hover {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1D4ED8;
+}
+[data-theme="light"] .chip--active {
+  background: #EFF6FF;
+  border-color: #2563EB;
+  color: #2563EB;
+}
+
+/* Utility text colors */
+[data-theme="light"] .text-success { color: #16A34A; }
+[data-theme="light"] .text-warning { color: #D97706; }
+[data-theme="light"] .text-danger  { color: #DC2626; }
+
+/* Danger ghost button */
+[data-theme="light"] .button-danger-ghost {
+  border-color: rgba(220, 38, 38, 0.35);
+  color: #DC2626;
+}
+[data-theme="light"] .button-danger-ghost:hover {
+  background: #FEF2F2;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    RESPONSIVE / MOBILE
    ═══════════════════════════════════════════════════════════════ */
 

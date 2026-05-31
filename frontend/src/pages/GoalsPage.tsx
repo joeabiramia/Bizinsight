@@ -233,7 +233,7 @@ export default function GoalsPage() {
                         <span style={{ color: "var(--text-secondary)" }}>Progress</span>
                         <strong style={{ color: meta.color }}>{progress.progress_pct?.toFixed(1)}%</strong>
                       </div>
-                      <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: 999, height: 8, overflow: "hidden" }}>
+                      <div style={{ background: "var(--border)", borderRadius: 999, height: 8, overflow: "hidden" }}>
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${pct}%` }}
@@ -251,7 +251,7 @@ export default function GoalsPage() {
                       ].map(item => (
                         <div key={item.label} style={{
                           padding: "10px 14px", borderRadius: 10,
-                          background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
+                          background: "var(--surface-alt)", border: "1px solid var(--border)",
                         }}>
                           <p style={{ margin: "0 0 4px", fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                             {item.label}

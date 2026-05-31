@@ -233,7 +233,7 @@ export default function UploadPage() {
               >
                 <div style={{
                   width: 72, height: 72, borderRadius: 20,
-                  background: dragging ? "var(--primary-dim)" : "rgba(255,255,255,0.04)",
+                  background: dragging ? "var(--primary-dim)" : "var(--surface-alt)",
                   border: "1px solid var(--border)", display: "flex", alignItems: "center",
                   justifyContent: "center",
                   color: dragging ? "var(--primary-light)" : "var(--muted)", transition: "all 0.2s",
@@ -277,7 +277,7 @@ export default function UploadPage() {
 
                 {uploading && (
                   <div style={{ width: "100%", maxWidth: 300 }}>
-                    <div style={{ height: 5, background: "rgba(255,255,255,0.08)", borderRadius: 999, overflow: "hidden" }}>
+                    <div style={{ height: 5, background: "var(--border)", borderRadius: 999, overflow: "hidden" }}>
                       <motion.div
                         animate={{ width: `${progress}%` }}
                         transition={{ ease: "linear" }}

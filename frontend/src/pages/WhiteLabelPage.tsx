@@ -87,7 +87,7 @@ export default function WhiteLabelPage() {
                 />
               ))}
               <input type="color" value={settings.accent_color} onChange={e => setSettings(s => ({ ...s, accent_color: e.target.value }))}
-                style={{ width: 36, height: 36, borderRadius: 10, border: "1px solid var(--border)", cursor: "pointer", padding: 2, background: "rgba(255,255,255,0.05)" }} />
+                style={{ width: 36, height: 36, borderRadius: 10, border: "1px solid var(--border)", cursor: "pointer", padding: 2, background: "var(--surface-alt)" }} />
             </div>
             <div style={{ display: "flex", gap: 10, alignItems: "center", padding: "10px 14px", borderRadius: 10, background: `${settings.accent_color}15`, border: `1px solid ${settings.accent_color}30` }}>
               <div style={{ width: 12, height: 12, borderRadius: 3, background: settings.accent_color }} />
@@ -157,7 +157,7 @@ export default function WhiteLabelPage() {
               <div style={{ padding: "12px 16px" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {["Revenue", "Growth", "Deals", "MRR"].map(k => (
-                    <div key={k} style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)" }}>
+                    <div key={k} style={{ padding: "10px 12px", borderRadius: 10, background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
                       <p style={{ margin: "0 0 4px", fontSize: "0.65rem", color: "var(--muted)", textTransform: "uppercase" }}>{k}</p>
                       <p style={{ margin: 0, fontWeight: 700, fontSize: "1.1rem", color: settings.accent_color }}>—</p>
                     </div>

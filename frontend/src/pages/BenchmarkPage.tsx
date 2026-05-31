@@ -432,7 +432,7 @@ export default function BenchmarkPage() {
                     { label: "Industry Average", value: metric.industry_avg, unit: metric.unit, color: "var(--primary-light)" },
                     { label: "Top Quartile",     value: metric.top_quartile, unit: metric.unit, color: "#22c55e" },
                   ].map(stat => (
-                    <div key={stat.label} style={{ padding: "12px 14px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)" }}>
+                    <div key={stat.label} style={{ padding: "12px 14px", borderRadius: 12, background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
                       <p style={{ margin: "0 0 4px", fontSize: "0.7rem", color: "var(--muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                         {stat.label}
                       </p>

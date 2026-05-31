@@ -32,7 +32,7 @@ export default function SharedDashboardPage() {
   }, [token]);
 
   if (loading) return (
-    <div style={{ minHeight:"100vh", background:"var(--bg,#0a0a14)", padding:"40px 24px" }}>
+    <div style={{ minHeight:"100vh", background:"var(--bg)", padding:"40px 24px" }}>
       <div style={{ maxWidth:1100, margin:"0 auto" }}>
         <LoadingSkeleton rows={6} />
       </div>
@@ -40,7 +40,7 @@ export default function SharedDashboardPage() {
   );
 
   if (error || !data) return (
-    <div style={{ minHeight:"100vh", background:"var(--bg,#0a0a14)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+    <div style={{ minHeight:"100vh", background:"var(--bg)", display:"flex", alignItems:"center", justifyContent:"center" }}>
       <div style={{ textAlign:"center" }}>
         <div style={{ fontSize:"3rem", marginBottom:16 }}>🔒</div>
         <h2 style={{ color:"var(--text,#f1f5f9)" }}>Link Not Found</h2>
@@ -52,9 +52,9 @@ export default function SharedDashboardPage() {
   const analysis = data.analysis;
 
   return (
-    <div style={{ minHeight:"100vh", background:"var(--bg,#0a0a14)", padding:"0 0 48px" }}>
+    <div style={{ minHeight:"100vh", background:"var(--bg)", padding:"0 0 48px" }}>
       {/* Header bar */}
-      <div style={{ background:"var(--surface,#1e1e2e)", borderBottom:"1px solid var(--border,#2d2d3d)", padding:"16px 32px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+      <div style={{ background:"var(--surface)", borderBottom:"1px solid var(--border)", padding:"16px 32px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <div style={{ display:"flex", alignItems:"center", gap:12 }}>
           <div style={{ background:"#6366f1", color:"#fff", fontWeight:800, fontSize:"0.8rem", padding:"4px 10px", borderRadius:8 }}>BI</div>
           <div>

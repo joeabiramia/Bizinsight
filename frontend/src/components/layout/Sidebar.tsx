@@ -191,7 +191,7 @@ export default function Sidebar() {
             className="sidebar-logout-btn"
             onClick={toggleTheme}
             style={{ marginBottom: 4 }}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? "☀️" : "🌙"}
             {theme === "dark" ? "Light mode" : "Dark mode"}

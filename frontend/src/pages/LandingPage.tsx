@@ -152,7 +152,7 @@ export default function LandingPage() {
             boxShadow: "0 40px 80px rgba(0,0,0,0.5)",
           }}
         >
-          <div style={{ background: "rgba(255,255,255,0.04)", padding: "12px 16px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ background: "var(--surface-alt)", padding: "12px 16px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8 }}>
             {["#ef4444","#f59e0b","#22c55e"].map(c => <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, display: "inline-block" }} />)}
             <span style={{ marginLeft: 8, fontSize: "0.78rem", color: "var(--muted)" }}>BizInsight AI — Travel Agency Analysis</span>
           </div>
@@ -164,7 +164,7 @@ export default function LandingPage() {
                 { label: "Avg Booking", value: "$1,649", delta: "+4.1%", color: "#4ade80" },
                 { label: "Cancellation", value: "4.0%", delta: "-0.8%", color: "#4ade80" },
               ].map(k => (
-                <div key={k.label} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)", borderRadius: 12, padding: "14px 16px" }}>
+                <div key={k.label} style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", borderRadius: 12, padding: "14px 16px" }}>
                   <p style={{ margin: "0 0 6px", fontSize: "0.7rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{k.label}</p>
                   <p style={{ margin: "0 0 4px", fontSize: "1.4rem", fontWeight: 800, letterSpacing: "-0.02em", color: "var(--text)" }}>{k.value}</p>
                   <span style={{ fontSize: "0.72rem", fontWeight: 600, color: k.color }}>{k.delta}</span>
@@ -172,7 +172,7 @@ export default function LandingPage() {
               ))}
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)", borderRadius: 12, padding: 16 }}>
+              <div style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", borderRadius: 12, padding: 16 }}>
                 <p style={{ margin: "0 0 12px", fontSize: "0.78rem", fontWeight: 600, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Revenue by Month</p>
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 60 }}>
                   {[58,61,75,82,77,87,100,95,69,65,58,84].map((h, i) => (
@@ -180,7 +180,7 @@ export default function LandingPage() {
                   ))}
                 </div>
               </div>
-              <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)", borderRadius: 12, padding: 16 }}>
+              <div style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", borderRadius: 12, padding: 16 }}>
                 <p style={{ margin: "0 0 10px", fontSize: "0.78rem", fontWeight: 600, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>AI Insights</p>
                 {[
                   { type: "🟢", text: "Top agent is 30% above team average" },
@@ -257,7 +257,7 @@ export default function LandingPage() {
         <p style={{ textAlign: "center", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--primary-light)", marginBottom: 12 }}>Why not just use ChatGPT?</p>
         <h2 className="landing-section-title">Built for business, not general conversation</h2>
         <div style={{ marginTop: 40, borderRadius: 20, overflow: "hidden", border: "1px solid var(--border)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 140px 140px", padding: "12px 20px", background: "rgba(255,255,255,0.03)", borderBottom: "1px solid var(--border)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 140px 140px", padding: "12px 20px", background: "var(--surface-alt)", borderBottom: "1px solid var(--border)" }}>
             <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Feature</span>
             <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--primary-light)", textTransform: "uppercase", letterSpacing: "0.06em", textAlign: "center" }}>BizInsight AI</span>
             <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.06em", textAlign: "center" }}>ChatGPT</span>

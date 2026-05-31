@@ -76,7 +76,7 @@ function OptionCard({
         display: "flex", flexDirection: "column", alignItems: "center",
         justifyContent: "center", gap: 10,
         padding: "20px 12px", borderRadius: 16, cursor: "pointer", border: "none",
-        background: selected ? "var(--primary-dim)" : "rgba(255,255,255,0.03)",
+        background: selected ? "var(--primary-dim)" : "var(--surface-alt)",
         outline: selected ? "2px solid var(--primary)" : "2px solid transparent",
         transition: "all 0.15s",
         position: "relative",
@@ -111,7 +111,7 @@ function SizeCard({
       style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "16px 20px", borderRadius: 14, cursor: "pointer", border: "none",
-        background: selected ? "var(--primary-dim)" : "rgba(255,255,255,0.03)",
+        background: selected ? "var(--primary-dim)" : "var(--surface-alt)",
         outline: selected ? "2px solid var(--primary)" : "2px solid transparent",
         transition: "all 0.15s", width: "100%",
       }}
@@ -147,7 +147,7 @@ function TagChip({
       style={{
         display: "inline-flex", alignItems: "center", gap: 7,
         padding: "9px 16px", borderRadius: 999, cursor: "pointer", border: "none",
-        background: selected ? "var(--primary-dim)" : "rgba(255,255,255,0.04)",
+        background: selected ? "var(--primary-dim)" : "var(--surface-alt)",
         outline: selected ? "1.5px solid var(--primary)" : "1.5px solid var(--border-strong)",
         color: selected ? "var(--primary-light)" : "var(--text-secondary)",
         fontSize: "0.875rem", fontWeight: selected ? 600 : 500,

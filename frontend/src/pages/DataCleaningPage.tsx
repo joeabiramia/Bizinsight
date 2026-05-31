@@ -116,7 +116,7 @@ function QualityRing({ score }: { score: number }) {
   return (
     <div className="tw-relative tw-flex tw-flex-col tw-items-center tw-justify-center">
       <svg width="136" height="136" className="tw--rotate-90">
-        <circle cx="68" cy="68" r={radius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="10" />
+        <circle cx="68" cy="68" r={radius} fill="none" stroke="var(--border)" strokeWidth="10" />
         <circle
           cx="68" cy="68" r={radius}
           fill="none"
@@ -259,12 +259,12 @@ function AIInsightBanner({ report }: { report: DataQualityReport }) {
             <p style={{ fontSize: 11, opacity: 0.5, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 2 }}>Est. Improvement</p>
             <p style={{ fontSize: 20, fontWeight: 900, color: "#22c55e", margin: 0 }}>+{improvementEst}%</p>
           </div>
-          <div style={{ width: 1, background: "rgba(255,255,255,0.08)" }} />
+          <div style={{ width: 1, background: "var(--border)" }} />
           <div style={{ textAlign: "center" }}>
             <p style={{ fontSize: 11, opacity: 0.5, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 2 }}>Risk Level</p>
             <p style={{ fontSize: 15, fontWeight: 800, color: riskColor, margin: 0 }}>{riskLevel}</p>
           </div>
-          <div style={{ width: 1, background: "rgba(255,255,255,0.08)" }} />
+          <div style={{ width: 1, background: "var(--border)" }} />
           <div style={{ textAlign: "center" }}>
             <p style={{ fontSize: 11, opacity: 0.5, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 2 }}>Fixable</p>
             <p style={{ fontSize: 20, fontWeight: 900, color: "#818cf8", margin: 0 }}>{report.total_issues}</p>
@@ -365,7 +365,7 @@ function ChartsRow({ report }: { report: DataQualityReport }) {
         ) : (
           <ResponsiveContainer width="100%" height={160}>
             <BarChart data={barData} margin={{ top: 0, right: 4, left: -24, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 11 }} angle={-30} textAnchor="end" />
               <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} />
               <ReTooltip content={<CustomTooltip />} />
@@ -418,7 +418,7 @@ function ConfidenceMeter({ issueType }: { issueType: string }) {
   return (
     <div className="tw-flex tw-items-center tw-gap-3">
       <span style={{ fontSize: 11, opacity: 0.5, whiteSpace: "nowrap" }}>Confidence</span>
-      <div style={{ flex: 1, height: 4, background: "rgba(255,255,255,0.08)", borderRadius: 99, overflow: "hidden" }}>
+      <div style={{ flex: 1, height: 4, background: "var(--border)", borderRadius: 99, overflow: "hidden" }}>
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${conf.value}%` }}
@@ -550,7 +550,7 @@ function IssueCard({ issue, index, selected, onToggle, onIgnore }: IssueCardProp
             style={{ overflow: "hidden" }}
           >
             <div style={{
-              borderTop: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid var(--border)",
               padding: "16px 20px 20px 20px",
               display: "flex", flexDirection: "column", gap: 14,
             }}>
@@ -988,7 +988,7 @@ export default function DataCleaningPage() {
                 {report.quality_score}% · Grade {report.quality_grade}
               </span>
             </div>
-            <div style={{ height: 8, background: "rgba(255,255,255,0.06)", borderRadius: 99, overflow: "hidden" }}>
+            <div style={{ height: 8, background: "var(--border)", borderRadius: 99, overflow: "hidden" }}>
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${report.quality_score}%` }}
@@ -1056,7 +1056,7 @@ export default function DataCleaningPage() {
                       placeholder="Column or issue…"
                       style={{
                         width: "100%", padding: "8px 10px 8px 30px",
-                        background: "rgba(255,255,255,0.05)", border: "1px solid rgba(148,163,184,0.15)",
+                        background: "var(--surface-alt)", border: "1px solid rgba(148,163,184,0.15)",
                         borderRadius: 8, color: "#e2e8f0", fontSize: 12, outline: "none",
                         boxSizing: "border-box",
                       }}
@@ -1091,7 +1091,7 @@ export default function DataCleaningPage() {
                         <span>{s.icon} {s.label}</span>
                         <span style={{
                           padding: "1px 7px", borderRadius: 99, fontSize: 11, fontWeight: 800,
-                          background: active ? s.color : "rgba(255,255,255,0.06)", color: active ? "#fff" : "#64748b",
+                          background: active ? s.color : "var(--border)", color: active ? "#fff" : "#64748b",
                         }}>
                           {count}
                         </span>

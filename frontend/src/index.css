@@ -72,37 +72,277 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   LIGHT THEME OVERRIDES
+   ENTERPRISE LIGHT THEME  (Power BI / Tableau inspired)
    ═══════════════════════════════════════════════════════════════ */
 
 [data-theme="light"] {
   color-scheme: light;
 
-  --bg:               #f0f4f8;
-  --surface:          #ffffff;
-  --surface-alt:      #f1f5f9;
-  --surface-raised:   #e8edf5;
-  --surface-strong:   #dde4ef;
+  /* Backgrounds */
+  --bg:               #F8FAFC;
+  --surface:          #FFFFFF;
+  --surface-alt:      #F1F5F9;
+  --surface-raised:   #EEF2F7;
+  --surface-strong:   #E2E8F0;
 
-  --border:           rgba(15, 23, 42, 0.10);
-  --border-strong:    rgba(15, 23, 42, 0.18);
+  /* Borders */
+  --border:           #E2E8F0;
+  --border-strong:    #CBD5E1;
 
-  --text:             #0f172a;
+  /* Text */
+  --text:             #0F172A;
   --text-secondary:   #475569;
-  --muted:            #94a3b8;
+  --muted:            #94A3B8;
 
-  --primary-dim:      rgba(99, 102, 241, 0.10);
-  --primary-soft:     rgba(99, 102, 241, 0.06);
+  /* Explicit fallbacks referenced by inline styles across pages */
+  --input-bg:         #FFFFFF;
+  --track-bg:         #E2E8F0;
+  --divider-color:    #E2E8F0;
 
-  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md:   0 4px 16px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
-  --shadow-lg:   0 20px 48px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06);
+  /* Primary — corporate blue (Power BI-style) */
+  --primary:          #2563EB;
+  --primary-light:    #3B82F6;
+  --primary-dim:      rgba(37, 99, 235, 0.08);
+  --primary-soft:     rgba(37, 99, 235, 0.05);
+
+  /* Semantic — matches prompt spec */
+  --success:          #16A34A;
+  --success-dim:      rgba(22, 163, 74, 0.10);
+  --warning:          #D97706;
+  --warning-dim:      rgba(217, 119, 6, 0.10);
+  --danger:           #DC2626;
+  --danger-dim:       rgba(220, 38, 38, 0.10);
+  --info:             #0284C7;
+  --info-dim:         rgba(2, 132, 199, 0.10);
+
+  /* Shadows — clean, no colored glows */
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-md:  0 2px 8px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-glow: none;
 }
 
+/* Clean neutral body — no decorative gradients */
 [data-theme="light"] body {
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99,102,241,0.06), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139,92,246,0.03), transparent);
+  background-image: none;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────────── */
+[data-theme="light"] .navbar-shell {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: #E2E8F0;
+}
+
+[data-theme="light"] .navbar-link:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────── */
+[data-theme="light"] .sidebar-link:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+[data-theme="light"] .sidebar-link--active {
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563EB;
+}
+
+[data-theme="light"] .sidebar-link--active .sidebar-link-icon {
+  color: #2563EB;
+}
+
+[data-theme="light"] .sidebar-link:hover .sidebar-link-icon {
+  color: #475569;
+}
+
+[data-theme="light"] .sidebar-industry-badge {
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563EB;
+  border-color: rgba(37, 99, 235, 0.15);
+}
+
+[data-theme="light"] .sidebar-logout-btn:hover {
+  background: #FEF2F2;
+  border-color: #FECACA;
+  color: #DC2626;
+}
+
+/* ── Brand mark — solid blue, no glow ───────────────────────────── */
+[data-theme="light"] .brand-mark {
+  background: #2563EB;
+  box-shadow: none;
+}
+
+[data-theme="light"] .sidebar-user-avatar {
+  background: #2563EB;
+}
+
+/* ── Page eyebrow ───────────────────────────────────────────────── */
+[data-theme="light"] .page-hero .eyebrow {
+  color: #2563EB;
+}
+
+/* ── Buttons — flat, professional, no gradient or glow ─────────── */
+[data-theme="light"] .button-primary {
+  background: #2563EB;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.25);
+}
+
+[data-theme="light"] .button-primary:hover {
+  background: #1D4ED8;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.30);
+}
+
+[data-theme="light"] .button-secondary {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #374151;
+}
+
+[data-theme="light"] .button-secondary:hover {
+  background: #F8FAFC;
+  border-color: #94A3B8;
+  color: #0F172A;
+}
+
+[data-theme="light"] .button-ghost {
+  color: #6B7280;
+}
+
+[data-theme="light"] .button-ghost:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+/* ── Inputs & forms ─────────────────────────────────────────────── */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+  color: #0F172A;
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #94A3B8;
+}
+
+[data-theme="light"] select option {
+  background: #FFFFFF;
+  color: #0F172A;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.20);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.35);
+}
+
+/* ── Badges — crisp on white background ─────────────────────────── */
+[data-theme="light"] .badge-success  { background: #DCFCE7; color: #15803D; border-color: #BBF7D0; }
+[data-theme="light"] .badge-warning  { background: #FEF3C7; color: #B45309; border-color: #FDE68A; }
+[data-theme="light"] .badge-danger   { background: #FEE2E2; color: #B91C1C; border-color: #FECACA; }
+[data-theme="light"] .badge-info     { background: #E0F2FE; color: #0369A1; border-color: #BAE6FD; }
+[data-theme="light"] .badge-neutral  { background: #F8FAFC; color: #475569; border-color: #E2E8F0; }
+[data-theme="light"] .badge-primary  { background: #EFF6FF; color: #1D4ED8; border-color: #BFDBFE; }
+
+/* ── Alerts ─────────────────────────────────────────────────────── */
+[data-theme="light"] .alert-error   { background: #FEF2F2; border-color: #FECACA; color: #B91C1C; }
+[data-theme="light"] .alert-success { background: #F0FDF4; border-color: #BBF7D0; color: #15803D; }
+[data-theme="light"] .alert-warning { background: #FFFBEB; border-color: #FDE68A; color: #B45309; }
+[data-theme="light"] .alert-info    { background: #F0F9FF; border-color: #BAE6FD; color: #0369A1; }
+
+/* ── Loading skeleton ───────────────────────────────────────────── */
+[data-theme="light"] .loading-row {
+  background: linear-gradient(90deg,
+    #F1F5F9 0%,
+    #E2E8F0 40%,
+    #F1F5F9 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* ── Empty state icon ───────────────────────────────────────────── */
+[data-theme="light"] .empty-state-icon {
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+  color: #94A3B8;
+}
+
+/* ── Upload panel ───────────────────────────────────────────────── */
+[data-theme="light"] .upload-panel {
+  border-color: #CBD5E1;
+}
+
+[data-theme="light"] .upload-panel:hover,
+[data-theme="light"] .upload-panel.drag-over {
+  border-color: #2563EB;
+  background: rgba(37, 99, 235, 0.03);
+}
+
+/* ── Tables ─────────────────────────────────────────────────────── */
+[data-theme="light"] .dataset-table th {
+  background: #F8FAFC;
+}
+
+[data-theme="light"] .dataset-table tr:hover td {
+  background: #F8FAFC;
+}
+
+/* ── Auth card ──────────────────────────────────────────────────── */
+[data-theme="light"] .auth-submit-btn {
+  background: #2563EB;
+}
+
+[data-theme="light"] .auth-submit-btn:hover {
+  background: #1D4ED8;
+  opacity: 1;
+}
+
+[data-theme="light"] .auth-error {
+  background: #FEF2F2;
+  border-color: #FECACA;
+  color: #B91C1C;
+}
+
+/* ── Live indicator ─────────────────────────────────────────────── */
+[data-theme="light"] .live-indicator {
+  background: #DCFCE7;
+  color: #15803D;
+  border-color: #BBF7D0;
+}
+
+[data-theme="light"] .live-dot {
+  background: #16A34A;
+}
+
+/* ── Onboarding ─────────────────────────────────────────────────── */
+[data-theme="light"] .onboarding-option-card {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+}
+
+[data-theme="light"] .onboarding-option-card:hover {
+  border-color: #2563EB;
+  background: #EFF6FF;
+}
+
+[data-theme="light"] .onboarding-option-card--selected {
+  border-color: #2563EB;
+  background: #EFF6FF;
 }
 
 /* ═══════════════════════════════════════════════════════════════

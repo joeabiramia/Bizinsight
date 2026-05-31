@@ -76,7 +76,7 @@ function DatasetIntelligencePanel({
       <div
         style={{
           padding: "16px 24px",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          borderBottom: "1px solid var(--border)",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
@@ -144,7 +144,7 @@ function DatasetIntelligencePanel({
             cursor: "pointer",
             padding: "6px 14px",
             borderRadius: 99,
-            background: speakAnswers ? "rgba(99,102,241,0.15)" : "rgba(255,255,255,0.04)",
+            background: speakAnswers ? "rgba(99,102,241,0.15)" : "var(--surface-alt)",
             border: speakAnswers ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(148,163,184,0.1)",
             transition: "all 0.2s",
           }}
@@ -211,7 +211,7 @@ function DatasetIntelligencePanel({
                 borderRadius: 99,
                 fontSize: 11,
                 fontWeight: 600,
-                background: "rgba(255,255,255,0.05)",
+                background: "var(--surface-alt)",
                 color: "#94a3b8",
                 border: "1px solid rgba(148,163,184,0.1)",
                 fontFamily: "monospace",
@@ -241,7 +241,7 @@ function DatasetIntelligencePanel({
                     height: 30,
                     width: 160,
                     borderRadius: 99,
-                    background: "rgba(255,255,255,0.04)",
+                    background: "var(--surface-alt)",
                     animation: "shimmerAnim 1.6s ease-in-out infinite",
                     backgroundSize: "200% 100%",
                   }}
@@ -378,7 +378,7 @@ function ChatBubble({ item, index, chartData }: { item: AIResponse; index: numbe
                 style={{
                   marginTop: 12,
                   paddingTop: 12,
-                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  borderTop: "1px solid var(--border)",
                   display: "flex",
                   flexDirection: "column",
                   gap: 4,
@@ -521,7 +521,7 @@ function EmptyChatState({
                 style={{
                   height: 42,
                   borderRadius: 10,
-                  background: "linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.04) 75%)",
+                  background: "linear-gradient(90deg,rgba(255,255,255,0.04) 25%,var(--border) 50%,rgba(255,255,255,0.04) 75%)",
                   backgroundSize: "200% 100%",
                   animation: "shimmerAnim 1.6s ease-in-out infinite",
                 }}
@@ -540,7 +540,7 @@ function EmptyChatState({
                   gap: 8,
                   padding: "10px 14px",
                   borderRadius: 10,
-                  background: "rgba(255,255,255,0.03)",
+                  background: "var(--surface-alt)",
                   border: "1px solid var(--border)",
                   color: "var(--text-secondary)",
                   fontSize: "0.82rem",
@@ -733,7 +733,7 @@ export default function AIChatPage() {
         marginBottom: 20,
         padding: "12px 18px",
         borderRadius: 14,
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--surface-alt)",
         border: "1px solid rgba(148,163,184,0.1)",
         display: "flex",
         alignItems: "center",
@@ -816,7 +816,7 @@ export default function AIChatPage() {
                   </button>
                 ))}
                 <div style={{
-                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  borderTop: "1px solid var(--border)",
                   marginTop: 4, paddingTop: 4,
                 }}>
                   <button
@@ -937,7 +937,7 @@ export default function AIChatPage() {
             {/* Input bar */}
             <div style={{
               padding: "16px 20px",
-              borderTop: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid var(--border)",
               display: "flex", alignItems: "center", gap: 10,
             }}>
               <input
@@ -954,7 +954,7 @@ export default function AIChatPage() {
                 disabled={loading}
                 style={{
                   flex: 1, minWidth: 0, padding: "12px 18px",
-                  borderRadius: 14, background: "rgba(255,255,255,0.05)",
+                  borderRadius: 14, background: "var(--surface-alt)",
                   border: "1px solid rgba(148,163,184,0.15)",
                   color: "#e2e8f0", fontSize: 14, outline: "none",
                   transition: "border-color 0.2s",
