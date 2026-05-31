@@ -3,7 +3,7 @@ import logging
 import uuid
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe
@@ -16,7 +16,7 @@ from app.storage import (
     update_goal,
 )
 from app.services.audit_service import log_action
-from app.services.goals_service import GOAL_TYPES
+from app.services.goals_service import get_goal_types_for_industry
 
 router = APIRouter(prefix="/goals", tags=["goals"])
 logger = logging.getLogger(__name__)
@@ -38,8 +38,11 @@ class UpdateGoalRequest(BaseModel):
 
 
 @router.get("/types")
-def list_goal_types():
-    return {"goal_types": GOAL_TYPES}
+def list_goal_types(
+    industry: str = Query("", description="Industry slug to filter goal types (e.g. retail, hr, technology)"),
+):
+    types = get_goal_types_for_industry(industry)
+    return {"goal_types": types, "industry": industry or "general"}
 
 
 @router.get("")

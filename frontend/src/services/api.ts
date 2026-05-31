@@ -166,7 +166,8 @@ export const applyDataFixes = (fileId: string, fixes: object[]) =>
 
 // ── Phase 2: Automation ───────────────────────────────────────────────────────
 
-export const fetchAutomationConditions = () => api.get("/automation/conditions");
+export const fetchAutomationConditions = (industry = "") =>
+  api.get("/automation/conditions", { params: industry ? { industry } : {} });
 export const fetchAutomationActions = () => api.get("/automation/actions");
 export const fetchAutomationRules = () => api.get("/automation/rules");
 export const createAutomationRule = (rule: {
@@ -204,7 +205,8 @@ export const fetchStrategyExamples = () => api.get("/strategy/examples");
 
 // ── Phase 2: Goals ────────────────────────────────────────────────────────────
 
-export const fetchGoalTypes = () => api.get("/goals/types");
+export const fetchGoalTypes = (industry = "") =>
+  api.get("/goals/types", { params: industry ? { industry } : {} });
 export const fetchGoals = () => api.get("/goals");
 export const createGoal = (goal: {
   name: string;

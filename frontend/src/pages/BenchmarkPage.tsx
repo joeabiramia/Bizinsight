@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { TrendingUp, TrendingDown, Info, Database, Loader2, CheckCircle2, ChevronDown } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { TrendingUp, TrendingDown, Database, Loader2, CheckCircle2, ChevronDown, BookOpen } from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
 import PageHeader from "../components/ui/PageHeader";
 import { getBenchmarkForIndustry, INDUSTRY_BENCHMARKS, applySize, getSizeTier } from "../data/benchmarks";
 import type { IndustryBenchmark } from "../data/benchmarks";
-import { listDatasets, classifyDataset } from "../services/api";
+import { listDatasets, classifyDataset, fetchAnalysis } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -79,6 +79,10 @@ export default function BenchmarkPage() {
   const [loadingDatasets, setLoadingDatasets] = useState(true);
   const [overrideIndustry, setOverrideIndustry] = useState<string | null>(null);
   const [showOverride, setShowOverride] = useState(false);
+  // User's own values — keyed by metric name, value is a string input
+  const [userValues, setUserValues] = useState<Record<string, string>>({});
+  // Which values were auto-computed from the dataset (not manually entered)
+  const [autoValues, setAutoValues] = useState<Set<string>>(new Set());
 
   // Priority: manual override → dataset classifier → onboarding industry → general
   const detectedIndustry = classification?.industry === "general" && onboardingIndustry
@@ -119,6 +123,122 @@ export default function BenchmarkPage() {
       .then(r => setClassification(r.data))
       .catch(() => setClassification(null))
       .finally(() => setClassifying(false));
+  }, [selectedId]);
+
+  // ── Auto-compute metrics from dataset analysis ────────────────────────────────
+  // Rules:
+  //   1. Only compute a metric when the source columns are unambiguous.
+  //   2. Validate the result makes sense (e.g. margin must be 0–100%).
+  //   3. Never apply one computed value to multiple unrelated metrics.
+  //   4. Only call a trend "YoY" when ≥ 12 months of data exist.
+
+  useEffect(() => {
+    if (!selectedId) return;
+    fetchAnalysis(selectedId).then(res => {
+      const analysis = res.data?.analysis ?? {};
+      const numSummary: Record<string, { total: number; mean: number; median: number }> =
+        analysis.numeric_summary ?? {};
+      const timeSeries: Array<{ value: number }> =
+        analysis.chart_data?.time_series ?? [];
+
+      const computed: Record<string, string> = {};
+
+      // ── Column detection (strict naming) ──────────────────────────────────────
+      // Revenue: column name must contain these exact business terms
+      const revKey = Object.keys(numSummary).find(k =>
+        /\b(revenue|sales|income|turnover)\b/i.test(k)
+      );
+      // Amount: fallback for generic amount/total columns (used for AOV only)
+      const amtKey = revKey ?? Object.keys(numSummary).find(k =>
+        /\b(amount|total|value)\b/i.test(k)
+      );
+      // COGS / direct cost — must be clearly named to avoid confusing with unit price
+      const cogsKey = Object.keys(numSummary).find(k =>
+        /\b(cogs|cost_of_goods|direct_cost|manufacturing_cost|freight|shipping_cost)\b/i.test(k)
+      );
+      // Generic cost — only used for Cost per Shipment, not Gross Margin
+      const costKey = cogsKey ?? Object.keys(numSummary).find(k =>
+        /\b(cost|expense)\b/i.test(k)
+      );
+      // Days columns for duration-based metrics
+      const daysKey = Object.keys(numSummary).find(k =>
+        /\b(days|duration|lead_time|processing_time|hire_days)\b/i.test(k)
+      );
+
+      // ── Avg Order Value / Avg Booking Value ───────────────────────────────────
+      // Safe: the mean of a revenue/amount column IS the average transaction value
+      if (amtKey) {
+        const mean = numSummary[amtKey].mean;
+        if (mean > 0) {
+          computed["Avg Order Value"]   = mean.toFixed(0);
+          computed["Avg Booking Value"] = mean.toFixed(0);
+        }
+      }
+
+      // ── Cost per Shipment ─────────────────────────────────────────────────────
+      // Only compute when there is a genuine cost column — never fall back to revenue
+      if (costKey) {
+        const mean = numSummary[costKey].mean;
+        if (mean > 0) computed["Cost per Shipment"] = mean.toFixed(2);
+      }
+
+      // ── Gross Margin ──────────────────────────────────────────────────────────
+      // Only compute when BOTH a revenue column AND a COGS column exist.
+      // Validate result is between 0 and 100% — if outside that range the columns
+      // don't represent what we think (e.g. cost > revenue means this isn't COGS).
+      if (revKey && cogsKey) {
+        const rev  = numSummary[revKey].total;
+        const cogs = numSummary[cogsKey].total;
+        if (rev > 0 && cogs > 0 && cogs < rev) {
+          const margin = ((rev - cogs) / rev * 100);
+          if (margin >= 0 && margin <= 100) {
+            computed["Gross Margin"] = margin.toFixed(1);
+          }
+        }
+        // If cogs ≥ rev the formula gives 0% or negative — clearly not valid margin data
+      }
+
+      // ── Revenue Growth ────────────────────────────────────────────────────────
+      // Label as "YoY" only with ≥ 12 months — otherwise it's a partial-period trend
+      if (timeSeries.length >= 2) {
+        const first = timeSeries[0].value;
+        const last  = timeSeries[timeSeries.length - 1].value;
+        if (first > 0 && last > 0) {
+          const growth = ((last - first) / first * 100);
+          const isFullYear = timeSeries.length >= 12;
+          // Only fill "Revenue Growth (YoY)" — not ARR Growth or AUM Growth,
+          // which are different metrics for different industries
+          if (isFullYear) {
+            computed["Revenue Growth (YoY)"] = growth.toFixed(1);
+          }
+          // For partial periods, still useful as a trend indicator but don't mislabel
+        }
+      }
+
+      // ── Days-based metrics ────────────────────────────────────────────────────
+      // Only fill the metric that matches the column name semantics
+      if (daysKey) {
+        const mean = numSummary[daysKey].mean;
+        if (mean > 0) {
+          const lk = daysKey.toLowerCase();
+          if (/hire|recruit|onboard/i.test(lk))     computed["Time-to-Hire"]            = mean.toFixed(0);
+          if (/return|processing|resolv/i.test(lk)) computed["Return Processing Time"]   = mean.toFixed(1);
+          // If the column name is ambiguous, don't guess which metric it belongs to
+        }
+      }
+
+      if (Object.keys(computed).length > 0) {
+        // Don't overwrite values the user has already entered manually
+        setUserValues(prev => {
+          const next = { ...prev };
+          for (const [k, v] of Object.entries(computed)) {
+            if (!prev[k]) next[k] = v;
+          }
+          return next;
+        });
+        setAutoValues(new Set(Object.keys(computed)));
+      }
+    }).catch(() => {});
   }, [selectedId]);
 
   // ── Render ───────────────────────────────────────────────────────────────────
@@ -382,6 +502,24 @@ export default function BenchmarkPage() {
         </motion.div>
       )}
 
+      {/* ── How to read this ────────────────────────────────────────────────── */}
+      <div style={{
+        padding: "16px 20px", borderRadius: 12, marginBottom: 24,
+        background: "var(--surface)", border: "1px solid var(--border)",
+        display: "flex", gap: 14, alignItems: "flex-start",
+      }}>
+        <BookOpen size={16} style={{ color: "var(--primary)", flexShrink: 0, marginTop: 2 }} />
+        <div>
+          <p style={{ margin: "0 0 4px", fontWeight: 700, fontSize: "0.875rem" }}>How to use these benchmarks</p>
+          <p style={{ margin: 0, fontSize: "0.82rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
+            Each card shows two reference points for your industry: the <strong>Industry Average</strong> (what a typical company achieves)
+            and the <strong>Top Quartile</strong> (what the best 25% of companies achieve).
+            Enter your own number in the <em>"Your value"</em> field on any card to instantly see where you stand.
+            Find your actual metrics in the <strong>Analysis</strong> page after uploading your dataset.
+          </p>
+        </div>
+      </div>
+
       {/* ── Metrics grid ────────────────────────────────────────────────────── */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -392,15 +530,41 @@ export default function BenchmarkPage() {
           style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 16 }}
         >
           {benchmark.metrics.map((metric, i) => {
+            const rawInput  = userValues[metric.name] ?? "";
+            const userNum   = rawInput !== "" ? parseFloat(rawInput) : null;
+            const hasUser   = userNum !== null && !isNaN(userNum);
+            const isAuto    = autoValues.has(metric.name) && rawInput !== "";
+
+            // Verdict logic
+            const aboveAvg = hasUser && (metric.higher_is_better
+              ? userNum >= metric.industry_avg
+              : userNum <= metric.industry_avg);
+            const topPerf  = hasUser && (metric.higher_is_better
+              ? userNum >= metric.top_quartile
+              : userNum <= metric.top_quartile);
+
+            const verdict = !hasUser ? null : topPerf
+              ? { label: "Top performer", color: "#16a34a", bg: "#dcfce7", icon: "🏆" }
+              : aboveAvg
+                ? { label: "Above average", color: "#d97706", bg: "#fef3c7", icon: "📈" }
+                : { label: "Below average", color: "#dc2626", bg: "#fee2e2", icon: "📉" };
+
             const chartData = [
-              { name: "Industry Avg", value: metric.industry_avg, fill: "var(--primary)" },
-              { name: "Top Quartile", value: metric.top_quartile, fill: "#22c55e" },
+              { name: "Industry Avg",  value: metric.industry_avg,  fill: "var(--primary)" },
+              { name: "Top Quartile",  value: metric.top_quartile,  fill: "#16a34a" },
+              ...(hasUser ? [{ name: "Your value", value: userNum!, fill: verdict?.color ?? "#64748b" }] : []),
             ];
-            const gap = ((metric.top_quartile - metric.industry_avg) / metric.industry_avg * 100).toFixed(0);
-            const isPositiveGap = metric.higher_is_better
-              ? metric.top_quartile > metric.industry_avg
-              : metric.top_quartile < metric.industry_avg;
-            const maxVal = Math.max(metric.industry_avg, metric.top_quartile) * 1.2;
+            const maxVal = Math.max(
+              metric.industry_avg,
+              metric.top_quartile,
+              hasUser ? userNum! : 0
+            ) * 1.25;
+
+            const fmtVal = (v: number) => {
+              const prefix = metric.unit === "$" || metric.unit === "$K" ? metric.unit : "";
+              const suffix = metric.unit !== "$" && metric.unit !== "$K" ? " " + metric.unit : "";
+              return `${prefix}${v}${suffix}`;
+            };
 
             return (
               <motion.div
@@ -410,58 +574,130 @@ export default function BenchmarkPage() {
                 transition={{ delay: i * 0.05 }}
                 className="section-card"
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
-                  <div>
-                    <h3 style={{ margin: "0 0 4px", fontSize: "0.9rem", fontWeight: 700 }}>{metric.name}</h3>
-                    <p style={{ margin: 0, fontSize: "0.75rem", color: "var(--muted)" }}>{metric.description}</p>
+                {/* Header */}
+                <div style={{ marginBottom: 14 }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+                    <h3 style={{ margin: "0 0 3px", fontSize: "0.9rem", fontWeight: 700 }}>{metric.name}</h3>
+                    <span style={{
+                      fontSize: "0.68rem", fontWeight: 600, padding: "2px 7px", borderRadius: 99, flexShrink: 0,
+                      background: metric.higher_is_better ? "rgba(22,163,74,0.10)" : "rgba(220,38,38,0.10)",
+                      color: metric.higher_is_better ? "#16a34a" : "#dc2626",
+                    }}>
+                      {metric.higher_is_better ? "Higher is better" : "Lower is better"}
+                    </span>
                   </div>
-                  <span style={{
-                    display: "flex", alignItems: "center", gap: 4,
-                    fontSize: "0.72rem", fontWeight: 700, padding: "3px 8px", borderRadius: 999,
-                    background: isPositiveGap ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)",
-                    color: isPositiveGap ? "#4ade80" : "#f87171",
-                    flexShrink: 0,
-                  }}>
-                    {isPositiveGap ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-                    {gap}% gap
-                  </span>
+                  <p style={{ margin: 0, fontSize: "0.75rem", color: "var(--muted)" }}>{metric.description}</p>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
-                  {[
-                    { label: "Industry Average", value: metric.industry_avg, unit: metric.unit, color: "var(--primary-light)" },
-                    { label: "Top Quartile",     value: metric.top_quartile, unit: metric.unit, color: "#22c55e" },
-                  ].map(stat => (
-                    <div key={stat.label} style={{ padding: "12px 14px", borderRadius: 12, background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
-                      <p style={{ margin: "0 0 4px", fontSize: "0.7rem", color: "var(--muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                        {stat.label}
-                      </p>
-                      <p style={{ margin: 0, fontSize: "1.4rem", fontWeight: 800, color: stat.color, letterSpacing: "-0.02em" }}>
-                        {stat.unit === "$" || stat.unit === "$K" ? stat.unit : ""}
-                        {stat.value}
-                        {stat.unit !== "$" && stat.unit !== "$K" ? " " + stat.unit : ""}
-                      </p>
-                    </div>
-                  ))}
+                {/* Reference numbers */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+                  <div style={{ padding: "10px 12px", borderRadius: 10, background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
+                    <p style={{ margin: "0 0 3px", fontSize: "0.68rem", color: "var(--muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      Industry Average
+                    </p>
+                    <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 800, color: "var(--primary)", letterSpacing: "-0.02em" }}>
+                      {fmtVal(metric.industry_avg)}
+                    </p>
+                    <p style={{ margin: "2px 0 0", fontSize: "0.7rem", color: "var(--muted)" }}>Typical company</p>
+                  </div>
+                  <div style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(22,163,74,0.06)", border: "1px solid rgba(22,163,74,0.2)" }}>
+                    <p style={{ margin: "0 0 3px", fontSize: "0.68rem", color: "#16a34a", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      Top Quartile
+                    </p>
+                    <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 800, color: "#16a34a", letterSpacing: "-0.02em" }}>
+                      {fmtVal(metric.top_quartile)}
+                    </p>
+                    <p style={{ margin: "2px 0 0", fontSize: "0.7rem", color: "#16a34a" }}>Top 25% of companies</p>
+                  </div>
                 </div>
 
-                <ResponsiveContainer width="100%" height={80}>
+                {/* Chart */}
+                <ResponsiveContainer width="100%" height={hasUser ? 110 : 75}>
                   <BarChart data={chartData} layout="vertical">
                     <XAxis type="number" domain={[0, maxVal]} hide />
-                    <YAxis dataKey="name" type="category" tick={{ fill: "var(--muted)", fontSize: 10 }} width={90} />
+                    <YAxis dataKey="name" type="category"
+                           tick={{ fill: "var(--muted)", fontSize: 10 }}
+                           width={hasUser ? 82 : 82} />
                     <Tooltip
-                      formatter={(v: unknown) => `${v as number} ${metric.unit}`}
+                      formatter={(v: unknown) => fmtVal(v as number)}
                       contentStyle={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }}
                     />
-                    <Bar dataKey="value" radius={[0, 4, 4, 0]} fill="var(--primary)" />
+                    <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                      {chartData.map((entry, idx) => (
+                        <Cell key={idx} fill={entry.fill} />
+                      ))}
+                    </Bar>
                   </BarChart>
                 </ResponsiveContainer>
 
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 10, padding: "8px 10px", borderRadius: 8, background: "rgba(99,102,241,0.05)" }}>
-                  <Info size={12} style={{ color: "var(--primary-light)", flexShrink: 0 }} />
-                  <p style={{ margin: 0, fontSize: "0.72rem", color: "var(--text-secondary)" }}>
-                    {metric.higher_is_better ? "Higher is better" : "Lower is better"} · Upload your data to see where you rank
-                  </p>
+                {/* Your value input */}
+                <div style={{ marginTop: 12, padding: "12px 14px", borderRadius: 10,
+                               background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    <label style={{ fontSize: "0.72rem", fontWeight: 600,
+                                     textTransform: "uppercase", letterSpacing: "0.05em",
+                                     color: "var(--muted)" }}>
+                      Your value
+                    </label>
+                    {isAuto && (
+                      <span style={{
+                        fontSize: "0.65rem", fontWeight: 700, padding: "1px 7px",
+                        borderRadius: 99, background: "rgba(37,99,235,0.10)", color: "var(--primary)",
+                      }}>
+                        Auto-computed from dataset
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <input
+                      type="number"
+                      placeholder={`e.g. ${metric.industry_avg}`}
+                      value={rawInput}
+                      onChange={e => setUserValues(v => ({ ...v, [metric.name]: e.target.value }))}
+                      style={{
+                        flex: 1, padding: "6px 10px", borderRadius: 7, fontSize: "0.875rem",
+                        border: "1px solid var(--border)", background: "var(--surface)",
+                        color: "var(--text)", outline: "none",
+                      }}
+                    />
+                    <span style={{ fontSize: "0.8rem", color: "var(--muted)", flexShrink: 0 }}>
+                      {metric.unit}
+                    </span>
+                    {rawInput && (
+                      <button type="button" onClick={() => setUserValues(v => ({ ...v, [metric.name]: "" }))}
+                              style={{ background: "none", border: "none", color: "var(--muted)", cursor: "pointer", fontSize: "1rem", lineHeight: 1, padding: 2 }}>
+                        ×
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Verdict */}
+                  {verdict && (
+                    <div style={{
+                      marginTop: 8, padding: "6px 10px", borderRadius: 7,
+                      background: verdict.bg, display: "flex", alignItems: "center", gap: 6,
+                    }}>
+                      <span style={{ fontSize: "0.8rem" }}>{verdict.icon}</span>
+                      <span style={{ fontSize: "0.78rem", fontWeight: 700, color: verdict.color }}>
+                        {verdict.label}
+                      </span>
+                      <span style={{ fontSize: "0.75rem", color: verdict.color, opacity: 0.8 }}>
+                        — {topPerf
+                          ? `You're in the top 25% of ${benchmark.label.split("·")[0].trim()} companies`
+                          : aboveAvg
+                            ? `Above the industry average of ${fmtVal(metric.industry_avg)}`
+                            : `Below the industry average of ${fmtVal(metric.industry_avg)}`}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* How to find this value */}
+                  {!hasUser && (
+                    <p style={{ margin: "8px 0 0", fontSize: "0.73rem", color: "var(--muted)", lineHeight: 1.5 }}>
+                      <strong style={{ color: "var(--text-secondary)" }}>How to find this: </strong>
+                      {metric.howToFind}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             );
@@ -469,37 +705,29 @@ export default function BenchmarkPage() {
         </motion.div>
       </AnimatePresence>
 
-      {/* ── CTA ─────────────────────────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        style={{
-          marginTop: 32, padding: "28px 32px", borderRadius: 20,
-          background: "linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.06))",
-          border: "1px solid rgba(99,102,241,0.2)",
-          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, flexWrap: "wrap",
-        }}
-      >
+      {/* ── Footer tip ───────────────────────────────────────────────────────── */}
+      <div style={{
+        marginTop: 32, padding: "20px 24px", borderRadius: 12,
+        background: "var(--surface)", border: "1px solid var(--border)",
+        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, flexWrap: "wrap",
+      }}>
         <div>
-          <h3 style={{ margin: "0 0 6px", fontWeight: 700 }}>
-            {datasets.length > 0 ? "How do you compare?" : "Unlock your industry benchmark"}
-          </h3>
-          <p style={{ margin: 0, fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-            {datasets.length > 0
-              ? "Your actual metrics will be plotted against these benchmarks once your data is analysed."
-              : "Upload a dataset and BizInsight AI will automatically detect your industry and personalise these benchmarks."}
+          <p style={{ margin: "0 0 4px", fontWeight: 700, fontSize: "0.9rem" }}>
+            Find your actual numbers
+          </p>
+          <p style={{ margin: 0, fontSize: "0.82rem", color: "var(--text-secondary)" }}>
+            Go to your Analysis page to see your computed KPIs — then come back and enter them above to see where you stand.
           </p>
         </div>
         <button
           type="button"
-          className="button button-primary"
+          className="button button-secondary"
           disabled={datasets.length > 0 && !selectedId}
           onClick={() => navigate(datasets.length > 0 && selectedId ? `/analysis/${selectedId}` : "/upload")}
         >
-          {datasets.length > 0 ? "View Analysis →" : "Upload Your Data →"}
+          {datasets.length > 0 ? "Open Analysis →" : "Upload a Dataset →"}
         </button>
-      </motion.div>
+      </div>
     </MainLayout>
   );
 }

@@ -9,6 +9,7 @@ import LoadingSkeleton from "../components/ui/LoadingSkeleton";
 import {
   createGoal, deleteGoal, fetchAllGoalsProgress, fetchGoalTypes, fetchGoals,
 } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import type { GoalProgress, GoalType, GoalWithProgress } from "../types";
 
 const STATUS_META: Record<string, { color: string; label: string; badgeClass: string }> = {
@@ -22,7 +23,9 @@ const STATUS_META: Record<string, { color: string; label: string; badgeClass: st
 export default function GoalsPage() {
   const { fileId: paramFileId } = useParams();
   const navigate = useNavigate();
-  const fileId = paramFileId || localStorage.getItem("lastDatasetId") || "";
+  const { user } = useAuth();
+  const fileId  = paramFileId || localStorage.getItem("lastDatasetId") || "";
+  const industry = user?.onboarding_data?.business_type || "";
 
   const [goals, setGoals]         = useState<GoalWithProgress[]>([]);
   const [goalTypes, setGoalTypes] = useState<GoalType[]>([]);
@@ -34,9 +37,18 @@ export default function GoalsPage() {
   });
 
   useEffect(() => {
-    fetchGoalTypes().then(r => setGoalTypes(r.data.goal_types || [])).catch(() => {});
+    fetchGoalTypes(industry)
+      .then(r => {
+        const types = r.data.goal_types || [];
+        setGoalTypes(types);
+        // Default the form goal_type to the first available type for this industry
+        if (types.length > 0) {
+          setForm(f => ({ ...f, goal_type: types[0].id }));
+        }
+      })
+      .catch(() => {});
     loadGoals();
-  }, [fileId]);
+  }, [fileId, industry]);
 
   const loadGoals = async () => {
     setLoading(true);
@@ -115,7 +127,18 @@ export default function GoalsPage() {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="section-card-header">
-            <h2>Create New Goal</h2>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <h2 style={{ margin: 0 }}>Create New Goal</h2>
+              {industry && (
+                <span style={{
+                  fontSize: "0.7rem", fontWeight: 700, padding: "2px 9px", borderRadius: 99,
+                  background: "var(--primary-dim)", color: "var(--primary)",
+                  textTransform: "capitalize",
+                }}>
+                  {industry}
+                </span>
+              )}
+            </div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div>

@@ -11,21 +11,7 @@ import type { AIResponse, PreviewData } from "../types";
 
 interface Dataset { file_id: string; filename: string; }
 
-// ─── Dataset Intelligence Panel ───────────────────────────────────────────────
-
-const CAPABILITY_ICONS: Record<string, string> = {
-  revenue: "💰", sales: "📈", region: "🌍", product: "📦",
-  salesperson: "👤", quantity: "📊", customer: "👥", date: "📅",
-  price: "💲", margin: "📉", cost: "🏷️", profit: "💵",
-};
-
-function getColumnIcon(col: string): string {
-  const c = col.toLowerCase();
-  for (const [key, icon] of Object.entries(CAPABILITY_ICONS)) {
-    if (c.includes(key)) return icon;
-  }
-  return "◈";
-}
+// ─── Dataset Context Panel ────────────────────────────────────────────────────
 
 function DatasetIntelligencePanel({
   preview,
@@ -43,240 +29,70 @@ function DatasetIntelligencePanel({
   loading: boolean;
 }) {
   const columns = preview?.columns ?? [];
-  const rows = preview?.shape?.rows ?? 0;
-  const cols = preview?.shape?.columns ?? 0;
-
-  // Auto-detect context from column names
-  const detectedContext = (() => {
-    const all = columns.map((c) => c.toLowerCase()).join(" ");
-    if (all.includes("booking") || all.includes("trip") || all.includes("destination")) return { label: "Travel & Bookings", icon: "✈️" };
-    if (all.includes("sku") || all.includes("inventory") || all.includes("stock")) return { label: "Inventory", icon: "📦" };
-    if (all.includes("customer") && all.includes("ltv")) return { label: "E-commerce", icon: "🛒" };
-    if (all.includes("salesman") || all.includes("agent") || all.includes("rep")) return { label: "Sales Performance", icon: "📈" };
-    if (all.includes("transaction") || all.includes("account")) return { label: "Finance", icon: "🏦" };
-    if (all.includes("product") || all.includes("category")) return { label: "Retail", icon: "🏪" };
-    return { label: "Business Analytics", icon: "📊" };
-  })();
+  const rows    = preview?.shape?.rows ?? 0;
+  const cols    = preview?.shape?.columns ?? 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      style={{
-        marginBottom: 20,
-        background: "linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.05) 50%, rgba(15,23,42,0.6) 100%)",
-        border: "1px solid rgba(99,102,241,0.2)",
-        borderRadius: 20,
-        overflow: "hidden",
-        backdropFilter: "blur(16px)",
-      }}
-    >
-      {/* Top row: identity + meta */}
-      <div
-        style={{
-          padding: "16px 24px",
-          borderBottom: "1px solid var(--border)",
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          gap: 12,
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          {/* AI brain icon */}
-          <div
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 12,
-              background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 20,
-              flexShrink: 0,
-              boxShadow: "0 0 16px rgba(99,102,241,0.4)",
-            }}
-          >
-            🧠
-          </div>
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 13, fontWeight: 800, color: "#e2e8f0", letterSpacing: "-0.01em" }}>
-                Dataset Intelligence
-              </span>
-              {/* Auto-detect badge */}
-              <span
-                style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  padding: "2px 8px",
-                  borderRadius: 99,
-                  background: "rgba(34,197,94,0.12)",
-                  color: "#4ade80",
-                  border: "1px solid rgba(34,197,94,0.25)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                Auto-Detected
-              </span>
-            </div>
-            <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 2 }}>
-              {detectedContext.icon} {detectedContext.label}
-              {rows > 0 && (
-                <span style={{ marginLeft: 8, color: "#64748b" }}>
-                  · {rows.toLocaleString()} rows · {cols} columns
-                </span>
-              )}
-            </div>
-          </div>
+    <div className="section-card" style={{ marginBottom: 20 }}>
+      {/* Context header */}
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        marginBottom: columns.length > 0 ? 14 : 0,
+        flexWrap: "wrap", gap: 10,
+      }}>
+        <div>
+          <p style={{ margin: 0, fontSize: "0.82rem", fontWeight: 600, color: "var(--text)" }}>
+            Data context
+          </p>
+          {rows > 0 && (
+            <p style={{ margin: "2px 0 0", fontSize: "0.76rem", color: "var(--muted)" }}>
+              {rows.toLocaleString()} rows · {cols} columns
+            </p>
+          )}
         </div>
 
-        {/* TTS toggle — compact and right-aligned */}
-        <label
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            cursor: "pointer",
-            padding: "6px 14px",
-            borderRadius: 99,
-            background: speakAnswers ? "rgba(99,102,241,0.15)" : "var(--surface-alt)",
-            border: speakAnswers ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(148,163,184,0.1)",
-            transition: "all 0.2s",
-          }}
-        >
-          <span style={{ fontSize: 14 }}>{speakAnswers ? "🔊" : "🔇"}</span>
-          <span style={{ fontSize: 12, fontWeight: 600, color: speakAnswers ? "#818cf8" : "#64748b" }}>
-            Voice
-          </span>
-          <input
-            type="checkbox"
-            checked={speakAnswers}
-            onChange={(e) => onSpeakToggle(e.target.checked)}
-            style={{ display: "none" }}
-          />
-          <div
-            style={{
-              width: 32,
-              height: 18,
-              borderRadius: 99,
-              background: speakAnswers ? "#6366f1" : "rgba(255,255,255,0.1)",
-              position: "relative",
-              transition: "background 0.2s",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 2,
-                left: speakAnswers ? 16 : 2,
-                width: 14,
-                height: 14,
-                borderRadius: "50%",
-                background: "#fff",
-                transition: "left 0.2s",
-              }}
-            />
-          </div>
+        {/* Voice toggle */}
+        <label style={{
+          display: "flex", alignItems: "center", gap: 7, cursor: "pointer",
+          padding: "5px 12px", borderRadius: 8,
+          background: speakAnswers ? "var(--primary-dim)" : "var(--surface-alt)",
+          border: `1px solid ${speakAnswers ? "var(--primary)" : "var(--border)"}`,
+          transition: "all 0.15s",
+          fontSize: "0.78rem", fontWeight: 600,
+          color: speakAnswers ? "var(--primary)" : "var(--text-secondary)",
+        }}>
+          <input type="checkbox" checked={speakAnswers}
+                 onChange={e => onSpeakToggle(e.target.checked)} style={{ display: "none" }} />
+          {speakAnswers ? "🔊" : "🔇"} Voice
         </label>
       </div>
 
-      {/* Column chips row */}
+      {/* Column chips */}
       {columns.length > 0 && (
-        <div
-          style={{
-            padding: "12px 24px",
-            borderBottom: "1px solid rgba(255,255,255,0.04)",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 6,
-            alignItems: "center",
-          }}
-        >
-          <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#64748b", marginRight: 4 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 14 }}>
+          <span style={{ fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase",
+                          letterSpacing: "0.07em", color: "var(--muted)", alignSelf: "center",
+                          marginRight: 4 }}>
             Columns
           </span>
-          {columns.slice(0, 10).map((col) => (
-            <span
-              key={col}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 4,
-                padding: "3px 10px",
-                borderRadius: 99,
-                fontSize: 11,
-                fontWeight: 600,
-                background: "var(--surface-alt)",
-                color: "#94a3b8",
-                border: "1px solid rgba(148,163,184,0.1)",
-                fontFamily: "monospace",
-              }}
-            >
-              <span style={{ fontSize: 12 }}>{getColumnIcon(col)}</span>
+          {columns.slice(0, 12).map(col => (
+            <span key={col} style={{
+              padding: "2px 9px", borderRadius: 5, fontSize: "0.75rem", fontWeight: 500,
+              background: "var(--surface-alt)", border: "1px solid var(--border)",
+              color: "var(--text-secondary)", fontFamily: "monospace",
+            }}>
               {col}
             </span>
           ))}
-          {columns.length > 10 && (
-            <span style={{ fontSize: 11, color: "#475569" }}>+{columns.length - 10} more</span>
+          {columns.length > 12 && (
+            <span style={{ fontSize: "0.73rem", color: "var(--muted)", alignSelf: "center" }}>
+              +{columns.length - 12} more
+            </span>
           )}
         </div>
       )}
 
-      {/* Suggested questions as AI capabilities */}
-      <div style={{ padding: "14px 24px" }}>
-        <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#64748b", marginBottom: 10 }}>
-          Ask me anything about this dataset
-        </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {suggestions.length === 0
-            ? [1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    height: 30,
-                    width: 160,
-                    borderRadius: 99,
-                    background: "var(--surface-alt)",
-                    animation: "shimmerAnim 1.6s ease-in-out infinite",
-                    backgroundSize: "200% 100%",
-                  }}
-                />
-              ))
-            : suggestions.map((q) => (
-                <motion.button
-                  key={q}
-                  type="button"
-                  onClick={() => onSuggestionClick(q)}
-                  disabled={loading}
-                  whileHover={{ scale: 1.03, borderColor: "rgba(99,102,241,0.5)" }}
-                  whileTap={{ scale: 0.97 }}
-                  style={{
-                    padding: "6px 14px",
-                    borderRadius: 99,
-                    fontSize: 12,
-                    fontWeight: 500,
-                    background: "rgba(99,102,241,0.06)",
-                    color: "#a5b4fc",
-                    border: "1px solid rgba(99,102,241,0.15)",
-                    cursor: "pointer",
-                    transition: "all 0.15s",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6,
-                  }}
-                >
-                  <span style={{ opacity: 0.7, fontSize: 13 }}>⚡</span>
-                  {q}
-                </motion.button>
-              ))}
-        </div>
-      </div>
-    </motion.div>
+    </div>
   );
 }
 

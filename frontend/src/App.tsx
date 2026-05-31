@@ -34,7 +34,6 @@ import AutomationPage from "./pages/AutomationPage";
 import StrategyPage from "./pages/StrategyPage";
 import GoalsPage from "./pages/GoalsPage";
 import FraudPage from "./pages/FraudPage";
-import MarketIntelPage from "./pages/MarketIntelPage";
 import AuditPage from "./pages/AuditPage";
 
 // Phase 3-4
@@ -107,8 +106,6 @@ function App() {
           {/* ── Risk & Intelligence ────────────────────────────────── */}
           <Route path="/fraud/:fileId"       element={<P><FraudPage /></P>} />
           <Route path="/fraud"               element={<P><FraudPage /></P>} />
-          <Route path="/market-intel/:fileId" element={<P><MarketIntelPage /></P>} />
-          <Route path="/market-intel"        element={<P><MarketIntelPage /></P>} />
           <Route path="/benchmark"           element={<P><BenchmarkPage /></P>} />
           <Route path="/audit"               element={<P><AuditPage /></P>} />
 

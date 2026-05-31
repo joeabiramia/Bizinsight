@@ -7,7 +7,7 @@ import {
   GitCompare, Target, Plug, FileSpreadsheet, ShoppingBag,
   Settings, Map, Shield, ClipboardList,
   BarChart2, FileText, TrendingUp, Wand2, Sparkles,
-  Globe, LogOut, ChevronRight, Users, Palette,
+  LogOut, ChevronRight, Users,
   TrendingDown, BookOpen, Clock,
 } from "lucide-react";
 
@@ -33,7 +33,6 @@ const staticLinks: NavLink[] = [
   { to: "/fraud",             label: "Fraud Detection",   icon: <Shield size={16} /> },
   { to: "/audit",             label: "Audit Logs",        icon: <ClipboardList size={16} /> },
   { to: "/workspace",         label: "Team",              icon: <Users size={16} />, section: "Workspace" },
-  { to: "/settings",          label: "Account Settings",  icon: <ClipboardList size={16} /> },
 ];
 
 const contextualIconMap: Record<string, React.ReactNode> = {
@@ -46,7 +45,6 @@ const contextualIconMap: Record<string, React.ReactNode> = {
   fraud:         <Shield size={16} />,
   goals:         <Target size={16} />,
   strategy:      <Map size={16} />,
-  "market-intel": <Globe size={16} />,
 };
 
 function useFileId(): string | null {
@@ -84,7 +82,6 @@ export default function Sidebar() {
         { to: `/fraud/${fileId}`,           label: "Fraud Scan",      icon: contextualIconMap["fraud"] },
         { to: `/goals/${fileId}`,           label: "Goals Progress",  icon: contextualIconMap["goals"] },
         { to: `/strategy/${fileId}`,        label: "Strategy",        icon: contextualIconMap["strategy"] },
-        { to: `/market-intel/${fileId}`,    label: "Market Intel",    icon: contextualIconMap["market-intel"] },
       ]
     : [];
 
@@ -186,18 +183,27 @@ export default function Sidebar() {
             <div className="sidebar-industry-badge">{user.onboarding_data.business_type}</div>
           )}
 
+          <Link
+            to="/settings"
+            className="sidebar-logout-btn"
+            style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}
+          >
+            <Settings size={13} />
+            Account Settings
+          </Link>
+
           <button
             type="button"
             className="sidebar-logout-btn"
             onClick={toggleTheme}
-            style={{ marginBottom: 4 }}
+            style={{ marginTop: 2 }}
             title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? "☀️" : "🌙"}
             {theme === "dark" ? "Light mode" : "Dark mode"}
           </button>
 
-          <button type="button" className="sidebar-logout-btn" onClick={handleLogout}>
+          <button type="button" className="sidebar-logout-btn" onClick={handleLogout} style={{ marginTop: 2 }}>
             <LogOut size={13} />
             Sign out
           </button>

@@ -3,7 +3,7 @@ import logging
 import uuid
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
 from app.dataframe_utils import load_dataframe
@@ -43,10 +43,13 @@ class UpdateRuleRequest(BaseModel):
 
 
 @router.get("/conditions")
-def list_conditions():
-    """Return available rule condition types."""
-    from app.services.automation_service import AVAILABLE_CONDITIONS
-    return {"conditions": AVAILABLE_CONDITIONS}
+def list_conditions(
+    industry: str = Query("", description="Industry slug to filter conditions (e.g. retail, hr, technology)"),
+):
+    """Return rule conditions filtered for the given industry."""
+    from app.services.automation_service import get_conditions_for_industry
+    conditions = get_conditions_for_industry(industry)
+    return {"conditions": conditions, "industry": industry or "general"}
 
 
 @router.get("/actions")

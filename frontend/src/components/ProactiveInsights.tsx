@@ -97,9 +97,10 @@ function generateInsights(analysisData: Record<string, unknown>): ProactiveInsig
 interface ProactiveInsightsProps {
   fileId: string;
   analysisData?: Record<string, unknown>;
+  compact?: boolean;
 }
 
-export default function ProactiveInsights({ fileId, analysisData }: ProactiveInsightsProps) {
+export default function ProactiveInsights({ fileId, analysisData, compact }: ProactiveInsightsProps) {
   const [insights, setInsights] = useState<ProactiveInsight[]>([]);
   const [loading, setLoading] = useState(true);
   const [dismissed, setDismissed] = useState<Set<number>>(new Set());
@@ -134,7 +135,8 @@ export default function ProactiveInsights({ fileId, analysisData }: ProactiveIns
       .finally(() => setLoading(false));
   }, [fileId, analysisData]);
 
-  const visible = insights.filter((_, i) => !dismissed.has(i));
+  const allVisible = insights.filter((_, i) => !dismissed.has(i));
+  const visible = compact ? allVisible.slice(0, 3) : allVisible;
 
   if (loading) return null;
   if (visible.length === 0) return null;
@@ -183,8 +185,9 @@ export default function ProactiveInsights({ fileId, analysisData }: ProactiveIns
             style={{ overflow: "hidden" }}
           >
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 12 }}>
-              {insights.map((ins, i) => {
-                if (dismissed.has(i)) return null;
+              {visible.map((ins, i) => {
+                const origIdx = insights.indexOf(ins);
+                if (dismissed.has(origIdx)) return null;
                 const meta = TYPE_META[ins.type];
                 return (
                   <motion.div
@@ -203,7 +206,7 @@ export default function ProactiveInsights({ fileId, analysisData }: ProactiveIns
                     <button
                       type="button"
                       style={{ position: "absolute", top: 10, right: 10, background: "none", border: "none", color: "var(--muted)", cursor: "pointer", padding: 3 }}
-                      onClick={() => setDismissed(prev => new Set([...prev, i]))}
+                      onClick={() => setDismissed(prev => new Set([...prev, origIdx]))}
                     >
                       <X size={12} />
                     </button>

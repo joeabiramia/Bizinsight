@@ -11,6 +11,7 @@ import {
   triggerAutomation,
   updateAutomationRule,
 } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import type {
   AutomationAction,
   AutomationCondition,
@@ -39,7 +40,9 @@ const EMPTY_FORM: FormState = {
 
 export default function AutomationPage() {
   const { fileId: paramFileId } = useParams();
+  const { user } = useAuth();
   const fileId = paramFileId || localStorage.getItem("lastDatasetId") || "";
+  const industry = user?.onboarding_data?.business_type || "";
 
   const [rules, setRules] = useState<AutomationRule[]>([]);
   const [conditions, setConditions] = useState<AutomationCondition[]>([]);
@@ -60,7 +63,7 @@ export default function AutomationPage() {
   const loadAll = () =>
     Promise.all([
       fetchAutomationRules(),
-      fetchAutomationConditions(),
+      fetchAutomationConditions(industry),
       fetchAutomationActions(),
       fetchAutomationHistory(),
     ]).then(([rulesRes, condRes, actRes, histRes]) => {
@@ -197,8 +200,9 @@ export default function AutomationPage() {
   const selectedCondition = conditions.find((c) => c.id === form.condition_id);
   const isFormOpen = mode !== "idle";
 
-  // â”€â”€ shared form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  const RuleForm = () => (
+  // Inline JSX — NOT a component function. Defining it as a component causes
+  // React to unmount/remount it on every keystroke, which breaks input focus.
+  const ruleFormJsx = (
     <div className="section-card" style={{ marginBottom: 24 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
         <h3 style={{ margin: 0, fontSize: "0.9rem", fontWeight: 700, color: "var(--text)" }}>
@@ -223,14 +227,25 @@ export default function AutomationPage() {
 
         {/* Condition */}
         <div>
-          <label className="form-label">Condition *</label>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <label className="form-label" style={{ margin: 0 }}>Condition *</label>
+            {industry && (
+              <span style={{
+                fontSize: "0.65rem", fontWeight: 700, padding: "1px 8px", borderRadius: 99,
+                background: "var(--primary-dim)", color: "var(--primary)",
+                textTransform: "capitalize",
+              }}>
+                {industry}
+              </span>
+            )}
+          </div>
           <select
             className="form-input"
             title="Rule condition"
             value={form.condition_id}
             onChange={(e) => setForm({ ...form, condition_id: e.target.value })}
           >
-            <option value="">Select a conditionâ€¦</option>
+            <option value="">Select a condition…</option>
             {conditions.map((c) => (
               <option key={c.id} value={c.id}>{c.icon} {c.label}</option>
             ))}
@@ -300,7 +315,7 @@ export default function AutomationPage() {
         onClick={mode === "edit" ? handleSaveEdit : handleCreate}
         disabled={loading}
       >
-        {loading ? "Savingâ€¦" : mode === "edit" ? "Save Changes" : "Create Rule"}
+        {loading ? "Saving…" : mode === "edit" ? "Save Changes" : "Create Rule"}
       </button>
     </div>
   );
@@ -330,7 +345,7 @@ export default function AutomationPage() {
               onClick={handleTrigger}
               disabled={triggering || rules.length === 0}
             >
-              {triggering ? "Runningâ€¦" : "Run All Rules"}
+              {triggering ? "Running…" : "Run All Rules"}
             </button>
           )}
         </div>
@@ -339,7 +354,7 @@ export default function AutomationPage() {
       {error && mode === "idle" && <div className="alert alert-error">{error}</div>}
 
       {/* Form (create or edit) */}
-      {isFormOpen && <RuleForm />}
+      {isFormOpen && ruleFormJsx}
 
       {/* Trigger results */}
       {triggerResults.length > 0 && (

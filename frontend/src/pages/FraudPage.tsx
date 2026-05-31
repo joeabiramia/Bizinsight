@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import { detectFraud } from "../services/api";
@@ -18,11 +18,11 @@ const SEVERITY_COLORS: Record<string, string> = {
 };
 
 const TYPE_ICONS: Record<string, string> = {
-  high_discount: "ðŸ’¸",
-  abnormal_amount: "ðŸ’°",
-  high_frequency_customer: "ðŸ‘¤",
-  performance_spike: "ðŸ“ˆ",
-  off_hours_activity: "ðŸ•",
+  high_discount:            "💸",
+  abnormal_amount:          "💰",
+  high_frequency_customer:  "👤",
+  performance_spike:        "📈",
+  off_hours_activity:       "🕐",
 };
 
 export default function FraudPage() {
@@ -85,7 +85,7 @@ export default function FraudPage() {
         </div>
         <div className="hero-actions">
           <button className="button button-secondary" onClick={runScan} disabled={loading}>
-            {loading ? "Scanningâ€¦" : "Re-scan"}
+            {loading ? "Scanning…" : "Re-scan"}
           </button>
         </div>
       </div>
@@ -95,7 +95,7 @@ export default function FraudPage() {
       {loading && (
         <div className="section-card" style={{ textAlign: "center", padding: "48px 0" }}>
           <div className="loading-spinner" style={{ margin: "0 auto 16px" }} />
-          <p style={{ color: "var(--text-secondary)" }}>Scanning for suspicious patternsâ€¦</p>
+          <p style={{ color: "var(--text-secondary)" }}>Scanning for suspicious patterns…</p>
         </div>
       )}
 
@@ -166,7 +166,7 @@ export default function FraudPage() {
 
             {filteredAlerts.length === 0 ? (
               <div className="empty-state">
-                <p style={{ fontSize: 32, marginBottom: 8 }}>âœ…</p>
+                <p style={{ fontSize: 32, marginBottom: 8 }}>✅</p>
                 <p>
                   <strong>No suspicious patterns detected</strong> at the selected severity level.{" "}
                   {filter !== "all" && "Try showing 'All' alerts."}
@@ -183,7 +183,7 @@ export default function FraudPage() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                          <span style={{ fontSize: 20 }}>{TYPE_ICONS[alert.type] || "âš ï¸"}</span>
+                          <span style={{ fontSize: 20 }}>{TYPE_ICONS[alert.type] || "⚠️"}</span>
                           <strong>{alert.title}</strong>
                           <span className={`severity-badge severity-badge--${alert.severity === "high" ? "critical" : alert.severity === "medium" ? "high" : "low"}`}>
                             {alert.severity}
@@ -193,13 +193,13 @@ export default function FraudPage() {
                         {alert.value !== null && alert.value !== undefined && (
                           <p style={{ fontSize: 13 }}>
                             <strong>Value:</strong> {String(alert.value)}
-                            {typeof alert.transaction_count === "number" && ` Â· ${alert.transaction_count} transactions`}
-                            {typeof alert.total_amount === "number" && ` Â· $${alert.total_amount.toLocaleString()} total`}
-                            {typeof alert.z_score === "number" && ` Â· Z-score: ${alert.z_score}`}
+                            {typeof alert.transaction_count === "number" && ` · ${alert.transaction_count} transactions`}
+                            {typeof alert.total_amount === "number" && ` · $${alert.total_amount.toLocaleString()} total`}
+                            {typeof alert.z_score === "number" && ` · Z-score: ${alert.z_score}`}
                           </p>
                         )}
                         <p style={{ color: "#6366f1", fontSize: 13, marginTop: 6 }}>
-                          ðŸ’¡ {alert.recommendation}
+                          💡 {alert.recommendation}
                         </p>
                       </div>
                     </div>
@@ -213,4 +213,3 @@ export default function FraudPage() {
     </MainLayout>
   );
 }
-

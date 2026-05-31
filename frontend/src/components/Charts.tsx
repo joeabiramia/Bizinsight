@@ -173,7 +173,7 @@ const LineCard = ({ title, data }: { title: string; data: { name: string; value:
 
 // ── Main export ───────────────────────────────────────────────────────────────
 
-export default function Charts({ data, fileId }: { data?: AnalysisData["chart_data"]; fileId?: string }) {
+export default function Charts({ data, fileId, maxCharts }: { data?: AnalysisData["chart_data"]; fileId?: string; maxCharts?: number }) {
   if (!data) return <p>No chart data available.</p>;
 
   const charts: JSX.Element[] = [];
@@ -216,5 +216,6 @@ export default function Charts({ data, fileId }: { data?: AnalysisData["chart_da
     return <p style={{ color: "var(--muted)" }}>No chart data was generated. Upload a file with numeric columns to see charts.</p>;
   }
 
-  return <div className="charts-grid">{charts}</div>;
+  const visible = maxCharts ? charts.slice(0, maxCharts) : charts;
+  return <div className="charts-grid">{visible}</div>;
 }

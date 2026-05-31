@@ -34,7 +34,6 @@ export default defineConfig({
       '/goals',
       '/goal-forecast',
       '/fraud',
-      '/market-intel',
       '/audit',
       '/realtime',
       '/connect',
