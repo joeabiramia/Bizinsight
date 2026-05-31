@@ -421,14 +421,6 @@ export default function OnboardingPage() {
         </div>
       </div>
 
-      {/* Skip */}
-      <button
-        type="button"
-        style={{ marginTop: 20, background: "none", border: "none", color: "var(--muted)", fontSize: "0.82rem", cursor: "pointer" }}
-        onClick={() => navigate("/dashboard", { replace: true })}
-      >
-        Skip for now →
-      </button>
 
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>

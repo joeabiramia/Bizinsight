@@ -19,6 +19,74 @@ export interface IndustryBenchmark {
   insight: string;
 }
 
+// Company size tiers used for benchmark peer-group selection
+export type SizeTier = "smb" | "mid" | "enterprise";
+
+/** Map onboarding company_size → benchmark tier */
+export function getSizeTier(companySize: string): SizeTier {
+  if (!companySize || companySize === "solo" || companySize === "small") return "smb";
+  if (companySize === "medium") return "mid";
+  return "enterprise"; // large / enterprise
+}
+
+/**
+ * Peer-group multipliers applied to base benchmark numbers.
+ *
+ * SMBs (1-10 employees) operate on thinner margins and lower absolute volumes
+ * than enterprises, so the "industry average" they should be compared against
+ * is different.  These factors scale the base metrics accordingly.
+ *
+ * Format: { metric_name: { smb: factor, mid: factor, enterprise: factor } }
+ * A factor of 1.0 means the base number is unchanged.
+ *
+ * Revenue-based absolute metrics ($ amounts) scale up significantly for
+ * enterprise; percentage metrics shift modestly.
+ */
+const SIZE_ADJUSTMENTS: Record<string, Record<SizeTier, { avg: number; top: number }>> = {
+  // Retail
+  "Gross Margin":          { smb: { avg: 38, top: 55 }, mid: { avg: 43, top: 62 }, enterprise: { avg: 48, top: 68 } },
+  "Customer Return Rate":  { smb: { avg: 22, top: 45 }, mid: { avg: 28, top: 55 }, enterprise: { avg: 35, top: 62 } },
+  "Avg Order Value":       { smb: { avg: 55, top: 95  }, mid: { avg: 85, top: 140 }, enterprise: { avg: 120, top: 200 } },
+  "Cart Abandonment":      { smb: { avg: 72, top: 55  }, mid: { avg: 70, top: 52  }, enterprise: { avg: 65, top: 48  } },
+  "Inventory Turnover":    { smb: { avg: 5,  top: 10  }, mid: { avg: 8,  top: 14  }, enterprise: { avg: 12, top: 20  } },
+  "Revenue Growth (YoY)":  { smb: { avg: 18, top: 40  }, mid: { avg: 12, top: 28  }, enterprise: { avg: 8,  top: 18  } },
+  // Technology / SaaS
+  "Monthly Churn Rate":    { smb: { avg: 8,  top: 3   }, mid: { avg: 5.2, top: 1.8 }, enterprise: { avg: 3,  top: 0.8 } },
+  "Net Revenue Retention": { smb: { avg: 95, top: 110 }, mid: { avg: 104, top: 125 }, enterprise: { avg: 110, top: 135 } },
+  "CAC Payback Period":    { smb: { avg: 12, top: 6   }, mid: { avg: 18,  top: 9   }, enterprise: { avg: 24, top: 12  } },
+  "ARR Growth (YoY)":      { smb: { avg: 80, top: 150 }, mid: { avg: 45,  top: 100 }, enterprise: { avg: 25, top: 60  } },
+  // HR
+  "Employee Turnover Rate":{ smb: { avg: 22, top: 10  }, mid: { avg: 18,  top: 8   }, enterprise: { avg: 14, top: 6   } },
+  "Time-to-Hire":          { smb: { avg: 28, top: 14  }, mid: { avg: 42,  top: 24  }, enterprise: { avg: 55, top: 35  } },
+  "Revenue per Employee":  { smb: { avg: 120, top: 220 }, mid: { avg: 180, top: 320 }, enterprise: { avg: 250, top: 450 } },
+  "Training Hours/Employee":{ smb: { avg: 20, top: 40 }, mid: { avg: 34,  top: 62  }, enterprise: { avg: 45, top: 80  } },
+  // Finance
+  "Cost-to-Income Ratio":  { smb: { avg: 70, top: 52  }, mid: { avg: 62,  top: 44  }, enterprise: { avg: 55, top: 38  } },
+  "Return on Equity":      { smb: { avg: 8,  top: 14  }, mid: { avg: 11,  top: 18  }, enterprise: { avg: 14, top: 22  } },
+  "Customer Acquisition Cost":{ smb: { avg: 220, top: 110 }, mid: { avg: 380, top: 190 }, enterprise: { avg: 550, top: 280 } },
+};
+
+/** Apply size-tier adjustments to a benchmark's metrics. */
+export function applySize(benchmark: IndustryBenchmark, tier: SizeTier): IndustryBenchmark {
+  const adjustedMetrics = benchmark.metrics.map(m => {
+    const adj = SIZE_ADJUSTMENTS[m.name]?.[tier];
+    if (!adj) return m;
+    return { ...m, industry_avg: adj.avg, top_quartile: adj.top };
+  });
+
+  const tierLabel = tier === "smb" ? "SMB" : tier === "mid" ? "Mid-Market" : "Enterprise";
+  return {
+    ...benchmark,
+    label: `${benchmark.label} · ${tierLabel}`,
+    insight: tier === "smb"
+      ? benchmark.insight.replace("Top ", "Top small-business ")
+      : tier === "enterprise"
+        ? benchmark.insight.replace("Top ", "Top enterprise ")
+        : benchmark.insight,
+    metrics: adjustedMetrics,
+  };
+}
+
 export const INDUSTRY_BENCHMARKS: Record<string, IndustryBenchmark> = {
   retail: {
     industry: "retail",

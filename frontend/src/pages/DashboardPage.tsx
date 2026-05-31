@@ -62,12 +62,39 @@ const GOAL_TIPS: Record<string, string> = {
   reporting:   "Upload any business spreadsheet and get an instant executive report with one click.",
 };
 
-const QUICK_ACTIONS = [
-  { label: "Upload dataset",        icon: <Upload size={16} />,    path: "/upload",    variant: "button-primary" },
-  { label: "View all datasets",     icon: <Database size={16} />,  path: "/datasets",  variant: "button-secondary" },
-  { label: "Open AI Copilot",       icon: <Bot size={16} />,       path: "/ai-chat",   variant: "button-secondary" },
-  { label: "Integrations",          icon: <Layers size={16} />,    path: "/integrations", variant: "button-secondary" },
+const ALL_QUICK_ACTIONS = [
+  { id: "upload",    label: "Upload dataset",     icon: <Upload size={16} />,      path: "/upload",          variant: "button-primary"   },
+  { id: "datasets",  label: "View datasets",      icon: <Database size={16} />,    path: "/datasets",        variant: "button-secondary" },
+  { id: "ai",        label: "Open AI Copilot",    icon: <Bot size={16} />,         path: "/ai-chat",         variant: "button-secondary" },
+  { id: "analysis",  label: "Run analysis",       icon: <BarChart2 size={16} />,   path: "/datasets",        variant: "button-secondary" },
+  { id: "predict",   label: "Predictions",        icon: <TrendingUp size={16} />,  path: "/predictions",     variant: "button-secondary" },
+  { id: "clean",     label: "Data cleaning",      icon: <Zap size={16} />,         path: "/data-cleaning",   variant: "button-secondary" },
+  { id: "goals",     label: "Track goals",        icon: <MessageSquare size={16}/>,path: "/goals",           variant: "button-secondary" },
+  { id: "integr",    label: "Integrations",       icon: <Layers size={16} />,      path: "/integrations",    variant: "button-secondary" },
 ];
+
+// Priority order of action IDs per goal — first 4 shown
+const GOAL_ACTION_ORDER: Record<string, string[]> = {
+  revenue:     ["upload", "ai",      "analysis", "datasets"],
+  costs:       ["upload", "clean",   "analysis", "ai"      ],
+  performance: ["upload", "analysis","goals",    "ai"      ],
+  forecast:    ["upload", "predict", "ai",       "analysis"],
+  customers:   ["upload", "ai",      "analysis", "datasets"],
+  reporting:   ["upload", "analysis","datasets", "ai"      ],
+};
+
+function getQuickActions(goal: string) {
+  const order = GOAL_ACTION_ORDER[goal] || ["upload", "datasets", "ai", "integr"];
+  return order.map(id => ALL_QUICK_ACTIONS.find(a => a.id === id)!).filter(Boolean).slice(0, 4);
+}
+
+const ROLE_GREETING: Record<string, string> = {
+  owner:   "Here's your executive overview",
+  manager: "Here's your team performance summary",
+  analyst: "Here's your data analysis hub",
+  finance: "Here's your financial intelligence dashboard",
+  other:   "Here's your business intelligence dashboard",
+};
 
 export default function DashboardPage() {
   const [datasets, setDatasets] = useState<DatasetRecord[]>([]);
@@ -75,11 +102,14 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const industry = user?.onboarding_data?.business_type || "other";
-  const goal     = user?.onboarding_data?.goal || "";
-  const kpis     = INDUSTRY_KPIS[industry] || DEFAULT_KPIS;
-  const goalTip  = GOAL_TIPS[goal] || "";
-  const firstName = user?.name?.split(" ")[0] || "there";
+  const industry   = user?.onboarding_data?.business_type || "other";
+  const goal       = user?.onboarding_data?.goal || "";
+  const userRole   = user?.onboarding_data?.user_role || "other";
+  const kpis       = INDUSTRY_KPIS[industry] || DEFAULT_KPIS;
+  const goalTip    = GOAL_TIPS[goal] || "";
+  const firstName  = user?.name?.split(" ")[0] || "there";
+  const quickActions = getQuickActions(goal);
+  const roleGreeting = ROLE_GREETING[userRole] || ROLE_GREETING.other;
 
   useEffect(() => {
     listDatasets()
@@ -93,7 +123,7 @@ export default function DashboardPage() {
   return (
     <MainLayout>
       <PageHeader
-        eyebrow="Executive Dashboard"
+        eyebrow={roleGreeting}
         title={`Welcome back, ${firstName}`}
         description={goalTip || "Upload a dataset to generate your first AI-powered business intelligence report."}
         actions={
@@ -196,9 +226,9 @@ export default function DashboardPage() {
         </SectionCard>
 
         {/* Quick actions */}
-        <SectionCard title="Quick actions" description="Jump to the most-used features." index={1}>
+        <SectionCard title="Quick actions" description={goal ? `Prioritised for your goal: ${goal.replace("_", " ")}` : "Jump to the most-used features."} index={1}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            {QUICK_ACTIONS.map((action, i) => (
+            {quickActions.map((action, i) => (
               <motion.button
                 key={action.label}
                 type="button"

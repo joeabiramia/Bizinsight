@@ -383,7 +383,8 @@ COMPUTED RANKING DATA (all numbers are real — use them exactly):
 # ── Main entry point ───────────────────────────────────────────────────────────
 
 def answer_with_rag(df: pd.DataFrame, question: str, analysis: dict | None = None,
-                    chat_history: list | None = None) -> dict:
+                    chat_history: list | None = None,
+                    user_context: dict | None = None) -> dict:
     """
     Answer a business question grounded entirely in real computed data.
 
@@ -428,13 +429,50 @@ def answer_with_rag(df: pd.DataFrame, question: str, analysis: dict | None = Non
             "primary_result":    primary,
         }
 
+    # Build optional user-business context block
+    ctx_lines: list[str] = []
+    if user_context:
+        industry_labels = {
+            "retail": "Retail & E-commerce", "finance": "Finance & Banking",
+            "hr": "Human Resources", "logistics": "Logistics & Supply Chain",
+            "healthcare": "Healthcare", "technology": "Technology / SaaS",
+            "manufacturing": "Manufacturing",
+        }
+        goal_labels = {
+            "revenue": "Increase revenue", "costs": "Reduce costs",
+            "performance": "Track team performance", "forecast": "Forecast & plan ahead",
+            "customers": "Understand customers", "reporting": "Automate reporting",
+        }
+        role_labels = {
+            "owner": "Business Owner", "manager": "Manager / Team Lead",
+            "analyst": "Data Analyst", "finance": "Finance / Accounting",
+        }
+        bt  = user_context.get("business_type", "")
+        goal = user_context.get("goal", "")
+        role = user_context.get("user_role", "")
+        size = user_context.get("company_size", "")
+        dtypes = user_context.get("data_types", [])
+
+        if bt:   ctx_lines.append(f"Industry: {industry_labels.get(bt, bt)}")
+        if size: ctx_lines.append(f"Company size: {size}")
+        if goal: ctx_lines.append(f"Business goal: {goal_labels.get(goal, goal)}")
+        if role: ctx_lines.append(f"User role: {role_labels.get(role, role)}")
+        if dtypes:
+            ctx_lines.append(f"Data types available: {', '.join(dtypes)}")
+
+    context_header = ""
+    if ctx_lines:
+        context_header = "USER BUSINESS CONTEXT (tailor tone and recommendations accordingly):\n"
+        context_header += "\n".join(f"  - {l}" for l in ctx_lines) + "\n\n"
+
     # Step 4: Ask GPT to format the result
-    user_prompt = f"""QUESTION: {question}
+    user_prompt = f"""{context_header}QUESTION: {question}
 
 COMPUTED RESULTS (100% real data — use ONLY these numbers):
 {data_context}
 
-Format the answer using the required structure. Use exact numbers from the computed results above."""
+Format the answer using the required structure. Use exact numbers from the computed results above.
+If the user context mentions a specific goal (e.g. reduce costs), frame your Recommendation toward that goal."""
 
     try:
         response = client.chat.completions.create(

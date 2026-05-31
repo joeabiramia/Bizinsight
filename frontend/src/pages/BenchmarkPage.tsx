@@ -5,9 +5,10 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recha
 import { TrendingUp, TrendingDown, Info, Database, Loader2, CheckCircle2, ChevronDown } from "lucide-react";
 import MainLayout from "../components/layout/MainLayout";
 import PageHeader from "../components/ui/PageHeader";
-import { getBenchmarkForIndustry, INDUSTRY_BENCHMARKS } from "../data/benchmarks";
+import { getBenchmarkForIndustry, INDUSTRY_BENCHMARKS, applySize, getSizeTier } from "../data/benchmarks";
 import type { IndustryBenchmark } from "../data/benchmarks";
 import { listDatasets, classifyDataset } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -66,6 +67,11 @@ function ScoreBar({ industry, score, color }: { industry: string; score: number;
 
 export default function BenchmarkPage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const onboardingIndustry = user?.onboarding_data?.business_type || "";
+  const companySize        = user?.onboarding_data?.company_size || "";
+  const sizeTier           = getSizeTier(companySize);
+
   const [datasets, setDatasets] = useState<Dataset[]>([]);
   const [selectedId, setSelectedId] = useState<string>("");
   const [classification, setClassification] = useState<Classification | null>(null);
@@ -74,9 +80,15 @@ export default function BenchmarkPage() {
   const [overrideIndustry, setOverrideIndustry] = useState<string | null>(null);
   const [showOverride, setShowOverride] = useState(false);
 
-  // The benchmark displayed is the override if set, otherwise the auto-detected one
-  const activeIndustry = overrideIndustry ?? classification?.industry ?? "general";
-  const benchmark: IndustryBenchmark = getBenchmarkForIndustry(activeIndustry);
+  // Priority: manual override → dataset classifier → onboarding industry → general
+  const detectedIndustry = classification?.industry === "general" && onboardingIndustry
+    ? onboardingIndustry
+    : classification?.industry ?? "general";
+  const activeIndustry = overrideIndustry ?? detectedIndustry;
+  const benchmark: IndustryBenchmark = applySize(
+    getBenchmarkForIndustry(activeIndustry),
+    sizeTier,
+  );
 
   // ── Load datasets ────────────────────────────────────────────────────────────
 
@@ -208,6 +220,14 @@ export default function BenchmarkPage() {
                     Auto-detected
                   </span>
                 )}
+                {classification?.industry === "general" && onboardingIndustry && !overrideIndustry && (
+                  <span style={{
+                    padding: "2px 8px", borderRadius: 20, fontSize: "0.7rem", fontWeight: 700,
+                    background: "rgba(245,158,11,0.10)", color: "#f59e0b",
+                  }}>
+                    From your profile
+                  </span>
+                )}
               </div>
               <p style={{ margin: 0, fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>
                 {benchmark.insight}
@@ -221,6 +241,14 @@ export default function BenchmarkPage() {
               }}>
                 {benchmark.metrics.length} Metrics
               </div>
+              {companySize && (
+                <div style={{
+                  padding: "4px 12px", borderRadius: 10, fontSize: "0.72rem", fontWeight: 700,
+                  background: "rgba(99,102,241,0.10)", color: "var(--primary-light)",
+                }}>
+                  {sizeTier === "smb" ? "SMB peer group" : sizeTier === "mid" ? "Mid-market peer group" : "Enterprise peer group"}
+                </div>
+              )}
 
               {/* Industry override toggle */}
               {datasets.length > 0 && (

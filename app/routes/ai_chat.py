@@ -421,7 +421,10 @@ def ai_chat(
         from app.services.rag_service import answer_with_rag
         from app.analysis.analyzer import analyze_dataframe
         analysis = analyze_dataframe(df)
-        rag_result = answer_with_rag(df, q.question, analysis, chat_history=recent_history)
+        user_context = wu.get("onboarding_data") or {}
+        rag_result = answer_with_rag(df, q.question, analysis,
+                                     chat_history=recent_history,
+                                     user_context=user_context)
         response = {
             "question": q.question,
             "supported": True,

@@ -51,7 +51,6 @@ import GoalForecastPage from "./pages/GoalForecastPage";
 import BenchmarkPage from "./pages/BenchmarkPage";
 import DigestSettingsPage from "./pages/DigestSettingsPage";
 import WorkspacePage from "./pages/WorkspacePage";
-import WhiteLabelPage from "./pages/WhiteLabelPage";
 
 const P = ProtectedRoute;
 
@@ -128,7 +127,6 @@ function App() {
 
           {/* ── Team & Settings ────────────────────────────────────── */}
           <Route path="/workspace"           element={<P><WorkspacePage /></P>} />
-          <Route path="/white-label"         element={<P><WhiteLabelPage /></P>} />
           <Route path="/settings"            element={<P><SettingsPage /></P>} />
 
           {/* ── Public/shared ──────────────────────────────────────── */}

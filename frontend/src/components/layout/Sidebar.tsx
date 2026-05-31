@@ -33,7 +33,6 @@ const staticLinks: NavLink[] = [
   { to: "/fraud",             label: "Fraud Detection",   icon: <Shield size={16} /> },
   { to: "/audit",             label: "Audit Logs",        icon: <ClipboardList size={16} /> },
   { to: "/workspace",         label: "Team",              icon: <Users size={16} />, section: "Workspace" },
-  { to: "/white-label",       label: "White Label",       icon: <Palette size={16} /> },
   { to: "/settings",          label: "Account Settings",  icon: <ClipboardList size={16} /> },
 ];
 
@@ -62,6 +61,7 @@ export default function Sidebar() {
   const fileId = useFileId();
   const { theme, toggleTheme } = useTheme();
   const { workspace, role, isInWorkspace, can } = useWorkspace();
+  const isSolo = user?.onboarding_data?.company_size === "solo";
 
   const isActive = (to: string) => {
     if (to === "/dashboard") return location.pathname === "/dashboard";
@@ -106,6 +106,8 @@ export default function Sidebar() {
           .filter((l) => {
             // Hide upload for viewers
             if (l.to === "/upload" && !can("upload")) return false;
+            // Hide Team for solo users — they have no one to invite
+            if (isSolo && l.to === "/workspace") return false;
             if (!fileId) return true;
             const contextualPaths = ["/fraud", "/strategy"];
             return !contextualPaths.some((p) => l.to.startsWith(p));

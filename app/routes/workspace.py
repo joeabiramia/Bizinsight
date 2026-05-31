@@ -355,17 +355,3 @@ def get_invite_link(current_user: dict = Depends(get_current_user)):
     return {"link": link, "token": token, "expires_in_days": 7}
 
 
-# ── Branding ──────────────────────────────────────────────────────────────────
-
-@router.post("/branding")
-def save_branding(settings: dict, current_user: dict = Depends(get_current_user)):
-    from app.services.workspace_service import can, get_user_role
-    if not can(get_user_role(current_user["user_id"]), "manage_settings"):
-        raise HTTPException(status_code=403, detail="Only the workspace owner can change branding.")
-    kv_set(f"branding_{current_user['user_id']}", settings)
-    return {"success": True}
-
-
-@router.get("/branding")
-def get_branding(current_user: dict = Depends(get_current_user)):
-    return kv_get(f"branding_{current_user['user_id']}") or {}
